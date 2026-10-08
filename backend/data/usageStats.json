@@ -1,0 +1,547 @@
+{
+  "domains": {
+    "Anime": 1791466350365,
+    "Cricket / IPL": 1791456903779,
+    "Web Series": 1791456903781,
+    "Movies": 1791463391322,
+    "General Knowledge": 1791456903783,
+    "Locations": 1791456903785,
+    "Memes & Internet Culture": 1791456903786,
+    "Tech & AI": 1791456903787,
+    "VIT Pune & Pune Local": 1791456903788
+  },
+  "subfields": {
+    "Anime::Romance/Drama": 1791456903778,
+    "Cricket / IPL::Legendary matches": 1791456903779,
+    "Web Series::Comedy/Sitcom": 1791456903781,
+    "Movies::Bollywood classics": 1791456903782,
+    "General Knowledge::Mythology & culture": 1791456903783,
+    "Locations::Countries & capitals": 1791456903785,
+    "Memes & Internet Culture::Viral trends": 1791456903786,
+    "Tech & AI::Programming": 1791456903787,
+    "VIT Pune & Pune Local::Pune landmarks": 1791456903788,
+    "Anime::Sports anime": 1791456903789,
+    "Anime::Thriller/Mystery": 1791466278926,
+    "Anime::Slice of life": 1791461087299,
+    "Anime::Characters & villains": 1791461673947,
+    "Movies::Sci-fi/Superhero": 1791463391322,
+    "Anime::Shonen": 1791466350365,
+    "Anime::Classics": 1791465675785
+  },
+  "keywords": {
+    "chal-7": {
+      "count": 1,
+      "lastUsedAt": 1791456903778
+    },
+    "chal-28": {
+      "count": 1,
+      "lastUsedAt": 1791456903779
+    },
+    "chal-49": {
+      "count": 1,
+      "lastUsedAt": 1791456903781
+    },
+    "chal-64": {
+      "count": 1,
+      "lastUsedAt": 1791456903782
+    },
+    "chal-103": {
+      "count": 1,
+      "lastUsedAt": 1791456903783
+    },
+    "chal-118": {
+      "count": 1,
+      "lastUsedAt": 1791456903785
+    },
+    "chal-130": {
+      "count": 1,
+      "lastUsedAt": 1791456903786
+    },
+    "chal-151": {
+      "count": 1,
+      "lastUsedAt": 1791456903787
+    },
+    "chal-169": {
+      "count": 1,
+      "lastUsedAt": 1791456903788
+    },
+    "chal-13": {
+      "count": 1,
+      "lastUsedAt": 1791456903789
+    },
+    "chal-10": {
+      "count": 1,
+      "lastUsedAt": 1791460274497
+    },
+    "chal-4": {
+      "count": 1,
+      "lastUsedAt": 1791461087299
+    },
+    "chal-19": {
+      "count": 1,
+      "lastUsedAt": 1791461673947
+    },
+    "chal-79": {
+      "count": 1,
+      "lastUsedAt": 1791463391322
+    },
+    "chal-real-1": {
+      "count": 2,
+      "lastUsedAt": 1791466350365
+    },
+    "chal-real-3": {
+      "count": 1,
+      "lastUsedAt": 1791465675785
+    },
+    "chal-real-2": {
+      "count": 1,
+      "lastUsedAt": 1791466278926
+    }
+  },
+  "playerHistory": {
+    "7o99zn1orie8ytn07l8ak7": [
+      "chal-7",
+      "chal-4",
+      "chal-13",
+      "chal-10",
+      "chal-16",
+      "chal-19",
+      "chal-1",
+      "chal-8",
+      "chal-5",
+      "chal-14",
+      "chal-11",
+      "chal-17",
+      "chal-20",
+      "chal-2",
+      "chal-140",
+      "chal-47",
+      "chal-122",
+      "chal-43",
+      "chal-152",
+      "chal-24",
+      "chal-32",
+      "chal-157",
+      "chal-57",
+      "chal-31"
+    ],
+    "lihuxegjas99l2cn8d6h2": [
+      "chal-7",
+      "chal-4",
+      "chal-13",
+      "chal-10",
+      "chal-16",
+      "chal-19",
+      "chal-1",
+      "chal-8",
+      "chal-5",
+      "chal-14",
+      "chal-11",
+      "chal-17",
+      "chal-20",
+      "chal-2",
+      "chal-140",
+      "chal-47",
+      "chal-122",
+      "chal-43",
+      "chal-152",
+      "chal-24",
+      "chal-32",
+      "chal-157",
+      "chal-57",
+      "chal-31"
+    ],
+    "sctac0j1l4kev1advg352": [
+      "chal-7",
+      "chal-4",
+      "chal-13",
+      "chal-10",
+      "chal-16",
+      "chal-19",
+      "chal-1",
+      "chal-8",
+      "chal-5",
+      "chal-14",
+      "chal-11",
+      "chal-17",
+      "chal-20",
+      "chal-2",
+      "chal-140",
+      "chal-47",
+      "chal-122",
+      "chal-43",
+      "chal-152",
+      "chal-24",
+      "chal-32",
+      "chal-157",
+      "chal-57",
+      "chal-31"
+    ],
+    "xd2zt2yvx4s2o6xq5nv3al": [
+      "chal-7",
+      "chal-4",
+      "chal-13",
+      "chal-10",
+      "chal-16",
+      "chal-19",
+      "chal-1",
+      "chal-8",
+      "chal-5",
+      "chal-14",
+      "chal-11",
+      "chal-17",
+      "chal-20",
+      "chal-2",
+      "chal-140",
+      "chal-47",
+      "chal-122",
+      "chal-43",
+      "chal-152",
+      "chal-24",
+      "chal-32",
+      "chal-157",
+      "chal-57",
+      "chal-31"
+    ],
+    "pnibi9fopq7aeip5fsr3b6": [
+      "chal-16",
+      "chal-37",
+      "chal-52",
+      "chal-64",
+      "chal-85",
+      "chal-118",
+      "chal-142",
+      "chal-154",
+      "chal-163"
+    ],
+    "3986nyz0cmggr5g5aqeun": [
+      "chal-16",
+      "chal-37",
+      "chal-52",
+      "chal-64",
+      "chal-85",
+      "chal-118",
+      "chal-142",
+      "chal-154",
+      "chal-163"
+    ],
+    "uvuqbqf6vrfbimhislgmt": [
+      "chal-16",
+      "chal-37",
+      "chal-52",
+      "chal-64",
+      "chal-85",
+      "chal-118",
+      "chal-142",
+      "chal-154",
+      "chal-163"
+    ],
+    "1xldsysli78janxktawafb": [
+      "chal-16",
+      "chal-37",
+      "chal-52",
+      "chal-64",
+      "chal-85",
+      "chal-118",
+      "chal-142",
+      "chal-154",
+      "chal-163"
+    ],
+    "e895lq95c1kmtje2lwyx1": [
+      "chal-10"
+    ],
+    "70yeggx7c2sxzqmmkvk7q8": [
+      "chal-10"
+    ],
+    "efexw5qflsls5r8myj9toj": [
+      "chal-10"
+    ],
+    "70t0us46pgxfotyz1igq34": [
+      "chal-10"
+    ],
+    "ezdrgreoptuv21eevhsggk": [
+      "chal-42"
+    ],
+    "nd7qjxbd4hfo7y0ty22tu": [
+      "chal-42"
+    ],
+    "q2hx3x75z26g90b48mil2": [
+      "chal-42"
+    ],
+    "3l9ux1lw20951ygq8t06in": [
+      "chal-42"
+    ],
+    "qohmymkcytt96gixbpqsq": [
+      "chal-42"
+    ],
+    "f1a46vvg7vgujwqcn3pz": [
+      "chal-42"
+    ],
+    "qz70uty924dsmjcwtxmfc": [
+      "chal-42"
+    ],
+    "i2gdwt4tkn70sqzq5ypst": [
+      "chal-42"
+    ],
+    "t51cbrtavy8htoypnkjj24": [
+      "chal-16",
+      "chal-13",
+      "chal-1",
+      "chal-10",
+      "chal-19",
+      "chal-4",
+      "chal-7",
+      "chal-17",
+      "chal-14",
+      "chal-2",
+      "chal-11",
+      "chal-20",
+      "chal-5",
+      "chal-8",
+      "chal-18",
+      "chal-15",
+      "chal-3",
+      "chal-12",
+      "chal-21",
+      "chal-6",
+      "chal-9",
+      "chal-70",
+      "chal-68",
+      "chal-25",
+      "chal-106",
+      "chal-35",
+      "chal-76",
+      "chal-131",
+      "chal-113",
+      "chal-133"
+    ],
+    "0pstsh70ifnpt8e3h4mp2nm": [
+      "chal-16",
+      "chal-13",
+      "chal-1",
+      "chal-10",
+      "chal-19",
+      "chal-4",
+      "chal-7",
+      "chal-17",
+      "chal-14",
+      "chal-2",
+      "chal-11",
+      "chal-20",
+      "chal-5",
+      "chal-8",
+      "chal-18",
+      "chal-15",
+      "chal-3",
+      "chal-12",
+      "chal-21",
+      "chal-6",
+      "chal-9",
+      "chal-70",
+      "chal-68",
+      "chal-25",
+      "chal-106",
+      "chal-35",
+      "chal-76",
+      "chal-131",
+      "chal-113",
+      "chal-133"
+    ],
+    "z75jsi2i4nmkw5wjzr7ms": [
+      "chal-16",
+      "chal-13",
+      "chal-1",
+      "chal-10",
+      "chal-19",
+      "chal-4",
+      "chal-7",
+      "chal-17",
+      "chal-14",
+      "chal-2",
+      "chal-11",
+      "chal-20",
+      "chal-5",
+      "chal-8",
+      "chal-18",
+      "chal-15",
+      "chal-3",
+      "chal-12",
+      "chal-21",
+      "chal-6",
+      "chal-9",
+      "chal-70",
+      "chal-68",
+      "chal-25",
+      "chal-106",
+      "chal-35",
+      "chal-76",
+      "chal-131",
+      "chal-113",
+      "chal-133"
+    ],
+    "w1rxpuaez2mmjo1n7hqxh": [
+      "chal-16",
+      "chal-13",
+      "chal-1",
+      "chal-10",
+      "chal-19",
+      "chal-4",
+      "chal-7",
+      "chal-17",
+      "chal-14",
+      "chal-2",
+      "chal-11",
+      "chal-20",
+      "chal-5",
+      "chal-8",
+      "chal-18",
+      "chal-15",
+      "chal-3",
+      "chal-12",
+      "chal-21",
+      "chal-6",
+      "chal-9",
+      "chal-70",
+      "chal-68",
+      "chal-25",
+      "chal-106",
+      "chal-35",
+      "chal-76",
+      "chal-131",
+      "chal-113",
+      "chal-133"
+    ],
+    "6vq47l0qu6ufozfg1lxuyh": [
+      "chal-7",
+      "chal-28",
+      "chal-49",
+      "chal-64",
+      "chal-103",
+      "chal-118",
+      "chal-130",
+      "chal-151",
+      "chal-169"
+    ],
+    "vuyphet6dgi6bwu1uid054": [
+      "chal-7",
+      "chal-28",
+      "chal-49",
+      "chal-64",
+      "chal-103",
+      "chal-118",
+      "chal-130",
+      "chal-151",
+      "chal-169"
+    ],
+    "9qy7f401b3iphkibm87fr": [
+      "chal-7",
+      "chal-28",
+      "chal-49",
+      "chal-64",
+      "chal-103",
+      "chal-118",
+      "chal-130",
+      "chal-151",
+      "chal-169"
+    ],
+    "4yht90skywskm5eqs9o8we": [
+      "chal-7",
+      "chal-28",
+      "chal-49",
+      "chal-64",
+      "chal-103",
+      "chal-118",
+      "chal-130",
+      "chal-151",
+      "chal-169"
+    ],
+    "0d9v1lvvgmurknnozaav3h": [
+      "chal-13"
+    ],
+    "gzvg009356kgikkblkmckj": [
+      "chal-13"
+    ],
+    "j98ngye3iprigwmyw2ssp": [
+      "chal-13"
+    ],
+    "52qmn5htl1cwcmsyhveqbb": [
+      "chal-13"
+    ],
+    "7oneelqco0xkhd1tujth1": [
+      "chal-10"
+    ],
+    "7idsevtmhx84b532rijqjh": [
+      "chal-10"
+    ],
+    "7i0jxy1m7f3cvg955mjskq": [
+      "chal-10"
+    ],
+    "drkizaupadcp6v75ighzcj": [
+      "chal-4",
+      "chal-19"
+    ],
+    "zoy3tq4ccta2nddedyk7ta": [
+      "chal-4",
+      "chal-19"
+    ],
+    "gd8kpkmoqvaalc4kzq5hhd": [
+      "chal-4",
+      "chal-19"
+    ],
+    "3mmh7nehqdoxtavt2wqcv": [
+      "chal-79"
+    ],
+    "p8l2crz30bevs2xr966eq": [
+      "chal-79"
+    ],
+    "a2q79fxxyn36tlntjz88w": [
+      "chal-79"
+    ],
+    "uyhiu7nykcno533vc1en": [
+      "chal-real-1"
+    ],
+    "u9953377s499oeiwx2ugxb": [
+      "chal-real-1"
+    ],
+    "pd9h8fqbig8zktxv92rlr": [
+      "chal-real-1"
+    ],
+    "jvwr02ly841ho5zxwn8ud": [
+      "chal-real-3"
+    ],
+    "w0t6uny0t5qunswrusoaq": [
+      "chal-real-3"
+    ],
+    "x6mordoo9sntohbdgr0fhl": [
+      "chal-real-3"
+    ],
+    "d9iuuwt2sb71a3wdvw3ynf": [
+      "chal-real-2",
+      "chal-real-1"
+    ],
+    "hx9vyjkt6iuhq9ibmoslvm": [
+      "chal-real-2",
+      "chal-real-1"
+    ],
+    "bvr9ceo8t3ah7o2p0g63vk": [
+      "chal-real-2",
+      "chal-real-1"
+    ]
+  },
+  "disabled": {
+    "subfields": {},
+    "keywords": {}
+  },
+  "previousEventKeyword": "chal-real-1",
+  "previousDomainSubfield": {
+    "Anime": "Shonen",
+    "Cricket / IPL": "Legendary matches",
+    "Web Series": "Comedy/Sitcom",
+    "Movies": "Sci-fi/Superhero",
+    "General Knowledge": "Mythology & culture",
+    "Locations": "Countries & capitals",
+    "Memes & Internet Culture": "Viral trends",
+    "Tech & AI": "Programming",
+    "VIT Pune & Pune Local": "Pune landmarks"
+  }
+}

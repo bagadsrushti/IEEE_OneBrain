@@ -1,0 +1,11 @@
+{
+  "Anime": ["Shonen", "Slice of life", "Romance/Drama", "Thriller/Mystery", "Sports anime", "Classics", "Characters & villains"],
+  "Cricket / IPL": ["IPL teams", "Star players", "Legendary matches", "World Cups", "Captains & coaches", "Stadiums", "Records & trivia"],
+  "Web Series": ["Indian series", "Crime/Thriller", "Comedy/Sitcom", "Sci-fi/Fantasy", "Teen/Campus", "Documentary", "Characters"],
+  "Movies": ["Bollywood classics", "Recent Bollywood", "South Indian cinema", "Hollywood blockbusters", "Animation", "Sci-fi/Superhero", "Actors & directors"],
+  "General Knowledge": ["Science", "History", "Geography facts", "Famous personalities", "Inventions", "Sports (non-cricket)", "Mythology & culture"],
+  "Locations": ["Indian monuments", "Indian cities", "World landmarks", "Natural wonders", "Countries & capitals", "Rivers/mountains", "Famous streets & markets"],
+  "Memes & Internet Culture": ["Indian memes", "Viral trends", "YouTubers/creators", "Social apps", "Gaming culture", "Catchphrases"],
+  "Tech & AI": ["AI tools", "Gadgets", "Programming", "Startups & unicorns", "Big tech", "Space & ISRO"],
+  "VIT Pune & Pune Local": ["Campus spots", "Pune food", "Pune landmarks", "Clubs & events", "Local slang"]
+}

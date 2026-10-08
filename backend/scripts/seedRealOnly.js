@@ -1,0 +1,491 @@
+const fs = require('fs');
+const path = require('path');
+
+const realChallenges = [
+  // ANIME
+  {
+    answer: "Naruto", category: "Anime", subfield: "Shonen", tier: "easy", aliases: ["Naruto Uzumaki"],
+    clues: [
+      { angle: "Creator", text: "Created by Masashi Kishimoto" },
+      { angle: "Year", text: "The manga began serialisation in 1999" },
+      { angle: "Outfit", text: "The main character is known for an iconic orange jumpsuit" },
+      { angle: "Goal", text: "The protagonist dreams of becoming the village leader" },
+      { angle: "Setting", text: "Set in a world centered around hidden ninja villages" },
+      { angle: "Rival", text: "The main rival is a prodigy from the Uchiha clan" },
+      { angle: "Power", text: "Features mystical energy known as Chakra" },
+      { angle: "Creature", text: "Involves a sealed nine-tailed fox demon" },
+      { angle: "Sequel", text: "Followed by a series focusing on the protagonist's son" },
+      { angle: "Quote", text: "Famous catchphrase translates to 'Believe it!'" },
+      { angle: "Teacher", text: "Guided by a silver-haired sensei with a covered eye" },
+      { angle: "Food", text: "The main character is obsessed with eating ramen" }
+    ]
+  },
+  {
+    answer: "Death Note", category: "Anime", subfield: "Thriller/Mystery", tier: "medium", aliases: [],
+    clues: [
+      { angle: "Creator", text: "Written by Tsugumi Ohba" },
+      { angle: "Plot", text: "Revolves around a supernatural notebook" },
+      { angle: "Protagonist", text: "Main character is a highly intelligent high school student" },
+      { angle: "Rival", text: "The primary antagonist is a quirky detective known only by a single letter" },
+      { angle: "Entity", text: "Features Shinigami, or gods of death" },
+      { angle: "Food", text: "A prominent supernatural creature loves eating apples" },
+      { angle: "Setting", text: "Primarily set in the Kanto region of Japan" },
+      { angle: "Theme", text: "Explores dark themes of absolute justice and morality" },
+      { angle: "Length", text: "The animated adaptation consists of 37 episodes" },
+      { angle: "Alias", text: "The protagonist adopts the alias 'Kira'" },
+      { angle: "Rule", text: "Writing a name causes death within forty seconds" },
+      { angle: "Year", text: "The manga debuted in 2003" }
+    ]
+  },
+  {
+    answer: "Cowboy Bebop", category: "Anime", subfield: "Classics", tier: "hard", aliases: [],
+    clues: [
+      { angle: "Creator", text: "Directed by Shinichiro Watanabe" },
+      { angle: "Genre", text: "A blend of sci-fi, western, and noir elements" },
+      { angle: "Music", text: "Features a legendary jazz-heavy soundtrack by Yoko Kanno" },
+      { angle: "Protagonist", text: "Follows a laid-back bounty hunter with a mysterious past" },
+      { angle: "Setting", text: "Set in the year 2071 after Earth became mostly uninhabitable" },
+      { angle: "Ship", text: "The crew travels in a converted fishing trawler" },
+      { angle: "Companion", text: "Includes a highly intelligent Welsh Corgi" },
+      { angle: "Rival", text: "The main antagonist is a katana-wielding syndicate leader" },
+      { angle: "Length", text: "Consists of 26 episodes known as 'sessions'" },
+      { angle: "Year", text: "Originally broadcast in 1998" },
+      { angle: "Quote", text: "Ends with the famous line 'See you space cowboy'" },
+      { angle: "Live Action", text: "Received a short-lived Netflix live-action adaptation" }
+    ]
+  },
+  
+  // CRICKET
+  {
+    answer: "Virat Kohli", category: "Cricket / IPL", subfield: "Star players", tier: "easy", aliases: ["Kohli", "King Kohli"],
+    clues: [
+      { angle: "Team", text: "Played for Royal Challengers Bangalore since the first season" },
+      { angle: "Role", text: "Known as one of the greatest modern-day batsmen" },
+      { angle: "Record", text: "Holds the record for most centuries in ODI history" },
+      { angle: "Captaincy", text: "Led the national team to its first test series win in Australia" },
+      { angle: "Award", text: "Won the ICC Player of the Decade for the 2010s" },
+      { angle: "Spouse", text: "Married to a prominent Bollywood actress" },
+      { angle: "Jersey", text: "Famously wears the number 18" },
+      { angle: "Nickname", text: "Often referred to as the 'Run Machine'" },
+      { angle: "Tournament", text: "Scored over 900 runs in a single franchise season" },
+      { angle: "Origin", text: "Born and raised in Delhi" },
+      { angle: "Debut", text: "Made international debut against Sri Lanka in 2008" },
+      { angle: "Brand", text: "Co-owns the fashion brand WROGN" }
+    ]
+  },
+  {
+    answer: "2011 World Cup", category: "Cricket / IPL", subfield: "World Cups", tier: "medium", aliases: ["2011 ICC World Cup"],
+    clues: [
+      { angle: "Host", text: "Co-hosted by India, Sri Lanka, and Bangladesh" },
+      { angle: "Winner", text: "Won by the home nation, breaking a 28-year drought" },
+      { angle: "Final", text: "The final match was played at Wankhede Stadium" },
+      { angle: "Captain", text: "The winning captain hit a massive six to seal the victory" },
+      { angle: "Player of Tournament", text: "Yuvraj Singh won the prestigious all-round award" },
+      { angle: "Mascot", text: "The official mascot was an elephant named Stumpy" },
+      { angle: "Opponent", text: "The final was played against a neighboring island nation" },
+      { angle: "Semi-final", text: "Featured a tense semi-final against a fierce arch-rival" },
+      { angle: "Anthem", text: "The official song was 'De Ghuma Ke'" },
+      { angle: "Milestone", text: "The legendary batsman's final appearance in this global tournament" },
+      { angle: "Format", text: "Featured 14 participating nations divided into two groups" },
+      { angle: "Trophy", text: "The trophy was lifted amidst emotional celebrations in Mumbai" }
+    ]
+  },
+  {
+    answer: "Chennai Super Kings", category: "Cricket / IPL", subfield: "IPL teams", tier: "hard", aliases: ["CSK"],
+    clues: [
+      { angle: "Captain", text: "Led by a legendary wicketkeeper-batsman for over a decade" },
+      { angle: "Color", text: "Known for their iconic yellow jerseys" },
+      { angle: "Record", text: "Holds the record for the most playoff appearances" },
+      { angle: "Ban", text: "Was suspended from the league for two seasons" },
+      { angle: "Home Ground", text: "Plays home matches at the M. A. Chidambaram Stadium" },
+      { angle: "Coach", text: "Coached by former New Zealand captain Stephen Fleming" },
+      { angle: "Nickname", text: "Often referred to as the 'Whistle Podu' army" },
+      { angle: "Rivalry", text: "Shares a massive rivalry with the Mumbai franchise" },
+      { angle: "Titles", text: "Won their fifth championship title in 2023" },
+      { angle: "Player", text: "Suresh Raina was affectionately known as their 'Chinna Thala'" },
+      { angle: "Logo", text: "The logo features a roaring lion" },
+      { angle: "Ownership", text: "Originally owned by India Cements" }
+    ]
+  },
+
+  // WEB SERIES
+  {
+    answer: "The Office", category: "Web Series", subfield: "Comedy/Sitcom", tier: "easy", aliases: ["The Office US"],
+    clues: [
+      { angle: "Format", text: "Shot in a mockumentary style" },
+      { angle: "Setting", text: "Set at a regional paper company branch in Scranton" },
+      { angle: "Lead", text: "Stars Steve Carell as the eccentric regional manager" },
+      { angle: "Romance", text: "Features a famous long-running romance between a salesman and a receptionist" },
+      { angle: "Pranks", text: "Known for elaborate pranks played on the assistant to the regional manager" },
+      { angle: "Boss", text: "The main character famously buys himself a 'World's Best Boss' mug" },
+      { angle: "Award", text: "Won the Emmy for Outstanding Comedy Series in 2006" },
+      { angle: "Length", text: "Aired for nine seasons on NBC" },
+      { angle: "Spinoff", text: "Based on a British series created by Ricky Gervais" },
+      { angle: "Quote", text: "Popularised the phrase 'That's what she said'" },
+      { angle: "Character", text: "Features a bizarre beet farmer with a passion for martial arts" },
+      { angle: "Event", text: "Includes a chaotic CPR training scene that became a viral meme" }
+    ]
+  },
+  {
+    answer: "Breaking Bad", category: "Web Series", subfield: "Crime/Thriller", tier: "medium", aliases: [],
+    clues: [
+      { angle: "Creator", text: "Created by Vince Gilligan" },
+      { angle: "Premise", text: "A chemistry teacher turns to a life of crime after a diagnosis" },
+      { angle: "Location", text: "Set and filmed in Albuquerque, New Mexico" },
+      { angle: "Alias", text: "The main character adopts the street name Heisenberg" },
+      { angle: "Partner", text: "The protagonist teams up with his former slacker student" },
+      { angle: "Product", text: "Known for manufacturing a distinctly blue illicit substance" },
+      { angle: "Antagonist", text: "Features a terrifying fast-food restaurant owner as a major villain" },
+      { angle: "Family", text: "The protagonist's brother-in-law is a DEA agent" },
+      { angle: "Quote", text: "Famous for the line 'I am the one who knocks'" },
+      { angle: "Spinoff", text: "Spawned a highly successful prequel series about a shady lawyer" },
+      { angle: "Finale", text: "Concluded with a highly rated finale titled 'Felina'" },
+      { angle: "Props", text: "The main character's pork pie hat became iconic" }
+    ]
+  },
+  {
+    answer: "Stranger Things", category: "Web Series", subfield: "Sci-fi/Fantasy", tier: "hard", aliases: [],
+    clues: [
+      { angle: "Creators", text: "Created by the Duffer Brothers" },
+      { angle: "Setting", text: "Set in the fictional town of Hawkins, Indiana" },
+      { angle: "Era", text: "Heavily heavily steeped in 1980s pop culture nostalgia" },
+      { angle: "Character", text: "Features a young girl with powerful psychokinetic abilities" },
+      { angle: "Dimension", text: "Revolves around a dark parallel dimension called the Upside Down" },
+      { angle: "Monster", text: "The first season features a creature named after a D&D monster" },
+      { angle: "Group", text: "Centers on a core group of nerdy middle school friends" },
+      { angle: "Music", text: "Revived massive interest in a classic Kate Bush song" },
+      { angle: "Location", text: "Features a prominent shopping mall in its third season" },
+      { angle: "Snack", text: "The superpowered lead is obsessed with Eggo waffles" },
+      { angle: "Visuals", text: "Known for a famous scene involving glowing Christmas lights and letters" },
+      { angle: "Debut", text: "Premiered on Netflix in the summer of 2016" }
+    ]
+  },
+
+  // MOVIES
+  {
+    answer: "Zindagi Na Milegi Dobara", category: "Movies", subfield: "Recent Bollywood", tier: "easy", aliases: ["ZNMD"],
+    clues: [
+      { angle: "Year", text: "Released in the year 2011" },
+      { angle: "Director", text: "Directed by Zoya Akhtar" },
+      { angle: "Cast", text: "Features an ensemble cast including Hrithik Roshan and Farhan Akhtar" },
+      { angle: "Location", text: "Much of the story takes place during a road trip in Spain" },
+      { angle: "Plot", text: "Three childhood friends reunite for a bachelor trip" },
+      { angle: "Song", text: "Features the hit song Senorita" },
+      { angle: "Award", text: "Won the Filmfare Award for Best Film" },
+      { angle: "Genre", text: "A coming-of-age buddy road film" },
+      { angle: "Scene", text: "Includes a famous Tomatina festival sequence" },
+      { angle: "Poetry", text: "Features poems narrated in the background" },
+      { angle: "Box Office", text: "Was a major commercial success globally" },
+      { angle: "Activity", text: "Characters overcome fears through scuba diving and skydiving" }
+    ]
+  },
+  {
+    answer: "Avengers: Endgame", category: "Movies", subfield: "Hollywood blockbusters", tier: "medium", aliases: ["Endgame"],
+    clues: [
+      { angle: "Year", text: "Released in the year 2019" },
+      { angle: "Directors", text: "Directed by the Russo brothers" },
+      { angle: "Box Office", text: "Briefly became the highest-grossing film of all time" },
+      { angle: "Plot", text: "Involves a 'time heist' to retrieve powerful cosmic stones" },
+      { angle: "Culmination", text: "Serves as the conclusion to the Infinity Saga" },
+      { angle: "Villain", text: "The main antagonist is a purple-skinned titan" },
+      { angle: "Quote", text: "Features the emotional line 'I love you 3000'" },
+      { angle: "Sacrifice", text: "A billionaire character sacrifices himself to save the universe" },
+      { angle: "Weapon", text: "A worthy character unexpectedly wields a magical hammer" },
+      { angle: "Length", text: "Has a runtime of exactly three hours" },
+      { angle: "Battle", text: "Features a massive final battle involving dozens of heroes" },
+      { angle: "Opening", text: "Starts by showing the devastating aftermath of a universe-halving snap" }
+    ]
+  },
+  {
+    answer: "Inception", category: "Movies", subfield: "Sci-fi/Superhero", tier: "hard", aliases: [],
+    clues: [
+      { angle: "Director", text: "Directed by Christopher Nolan" },
+      { angle: "Year", text: "Released in the year 2010" },
+      { angle: "Premise", text: "Thieves extract information by entering subconscious minds" },
+      { angle: "Lead Actor", text: "Stars Leonardo DiCaprio as a skilled extractor" },
+      { angle: "Prop", text: "A spinning top is used to determine reality" },
+      { angle: "Music", text: "Features a booming, brass-heavy score by Hans Zimmer" },
+      { angle: "Concept", text: "Involves multiple nested layers of dreaming" },
+      { angle: "Visuals", text: "Features a famous scene where a city folds onto itself" },
+      { angle: "Action", text: "Includes a zero-gravity fight scene in a rotating hallway" },
+      { angle: "Ending", text: "Ends on a highly ambiguous and debated final shot" },
+      { angle: "Term", text: "Planting an idea instead of stealing one gives the film its title" },
+      { angle: "Rule", text: "Dying in a deep state sends you into unconstructed limbo space" }
+    ]
+  },
+
+  // GENERAL KNOWLEDGE
+  {
+    answer: "Albert Einstein", category: "General Knowledge", subfield: "Famous personalities", tier: "easy", aliases: ["Einstein"],
+    clues: [
+      { angle: "Profession", text: "A world-renowned theoretical physicist" },
+      { angle: "Formula", text: "Developed the mass-energy equivalence equation" },
+      { angle: "Theory", text: "Famous for the theory of relativity" },
+      { angle: "Award", text: "Won the Nobel Prize in Physics in 1921" },
+      { angle: "Birthplace", text: "Born in Ulm, within the German Empire" },
+      { angle: "Hair", text: "Known for his wild, uncombed white hair" },
+      { angle: "Instrument", text: "Was a passionate and skilled violin player" },
+      { angle: "Patent", text: "Worked at a Swiss patent office early in his career" },
+      { angle: "Offer", text: "Was offered the presidency of Israel but declined" },
+      { angle: "Photo", text: "Famously photographed sticking his tongue out" },
+      { angle: "Effect", text: "His Nobel prize was specifically for the photoelectric effect" },
+      { angle: "Name", text: "His surname is now synonymous with 'genius'" }
+    ]
+  },
+  {
+    answer: "Black Hole", category: "General Knowledge", subfield: "Science", tier: "medium", aliases: [],
+    clues: [
+      { angle: "Concept", text: "A region of spacetime with extremely strong gravity" },
+      { angle: "Speed", text: "Nothing, not even light, can escape its pull" },
+      { angle: "Boundary", text: "The point of no return is called the event horizon" },
+      { angle: "Center", text: "Contains a point of infinite density known as a singularity" },
+      { angle: "Formation", text: "Often formed by the collapse of massive stars" },
+      { angle: "First Image", text: "The first direct image was captured in 2019 by a global telescope network" },
+      { angle: "Effect", text: "Causes extreme time dilation for nearby observers" },
+      { angle: "Destruction", text: "Can stretch objects into long strands through 'spaghettification'" },
+      { angle: "Scientist", text: "Stephen Hawking proved they emit a specific type of radiation" },
+      { angle: "Scale", text: "Supermassive variants exist at the center of most large galaxies" },
+      { angle: "Name", text: "The term was popularized by physicist John Archibald Wheeler" },
+      { angle: "Discovery", text: "Cygnus X-1 was widely accepted as the first discovered instance" }
+    ]
+  },
+  {
+    answer: "The Cold War", category: "General Knowledge", subfield: "History", tier: "hard", aliases: ["Cold War"],
+    clues: [
+      { angle: "Era", text: "A period of geopolitical tension after World War II" },
+      { angle: "Participants", text: "Primarily between the United States and the Soviet Union" },
+      { angle: "Duration", text: "Spanned roughly from 1947 to 1991" },
+      { angle: "Nature", text: "Characterized by proxy wars and nuclear deterrence rather than direct combat" },
+      { angle: "Symbol", text: "The fall of the Berlin Wall symbolized its approaching end" },
+      { angle: "Race", text: "Included massive competition in space exploration" },
+      { angle: "Alliance", text: "Led to the creation of NATO and the Warsaw Pact" },
+      { angle: "Crisis", text: "The 1962 Cuban Missile Crisis was its most dangerous escalation" },
+      { angle: "Doctrine", text: "The Truman Doctrine aimed to contain the spread of communism" },
+      { angle: "Espionage", text: "A golden age for spy agencies like the CIA and KGB" },
+      { angle: "Name", text: "The term was first used in an essay by George Orwell" },
+      { angle: "Conclusion", text: "Ended with the dissolution of the USSR" }
+    ]
+  },
+
+  // LOCATIONS
+  {
+    answer: "Mumbai", category: "Locations", subfield: "Indian cities", tier: "easy", aliases: ["Bombay"],
+    clues: [
+      { angle: "Identity", text: "The financial capital of India" },
+      { angle: "Landmark", text: "Home to the iconic Gateway of India" },
+      { angle: "Industry", text: "The heart of the massive Bollywood film industry" },
+      { angle: "Transport", text: "Known for its extremely crowded local train network" },
+      { angle: "Coast", text: "Located on the western coast along the Arabian Sea" },
+      { angle: "Food", text: "Famous for street food like Vada Pav and Pav Bhaji" },
+      { angle: "Old Name", text: "Was officially renamed in 1995" },
+      { angle: "Drive", text: "Features a famous curved promenade called Marine Drive" },
+      { angle: "Slum", text: "Contains Dharavi, one of Asia's largest informal settlements" },
+      { angle: "Market", text: "The BSE (stock exchange) is located on its Dalal Street" },
+      { angle: "Island", text: "Originally formed by merging seven separate islands" },
+      { angle: "Architecture", text: "Features the Victoria Terminus, a UNESCO World Heritage site" }
+    ]
+  },
+  {
+    answer: "Eiffel Tower", category: "Locations", subfield: "World landmarks", tier: "medium", aliases: [],
+    clues: [
+      { angle: "Location", text: "Located on the Champ de Mars in Paris" },
+      { angle: "Structure", text: "A massive wrought-iron lattice structure" },
+      { angle: "Creator", text: "Named after the engineer whose company designed and built it" },
+      { angle: "Year", text: "Constructed for the 1889 World's Fair" },
+      { angle: "Nickname", text: "Locally nicknamed 'La dame de fer' (The Iron Lady)" },
+      { angle: "Height", text: "Stands roughly 330 meters tall, including antennas" },
+      { angle: "Record", text: "Was the tallest man-made structure in the world for 41 years" },
+      { angle: "Paint", text: "Requires 60 tons of paint every seven years to prevent rust" },
+      { angle: "Lighting", text: "Sparkles for five minutes at the top of every hour at night" },
+      { angle: "Tourism", text: "One of the most-visited paid monuments globally" },
+      { angle: "Controversy", text: "Initially heavily criticized by leading artists of its time" },
+      { angle: "Levels", text: "Features three distinct levels for public visitors" }
+    ]
+  },
+  {
+    answer: "Japan", category: "Locations", subfield: "Countries & capitals", tier: "hard", aliases: ["Nippon", "Nihon"],
+    clues: [
+      { angle: "Geography", text: "An island country in East Asia located in the Pacific Ocean" },
+      { angle: "Nickname", text: "Known globally as the 'Land of the Rising Sun'" },
+      { angle: "Capital", text: "Its capital is one of the most populous metropolitan areas in the world" },
+      { angle: "Nature", text: "Famous for its seasonal cherry blossoms" },
+      { angle: "Mountain", text: "Home to the iconic, snow-capped Mount Fuji" },
+      { angle: "Transport", text: "Renowned for its high-speed Shinkansen (bullet trains)" },
+      { angle: "Food", text: "The birthplace of sushi and ramen" },
+      { angle: "Culture", text: "Known for samurai history and traditional tea ceremonies" },
+      { angle: "Export", text: "A global leader in automotive and electronics industries" },
+      { angle: "Disaster", text: "Prone to severe earthquakes due to its position on the Ring of Fire" },
+      { angle: "Language", text: "Uses three distinct writing scripts: Hiragana, Katakana, and Kanji" },
+      { angle: "Currency", text: "The official currency is the Yen" }
+    ]
+  },
+
+  // MEMES
+  {
+    answer: "Doge", category: "Memes & Internet Culture", subfield: "Viral trends", tier: "easy", aliases: ["Dogecoin"],
+    clues: [
+      { angle: "Animal", text: "Features a picture of a Shiba Inu dog" },
+      { angle: "Format", text: "Includes scattered comic sans text representing internal monologue" },
+      { angle: "Phrasing", text: "Typically uses broken English modifiers like 'much', 'very', 'so'" },
+      { angle: "Year", text: "Became massively popular around 2013" },
+      { angle: "Currency", text: "Inspired the creation of a famous satirical cryptocurrency" },
+      { angle: "Name", text: "The original dog in the famous picture is named Kabosu" },
+      { angle: "Origin", text: "The misspelled name originated from an old Homestar Runner episode" },
+      { angle: "Endorsement", text: "The associated coin was heavily promoted by Elon Musk" },
+      { angle: "Award", text: "Voted as 'Meme of the Decade' in several online polls" },
+      { angle: "Emotion", text: "The dog's expression is often described as a suspicious or funny side-eye" },
+      { angle: "Sponsorship", text: "The crypto community famously sponsored a NASCAR driver" },
+      { angle: "Legacy", text: "Led to a spin-off meme featuring a hyper-muscular version of the dog" }
+    ]
+  },
+  {
+    answer: "Rickroll", category: "Memes & Internet Culture", subfield: "Catchphrases", tier: "medium", aliases: ["Rickrolling"],
+    clues: [
+      { angle: "Action", text: "Involves baiting someone into clicking a disguised hyperlink" },
+      { angle: "Song", text: "Leads to a famous 1987 dance-pop music video" },
+      { angle: "Artist", text: "Features the English singer Rick Astley" },
+      { angle: "Lyrics", text: "The chorus begins with 'Never gonna give you up'" },
+      { angle: "Origin", text: "Evolved from a similar prank on 4chan called 'duckrolling'" },
+      { angle: "Event", text: "Macy's Thanksgiving Parade featured a live version of this prank in 2008" },
+      { angle: "YouTube", text: "The video has surpassed one billion views primarily due to this prank" },
+      { angle: "April Fools", text: "YouTube executed this prank on all featured videos in 2008" },
+      { angle: "Dance", text: "The singer performs a distinctive, repetitive shoulder-swaying dance" },
+      { angle: "Bait", text: "Often disguised as highly anticipated news, downloads, or trailers" },
+      { angle: "Outfit", text: "The singer wears a striped polo and a tan trench coat in the video" },
+      { angle: "Resurgence", text: "Brought the artist's career back into mainstream spotlight decades later" }
+    ]
+  },
+  {
+    answer: "Binod", category: "Memes & Internet Culture", subfield: "Indian memes", tier: "hard", aliases: [],
+    clues: [
+      { angle: "Origin", text: "Originated from a YouTube video by channel Slayy Point" },
+      { angle: "Context", text: "A bizarre comment section trend in India during 2020" },
+      { angle: "Action", text: "Users spammed this exact seven-letter name everywhere online" },
+      { angle: "Source", text: "Started when a user just commented their own first name on a video" },
+      { angle: "Spread", text: "Brands, police departments, and celebrities joined the spamming trend" },
+      { angle: "Meaning", text: "The word literally means absolutely nothing in the context of the meme" },
+      { angle: "Platform", text: "Gained immense traction on Twitter through viral hashtags" },
+      { angle: "Duration", text: "Faded away quickly after a massive, short-lived peak" },
+      { angle: "Follow-up", text: "The original creators made a specific roast video about the comment" },
+      { angle: "Last Name", text: "The original commenter's last name was Tharu" },
+      { angle: "Format", text: "Often used as an interruption or punchline in unrelated posts" },
+      { angle: "Culture", text: "Highlights the absurdity of Indian YouTube comments" }
+    ]
+  },
+
+  // TECH & AI
+  {
+    answer: "ChatGPT", category: "Tech & AI", subfield: "AI tools", tier: "easy", aliases: [],
+    clues: [
+      { angle: "Creator", text: "Developed and released by OpenAI" },
+      { angle: "Release", text: "Launched to the public in late 2022" },
+      { angle: "Function", text: "A highly advanced conversational chatbot" },
+      { angle: "Architecture", text: "Built upon the Generative Pre-trained Transformer models" },
+      { angle: "Growth", text: "Became the fastest-growing consumer application in history" },
+      { angle: "Format", text: "Uses a simple prompt-and-response text interface" },
+      { angle: "Capability", text: "Can write code, essays, poems, and answer complex queries" },
+      { angle: "Impact", text: "Triggered a massive global boom in artificial intelligence investment" },
+      { angle: "Subscription", text: "Offers a premium 'Plus' tier for access to better models" },
+      { angle: "Integration", text: "Microsoft heavily integrated its underlying tech into Bing" },
+      { angle: "Controversy", text: "Banned in some schools and countries over cheating concerns" },
+      { angle: "Training", text: "Trained using Reinforcement Learning from Human Feedback" }
+    ]
+  },
+  {
+    answer: "Apple", category: "Tech & AI", subfield: "Big tech", tier: "medium", aliases: ["Apple Inc"],
+    clues: [
+      { angle: "Founders", text: "Co-founded by Steve Jobs and Steve Wozniak" },
+      { angle: "Product", text: "Revolutionized the smartphone industry in 2007" },
+      { angle: "Logo", text: "The logo features a fruit with a bite taken out of it" },
+      { angle: "Valuation", text: "First publicly traded US company to reach a $1 trillion valuation" },
+      { angle: "HQ", text: "Headquartered in a massive spaceship-like ring in Cupertino" },
+      { angle: "Software", text: "Known for operating systems like iOS and macOS" },
+      { angle: "Retail", text: "Features iconic stores with glass stairs and a 'Genius Bar'" },
+      { angle: "Marketing", text: "Famous for the 1984 Super Bowl commercial" },
+      { angle: "Ecosystem", text: "Known for a highly integrated but closed 'walled garden' ecosystem" },
+      { angle: "Wearables", text: "Dominates the smartwatch and wireless earbud markets" },
+      { angle: "Leader", text: "Currently led by CEO Tim Cook" },
+      { angle: "Design", text: "Historically partnered with legendary designer Jony Ive" }
+    ]
+  },
+  {
+    answer: "Bitcoin", category: "Tech & AI", subfield: "Startups & unicorns", tier: "hard", aliases: ["BTC"],
+    clues: [
+      { angle: "Concept", text: "The world's first decentralized cryptocurrency" },
+      { angle: "Creator", text: "Invented by an unknown entity named Satoshi Nakamoto" },
+      { angle: "Tech", text: "Operates on a public, distributed ledger called a blockchain" },
+      { angle: "Year", text: "The network officially launched in early 2009" },
+      { angle: "Limit", text: "Has a hard supply cap of exactly 21 million units" },
+      { angle: "Process", text: "New units are created through a competitive process called mining" },
+      { angle: "Event", text: "Experiences a block reward 'halving' every four years" },
+      { angle: "First Transaction", text: "Famously used to purchase two Papa John's pizzas in 2010" },
+      { angle: "Store of Value", text: "Often referred to by proponents as 'digital gold'" },
+      { angle: "Division", text: "The smallest fraction is known as a Satoshi" },
+      { angle: "Consensus", text: "Secured using a Proof-of-Work algorithm" },
+      { angle: "Market", text: "The highest market capitalization of any digital asset" }
+    ]
+  },
+
+  // VIT PUNE
+  {
+    answer: "Vada Pav", category: "VIT Pune & Pune Local", subfield: "Pune food", tier: "easy", aliases: [],
+    clues: [
+      { angle: "Type", text: "A popular vegetarian fast food dish native to Maharashtra" },
+      { angle: "Ingredients", text: "Consists of a deep-fried potato dumpling inside a bread bun" },
+      { angle: "Nickname", text: "Often referred to as the 'Indian Burger'" },
+      { angle: "Accompaniment", text: "Usually served with dry garlic chutney and fried green chilies" },
+      { angle: "Price", text: "Known as a highly affordable street food staple for students" },
+      { angle: "Origin", text: "Invented in central Mumbai in the 1960s" },
+      { angle: "Preparation", text: "The potato mash is dipped in chickpea flour batter before frying" },
+      { angle: "Texture", text: "Soft on the outside with a hot, spiced, crispy filling" },
+      { angle: "Popularity", text: "Consumed by millions daily across Pune and Mumbai" },
+      { angle: "Franchise", text: "Brands like 'Goli' have commercialised it" },
+      { angle: "Diet", text: "A heavy, carbohydrate-rich snack" },
+      { angle: "Emotion", text: "Considered an absolute cultural icon of Maharashtrian street food" }
+    ]
+  },
+  {
+    answer: "Shaniwar Wada", category: "VIT Pune & Pune Local", subfield: "Pune landmarks", tier: "medium", aliases: [],
+    clues: [
+      { angle: "Nature", text: "A historical fortification in the heart of the city" },
+      { angle: "Builders", text: "Built in 1732 as the seat of the Peshwas of the Maratha Empire" },
+      { angle: "Disaster", text: "Largely destroyed by an unexplained fire in 1828" },
+      { angle: "Feature", text: "Known for its massive main gate with anti-elephant spikes" },
+      { angle: "Myth", text: "Rumored to be heavily haunted by a murdered young prince" },
+      { angle: "Phrase", text: "The ghost supposedly cries 'Kaka mala vachwa' on full moons" },
+      { angle: "Architecture", text: "Features a beautiful lotus-shaped fountain complex" },
+      { angle: "Tourism", text: "One of the most heavily visited historical sites in the region" },
+      { angle: "Media", text: "Prominently featured in the film Bajirao Mastani" },
+      { angle: "Location", text: "Situated near the Mula-Mutha river" },
+      { angle: "Structure", text: "Only the stone base and massive perimeter walls remain intact" },
+      { angle: "History", text: "Symbolises the rise and fall of Maratha supremacy" }
+    ]
+  },
+  {
+    answer: "FC Road", category: "VIT Pune & Pune Local", subfield: "Campus spots", tier: "hard", aliases: ["Fergusson College Road"],
+    clues: [
+      { angle: "Identity", text: "One of the most famous and bustling streets in the city" },
+      { angle: "Name", text: "Named after a massive, historic educational institution located on it" },
+      { angle: "Vibe", text: "A primary hangout spot for college students" },
+      { angle: "Shopping", text: "Famous for cheap street shopping, clothes, and accessories" },
+      { angle: "Food", text: "Home to iconic eateries like Vaishali and Roopali" },
+      { angle: "Traffic", text: "Known for being extremely crowded, especially on weekends" },
+      { angle: "Layout", text: "A long, straight, one-way commercial boulevard" },
+      { angle: "Culture", text: "Central to the youth culture and nightlife of the city" },
+      { angle: "Area", text: "Located in the Deccan Gymkhana area" },
+      { angle: "Snacks", text: "Famous for roadside sweet corn, cold coffee, and sandwiches" },
+      { angle: "Bookstores", text: "Features street-side vendors selling pirated novels" },
+      { angle: "Landmark", text: "Connects the university area to the old city hubs" }
+    ]
+  }
+];
+
+let idCounter = 1;
+realChallenges.forEach(c => {
+  c.id = `chal-real-${idCounter++}`;
+  c.needsReview = false;
+});
+
+const outPath = path.join(__dirname, '../data/challenges.json');
+fs.writeFileSync(outPath, JSON.stringify(realChallenges, null, 2));
+console.log(`Overwrote database with ${realChallenges.length} fully authentic challenges.`);
