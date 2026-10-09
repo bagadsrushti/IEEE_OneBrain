@@ -148,8 +148,9 @@ async function runTests() {
     const maxAtt = gameManager.getRoom(roomCode).roundRules.maxAttempts;
     let ansErrors = 0;
     for(let i=0; i<maxAtt; i++) {
+      await sleep(1050);
       const aRes = await new Promise(r => host.emit('submit_answer', { guess: 'wrong_guess' }, r));
-      if (aRes && aRes.error) ansErrors++; // This is actually handled by returning early if game ends, wait...
+      if (aRes && aRes.error) ansErrors++;
     }
     // After maxAtt, state should be finished
     if (gameManager.getRoom(roomCode).state === 'finished') pass("Game ends after max wrong attempts.");
@@ -158,6 +159,7 @@ async function runTests() {
     // Submissions after endTime
     gameManager.getRoom(roomCode).state = 'playing';
     gameManager.getRoom(roomCode).roundEndTime = Date.now() - 1000;
+    await sleep(1050);
     const lateAns = await new Promise(r => host.emit('submit_answer', { guess: 'wrong' }, r));
     if (gameManager.getRoom(roomCode).state === 'finished' && gameManager.getRoom(roomCode).lastRoundReason === 'Time is up!') {
       pass("Submission after endTime forces endRound timeout.");

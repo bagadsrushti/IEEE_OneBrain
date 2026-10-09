@@ -33,7 +33,7 @@ const Room = () => {
   const isLobby = roomData.state === 'lobby';
 
   return (
-    <div className="flex-grow flex flex-col items-center justify-center p-4">
+    <div className="flex-grow flex flex-col items-center w-full px-2 py-1">
       {isLobby ? <Lobby room={roomData} /> : <Game room={roomData} />}
     </div>
   );

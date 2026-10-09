@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node utils/answerMatcher.test.js",
+    "test:matcher": "node utils/answerMatcher.test.js",
     "test:integration": "node utils/integrationTest.js",
     "test:selection": "node utils/selectionTest.js",
     "validate": "node utils/validateChallenges.js",
     "simulate": "node utils/simulateGames.js",
-    "review": "node scripts/review.js"
+    "review": "node scripts/review.js",
+    "audit:answers": "node scripts/auditAnswers.js"
   },
   "keywords": [],
   "author": "",

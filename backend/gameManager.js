@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { getRulesForPlayerCount, isFlat120sMode, MIN_PLAYERS, MAX_PLAYERS } = require('./config/gameRules');
 const { CATEGORIES } = require('./config/categories');
+const { isCorrectGuess, normalize } = require('./utils/answerMatcher');
+const { MAX_GUESS_LENGTH } = require('./config/matching');
 
 let challengesData = [];
 try {
@@ -285,32 +287,39 @@ class GameManager {
     room.sharedHint = null;
     
     // Select N clues with N DISTINCT angles
-    let availableClues = [...challenge.clues];
+    let availableClues = (challenge.clues || []).map(c => typeof c === 'string' ? { angle: 'General', text: c } : c);
     const selectedClues = [];
     const usedAngles = new Set();
 
     // Try to pick distinct angles
     for (let i = 0; i < N; i++) {
       let candidateIdx = availableClues.findIndex(c => !usedAngles.has(c.angle));
-      if (candidateIdx === -1) {
-        // Fallback if not enough distinct angles (should be caught by validateChallenges, but safety first)
+      if (candidateIdx === -1 && availableClues.length > 0) {
         candidateIdx = 0; 
       }
-      const clue = availableClues.splice(candidateIdx, 1)[0];
-      selectedClues.push(clue);
-      usedAngles.add(clue.angle);
+      let clue = candidateIdx !== -1 ? availableClues.splice(candidateIdx, 1)[0] : null;
+      if (!clue && selectedClues.length > 0) {
+        clue = selectedClues[i % selectedClues.length];
+      }
+      if (clue) {
+        selectedClues.push(clue);
+        if (clue.angle) usedAngles.add(clue.angle);
+      }
     }
 
     // Shuffle and assign
     selectedClues.sort(() => 0.5 - Math.random());
     for (let i = 0; i < N; i++) {
-      activePlayers[i].clue = selectedClues[i].text;
+      activePlayers[i].clue = selectedClues[i]?.text || 'No clue available';
     }
     
     // Remaining clues for hints (also try to use distinct angles if possible)
     room.unassignedClues = availableClues.filter(c => !usedAngles.has(c.angle)).map(c => c.text);
     if (room.unassignedClues.length === 0) {
       room.unassignedClues = availableClues.map(c => c.text); // fallback
+    }
+    if (room.unassignedClues.length === 0 && selectedClues.length > 0) {
+      room.unassignedClues = [selectedClues[0].text];
     }
 
     const now = Date.now();
@@ -352,14 +361,10 @@ class GameManager {
     return room;
   }
 
-  checkAnswerMatch(guess, challenge) {
-    const g = guess.toLowerCase().trim();
-    const a = challenge.answer.toLowerCase().trim();
-    if (g === a) return true;
-    for (const alias of challenge.aliases) {
-      if (g === alias.toLowerCase().trim()) return true;
-    }
-    return false;
+  checkAnswerMatch(guess, challenge, options = {}) {
+    if (!challenge) return false;
+    const match = isCorrectGuess(guess, challenge, options);
+    return match.correct;
   }
 
   submitAnswer(code, playerId, guess) {
@@ -371,15 +376,49 @@ class GameManager {
       return this.endRound(code, false, 'Time is up!');
     }
 
-    const isCorrect = this.checkAnswerMatch(guess, room.currentChallenge);
-    if (isCorrect) {
+    // Input validation: reject non-string guesses
+    if (typeof guess !== 'string') {
+      return { error: 'Invalid guess' };
+    }
+
+    // Rate limiting: max 1 submission per second per player
+    const player = room.players.find(p => p.id === playerId);
+    const now = Date.now();
+    if (player) {
+      if (player.lastSubmitAt && now - player.lastSubmitAt < 1000) {
+        return { error: 'Too fast! Max 1 guess per second.' };
+      }
+      player.lastSubmitAt = now;
+    }
+
+    // Trim and cap length at MAX_GUESS_LENGTH
+    const trimmedGuess = guess.trim().slice(0, MAX_GUESS_LENGTH);
+    const guessNorm = normalize(trimmedGuess);
+
+    // Reject empty guesses WITHOUT consuming an attempt
+    if (!guessNorm) {
+      return { error: 'Please enter a valid guess.' };
+    }
+
+    const matchResult = isCorrectGuess(trimmedGuess, room.currentChallenge);
+    if (matchResult.correct) {
       return this.endRound(code, true, 'Correct!');
     } else {
       room.wrongAttempts++;
       if (room.wrongAttempts >= room.roundRules.maxAttempts) {
-         return this.endRound(code, false, 'Too many wrong attempts!');
+        return this.endRound(code, false, 'Too many wrong attempts!');
       }
-      return { room, isCorrect: false, error: 'Incorrect answer' };
+
+      const message = matchResult.near
+        ? 'So close! Check your spelling.'
+        : 'Incorrect answer';
+
+      return {
+        room,
+        isCorrect: false,
+        error: message,
+        near: matchResult.near,
+      };
     }
   }
 

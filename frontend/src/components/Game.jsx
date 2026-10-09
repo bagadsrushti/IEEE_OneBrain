@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useSocket } from '../SocketContext';
-import { Send, Lightbulb, Clock, Check, X, AlertTriangle } from 'lucide-react';
+import { Send, Lightbulb, Clock, Check, X, AlertTriangle, ArrowRight } from 'lucide-react';
 import Button from './Button';
 
 const Game = ({ room }) => {
@@ -52,6 +52,10 @@ const Game = ({ room }) => {
         setErrorMsg(res.error);
         setGuess('');
         setTimeout(() => setErrorMsg(''), 3000);
+      } else if (res.isCorrect === false) {
+        setErrorMsg('Incorrect answer');
+        setGuess('');
+        setTimeout(() => setErrorMsg(''), 3000);
       }
     });
   };
@@ -96,99 +100,121 @@ const Game = ({ room }) => {
     const bd = room.lastRoundScoreBreakdown;
     
     return (
-      <div className="w-full max-w-[440px] mx-auto flex flex-col space-y-6 mt-4">
-        <div className={`bg-surface p-8 rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] text-center border-t-8 border-x border-b border-[#F3F4F6] ${room.lastRoundSuccess ? 'border-t-success' : 'border-t-danger'}`}>
-          <div className="flex justify-center mb-4">
-            {room.lastRoundSuccess ? (
-              <div className="bg-success-bg p-4 rounded-full">
-                <Check size={48} className="text-success" />
-              </div>
-            ) : (
-              <div className="bg-danger-bg p-4 rounded-full">
-                <X size={48} className="text-danger" />
-              </div>
-            )}
-          </div>
+      <div className="w-full max-w-[400px] mx-auto flex flex-col items-center mt-2 px-1">
+        {/* Top Status Icon & Header */}
+        <div className="flex flex-col items-center mb-6 text-center">
+          {room.lastRoundSuccess ? (
+            <div className="w-12 h-12 rounded-2xl bg-[#EEF2FF] flex items-center justify-center text-[#5046E5] mb-3 shadow-sm">
+              <Check size={24} strokeWidth={2.5} />
+            </div>
+          ) : (
+            <div className="w-12 h-12 rounded-2xl bg-[#FEF2F2] flex items-center justify-center text-[#DC2626] mb-3 shadow-sm">
+              <X size={24} strokeWidth={2.5} />
+            </div>
+          )}
           
-          <h2 className="text-2xl font-bold mb-2 text-text">
+          <h2 className="text-[22px] font-black text-[#1E1B3A] tracking-tight uppercase">
             {room.lastRoundSuccess ? 'TEAM SUCCESS!' : 'ROUND OVER'}
           </h2>
-          <p className="text-text-muted mb-6 font-medium">{room.lastRoundReason}</p>
-          
-          <div className="text-sm text-text-muted uppercase tracking-widest font-bold">The Answer Was</div>
-          <div className="text-[32px] sm:text-4xl font-black text-primary mb-6 capitalize break-words leading-tight px-2">
+          <p className="text-[13px] text-[#6B7280] font-normal mt-0.5">
+            {room.lastRoundReason || (room.lastRoundSuccess ? 'Correct!' : 'Round Over')}
+          </p>
+        </div>
+
+        {/* Score Breakdown Card */}
+        <div className="w-full bg-white rounded-[22px] border border-[#E9ECEF] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] text-left">
+          <div className="text-[11px] font-bold tracking-widest text-[#9CA3AF] uppercase text-center mb-1">
+            THE ANSWER WAS
+          </div>
+          <div className="text-[24px] font-black text-[#1E1B3A] text-center mb-6 tracking-tight capitalize break-words leading-tight">
             {room.challenge?.answer}
           </div>
 
-          <div className="text-left bg-bg p-4 rounded-[14px] border border-border mb-6 space-y-2 text-sm text-text font-medium">
-            <div className="flex justify-between">
+          <div className="space-y-2.5 text-[14px]">
+            <div className="flex justify-between items-center text-[#6B7280]">
               <span>Base Score</span>
-              <span className="font-bold text-success">{bd?.baseScore > 0 ? `+${bd.baseScore}` : '0'}</span>
+              <span className="font-bold text-[#1E1B3A]">{bd?.baseScore > 0 ? `+${bd.baseScore}` : '0'}</span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center text-[#6B7280]">
               <span>Time Bonus</span>
-              <span className="font-bold text-success">{bd?.timeBonus > 0 ? `+${bd.timeBonus}` : '0'}</span>
+              <span className="font-bold text-[#1E1B3A]">{bd?.timeBonus > 0 ? `+${bd.timeBonus}` : '0'}</span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center text-[#6B7280]">
               <span>Hint Penalty</span>
-              <span className="font-bold text-danger">{bd?.hintPenalty}</span>
+              <span className="font-bold text-[#1E1B3A]">{bd?.hintPenalty ? bd.hintPenalty : '0'}</span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center text-[#6B7280]">
               <span>Wrong Penalty</span>
-              <span className="font-bold text-danger">{bd?.wrongPenalty}</span>
+              <span className="font-bold text-[#1E1B3A]">{bd?.wrongPenalty ? bd.wrongPenalty : '0'}</span>
             </div>
-            <div className="flex justify-between border-t border-border pt-2 font-bold">
-              <span>Multiplier</span>
-              <span className="text-primary">x {bd?.multiplier}</span>
+
+            <div className="border-t border-[#F3F4F6] my-2" />
+
+            <div className="flex justify-between items-center text-[#1E1B3A]">
+              <span className="font-bold">Multiplier</span>
+              <span className="font-bold">x {bd?.multiplier ?? 1}</span>
             </div>
-            <div className="flex justify-between text-lg pt-2 border-t border-border">
-              <span className="text-text font-bold">Round Earned</span>
-              <span className={`font-bold ${bd?.finalScore > 0 ? 'text-success' : 'text-text-muted'}`}>
-                +{bd?.finalScore}
-              </span>
+            <div className="flex justify-between items-center text-[#1E1B3A]">
+              <span className="font-bold">Round Earned</span>
+              <span className="font-bold">{bd?.finalScore > 0 ? `+${bd.finalScore}` : (bd?.finalScore || 0)}</span>
             </div>
-            <div className="flex justify-between text-xl font-bold text-text pt-2 border-t border-border">
-              <span>Total Score</span>
-              <span className="text-primary">{room.score}</span>
+
+            <div className="border-t border-[#F3F4F6] my-2" />
+
+            <div className="flex justify-between items-center pt-1">
+              <span className="text-[#1E1B3A] font-extrabold text-[15px]">Total Score</span>
+              <span className="text-[#5046E5] font-extrabold text-[22px]">{room.score ?? 0}</span>
             </div>
           </div>
-          
-          {room.host === myPlayerId && (
-            <div className="flex flex-col gap-3 w-full mt-2">
-              <Button
-                onClick={handleSkipWord}
-                variant="primary"
-                className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
-              >
-                PLAY NEXT WORD
-              </Button>
-              <Button
-                onClick={handleNextRound}
-                variant="secondary"
-                className="w-full py-3 rounded-[16px] font-bold text-[14px] bg-white border border-[#E5E7EB]"
-              >
-                BACK TO LOBBY
-              </Button>
-            </div>
-          )}
-          {room.host !== myPlayerId && (
-            <div className="text-text-muted font-medium animate-pulse mt-4">Waiting for host...</div>
-          )}
         </div>
 
-        <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-[#F3F4F6] p-6">
-          <h3 className="text-xl font-bold mb-4 border-b border-border pb-2 text-text">All Clues Revealed</h3>
-          <ul className="space-y-4">
-            {room.allClues?.map((c, i) => (
-              <li key={i} className="bg-bg p-4 rounded-[14px] border-l-4 border-l-primary border-t border-r border-b border-border shadow-sm">
-                <div className="text-sm text-primary font-bold mb-1 flex items-center gap-2">
-                  <Lightbulb size={14} /> {c.name}'s Clue
+        {/* Action Buttons */}
+        {room.host === myPlayerId ? (
+          <div className="flex flex-col gap-2.5 w-full mt-4">
+            <button
+              onClick={handleSkipWord}
+              className="w-full py-3.5 px-4 bg-[#5046E5] hover:bg-[#4338CA] active:scale-[0.99] text-white font-semibold text-[15px] rounded-[14px] flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+            >
+              <span>Play Next Word</span>
+              <ArrowRight size={18} strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={handleNextRound}
+              className="w-full py-3.5 px-4 bg-white hover:bg-[#F9FAFB] active:scale-[0.99] text-[#5046E5] border border-[#E5E7EB] font-semibold text-[15px] rounded-[14px] flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+            >
+              <span>Back to Lobby</span>
+            </button>
+          </div>
+        ) : (
+          <div className="text-center text-[#9CA3AF] text-[13px] font-medium mt-4">
+            Waiting for host...
+          </div>
+        )}
+
+        {/* All Clues Revealed */}
+        {room.allClues && room.allClues.length > 0 && (
+          <div className="w-full mt-6">
+            <h3 className="text-[16px] font-bold text-[#1E1B3A] mb-3 text-left">
+              All Clues Revealed
+            </h3>
+            <div className="flex flex-col gap-2.5 w-full pb-8">
+              {room.allClues.map((c, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-[16px] border border-[#E9ECEF] p-4 text-left shadow-[0_2px_8px_rgba(0,0,0,0.02)] space-y-1.5"
+                >
+                  <div className="text-[12px] font-bold text-[#1E1B3A] flex items-center gap-2">
+                    <Lightbulb size={14} className="text-[#5046E5]" />
+                    <span>{c.name}'s Clue</span>
+                  </div>
+                  <div className="text-[13px] text-[#4B5563] leading-relaxed">
+                    {c.clue}
+                  </div>
                 </div>
-                <div className="text-text font-medium text-lg leading-relaxed">{c.clue}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -272,8 +298,8 @@ const Game = ({ room }) => {
           />
           <Button 
             type="submit"
-            variant="primary"
-            className="w-16 rounded-[16px] h-auto p-0 flex items-center justify-center shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
+            variant="success"
+            className="w-16 rounded-[16px] h-auto p-0 flex items-center justify-center shadow-[0_8px_20px_rgba(22,163,74,0.25)]"
           >
             <Send size={24} />
           </Button>

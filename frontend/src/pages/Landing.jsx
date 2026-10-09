@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSocket } from '../SocketContext';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { Camera, X } from 'lucide-react';
-import Button from '../components/Button';
+import { Swords, Plus, ArrowRight, Scan, X } from 'lucide-react';
 
 const QrScannerWrapper = ({ onScan }) => {
   useEffect(() => {
@@ -20,7 +19,7 @@ const QrScannerWrapper = ({ onScan }) => {
     };
   }, [onScan]);
 
-  return <div id="reader" className="w-full bg-surface text-text rounded-lg"></div>;
+  return <div id="reader" className="w-full bg-white text-[#1E1B3A] rounded-lg"></div>;
 };
 
 const Landing = () => {
@@ -40,17 +39,17 @@ const Landing = () => {
   }, [code]);
 
   const handleCreate = () => {
-    if (!nickname) return setError('Nickname is required');
-    createRoom(nickname, (res) => {
+    if (!nickname.trim()) return setError('Nickname is required');
+    createRoom(nickname.trim(), (res) => {
       if (res.error) return setError(res.error);
       navigate(`/room/${res.roomCode}`);
     });
   };
 
   const handleJoin = () => {
-    if (!nickname) return setError('Nickname is required');
-    if (!roomCode) return setError('Room code is required');
-    joinRoom(roomCode, nickname, (res) => {
+    if (!nickname.trim()) return setError('Nickname is required');
+    if (!roomCode.trim()) return setError('Room code is required');
+    joinRoom(roomCode.trim(), nickname.trim(), (res) => {
       if (res.error) return setError(res.error);
       navigate(`/room/${res.roomCode}`);
     });
@@ -71,90 +70,124 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-[440px] w-full mx-auto space-y-6 mt-4 pb-12 z-10 relative">
-      <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8 w-full space-y-6 border border-[#F3F4F6]">
-        <h2 className="text-[20px] font-bold text-center mb-2 text-[#1E1B3A]">Enter the Arena</h2>
+    <div className="w-full max-w-[400px] mx-auto px-2 pb-12 flex flex-col items-center z-10 relative">
+      {/* Main Card */}
+      <div className="bg-white rounded-[24px] border border-[#E9ECEF] shadow-[0_2px_16px_rgba(0,0,0,0.03)] p-6 sm:p-7 w-full space-y-6">
         
-        {!isConnected && !connectionError && <div className="text-center text-hint font-medium">Connecting to server...</div>}
-        {connectionError && <div className="text-center text-danger font-medium p-3 bg-danger-bg rounded-lg border border-red-200">{connectionError}</div>}
+        {/* Header Icon + Titles */}
+        <div className="flex flex-col items-center text-center">
+          <div className="w-12 h-12 rounded-2xl bg-[#EEF2FF] flex items-center justify-center text-[#5046E5] mb-3">
+            <Swords size={22} strokeWidth={2} />
+          </div>
+          <h2 className="text-[22px] font-bold text-[#1E1B3A] tracking-tight">Enter the Arena</h2>
+          <p className="text-[13px] text-[#6B7280] mt-1 max-w-[270px] leading-relaxed">
+            Challenge your friends. Find out who thinks fastest.
+          </p>
+        </div>
 
+        {!isConnected && !connectionError && (
+          <div className="text-center text-[#B45309] bg-[#FEF3C7] py-2 px-3 rounded-lg text-xs font-medium">
+            Connecting to server...
+          </div>
+        )}
+        {connectionError && (
+          <div className="text-center text-[#DC2626] bg-[#FEF2F2] py-2 px-3 rounded-lg text-xs font-medium border border-[#FEE2E2]">
+            {connectionError}
+          </div>
+        )}
+
+        {/* Inputs & Actions */}
         <div className="space-y-4">
           <div>
-            <label className="block text-[13px] text-text-muted mb-2 font-bold tracking-widest uppercase">Nickname</label>
+            <label className="block text-[13px] font-semibold text-[#1E1B3A] mb-1.5">
+              Nickname
+            </label>
             <input
               type="text"
-              className="w-full bg-white border border-[#E5E7EB] rounded-[16px] p-4 text-[16px] font-semibold text-[#1E1B3A] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm"
               placeholder="Your Name"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              maxLength={12}
+              maxLength={15}
+              className="w-full bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#1E1B3A] placeholder-[#9CA3AF] focus:outline-none focus:border-[#5046E5] focus:ring-1 focus:ring-[#5046E5] transition-all"
             />
           </div>
 
-          <div className="pt-4 border-t border-border">
-            <Button
-              onClick={handleCreate}
-              disabled={!isConnected}
-              className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
-              variant="primary"
-            >
-              CREATE ROOM
-            </Button>
-          </div>
+          <button
+            onClick={handleCreate}
+            disabled={!isConnected}
+            className="w-full py-3.5 bg-[#5046E5] hover:bg-[#4338CA] disabled:opacity-50 text-white font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm"
+          >
+            <Plus size={18} strokeWidth={2.5} />
+            <span>Create Room</span>
+          </button>
 
-          <div className="relative flex items-center py-2">
+          <div className="relative flex items-center py-1">
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
-            <span className="flex-shrink-0 mx-4 text-[#9CA3AF] text-sm font-medium">OR JOIN</span>
+            <span className="flex-shrink-0 mx-3 text-[#9CA3AF] text-[12px] font-medium">Or Join</span>
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
           </div>
 
           <div>
-            <label className="block text-[13px] text-text-muted mb-2 font-bold tracking-widest uppercase">Room Code</label>
-            <div className="flex space-x-2">
+            <label className="block text-[13px] font-semibold text-[#1E1B3A] mb-1.5">
+              Room code
+            </label>
+            <div className="flex gap-2">
               <input
                 type="text"
-                className="flex-grow bg-white border border-[#E5E7EB] rounded-[16px] p-4 text-[16px] font-semibold text-[#1E1B3A] text-center uppercase tracking-widest focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent shadow-sm"
-                placeholder="6 CHARS"
+                placeholder="TN7KTU"
                 value={roomCode}
                 onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                 maxLength={6}
+                className="flex-grow bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-[15px] font-bold tracking-wider text-[#1E1B3A] placeholder-[#D1D5DB] focus:outline-none focus:border-[#5046E5] focus:ring-1 focus:ring-[#5046E5] transition-all uppercase"
               />
-              <Button 
+              <button
+                type="button"
                 onClick={() => setShowScanner(true)}
-                variant="secondary"
-                className="px-4 rounded-[16px] border-[#E5E7EB] bg-[#F8F9FB] hover:bg-[#F3F4F6]"
+                className="w-[46px] h-[46px] flex-shrink-0 flex items-center justify-center bg-white border border-[#E5E7EB] rounded-[12px] text-[#5046E5] hover:bg-[#F9FAFB] transition-colors"
+                title="Scan QR Code"
               >
-                <Camera size={24} className="text-text-muted" />
-              </Button>
+                <Scan size={20} strokeWidth={2} />
+              </button>
             </div>
           </div>
 
-          <Button
+          <button
             onClick={handleJoin}
             disabled={!isConnected}
-            className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-md"
-            variant="accent"
+            className="w-full py-3.5 bg-white border-2 border-[#5046E5] hover:bg-[#EEF2FF]/40 disabled:opacity-50 text-[#5046E5] font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all"
           >
-            JOIN ROOM
-          </Button>
+            <ArrowRight size={18} strokeWidth={2.5} />
+            <span>Join Room</span>
+          </button>
         </div>
 
-        {error && <div className="text-danger text-center text-sm font-medium">{error}</div>}
+        {error && (
+          <div className="text-[#DC2626] text-center text-[13px] font-medium bg-[#FEF2F2] py-2 px-3 rounded-lg border border-[#FEE2E2]">
+            {error}
+          </div>
+        )}
       </div>
 
+      {/* Footer Text */}
+      <div className="text-center mt-6 space-y-0.5">
+        <div className="text-[13px] font-bold text-[#4B5563]">Better with your people.</div>
+        <div className="text-[12px] text-[#9CA3AF]">3–8 players · One shared challenge</div>
+      </div>
+
+      {/* QR Scanner Modal */}
       {showScanner && (
-        <div className="fixed inset-0 z-50 bg-text/90 flex flex-col items-center justify-center p-4">
-          <div className="relative w-full max-w-sm">
+        <div className="fixed inset-0 z-50 bg-[#1E1B3A]/80 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+          <div className="relative w-full max-w-sm bg-white rounded-2xl p-4 shadow-xl">
             <button 
               onClick={() => setShowScanner(false)}
-              className="absolute -top-12 right-0 text-surface z-50 p-2 hover:bg-surface/10 rounded-full transition-colors"
+              className="absolute -top-10 right-0 text-white p-2 hover:bg-white/10 rounded-full transition-colors"
             >
-              <X size={32} />
+              <X size={26} />
             </button>
-            <div className="bg-surface rounded-2xl overflow-hidden border-2 border-primary w-full relative">
+            <h3 className="text-center font-bold text-[#1E1B3A] mb-3">Scan Room QR Code</h3>
+            <div className="overflow-hidden rounded-xl border border-[#E5E7EB] w-full">
               <QrScannerWrapper onScan={handleScan} />
             </div>
-            <p className="text-center text-surface mt-4 font-medium">Scan Room QR Code</p>
           </div>
         </div>
       )}

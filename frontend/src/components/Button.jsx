@@ -16,6 +16,7 @@ export default function Button({
     secondary: 'bg-secondary border border-border text-text hover:bg-secondary-hover hover:border-text-muted',
     hint: 'bg-hint-bg text-hint hover:bg-yellow-200',
     danger: 'bg-danger text-white hover:bg-red-600',
+    success: 'bg-[#16A34A] text-white hover:bg-[#15803D] active:bg-[#166534]',
     ghost: 'bg-transparent text-text hover:bg-bg',
   };
 

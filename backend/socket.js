@@ -155,7 +155,7 @@ function initializeSockets(io) {
       const result = gameManager.submitAnswer(socket.roomId, socket.playerId, guess);
       if (result.error && !result.room) return callback({ error: result.error });
       
-      callback({ success: true, isCorrect: result.isCorrect });
+      callback({ success: true, isCorrect: result.isCorrect, error: result.error, near: result.near });
       if (result.room) emitGameState(socket.roomId);
     });
 
