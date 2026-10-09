@@ -1,6 +1,6 @@
 {
   "domains": {
-    "Anime": 1791466350365,
+    "Anime": 1791536201536,
     "Cricket / IPL": 1791456903779,
     "Web Series": 1791456903781,
     "Movies": 1791463391322,
@@ -21,12 +21,12 @@
     "Tech & AI::Programming": 1791456903787,
     "VIT Pune & Pune Local::Pune landmarks": 1791456903788,
     "Anime::Sports anime": 1791456903789,
-    "Anime::Thriller/Mystery": 1791466278926,
+    "Anime::Thriller/Mystery": 1791514669364,
     "Anime::Slice of life": 1791461087299,
     "Anime::Characters & villains": 1791461673947,
     "Movies::Sci-fi/Superhero": 1791463391322,
-    "Anime::Shonen": 1791466350365,
-    "Anime::Classics": 1791465675785
+    "Anime::Shonen": 1791523898441,
+    "Anime::Classics": 1791536201536
   },
   "keywords": {
     "chal-7": {
@@ -86,16 +86,16 @@
       "lastUsedAt": 1791463391322
     },
     "chal-real-1": {
-      "count": 2,
-      "lastUsedAt": 1791466350365
+      "count": 3,
+      "lastUsedAt": 1791523898441
     },
     "chal-real-3": {
-      "count": 1,
-      "lastUsedAt": 1791465675785
+      "count": 3,
+      "lastUsedAt": 1791536201536
     },
     "chal-real-2": {
-      "count": 1,
-      "lastUsedAt": 1791466278926
+      "count": 2,
+      "lastUsedAt": 1791514669364
     }
   },
   "playerHistory": {
@@ -526,15 +526,57 @@
     "bvr9ceo8t3ah7o2p0g63vk": [
       "chal-real-2",
       "chal-real-1"
+    ],
+    "skoqgpjx966lw3z8plvr": [
+      "chal-real-3"
+    ],
+    "25p2x9l12m31hqsas4dzq": [
+      "chal-real-3"
+    ],
+    "ed0vc3qfue9jr99t7ioaq8": [
+      "chal-real-3"
+    ],
+    "yy4kdp4senp15c9rnwx36a": [
+      "chal-real-2"
+    ],
+    "zfneonub42ipytay99mt": [
+      "chal-real-2"
+    ],
+    "htboz57zrctska8822azar": [
+      "chal-real-2"
+    ],
+    "i9lmbkeagx9xeg5w3gd2ak": [
+      "chal-real-1"
+    ],
+    "sl39pzc9lhnxg3wvn3qg4s": [
+      "chal-real-1"
+    ],
+    "lr503ehd4ilhrvuzftxmdk": [
+      "chal-real-1"
+    ],
+    "ulk1excq7wn4eaq283kho4": [
+      "chal-real-1"
+    ],
+    "so996l80a3x578cb0uocr": [
+      "chal-real-1"
+    ],
+    "z7guafnxp0akrr36vnkcum": [
+      "chal-real-3"
+    ],
+    "5ruij5doir9fbr18arl": [
+      "chal-real-3"
+    ],
+    "uf6j2v2ny3iw0qvcgdic2": [
+      "chal-real-3"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "chal-real-1",
+  "previousEventKeyword": "chal-real-3",
   "previousDomainSubfield": {
-    "Anime": "Shonen",
+    "Anime": "Classics",
     "Cricket / IPL": "Legendary matches",
     "Web Series": "Comedy/Sitcom",
     "Movies": "Sci-fi/Superhero",

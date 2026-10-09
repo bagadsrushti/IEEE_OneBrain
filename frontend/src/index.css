@@ -1,25 +1,36 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg: #F8F7FF;
+    --surface: #FFFFFF;
+    --border: #E6E3F5;
+    --text: #1E1B3A;
+    --text-muted: #5B5878;
+    --primary: #6C4CF1;
+    --primary-hover: #5A3BDB;
+    --primary-active: #4B2FC0;
+    --accent: #D94A2B;
+    --accent-hover: #BF3F23;
+    --success: #16A34A;
+    --success-bg: #DCFCE7;
+    --danger: #E5484D;
+    --danger-bg: #FEE2E2;
+    --hint: #B45309;
+    --hint-bg: #FEF3C7;
+    --disabled-text: #8C88A8;
+    --disabled-bg: #E9E6F7;
+  }
+  
   body {
-    @apply bg-gray-900 text-gray-100 font-sans;
+    background-color: var(--bg);
+    background-image: 
+      linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text);
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-@layer utilities {
-  .neon-text {
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-  .neon-text-red {
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5), 0 0 20px rgba(239, 68, 68, 0.3);
-  }
-  .neon-text-green {
-    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5), 0 0 20px rgba(34, 197, 94, 0.3);
-  }
-  .glass-panel {
-    @apply bg-gray-800/40 backdrop-blur-lg border border-gray-700 shadow-xl;
   }
 }

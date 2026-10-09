@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSocket } from '../SocketContext';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { Camera, X } from 'lucide-react';
+import Button from '../components/Button';
 
 const QrScannerWrapper = ({ onScan }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const QrScannerWrapper = ({ onScan }) => {
     };
   }, [onScan]);
 
-  return <div id="reader" className="w-full bg-white text-black"></div>;
+  return <div id="reader" className="w-full bg-surface text-text rounded-lg"></div>;
 };
 
 const Landing = () => {
@@ -60,18 +61,18 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex-grow flex items-center justify-center p-4">
-      <div className="glass-panel rounded-2xl p-8 max-w-sm w-full space-y-6">
-        <h2 className="text-2xl font-bold text-center mb-6">Enter the Arena</h2>
+    <div className="flex flex-col items-center max-w-[440px] w-full mx-auto space-y-6 mt-4 pb-12 z-10 relative">
+      <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8 w-full space-y-6 border border-[#F3F4F6]">
+        <h2 className="text-[20px] font-bold text-center mb-2 text-[#1E1B3A]">Enter the Arena</h2>
         
-        {!isConnected && <div className="text-center text-yellow-400">Connecting to server...</div>}
+        {!isConnected && <div className="text-center text-hint font-medium">Connecting to server...</div>}
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Nickname</label>
+            <label className="block text-[13px] text-text-muted mb-2 font-bold tracking-widest uppercase">Nickname</label>
             <input
               type="text"
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-lg focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-white border border-[#E5E7EB] rounded-[16px] p-4 text-[16px] font-semibold text-[#1E1B3A] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm"
               placeholder="Your Name"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
@@ -79,67 +80,70 @@ const Landing = () => {
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-700">
-            <button
+          <div className="pt-4 border-t border-border">
+            <Button
               onClick={handleCreate}
               disabled={!isConnected}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(37,99,235,0.5)] transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+              className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
+              variant="primary"
             >
               CREATE ROOM
-            </button>
+            </Button>
           </div>
 
           <div className="relative flex items-center py-2">
-            <div className="flex-grow border-t border-gray-700"></div>
-            <span className="flex-shrink-0 mx-4 text-gray-500 text-sm">OR JOIN</span>
-            <div className="flex-grow border-t border-gray-700"></div>
+            <div className="flex-grow border-t border-[#E5E7EB]"></div>
+            <span className="flex-shrink-0 mx-4 text-[#9CA3AF] text-sm font-medium">OR JOIN</span>
+            <div className="flex-grow border-t border-[#E5E7EB]"></div>
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Room Code</label>
+            <label className="block text-[13px] text-text-muted mb-2 font-bold tracking-widest uppercase">Room Code</label>
             <div className="flex space-x-2">
               <input
                 type="text"
-                className="flex-grow bg-gray-900 border border-gray-700 rounded-lg p-3 text-lg text-center uppercase tracking-widest focus:outline-none focus:border-green-500 transition-colors"
+                className="flex-grow bg-white border border-[#E5E7EB] rounded-[16px] p-4 text-[16px] font-semibold text-[#1E1B3A] text-center uppercase tracking-widest focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent shadow-sm"
                 placeholder="6 CHARS"
                 value={roomCode}
                 onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                 maxLength={6}
               />
-              <button 
+              <Button 
                 onClick={() => setShowScanner(true)}
-                className="bg-gray-800 border border-gray-700 p-3 rounded-lg hover:bg-gray-700"
+                variant="secondary"
+                className="px-4 rounded-[16px] border-[#E5E7EB] bg-[#F8F9FB] hover:bg-[#F3F4F6]"
               >
-                <Camera size={24} className="text-gray-300" />
-              </button>
+                <Camera size={24} className="text-text-muted" />
+              </Button>
             </div>
           </div>
 
-          <button
+          <Button
             onClick={handleJoin}
             disabled={!isConnected}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(34,197,94,0.5)] transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+            className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-md"
+            variant="accent"
           >
             JOIN ROOM
-          </button>
+          </Button>
         </div>
 
-        {error && <div className="text-red-400 text-center text-sm">{error}</div>}
+        {error && <div className="text-danger text-center text-sm font-medium">{error}</div>}
       </div>
 
       {showScanner && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-text/90 flex flex-col items-center justify-center p-4">
           <div className="relative w-full max-w-sm">
             <button 
               onClick={() => setShowScanner(false)}
-              className="absolute -top-12 right-0 text-white z-50"
+              className="absolute -top-12 right-0 text-surface z-50 p-2 hover:bg-surface/10 rounded-full transition-colors"
             >
               <X size={32} />
             </button>
-            <div className="bg-gray-900 rounded-lg overflow-hidden border-2 border-blue-500 w-full relative">
+            <div className="bg-surface rounded-2xl overflow-hidden border-2 border-primary w-full relative">
               <QrScannerWrapper onScan={handleScan} />
             </div>
-            <p className="text-center text-gray-400 mt-4">Scan Room QR Code</p>
+            <p className="text-center text-surface mt-4 font-medium">Scan Room QR Code</p>
           </div>
         </div>
       )}

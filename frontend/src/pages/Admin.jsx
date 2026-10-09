@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from '../components/Button';
 
 const Admin = () => {
   const [password, setPassword] = useState('');
@@ -76,7 +77,7 @@ const Admin = () => {
   };
 
   const handleResetRotation = async () => {
-    if (!window.confirm('Are you sure you want to reset event rotation (lastUsedAt and played counts)?')) return;
+    if (!window.confirm('Are you sure you want to reset event rotation?')) return;
     try {
       const res = await fetch(`${backendUrl}/admin/usage/reset`, {
         method: 'POST',
@@ -113,51 +114,52 @@ const Admin = () => {
 
   return (
     <div className="flex-grow p-8 max-w-4xl mx-auto w-full space-y-8">
-      <h1 className="text-3xl font-bold text-red-400">Admin Panel</h1>
+      <h1 className="text-3xl font-bold text-text">Admin Panel</h1>
       
       {!isLogged ? (
-        <div className="glass-panel p-6 rounded-2xl flex space-x-4">
+        <div className="bg-surface p-6 rounded-[20px] border border-border shadow-sm flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <input
             type="password"
             placeholder="Admin Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="bg-gray-900 border border-gray-700 rounded-lg p-3 flex-grow"
+            className="bg-surface border border-border rounded-[14px] p-3 flex-grow focus:outline-none focus:border-primary text-[16px] text-text"
           />
-          <button onClick={fetchData} className="bg-blue-600 px-6 rounded-lg font-bold hover:bg-blue-700">Login</button>
+          <Button onClick={fetchData} variant="primary" className="px-8">Login</Button>
         </div>
       ) : (
-        <button onClick={fetchData} className="bg-gray-800 px-4 py-2 rounded-lg text-sm">Refresh Data</button>
+        <Button onClick={fetchData} variant="secondary" className="px-4 py-2 text-sm">Refresh Data</Button>
       )}
 
-      {msg && <div className="text-yellow-400 p-4 bg-yellow-900/20 rounded-lg border border-yellow-900">{msg}</div>}
+      {msg && <div className="text-hint p-4 bg-hint-bg rounded-[14px] border border-yellow-200 font-medium">{msg}</div>}
 
       {isLogged && (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="glass-panel p-6 rounded-2xl space-y-6">
-              <h2 className="text-xl font-bold border-b border-gray-700 pb-2">Global Settings</h2>
+            <div className="bg-surface p-6 rounded-[20px] border border-border shadow-sm space-y-6">
+              <h2 className="text-xl font-bold border-b border-border pb-2 text-text">Global Settings</h2>
               
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-bold">Flat 120s Mode</div>
-                  <div className="text-sm text-gray-400">All games get exactly 120 seconds</div>
+                  <div className="font-bold text-text">Flat 120s Mode</div>
+                  <div className="text-sm text-text-muted">All games get exactly 120 seconds</div>
                 </div>
-                <button 
+                <Button 
                   onClick={() => updateSettings({ flat120sMode: !settings.flat120sMode })}
-                  className={`px-4 py-2 rounded-lg font-bold ${settings.flat120sMode ? 'bg-green-600' : 'bg-gray-700'}`}
+                  variant={settings.flat120sMode ? 'primary' : 'secondary'}
+                  className="px-4 py-2"
                 >
                   {settings.flat120sMode ? 'ON' : 'OFF'}
-                </button>
+                </Button>
               </div>
 
               <div>
-                <div className="font-bold mb-2">Event Theme override</div>
-                <div className="text-sm text-gray-400 mb-2">Forces all lobbies into this category</div>
+                <div className="font-bold mb-2 text-text">Event Theme override</div>
+                <div className="text-sm text-text-muted mb-2">Forces all lobbies into this category</div>
                 <select 
                   value={settings.eventTheme}
                   onChange={(e) => updateSettings({ eventTheme: e.target.value })}
-                  className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3"
+                  className="w-full bg-surface border border-border rounded-[14px] p-3 focus:outline-none text-text text-[16px]"
                 >
                   <option value="">(None - Mixed)</option>
                   {categories.map(c => <option key={c} value={c}>{c}</option>)}
@@ -165,15 +167,15 @@ const Admin = () => {
               </div>
             </div>
 
-            <div className="glass-panel p-6 rounded-2xl space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-700 pb-2">
-                <h2 className="text-xl font-bold">Active Rooms ({rooms.length})</h2>
+            <div className="bg-surface p-6 rounded-[20px] border border-border shadow-sm space-y-4">
+              <div className="flex justify-between items-center border-b border-border pb-2">
+                <h2 className="text-xl font-bold text-text">Active Rooms ({rooms.length})</h2>
               </div>
               
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="text-gray-400">
+                    <tr className="text-text-muted">
                       <th className="pb-2">Room ID</th>
                       <th className="pb-2">Players</th>
                       <th className="pb-2">State</th>
@@ -181,11 +183,11 @@ const Admin = () => {
                   </thead>
                   <tbody>
                     {rooms.map(r => (
-                      <tr key={r.id} className="border-t border-gray-800">
-                        <td className="py-2 font-mono">{r.id}</td>
-                        <td className="py-2">{r.playersCount}</td>
-                        <td className="py-2">
-                          <span className={`px-2 py-1 rounded text-xs ${r.state === 'playing' ? 'bg-green-900 text-green-300' : 'bg-gray-800'}`}>
+                      <tr key={r.id} className="border-t border-border">
+                        <td className="py-3 font-mono font-medium text-text">{r.id}</td>
+                        <td className="py-3 text-text">{r.playersCount}</td>
+                        <td className="py-3">
+                          <span className={`px-2 py-1 rounded-md text-xs font-bold ${r.state === 'playing' ? 'bg-success-bg text-success' : 'bg-border text-text-muted'}`}>
                             {r.state}
                           </span>
                         </td>
@@ -193,7 +195,7 @@ const Admin = () => {
                     ))}
                     {rooms.length === 0 && (
                       <tr>
-                        <td colSpan="3" className="py-4 text-center text-gray-500">No active rooms</td>
+                        <td colSpan="3" className="py-6 text-center text-text-muted">No active rooms</td>
                       </tr>
                     )}
                   </tbody>
@@ -203,31 +205,32 @@ const Admin = () => {
           </div>
 
           {usage && (
-            <div className="glass-panel p-6 rounded-2xl space-y-4">
-              <h2 className="text-xl font-bold border-b border-gray-700 pb-2">Usage & Toggles</h2>
-              <div className="overflow-y-auto max-h-96">
+            <div className="bg-surface p-6 rounded-[20px] border border-border shadow-sm space-y-4">
+              <h2 className="text-xl font-bold border-b border-border pb-2 text-text">Usage & Toggles</h2>
+              <div className="overflow-y-auto max-h-96 custom-scrollbar">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="text-gray-400">
-                      <th className="pb-2">Subfield</th>
-                      <th className="pb-2">Last Used</th>
-                      <th className="pb-2">Toggle</th>
+                    <tr className="text-text-muted">
+                      <th className="pb-2 sticky top-0 bg-surface">Subfield</th>
+                      <th className="pb-2 sticky top-0 bg-surface">Last Used</th>
+                      <th className="pb-2 sticky top-0 bg-surface">Toggle</th>
                     </tr>
                   </thead>
                   <tbody>
                     {Object.keys(usage.subfields || {}).map(sf => {
                       const isDisabled = !!(usage.disabled && usage.disabled.subfields[sf]);
                       return (
-                        <tr key={sf} className="border-t border-gray-800">
-                          <td className="py-2 font-mono">{sf}</td>
-                          <td className="py-2">{new Date(usage.subfields[sf]).toLocaleString()}</td>
-                          <td className="py-2">
-                            <button 
+                        <tr key={sf} className="border-t border-border">
+                          <td className="py-3 font-mono font-medium text-text">{sf}</td>
+                          <td className="py-3 text-text-muted">{new Date(usage.subfields[sf]).toLocaleString()}</td>
+                          <td className="py-3">
+                            <Button 
                               onClick={() => toggleUsage('subfield', null, !isDisabled, sf.split('::')[0], sf.split('::')[1])}
-                              className={`px-3 py-1 rounded text-xs font-bold ${isDisabled ? 'bg-red-900 text-red-300' : 'bg-green-900 text-green-300'}`}
+                              variant={isDisabled ? 'danger' : 'ghost'}
+                              className={`px-3 py-1 min-h-0 h-8 rounded-lg text-xs font-bold ${!isDisabled && 'bg-success-bg text-success hover:bg-green-200'}`}
                             >
                               {isDisabled ? 'Disabled' : 'Enabled'}
-                            </button>
+                            </Button>
                           </td>
                         </tr>
                       );
@@ -238,15 +241,15 @@ const Admin = () => {
             </div>
           )}
 
-          <div className="glass-panel p-6 rounded-2xl border-red-900 border-2">
-            <h2 className="text-xl font-bold text-red-400 mb-4">Danger Zone</h2>
+          <div className="bg-surface p-6 rounded-[20px] border-danger/30 border shadow-sm">
+            <h2 className="text-xl font-bold text-danger mb-4">Danger Zone</h2>
             <div className="flex flex-col md:flex-row gap-4">
-              <button onClick={handleReset} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg w-full md:w-auto">
+              <Button onClick={handleReset} variant="danger" className="w-full md:w-auto">
                 Reset Leaderboard
-              </button>
-              <button onClick={handleResetRotation} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg w-full md:w-auto">
-                Reset Rotation & Usage History
-              </button>
+              </Button>
+              <Button onClick={handleResetRotation} variant="danger" className="w-full md:w-auto">
+                Reset Rotation History
+              </Button>
             </div>
           </div>
         </>

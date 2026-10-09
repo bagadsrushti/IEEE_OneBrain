@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useSocket } from '../SocketContext';
 import { Send, Lightbulb, Clock, Check, X, AlertTriangle } from 'lucide-react';
+import Button from './Button';
 
 const Game = ({ room }) => {
   const { socket, myPlayerId } = useSocket();
@@ -33,7 +34,8 @@ const Game = ({ room }) => {
       confetti({
         particleCount: 100,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
+        colors: ['#6C4CF1', '#D94A2B', '#16A34A', '#E6E3F5']
       });
       if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
     } else if (isFinished && !room.lastRoundSuccess) {
@@ -72,11 +74,11 @@ const Game = ({ room }) => {
   if (isReady) {
     return (
       <div className="flex-grow flex flex-col items-center justify-center space-y-8">
-        <h2 className="text-3xl text-gray-400 font-bold">GET READY</h2>
-        <div className="text-8xl font-bold font-mono text-white">
+        <h2 className="text-3xl text-text-muted font-bold">GET READY</h2>
+        <div className="text-8xl font-bold font-mono text-primary">
           {timeRemaining}
         </div>
-        <p className="text-gray-400">Read your clue carefully. Do not show your screen!</p>
+        <p className="text-text-muted font-medium">Read your clue carefully. Do not show your screen!</p>
       </div>
     );
   }
@@ -85,83 +87,86 @@ const Game = ({ room }) => {
     const bd = room.lastRoundScoreBreakdown;
     
     return (
-      <div className="w-full max-w-lg mx-auto flex flex-col space-y-6 mt-8">
-        <div className={`glass-panel p-8 rounded-2xl text-center border-t-8 ${room.lastRoundSuccess ? 'border-green-500' : 'border-red-500'}`}>
+      <div className="w-full max-w-[440px] mx-auto flex flex-col space-y-6 mt-4">
+        <div className={`bg-surface p-8 rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] text-center border-t-8 border-x border-b border-[#F3F4F6] ${room.lastRoundSuccess ? 'border-t-success' : 'border-t-danger'}`}>
           <div className="flex justify-center mb-4">
             {room.lastRoundSuccess ? (
-              <div className="bg-green-500/20 p-4 rounded-full">
-                <Check size={48} className="text-green-500" />
+              <div className="bg-success-bg p-4 rounded-full">
+                <Check size={48} className="text-success" />
               </div>
             ) : (
-              <div className="bg-red-500/20 p-4 rounded-full">
-                <X size={48} className="text-red-500" />
+              <div className="bg-danger-bg p-4 rounded-full">
+                <X size={48} className="text-danger" />
               </div>
             )}
           </div>
           
-          <h2 className="text-2xl font-bold mb-2">
+          <h2 className="text-2xl font-bold mb-2 text-text">
             {room.lastRoundSuccess ? 'TEAM SUCCESS!' : 'ROUND OVER'}
           </h2>
-          <p className="text-gray-400 mb-6">{room.lastRoundReason}</p>
+          <p className="text-text-muted mb-6 font-medium">{room.lastRoundReason}</p>
           
-          <div className="text-sm text-gray-400 uppercase tracking-widest">The Answer Was</div>
-          <div className="text-3xl font-bold text-white neon-text mb-6">
+          <div className="text-sm text-text-muted uppercase tracking-widest font-bold">The Answer Was</div>
+          <div className="text-3xl font-black text-primary mb-6">
             {room.challenge?.answer}
           </div>
 
-          <div className="text-left bg-gray-900 p-4 rounded-xl mb-6 space-y-2 text-sm text-gray-300">
+          <div className="text-left bg-bg p-4 rounded-[14px] border border-border mb-6 space-y-2 text-sm text-text font-medium">
             <div className="flex justify-between">
               <span>Base Score</span>
-              <span className="font-bold text-green-400">{bd?.baseScore > 0 ? `+${bd.baseScore}` : '0'}</span>
+              <span className="font-bold text-success">{bd?.baseScore > 0 ? `+${bd.baseScore}` : '0'}</span>
             </div>
             <div className="flex justify-between">
               <span>Time Bonus</span>
-              <span className="font-bold text-green-400">{bd?.timeBonus > 0 ? `+${bd.timeBonus}` : '0'}</span>
+              <span className="font-bold text-success">{bd?.timeBonus > 0 ? `+${bd.timeBonus}` : '0'}</span>
             </div>
             <div className="flex justify-between">
               <span>Hint Penalty</span>
-              <span className="font-bold text-red-400">{bd?.hintPenalty}</span>
+              <span className="font-bold text-danger">{bd?.hintPenalty}</span>
             </div>
             <div className="flex justify-between">
               <span>Wrong Penalty</span>
-              <span className="font-bold text-red-400">{bd?.wrongPenalty}</span>
+              <span className="font-bold text-danger">{bd?.wrongPenalty}</span>
             </div>
-            <div className="flex justify-between border-t border-gray-700 pt-2 font-bold">
+            <div className="flex justify-between border-t border-border pt-2 font-bold">
               <span>Multiplier</span>
-              <span className="text-blue-400">x {bd?.multiplier}</span>
+              <span className="text-primary">x {bd?.multiplier}</span>
             </div>
-            <div className="flex justify-between text-lg pt-2 border-t border-gray-700">
-              <span className="text-white">Round Earned</span>
-              <span className={`font-bold ${bd?.finalScore > 0 ? 'text-green-400' : 'text-gray-500'}`}>
+            <div className="flex justify-between text-lg pt-2 border-t border-border">
+              <span className="text-text font-bold">Round Earned</span>
+              <span className={`font-bold ${bd?.finalScore > 0 ? 'text-success' : 'text-text-muted'}`}>
                 +{bd?.finalScore}
               </span>
             </div>
-            <div className="flex justify-between text-xl font-bold text-white pt-2 border-t border-gray-700">
+            <div className="flex justify-between text-xl font-bold text-text pt-2 border-t border-border">
               <span>Total Score</span>
-              <span className="text-blue-400">{room.score}</span>
+              <span className="text-primary">{room.score}</span>
             </div>
           </div>
           
           {room.host === myPlayerId && (
-            <button
+            <Button
               onClick={handleNextRound}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg text-lg"
+              variant="accent"
+              className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-md"
             >
               PLAY AGAIN
-            </button>
+            </Button>
           )}
           {room.host !== myPlayerId && (
-            <div className="text-gray-500 animate-pulse">Waiting for host...</div>
+            <div className="text-text-muted font-medium animate-pulse">Waiting for host...</div>
           )}
         </div>
 
-        <div className="glass-panel p-6 rounded-2xl">
-          <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">All Clues Revealed</h3>
+        <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-[#F3F4F6] p-6">
+          <h3 className="text-xl font-bold mb-4 border-b border-border pb-2 text-text">All Clues Revealed</h3>
           <ul className="space-y-4">
             {room.allClues?.map((c, i) => (
-              <li key={i} className="bg-gray-900 p-4 rounded-xl border border-gray-700">
-                <div className="text-sm text-blue-400 font-bold mb-1">{c.name}'s Clue</div>
-                <div className="text-gray-200">{c.clue}</div>
+              <li key={i} className="bg-bg p-4 rounded-[14px] border-l-4 border-l-primary border-t border-r border-b border-border shadow-sm">
+                <div className="text-sm text-primary font-bold mb-1 flex items-center gap-2">
+                  <Lightbulb size={14} /> {c.name}'s Clue
+                </div>
+                <div className="text-text font-medium text-lg leading-relaxed">{c.clue}</div>
               </li>
             ))}
           </ul>
@@ -170,46 +175,55 @@ const Game = ({ room }) => {
     );
   }
 
+  // Determine badge colors dynamically but safely
+  const badgeHex = room.categoryMeta?.color || '#6C4CF1';
+
   return (
-    <div className={`flex flex-col h-full w-full max-w-lg mx-auto ${isUrgent ? 'animate-pulse' : ''}`}>
+    <div className={`flex flex-col h-full w-full max-w-[440px] mx-auto transition-colors duration-500 z-10 relative ${isUrgent ? 'bg-danger-bg rounded-[24px] p-4' : ''}`}>
       {/* Header Info */}
       <div className="flex justify-between items-center mb-6 px-2">
-        <div className="flex flex-col items-center">
-          <span className="text-xs text-gray-500 uppercase tracking-widest mb-1">Category</span>
+        <div className="flex flex-col items-start">
+          <span className="text-xs text-text-muted font-bold uppercase tracking-widest mb-1">Category</span>
           <span 
-            className="px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[120px]"
-            style={{ backgroundColor: room.categoryMeta?.color ? `${room.categoryMeta.color}33` : '#333', color: room.categoryMeta?.color || '#fff' }}
+            className="px-3 py-1 rounded-full text-sm font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[140px] shadow-sm border border-black/5"
+            style={{ backgroundColor: `${badgeHex}20`, color: badgeHex }}
           >
             {room.categoryMeta?.emoji} {room.category}
           </span>
         </div>
         
-        <div className={`flex items-center space-x-2 text-3xl font-mono font-bold ${isUrgent ? 'text-red-500 neon-text-red' : 'text-white'}`}>
-          <Clock size={24} className={isUrgent ? 'animate-bounce' : ''} />
-          <span>{timeRemaining}</span>
+        <div className="flex flex-col items-center">
+          <div className={`flex items-center space-x-2 text-4xl font-mono font-black transition-colors duration-300 ${isUrgent ? 'text-danger' : 'text-accent'}`}>
+            <Clock size={28} className={isUrgent ? 'animate-bounce' : ''} />
+            <span>{timeRemaining}</span>
+          </div>
+          <div className="w-full bg-border h-2 mt-2 rounded-full overflow-hidden">
+             <div className="h-full bg-primary transition-all duration-500" style={{ width: `${(timeRemaining / (room.roundRules?.roundSeconds || 120)) * 100}%` }}></div>
+          </div>
         </div>
         
         <div className="flex flex-col items-end">
-          <span className="text-xs text-gray-500 uppercase tracking-widest">Score</span>
-          <span className="font-bold text-green-400 text-xl">{room.score}</span>
+          <span className="text-xs text-text-muted font-bold uppercase tracking-widest mb-1">Score</span>
+          <span className="font-bold text-success text-2xl">{room.score}</span>
         </div>
       </div>
 
       {/* Main Clue Area */}
-      <div className="glass-panel rounded-3xl p-8 mb-6 flex-grow flex flex-col justify-center items-center text-center relative overflow-hidden">
-        {isUrgent && <div className="absolute inset-0 border-4 border-red-500/50 rounded-3xl pointer-events-none"></div>}
+      <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8 mb-6 flex-grow flex flex-col justify-center items-center text-center relative overflow-hidden border border-[#F3F4F6] border-l-8 border-l-primary/60">
         
-        <div className="text-sm text-blue-400 font-bold uppercase tracking-widest mb-6">Your Private Clue</div>
-        <p className="text-2xl md:text-3xl font-medium text-white leading-relaxed">
+        <div className="text-sm text-primary font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
+           Your Private Clue
+        </div>
+        <p className="text-[22px] md:text-3xl font-semibold text-text leading-relaxed">
           {room.myClue}
         </p>
         
         {room.sharedHint && (
-          <div className="mt-8 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl w-full">
-            <div className="text-xs text-yellow-500 font-bold uppercase tracking-widest mb-2 flex justify-center items-center">
-              <Lightbulb size={14} className="mr-1" /> Shared Hint
+          <div className="mt-8 p-4 bg-hint-bg border border-yellow-200 rounded-[14px] w-full">
+            <div className="text-xs text-hint font-bold uppercase tracking-widest mb-2 flex justify-center items-center">
+              <Lightbulb size={16} className="mr-1" /> Shared Hint
             </div>
-            <p className="text-gray-200">{room.sharedHint}</p>
+            <p className="text-hint font-medium text-lg">{room.sharedHint}</p>
           </div>
         )}
       </div>
@@ -222,7 +236,7 @@ const Game = ({ room }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="bg-red-500/20 text-red-400 p-3 rounded-lg flex items-center justify-center space-x-2 border border-red-500/50"
+              className="bg-danger-bg text-danger p-3 rounded-[14px] flex items-center justify-center space-x-2 border border-red-200 font-medium shadow-sm"
             >
               <AlertTriangle size={18} />
               <span>{errorMsg}</span>
@@ -236,27 +250,30 @@ const Game = ({ room }) => {
             value={guess}
             onChange={(e) => setGuess(e.target.value)}
             placeholder="Enter Team Answer..."
-            className="flex-grow bg-gray-900 border border-gray-700 rounded-xl p-4 text-lg focus:outline-none focus:border-blue-500 text-white"
+            className="flex-grow bg-white border border-[#E5E7EB] rounded-[16px] p-4 text-[16px] font-semibold text-[#1E1B3A] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm"
           />
-          <button 
+          <Button 
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl flex items-center justify-center min-w-[60px]"
+            variant="primary"
+            className="w-16 rounded-[16px] h-auto p-0 flex items-center justify-center shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
           >
             <Send size={24} />
-          </button>
+          </Button>
         </form>
         
         <div className="flex justify-between items-center px-2">
-          <button 
+          <Button 
             onClick={handleHint}
             disabled={room.hintsUsed >= (room.roundRules?.maxHints || 0)}
-            className="text-yellow-500 flex items-center space-x-1 text-sm font-bold hover:text-yellow-400 disabled:opacity-50"
+            variant="hint"
+            className="px-4 py-2 h-10 min-h-0 text-[13px] font-bold shadow-sm rounded-[12px]"
           >
-            <Lightbulb size={16} />
+            <Lightbulb size={16} className="mr-1" />
             <span>{room.hintsUsed >= (room.roundRules?.maxHints || 0) ? 'Max Hints Used' : `Use Hint (-${room.roundRules?.hintPenalty || 0} pts)`}</span>
-          </button>
+          </Button>
           
-          <div className="text-sm text-gray-500">
+          <div className="text-sm font-bold text-text-muted flex items-center gap-1 bg-surface border border-border px-3 py-2 rounded-[12px] shadow-sm">
+            <X size={14} className="text-danger" /> 
             Attempts: {room.wrongAttempts}/{room.roundRules?.maxAttempts || 3}
           </div>
         </div>

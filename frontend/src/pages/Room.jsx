@@ -23,7 +23,7 @@ const Room = () => {
   if (!roomData) {
     return (
       <div className="flex-grow flex items-center justify-center">
-        <div className="animate-pulse text-blue-400 text-xl font-bold tracking-widest uppercase">
+        <div className="animate-pulse text-primary text-xl font-bold tracking-widest uppercase">
           Loading Data...
         </div>
       </div>
