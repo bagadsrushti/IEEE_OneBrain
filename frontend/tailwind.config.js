@@ -23,6 +23,10 @@ export default {
           DEFAULT: "var(--accent)",
           hover: "var(--accent-hover)",
         },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          hover: "var(--secondary-hover)",
+        },
         success: {
           DEFAULT: "var(--success)",
           bg: "var(--success-bg)",
@@ -35,10 +39,8 @@ export default {
           DEFAULT: "var(--hint)",
           bg: "var(--hint-bg)",
         },
-        disabled: {
-          text: "var(--disabled-text)",
-          DEFAULT: "var(--disabled-bg)",
-        }
+        "disabled-text": "var(--disabled-text)",
+        "disabled-bg": "var(--disabled-bg)",
       }
     },
   },
