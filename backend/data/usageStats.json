@@ -3,7 +3,7 @@
     "Anime": 1791536201536,
     "Cricket / IPL": 1791456903779,
     "Web Series": 1791456903781,
-    "Movies": 1791547333730,
+    "Movies": 1791566375730,
     "General Knowledge": 1791547275005,
     "Locations": 1791456903785,
     "Memes & Internet Culture": 1791456903786,
@@ -34,7 +34,8 @@
     "Trending Topics::Streaming": 1791546941682,
     "General Knowledge::Sport": 1791547275005,
     "Animals::Australian animal": 1791547306396,
-    "Movies::Superhero movie": 1791547333730
+    "Movies::Superhero movie": 1791547333730,
+    "Movies::Indian comedy-drama": 1791566375730
   },
   "keywords": {
     "chal-7": {
@@ -128,6 +129,10 @@
     "challenge_28": {
       "count": 1,
       "lastUsedAt": 1791547333730
+    },
+    "challenge_25": {
+      "count": 1,
+      "lastUsedAt": 1791566375730
     }
   },
   "playerHistory": {
@@ -642,18 +647,27 @@
       "challenge_43",
       "challenge_38",
       "challenge_28"
+    ],
+    "rnb04g6qlm6f5d3cq2ny6": [
+      "challenge_25"
+    ],
+    "wmu04pjr6vm7a01y9xrm": [
+      "challenge_25"
+    ],
+    "cu7onayt30upbikmzfzvc": [
+      "challenge_25"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "challenge_28",
+  "previousEventKeyword": "challenge_25",
   "previousDomainSubfield": {
     "Anime": "Classics",
     "Cricket / IPL": "Legendary matches",
     "Web Series": "Comedy/Sitcom",
-    "Movies": "Superhero movie",
+    "Movies": "Indian comedy-drama",
     "General Knowledge": "Sport",
     "Locations": "Countries & capitals",
     "Memes & Internet Culture": "Viral trends",

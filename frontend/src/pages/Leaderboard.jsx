@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import Button from '../components/Button';
+import { getBackendUrl, getPublicUrl } from '../config';
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -8,7 +9,11 @@ const Leaderboard = () => {
 
   const fetchLeaderboard = async () => {
     try {
-      const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
+      const backendUrl = getBackendUrl();
+      if (!backendUrl) {
+        console.error('Backend URL is not configured (VITE_SOCKET_URL)');
+        return;
+      }
       const res = await fetch(`${backendUrl}/leaderboard?filter=${filter}`);
       const data = await res.json();
       if (data.success) {
@@ -25,7 +30,7 @@ const Leaderboard = () => {
     return () => clearInterval(interval);
   }, [filter]);
 
-  const joinUrl = import.meta.env.VITE_PUBLIC_URL || window.location.origin;
+  const joinUrl = getPublicUrl();
 
   return (
     <div className="flex-grow flex flex-col md:flex-row h-screen bg-bg overflow-hidden text-text">

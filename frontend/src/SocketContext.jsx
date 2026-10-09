@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
+import { getBackendUrl } from './config';
 
 const SocketContext = createContext();
 
@@ -8,17 +9,31 @@ export const useSocket = () => useContext(SocketContext);
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const [connectionError, setConnectionError] = useState(null);
   const [roomData, setRoomData] = useState(null);
   const [myToken, setMyToken] = useState(localStorage.getItem('ob_token'));
   const [myPlayerId, setMyPlayerId] = useState(localStorage.getItem('ob_playerId'));
 
   useEffect(() => {
     // Determine backend URL
-    const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
+    const backendUrl = getBackendUrl();
+    
+    if (!backendUrl) {
+      setConnectionError('Backend URL is not configured (VITE_SOCKET_URL)');
+      return;
+    }
+    console.log('Resolved backend URL:', backendUrl);
+    
     const newSocket = io(backendUrl);
 
     newSocket.on('connect', () => {
       setIsConnected(true);
+      setConnectionError(null);
+    });
+
+    newSocket.on('connect_error', (err) => {
+      setIsConnected(false);
+      setConnectionError(`Connection error: ${err.message}`);
     });
 
     newSocket.on('disconnect', () => {
@@ -62,6 +77,7 @@ export const SocketProvider = ({ children }) => {
     <SocketContext.Provider value={{
       socket,
       isConnected,
+      connectionError,
       roomData,
       myPlayerId,
       createRoom,

@@ -26,7 +26,7 @@ const QrScannerWrapper = ({ onScan }) => {
 const Landing = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { createRoom, joinRoom, isConnected } = useSocket();
+  const { createRoom, joinRoom, isConnected, connectionError } = useSocket();
   
   const [nickname, setNickname] = useState('');
   const [roomCode, setRoomCode] = useState(code || '');
@@ -65,7 +65,8 @@ const Landing = () => {
       <div className="bg-surface rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8 w-full space-y-6 border border-[#F3F4F6]">
         <h2 className="text-[20px] font-bold text-center mb-2 text-[#1E1B3A]">Enter the Arena</h2>
         
-        {!isConnected && <div className="text-center text-hint font-medium">Connecting to server...</div>}
+        {!isConnected && !connectionError && <div className="text-center text-hint font-medium">Connecting to server...</div>}
+        {connectionError && <div className="text-center text-danger font-medium p-3 bg-danger-bg rounded-lg border border-red-200">{connectionError}</div>}
 
         <div className="space-y-4">
           <div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
+import { getBackendUrl } from '../config';
 
 const Admin = () => {
   const [password, setPassword] = useState('');
@@ -11,10 +12,15 @@ const Admin = () => {
 
   const [usage, setUsage] = useState(null);
 
-  const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
+  const backendUrl = getBackendUrl();
 
   const fetchData = async () => {
     try {
+      if (!backendUrl) {
+        setMsg('Backend URL is not configured (VITE_SOCKET_URL)');
+        return;
+      }
+      
       const [roomsRes, settingsRes, usageRes] = await Promise.all([
         fetch(`${backendUrl}/admin/rooms?password=${password}`),
         fetch(`${backendUrl}/admin/settings?password=${password}`),

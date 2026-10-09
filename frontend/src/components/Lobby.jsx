@@ -2,11 +2,12 @@ import React from 'react';
 import QRCode from 'react-qr-code';
 import { Copy, Users, Crown, Lock } from 'lucide-react';
 import { useSocket } from '../SocketContext';
+import { getPublicUrl } from '../config';
 
 const Lobby = ({ room }) => {
   const { socket, myPlayerId } = useSocket();
   const isHost = room.host === myPlayerId;
-  const joinUrl = `${import.meta.env.VITE_PUBLIC_URL || window.location.origin}/join/${room.id}`;
+  const joinUrl = `${getPublicUrl()}/join/${room.id}`;
 
   const copyLink = () => {
     navigator.clipboard.writeText(joinUrl);

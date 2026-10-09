@@ -6,18 +6,35 @@ const { Server } = require('socket.io');
 const { initializeSockets } = require('./socket');
 const path = require('path');
 
-const clientUrl = process.env.CLIENT_URL || '*';
+let allowedOrigins = ['*'];
+if (process.env.CLIENT_URL) {
+  allowedOrigins = process.env.CLIENT_URL.split(',')
+    .map(url => url.trim().replace(/\/+$/, ''))
+    .filter(url => url.length > 0);
+}
+console.log('Allowed CORS origins:', allowedOrigins);
+
+const corsOriginFn = (origin, callback) => {
+  // Allow requests with no origin (like mobile apps or curl requests)
+  if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+    callback(null, true);
+  } else {
+    console.log(`[CORS REJECTED] Origin: ${origin}`);
+    callback(new Error('Not allowed by CORS'));
+  }
+};
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: clientUrl,
+    origin: corsOriginFn,
     methods: ['GET', 'POST']
   },
   transports: ['websocket', 'polling']
 });
 
-app.use(cors({ origin: clientUrl }));
+app.use(cors({ origin: corsOriginFn }));
 app.use(express.json());
 
 // Routes for testing or health checks
