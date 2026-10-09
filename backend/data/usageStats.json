@@ -10,7 +10,7 @@
     "Tech & AI": 1791456903787,
     "VIT Pune & Pune Local": 1791456903788,
     "Animals": 1791547306396,
-    "Trending Topics": 1791546941682
+    "Trending Topics": 1791569641604
   },
   "subfields": {
     "Anime::Romance/Drama": 1791456903778,
@@ -35,7 +35,8 @@
     "General Knowledge::Sport": 1791547275005,
     "Animals::Australian animal": 1791547306396,
     "Movies::Superhero movie": 1791547333730,
-    "Movies::Indian comedy-drama": 1791566375730
+    "Movies::Indian comedy-drama": 1791566375730,
+    "Trending Topics::Online shopping": 1791569641604
   },
   "keywords": {
     "chal-7": {
@@ -133,6 +134,10 @@
     "challenge_25": {
       "count": 1,
       "lastUsedAt": 1791566375730
+    },
+    "challenge_57": {
+      "count": 1,
+      "lastUsedAt": 1791569641604
     }
   },
   "playerHistory": {
@@ -656,13 +661,22 @@
     ],
     "cu7onayt30upbikmzfzvc": [
       "challenge_25"
+    ],
+    "owv7wbtvxgapsl5w2g5ju": [
+      "challenge_57"
+    ],
+    "lwlz4i0znsdmqufxaw8lzj": [
+      "challenge_57"
+    ],
+    "f52xqz2gxfk02bq8mb2ovv1": [
+      "challenge_57"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "challenge_25",
+  "previousEventKeyword": "challenge_57",
   "previousDomainSubfield": {
     "Anime": "Classics",
     "Cricket / IPL": "Legendary matches",
@@ -674,6 +688,6 @@
     "Tech & AI": "Programming",
     "VIT Pune & Pune Local": "Pune landmarks",
     "Animals": "Australian animal",
-    "Trending Topics": "Streaming"
+    "Trending Topics": "Online shopping"
   }
 }
