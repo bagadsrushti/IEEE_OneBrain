@@ -13,8 +13,8 @@ export const SocketProvider = ({ children }) => {
   const [myPlayerId, setMyPlayerId] = useState(localStorage.getItem('ob_playerId'));
 
   useEffect(() => {
-    // Determine backend URL (use current host for prod, but force port 3001 in dev)
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:3001` : window.location.origin);
+    // Determine backend URL
+    const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
     const newSocket = io(backendUrl);
 
     newSocket.on('connect', () => {

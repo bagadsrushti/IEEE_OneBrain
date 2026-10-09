@@ -6,16 +6,18 @@ const { Server } = require('socket.io');
 const { initializeSockets } = require('./socket');
 const path = require('path');
 
+const clientUrl = process.env.CLIENT_URL || '*';
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: clientUrl,
     methods: ['GET', 'POST']
-  }
+  },
+  transports: ['websocket', 'polling']
 });
 
-app.use(cors());
+app.use(cors({ origin: clientUrl }));
 app.use(express.json());
 
 // Routes for testing or health checks

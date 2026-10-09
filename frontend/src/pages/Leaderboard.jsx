@@ -8,7 +8,7 @@ const Leaderboard = () => {
 
   const fetchLeaderboard = async () => {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:3001` : window.location.origin);
+      const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
       const res = await fetch(`${backendUrl}/leaderboard?filter=${filter}`);
       const data = await res.json();
       if (data.success) {
@@ -25,7 +25,7 @@ const Leaderboard = () => {
     return () => clearInterval(interval);
   }, [filter]);
 
-  const joinUrl = window.location.origin;
+  const joinUrl = import.meta.env.VITE_PUBLIC_URL || window.location.origin;
 
   return (
     <div className="flex-grow flex flex-col md:flex-row h-screen bg-bg overflow-hidden text-text">

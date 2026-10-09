@@ -133,6 +133,23 @@ function initializeSockets(io) {
       emitGameState(socket.roomId);
     });
 
+    socket.on('skip_word', (callback) => {
+      if (!socket.roomId) return callback({ error: 'Not in room' });
+      const room = gameManager.getRoom(socket.roomId);
+      if (!room || room.host !== socket.playerId) return callback({ error: 'Not authorized' });
+      
+      const onRoundEnd = (r, reason) => {
+        emitGameState(r.id);
+      };
+      
+      room.state = 'lobby';
+      const result = gameManager.startGame(socket.roomId, socket.playerId, onRoundEnd);
+      if (result.error) return callback({ error: result.error });
+      
+      callback({ success: true });
+      emitGameState(socket.roomId);
+    });
+
     socket.on('submit_answer', ({ guess }, callback) => {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const result = gameManager.submitAnswer(socket.roomId, socket.playerId, guess);

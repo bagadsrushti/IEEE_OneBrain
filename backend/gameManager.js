@@ -5,7 +5,10 @@ const { CATEGORIES } = require('./config/categories');
 
 let challengesData = [];
 try {
-  challengesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'challenges.json'), 'utf8'));
+  challengesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'challenges.json'), 'utf8')).map((c, i) => {
+    if (!c.id) c.id = `challenge_${i}`;
+    return c;
+  });
 } catch (e) {
   console.error("Failed to load challenges.json", e);
 }

@@ -6,7 +6,7 @@ import { useSocket } from '../SocketContext';
 const Lobby = ({ room }) => {
   const { socket, myPlayerId } = useSocket();
   const isHost = room.host === myPlayerId;
-  const joinUrl = `${window.location.origin}/join/${room.id}`;
+  const joinUrl = `${import.meta.env.VITE_PUBLIC_URL || window.location.origin}/join/${room.id}`;
 
   const copyLink = () => {
     navigator.clipboard.writeText(joinUrl);
@@ -29,14 +29,10 @@ const Lobby = ({ room }) => {
 
   const categories = [
     'Mixed',
-    'Bollywood Films',
-    'Hollywood Films',
-    'Characters',
-    'Famous People',
-    'Cricket & Sports',
-    'Memes & Internet Culture',
-    'Tech & Startups',
-    'VIT Pune & Pune Local'
+    'General Knowledge',
+    'Movies',
+    'Animals',
+    'Trending Topics'
   ];
 
   return (

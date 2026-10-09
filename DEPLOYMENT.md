@@ -1,50 +1,24 @@
-# One Brain - Deployment Guide
+# One Brain Deployment Guide
 
-## Prerequisites
-- A Vercel account (for the frontend)
-- A Render account (for the backend)
-- GitHub account (to host the repository)
+## Frontend (Vercel)
+The frontend is deployed as a Single Page Application (SPA) on Vercel.
 
-## Step 1: Backend Deployment (Render)
+**Required Environment Variables (Vercel):**
+- `VITE_SOCKET_URL`: URL to your Render backend (e.g., `https://one-brain-backend.onrender.com`)
+- `VITE_PUBLIC_URL`: URL to your Vercel frontend (e.g., `https://one-brain.vercel.app`)
 
-1. Push your repository to GitHub.
-2. Log into Render (render.com) and click **New > Web Service**.
-3. Connect your GitHub repository.
-4. Configure the Web Service:
-   - **Name**: `one-brain-backend`
-   - **Environment**: Node
-   - **Root Directory**: `backend`
-   - **Build Command**: `npm install`
-   - **Start Command**: `node index.js`
-5. **Environment Variables**:
-   - `ADMIN_PASSWORD`: A secure password for the admin panel.
-   - `PORT`: (Render sets this automatically, but you can set to 3001).
-6. Click **Create Web Service**. Wait for the deployment to finish and copy the generated URL (e.g., `https://one-brain-backend.onrender.com`).
+*Note: The `vercel.json` file ensures that all routes (like `/join/:code`) correctly serve `index.html`.*
 
-## Step 2: Frontend Deployment (Vercel)
+## Backend (Render)
+The backend is a Node.js Express & Socket.IO server hosted on Render as a Web Service.
 
-1. Log into Vercel (vercel.com) and click **Add New > Project**.
-2. Import your GitHub repository.
-3. Configure the Project:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-4. **Environment Variables**:
-   - `VITE_BACKEND_URL`: Paste the Render URL from Step 1 (e.g., `https://one-brain-backend.onrender.com`).
-5. Click **Deploy**. Vercel will build and host your PWA.
+**Required Environment Variables (Render):**
+- `CLIENT_URL`: URL to your Vercel frontend (e.g., `https://one-brain.vercel.app`). Used for CORS.
+- `ADMIN_PASSWORD`: A secure password for accessing admin endpoints.
+- `PORT`: (Render typically sets this automatically, but if defining it, defaults to `3001`).
 
-## Step 3: PWA Manifest (Optional but recommended for mobile-first)
-Ensure your `vite.config.js` is set up with `vite-plugin-pwa` if you want it to be fully installable offline, or simply add a `manifest.json` in the `public` folder and reference it in `index.html`.
+**Build & Run Commands (Render):**
+- Build Command: `npm install`
+- Start Command: `node index.js`
 
-## Local Development
-1. Start Backend:
-   ```bash
-   cd backend
-   npm run dev (or node index.js)
-   ```
-2. Start Frontend:
-   ```bash
-   cd frontend
-   npm run dev
-   ```
+*Note: The server allows WebSocket and Polling transports, and responds to a `/health` check.*

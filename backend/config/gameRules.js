@@ -5,12 +5,12 @@
  */
 
 const RULES_TABLE = {
-  3: { roundSeconds: 90,  prepSeconds: 8,  maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.2  },
-  4: { roundSeconds: 100, prepSeconds: 8,  maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.15 },
-  5: { roundSeconds: 110, prepSeconds: 10, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.1  },
-  6: { roundSeconds: 110, prepSeconds: 10, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.05 },
-  7: { roundSeconds: 120, prepSeconds: 10, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
-  8: { roundSeconds: 120, prepSeconds: 10, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
+  3: { roundSeconds: 90,  prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.2  },
+  4: { roundSeconds: 100, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.15 },
+  5: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.1  },
+  6: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.05 },
+  7: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
+  8: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
 };
 
 const MAX_ROUND_SECONDS = 120;

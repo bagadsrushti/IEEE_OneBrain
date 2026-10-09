@@ -69,6 +69,15 @@ const Game = ({ room }) => {
     socket.emit('next_round', () => {});
   };
 
+  const handleSkipWord = () => {
+    socket.emit('skip_word', (res) => {
+      if (res.error) {
+        setErrorMsg(res.error);
+        setTimeout(() => setErrorMsg(''), 3000);
+      }
+    });
+  };
+
   const isUrgent = isPlaying && timeRemaining <= 10;
   
   if (isReady) {
@@ -107,7 +116,7 @@ const Game = ({ room }) => {
           <p className="text-text-muted mb-6 font-medium">{room.lastRoundReason}</p>
           
           <div className="text-sm text-text-muted uppercase tracking-widest font-bold">The Answer Was</div>
-          <div className="text-3xl font-black text-primary mb-6">
+          <div className="text-[32px] sm:text-4xl font-black text-primary mb-6 capitalize break-words leading-tight px-2">
             {room.challenge?.answer}
           </div>
 
@@ -145,16 +154,25 @@ const Game = ({ room }) => {
           </div>
           
           {room.host === myPlayerId && (
-            <Button
-              onClick={handleNextRound}
-              variant="accent"
-              className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-md"
-            >
-              PLAY AGAIN
-            </Button>
+            <div className="flex flex-col gap-3 w-full mt-2">
+              <Button
+                onClick={handleSkipWord}
+                variant="primary"
+                className="w-full py-4 rounded-[16px] font-bold text-[16px] shadow-[0_8px_20px_rgba(108,76,241,0.25)]"
+              >
+                PLAY NEXT WORD
+              </Button>
+              <Button
+                onClick={handleNextRound}
+                variant="secondary"
+                className="w-full py-3 rounded-[16px] font-bold text-[14px] bg-white border border-[#E5E7EB]"
+              >
+                BACK TO LOBBY
+              </Button>
+            </div>
           )}
           {room.host !== myPlayerId && (
-            <div className="text-text-muted font-medium animate-pulse">Waiting for host...</div>
+            <div className="text-text-muted font-medium animate-pulse mt-4">Waiting for host...</div>
           )}
         </div>
 
@@ -261,16 +279,28 @@ const Game = ({ room }) => {
           </Button>
         </form>
         
-        <div className="flex justify-between items-center px-2">
-          <Button 
-            onClick={handleHint}
-            disabled={room.hintsUsed >= (room.roundRules?.maxHints || 0)}
-            variant="hint"
-            className="px-4 py-2 h-10 min-h-0 text-[13px] font-bold shadow-sm rounded-[12px]"
-          >
-            <Lightbulb size={16} className="mr-1" />
-            <span>{room.hintsUsed >= (room.roundRules?.maxHints || 0) ? 'Max Hints Used' : `Use Hint (-${room.roundRules?.hintPenalty || 0} pts)`}</span>
-          </Button>
+        <div className="flex justify-between items-center px-2 flex-wrap gap-2">
+          <div className="flex space-x-2">
+            <Button 
+              onClick={handleHint}
+              disabled={room.hintsUsed >= (room.roundRules?.maxHints || 0)}
+              variant="hint"
+              className="px-4 py-2 h-10 min-h-0 text-[13px] font-bold shadow-sm rounded-[12px]"
+            >
+              <Lightbulb size={16} className="mr-1" />
+              <span>{room.hintsUsed >= (room.roundRules?.maxHints || 0) ? 'Max Hints Used' : `Use Hint (-${room.roundRules?.hintPenalty || 0} pts)`}</span>
+            </Button>
+            
+            {room.host === myPlayerId && (
+              <Button 
+                onClick={handleSkipWord}
+                variant="secondary"
+                className="px-4 py-2 h-10 min-h-0 text-[13px] font-bold shadow-sm rounded-[12px] bg-white"
+              >
+                Skip Word
+              </Button>
+            )}
+          </div>
           
           <div className="text-sm font-bold text-text-muted flex items-center gap-1 bg-surface border border-border px-3 py-2 rounded-[12px] shadow-sm">
             <X size={14} className="text-danger" /> 

@@ -11,7 +11,7 @@ const Admin = () => {
 
   const [usage, setUsage] = useState(null);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:3001` : window.location.origin);
+  const backendUrl = import.meta.env.VITE_SOCKET_URL || window.location.origin;
 
   const fetchData = async () => {
     try {
