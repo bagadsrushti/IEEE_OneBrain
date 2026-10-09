@@ -1,0 +1,883 @@
+[
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous scientist/inventor",
+        "answer": "Isaac Newton",
+        "aliases": [
+            "Sir Isaac Newton",
+            "Newton"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "A falling orchard fruit supposedly triggered an entire mechanical revolution in physics."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Invented calculus while sheltering at home during an infectious bubonic plague quarantine."
+            },
+            {
+                "angle": "discovery",
+                "text": "Used glass prisms to prove that white sunlight is composed of rainbows."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Every schoolchild memorises three fundamental movement laws to survive tenth-grade science exams."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in Woolsthorpe Manor, Lincolnshire, later studying at Trinity College, Cambridge."
+            },
+            {
+                "angle": "award",
+                "text": "Honoured by having the standard international unit of physical force named after him."
+            },
+            {
+                "angle": "object",
+                "text": "Built the first practical reflecting telescope using curved mirrors instead of lenses."
+            },
+            {
+                "angle": "nickname",
+                "text": "Often hailed alongside Albert Einstein as the towering father of classical physics."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous scientist/inventor",
+        "answer": "Marie Curie",
+        "aliases": [
+            "Madame Curie"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "award",
+                "text": "The only individual in history awarded Nobel Prizes across two different sciences."
+            },
+            {
+                "angle": "discovery",
+                "text": "Discovered the chemical elements polonium and radium after boiling tons of pitchblende."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Her century-old personal laboratory notebooks remain dangerously radioactive and stored in lead."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Drove portable radiological X-ray vehicles nicknamed Little Curies along World War battlefields."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Her pioneer radiation work laid the foundation for modern hospital cancer radiotherapy."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in Warsaw, Poland, before moving to Paris for university education."
+            },
+            {
+                "angle": "year",
+                "text": "Won her initial physics accolade in nineteen-oh-three alongside her husband Pierre."
+            },
+            {
+                "angle": "object",
+                "text": "Carried glowing radioactive glass test tubes inside her laboratory apron pockets casually."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Everyday science",
+        "answer": "Gravity",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Albert Einstein later redefined it as curved spacetime rather than invisible force."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Galileo allegedly dropped unequal spheres off the Leaning Tower of Pisa."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The reason your phone screen reliably shatters when slipping out of pockets."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Astronauts grow slightly taller aboard the International Space Station without its compression."
+            },
+            {
+                "angle": "object",
+                "text": "Dictates oceanic tidal bulges on Earth through cosmic pulls from the Moon."
+            },
+            {
+                "angle": "year",
+                "text": "First quantified mathematically in the sixteen-eighty-seven masterpiece Philosophiae Naturalis Principia Mathematica."
+            },
+            {
+                "angle": "award",
+                "text": "Celebrated with constant value nine-point-eight meters per second squared in physics problem sets."
+            },
+            {
+                "angle": "nickname",
+                "text": "Known to high-school students as the weakest of the four fundamental forces."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "World records/sports (non-cricket)",
+        "answer": "Usain Bolt",
+        "aliases": [
+            "Bolt"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Nicknamed Lightning Bolt while flashing his iconic signature diagonal archer pose."
+            },
+            {
+                "angle": "discovery",
+                "text": "Proved human sprinters can casually glance sideways and celebrate before finishing races."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Ate dozens of fried chicken nuggets daily while sweeping gold medals in Beijing."
+            },
+            {
+                "angle": "record number",
+                "text": "Set the electric world sprint record of nine-point-five-eight seconds in Berlin."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Hails from Sherwood Content in Trelawny, representing the sprint powerhouse Jamaica."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Untied running shoelaces did not stop him from breaking world records effortlessly."
+            },
+            {
+                "angle": "award",
+                "text": "Won eight Olympic gold medals across three consecutive summer Olympic Games appearances."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The universal reference whenever someone runs surprisingly fast to catch a bus."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Invention",
+        "answer": "Zero",
+        "aliases": [
+            "Number Zero",
+            "0"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Formalised as a standalone mathematical number and concept by ancient astronomer Brahmagupta."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Earliest recorded physical dot numeral found on the ancient Indian Bakhshali manuscript."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Dividing any number by this innocent digit instantly causes calculator computer crashes."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Revolutionised global mathematics after Arab scholars transmitted the numeral system into Europe."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Ancient Roman numerals had no symbol for it, making complex arithmetic impossible."
+            },
+            {
+                "angle": "object",
+                "text": "Looks like an empty circle, symbolizing absolute nothingness yet granting power."
+            },
+            {
+                "angle": "nickname",
+                "text": "India's greatest intellectual gift celebrated in every patriotic school quiz contest."
+            },
+            {
+                "angle": "year",
+                "text": "Appeared in formal algebraic treatise Brahmasphutasiddhanta in the year six-twenty-eight."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous place or country fact",
+        "answer": "Taj Mahal",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "birthplace/location",
+                "text": "Stands elegantly along the southern banks of the Yamuna River in Agra."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Commissioned by Mughal emperor Shah Jahan to enshrine his empress Mumtaz Mahal."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Its four corner minarets were deliberately tilted outward to protect the dome."
+            },
+            {
+                "angle": "object",
+                "text": "Constructed from translucent white Makrana marble that changes color with morning sunlight."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The mandatory tourist photo pose where visitors pretend to pinch its dome."
+            },
+            {
+                "angle": "year",
+                "text": "Designated a UNESCO World Heritage site in nineteen-eighty-three as a masterpiece."
+            },
+            {
+                "angle": "award",
+                "text": "Voted onto the New Seven Wonders of the World list in 2007."
+            },
+            {
+                "angle": "nickname",
+                "text": "Universally described in poetry as a solitary teardrop on the cheek of time."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Historical figure",
+        "answer": "Mahatma Gandhi",
+        "aliases": [
+            "Mohandas Karamchand Gandhi",
+            "Bapu",
+            "Gandhi"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "Marched two-hundred-and-forty miles to the seashore to make tax-free salt by boiling water."
+            },
+            {
+                "angle": "nickname",
+                "text": "Revered as the Father of the Nation and addressed affectionately as Bapu."
+            },
+            {
+                "angle": "object",
+                "text": "Spun raw cotton thread daily on a portable wooden hand-operated charkha wheel."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in the coastal town of Porbandar, Gujarat, in eighteen-sixty-nine."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "His bespectacled smiling portrait graces every official Reserve Bank of India banknote."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Nominated five times for the Nobel Peace Prize but never actually awarded."
+            },
+            {
+                "angle": "discovery",
+                "text": "Pioneered mass civil disobedience using the philosophy of non-violence, or Satyagraha."
+            },
+            {
+                "angle": "year",
+                "text": "Returned permanently from South Africa to India in nineteen-fifteen to lead freedom."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Mythology and culture (respectful and factual)",
+        "answer": "Ramayana",
+        "aliases": [
+            "The Ramayana"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "Vanaras constructed a floating stone bridge across ocean straits to reach Lanka."
+            },
+            {
+                "angle": "discovery",
+                "text": "Composed originally in classical Sanskrit verse by the ancient sage-poet Valmiki."
+            },
+            {
+                "angle": "object",
+                "text": "A divine golden deer acts as an illusion to lure princes away."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The return of its righteous hero inspires the nationwide autumn festival Diwali."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "The central narrative begins in the historic solar dynasty capital of Ayodhya."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "During its Sunday eighties television broadcast, Indian city streets emptied out completely."
+            },
+            {
+                "angle": "nickname",
+                "text": "Regarded as the Adikavya, the very first poetic epic of Indian literature."
+            },
+            {
+                "angle": "award",
+                "text": "Spread across Southeast Asia, inspiring national royal ballet traditions in Thailand and Indonesia."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous place or country fact",
+        "answer": "Mount Everest",
+        "aliases": [
+            "Everest",
+            "Sagarmatha"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "record number",
+                "text": "Towering peak officially measured at eight-thousand-eight-hundred-and-forty-eight-point-eight-six meters above sea level."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Straddles the international Himalayan border between Nepal and the Tibet Autonomous Region."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "First officially summitted in nineteen-fifty-three by Edmund Hillary and Tenzing Norgay."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "The summit still contains fossilised marine limestone from an ancient seabed floor."
+            },
+            {
+                "angle": "nickname",
+                "text": "Locally venerated as Sagarmatha in Nepal and Chomolungma in Tibetan tradition."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The default metaphor for any impossibly difficult college assignment or project task."
+            },
+            {
+                "angle": "object",
+                "text": "Climbers must navigate the dangerous crevasse-ridden Khumbu Icefall using tied aluminum ladders."
+            },
+            {
+                "angle": "discovery",
+                "text": "Named in nineteenth-century surveys after the former British Surveyor General of India."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Invention",
+        "answer": "Light bulb",
+        "aliases": [
+            "Incandescent light bulb",
+            "Bulb"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "Tested thousands of materials before carbonised bamboo filament burned for hours reliably."
+            },
+            {
+                "angle": "famous scientist/inventor",
+                "text": "Commercially perfected by Thomas Edison at his Menlo Park industrial research laboratory."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The universal cartoon symbol drawn hovering above someone's head having brilliant ideas."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Early versions lost over ninety percent of their consumed energy as heat."
+            },
+            {
+                "angle": "object",
+                "text": "A sealed glass orb housing a delicate coiled tungsten metal wire filament."
+            },
+            {
+                "angle": "year",
+                "text": "Patented as an electric lamp for commercial manufacture in eighteen-eighty."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "First illuminated New York City financial district streets through a central pearl station."
+            },
+            {
+                "angle": "nickname",
+                "text": "The groundbreaking invention that officially freed human society from darkness and candle-wax."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous scientist/inventor",
+        "answer": "Albert Einstein",
+        "aliases": [
+            "Einstein"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Formulated the world's most famous equation relating physical mass directly to energy."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Visualised himself riding alongside a beam of light during teenage thought experiments."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Famously refused to wear socks because his big toes always made holes."
+            },
+            {
+                "angle": "award",
+                "text": "Won the nineteen-twenty-one Nobel Prize for explaining the photoelectric effect, not relativity."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Used as the universal sarcastic nickname whenever someone states the obvious."
+            },
+            {
+                "angle": "object",
+                "text": "A famous black-and-white photograph shows him sticking his tongue out at photographers."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in Ulm, Germany, later serving as an examiner in Bern's patent office."
+            },
+            {
+                "angle": "nickname",
+                "text": "The wild-haired archetype of the eccentric genius across modern pop culture."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Invention",
+        "answer": "Telephone",
+        "aliases": [
+            "Phone",
+            "Landline telephone"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "First intelligible spoken sentence summoned an assistant after accidentally spilling battery acid."
+            },
+            {
+                "angle": "discovery",
+                "text": "Alexander Graham Bell was granted the groundbreaking patent after beating rival Elisha Gray."
+            },
+            {
+                "angle": "year",
+                "text": "The historic acoustic telegraph patent was officially awarded in eighteen-seventy-six."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Has evolved into handheld glass rectangles that consume seven hours of daily screentime."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "The inventor refused to keep one in his study fearing constant interruptions."
+            },
+            {
+                "angle": "object",
+                "text": "Vintage rotary dials required sticking fingers into numbered holes and spinning clockwise."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "First successful two-way long-distance conversation transmitted between Boston and Cambridge, Massachusetts."
+            },
+            {
+                "angle": "nickname",
+                "text": "The device that permanently eliminated the agonizing wait for postal paper letters."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Everyday science",
+        "answer": "Photosynthesis",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Jan Ingenhousz proved green leaves require sunlight exposure to generate breathable oxygen."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The classic five-mark chemical diagram every Indian student drew with green pencils."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Joseph Priestley kept mice alive under glass jars using small mint sprigs."
+            },
+            {
+                "angle": "object",
+                "text": "Microscopic green chloroplasts containing chlorophyll molecules capture photons inside leafy cells."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Over half of Earth's oxygen comes from oceanic microscopic phytoplankton, not trees."
+            },
+            {
+                "angle": "award",
+                "text": "Melvin Calvin won a chemistry Nobel Prize for tracing its carbon cycle."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Operates inside plant mesophyll layers, sucking atmospheric carbon dioxide through open stomata."
+            },
+            {
+                "angle": "nickname",
+                "text": "Nature's solar-powered kitchen that feeds almost every living creature on Earth."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Historical figure",
+        "answer": "Alexander the Great",
+        "aliases": [
+            "Alexander III of Macedon"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "Solved the impossible Gordian knot legend by simply drawing his sword and slicing."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in Pella, ancient kingdom of Macedonia, as the son of King Philip."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Tamed an unrideable fiery warhorse simply by turning it toward the sun."
+            },
+            {
+                "angle": "nickname",
+                "text": "Undefeated military commander tutored in philosophy by Aristotle during his teenage years."
+            },
+            {
+                "angle": "object",
+                "text": "Carried the long eighteen-foot Macedonian pike called the sarissa across vast continents."
+            },
+            {
+                "angle": "discovery",
+                "text": "Founded over twenty global cities, naming almost every single one after himself."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Referred to in Indian history textbooks as Sikandar whose army refused crossing the Beas."
+            },
+            {
+                "angle": "year",
+                "text": "Conquered the mighty Achaemenid Persian Empire before dying young in three-twenty-three BC."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous place or country fact",
+        "answer": "Pyramids of Giza",
+        "aliases": [
+            "Great Pyramid of Giza",
+            "Giza Pyramids"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous place or country fact",
+                "text": "Stands tall on a rocky desert plateau just outside Cairo, Egypt."
+            },
+            {
+                "angle": "record number",
+                "text": "Remained the tallest human-made structure in the world for over three thousand years."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Internet conspiracy theorists still aggressively insist extraterrestrial visitors helped build their corners."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Aligned with incredible geographic precision toward true astronomical north without modern compasses."
+            },
+            {
+                "angle": "award",
+                "text": "The only surviving ancient wonder from the original list of the Seven."
+            },
+            {
+                "angle": "object",
+                "text": "Constructed from over two million massive carved limestone and granite blocks."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The classic textbook illustration that introduced schoolkids to Pharaohs and mummies."
+            },
+            {
+                "angle": "year",
+                "text": "Erected as grand royal tombs around two-thousand-five-hundred BC during Old Kingdom rule."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous scientist/inventor",
+        "answer": "Galileo Galilei",
+        "aliases": [
+            "Galileo"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous experiment or story",
+                "text": "Legend says he dropped cannonballs off the Leaning Tower to time descents."
+            },
+            {
+                "angle": "discovery",
+                "text": "Spotted four major celestial moons orbiting Jupiter, dismantling Earth-centered universe models."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Spent his final decade under house arrest after angering the Roman Inquisition."
+            },
+            {
+                "angle": "object",
+                "text": "Handcrafted a spyglass tube using curved glass lenses to study the moon."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Born in Pisa, Tuscany, later teaching geometry and astronomy in Padua."
+            },
+            {
+                "angle": "year",
+                "text": "Published starry astronomical observations in Sidereus Nuncius in sixteen-hundred-and-ten."
+            },
+            {
+                "angle": "nickname",
+                "text": "Crowned by modern historians as the undisputed father of observational astronomy."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Queen famously screamed his name five times in Bohemian Rhapsody's operatic section."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Invention",
+        "answer": "Wheel",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Surprisingly invented first for shaping ceramic clay pottery before being used for transport."
+            },
+            {
+                "angle": "year",
+                "text": "Archaeological evidence traces its earliest forms back to Mesopotamia around thirty-five-hundred BC."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Described in the popular phrase warning people against reinventing proven fundamental ideas."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Thriving Pre-Columbian Mesoamerican civilizations built stone cities without ever using it for carts."
+            },
+            {
+                "angle": "object",
+                "text": "A circular wooden disc fitted with axles and eventually radial wooden spokes."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Early builders rolled massive heavy temple stones over felled logs before making it."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Oldest wooden axle specimen was excavated in the marshes near Ljubljana, Slovenia."
+            },
+            {
+                "angle": "nickname",
+                "text": "Heralded in history textbooks as humanity's most revolutionary mechanical invention ever."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Mythology and culture (respectful and factual)",
+        "answer": "Mahabharata",
+        "aliases": [
+            "The Mahabharata"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "discovery",
+                "text": "Traditionally dictated by sage Vyasa and inscribed by elephant-headed deity Ganesha."
+            },
+            {
+                "angle": "record number",
+                "text": "One of the longest epic poems in world literature, spanning over one-hundred-thousand shlokas."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "A fateful game of dice between cousins stripped an entire royal family of kingdom."
+            },
+            {
+                "angle": "object",
+                "text": "Contains the divine philosophical dialogue delivered between charioteer and warrior on Kurukshetra."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "The central dynastic seat of power was the Kuru capital city of Hastinapura."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "B.R. Chopra's televised Sunday adaptation famously brought regular Indian life to a standstill."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Features a climactic war lasting exactly eighteen days involving millions of warriors."
+            },
+            {
+                "angle": "nickname",
+                "text": "Revered across Indian tradition as the Panchama Veda, or the fifth Veda."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "World records/sports (non-cricket)",
+        "answer": "Olympic Games",
+        "aliases": [
+            "Olympics",
+            "Summer Olympics"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "object",
+                "text": "Five interlocking coloured rings on a white background representing unity of five continents."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "The ceremonial torch flame is lit using sunlight and mirrors at ancient Olympia."
+            },
+            {
+                "angle": "year",
+                "text": "The first modern international edition was hosted in Athens in eighteen-ninety-six."
+            },
+            {
+                "angle": "birthplace/location",
+                "text": "Originated in ancient Greece as athletic festivals honoring Zeus, accompanied by sacred truces."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Live pigeon shooting and tug-of-war were once official medal sporting events."
+            },
+            {
+                "angle": "award",
+                "text": "Athletes stand on multi-tiered podiums receiving gold, silver, or bronze medals while anthems play."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The reason people suddenly become armchair experts on archery and shooting every four years."
+            },
+            {
+                "angle": "nickname",
+                "text": "The world's greatest multi-sport spectacle running on a strict four-year cycle."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Famous place or country fact",
+        "answer": "Eiffel Tower",
+        "aliases": [
+            "The Eiffel Tower"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "birthplace/location",
+                "text": "Rises proudly on the Champ de Mars along the Seine River in Paris."
+            },
+            {
+                "angle": "famous experiment or story",
+                "text": "Built as a temporary entrance arch for the eighteen-eighty-nine World's Fair."
+            },
+            {
+                "angle": "weird-but-true fact",
+                "text": "Grows up to fifteen centimeters taller during summer heatwaves due to thermal expansion."
+            },
+            {
+                "angle": "object",
+                "text": "Constructed from over eighteen-thousand puddle iron parts held together by thermal rivets."
+            },
+            {
+                "angle": "famous scientist/inventor",
+                "text": "Designed by the civil engineer who also built the Statue of Liberty's skeleton."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "The undisputed default desktop wallpaper and poster choice for college aesthetic rooms."
+            },
+            {
+                "angle": "nickname",
+                "text": "Affectionately called the Iron Lady by French citizens across the world."
+            },
+            {
+                "angle": "year",
+                "text": "Parisians initially despised the lattice tower, writing petitions demanding its immediate demolition."
+            }
+        ],
+        "needsReview": false
+    }
+]

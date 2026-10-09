@@ -1,0 +1,869 @@
+[
+    {
+        "category": "Tech & Space",
+        "subfield": "ISRO and space missions",
+        "answer": "Chandrayaan-3",
+        "aliases": [
+            "Chandrayaan 3"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "key feature",
+                "text": "A lunar lander named Vikram and a six-wheeled rover named Pragyan."
+            },
+            {
+                "angle": "launch year",
+                "text": "Blasted off from Sriharikota in July twenty-twenty-three aboard an LVM3 heavy rocket."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Entire college hostels crowded around buffering YouTube livestreams skipping evening classes."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Redesigned with stronger legs and failure-based engineering after predecessor crash-landed."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Internet cheered as a rival Russian spacecraft tragically spun out days earlier."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Completed the entire interplanetary lunar voyage on a budget cheaper than Hollywood films."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Made India the first nation to soft-land near the lunar south pole."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "Left the national tricolour and space agency insignia pressed into lunar soil."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Popular apps",
+        "answer": "WhatsApp",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A white telephone handset resting inside a green speech-bubble icon."
+            },
+            {
+                "angle": "key feature",
+                "text": "Two innocent blue checkmarks that spark relationship anxiety and endless overthinking."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Waking up to fifty sparkling sunrise images forwarded by extended family groups."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Created by former Yahoo engineers who explicitly pledged never to show advertisements."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Whenever its servers go down, everyone storms another platform to check."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Bought by a social media giant in twenty-fourteen for nineteen billion dollars."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Competing fiercely against Telegram, which college students prefer for pirated study materials."
+            },
+            {
+                "angle": "launch year",
+                "text": "Launched in two-thousand-nine initially just to show text status beside contacts."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Programming and developer life",
+        "answer": "GitHub",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A five-legged silhouette hybrid creature featuring a cat head and tentacles."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Pushing desperate commits at three in the morning titled final final version."
+            },
+            {
+                "angle": "key feature",
+                "text": "A grid calendar of glowing green squares that developers obsessively cultivate."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Accidentally pushing secret database API passwords to an open, public repository."
+            },
+            {
+                "angle": "rivalry",
+                "text": "The primary web-based platform hosting version control competing directly against GitLab."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Acquired by Microsoft in twenty-eighteen to massive initial open-source community panic."
+            },
+            {
+                "angle": "launch year",
+                "text": "Founded in two-thousand-eight, building cloud collaboration on top of Linus Torvalds's tool."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Where group project teammates conveniently pretend they wrote all the merged code."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "AI tools",
+        "answer": "ChatGPT",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "founder or origin story",
+                "text": "Unveiled by Sam Altman and OpenAI as a free public research preview."
+            },
+            {
+                "angle": "launch year",
+                "text": "Dropped into public life in late November twenty-twenty-two, disrupting global education."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Secretly rewriting entire college assignment essays and begging it to sound human."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Politely hallucinates completely fake academic research papers and historical citations with confidence."
+            },
+            {
+                "angle": "key feature",
+                "text": "A conversational text prompt box that generates essays, poems, and python scripts."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Reached one hundred million active monthly users within just sixty days post-launch."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "A minimalist interlocking teal-and-white vortex spiral evoking an endless looping knot."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Triggered massive red-alert panics at Google, spawning competing large language models."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Popular apps",
+        "answer": "Instagram",
+        "aliases": [
+            "Insta"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A stylized flat minimalist camera icon drenched in sunset-gradient pink and yellow."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Intending to study but losing four straight hours scrolling vertical short videos."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Originally prototyped by Kevin Systrom and Mike Krieger under the name Burbn."
+            },
+            {
+                "angle": "key feature",
+                "text": "Disappearing twenty-four-hour stories with glowing green rings reserved only for close friends."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Double-tapping a photo from five years ago while aggressively cyber-stalking someone."
+            },
+            {
+                "angle": "launch year",
+                "text": "Launched in twenty-ten exclusively on iOS, popularizing vintage square retro photo filters."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Shamelessly copied ephemeral disappearing photo stories directly from yellow-ghost competitor Snapchat."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Acquired for one billion dollars in twenty-twelve when it had thirteen employees."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gadgets",
+        "answer": "PlayStation",
+        "aliases": [
+            "PS",
+            "Sony PlayStation"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "founder or origin story",
+                "text": "Born after Nintendo controversially ditched a joint CD-ROM gaming partnership with Sony."
+            },
+            {
+                "angle": "launch year",
+                "text": "The original gray console hit Japanese retail stores back in nineteen-ninety-four."
+            },
+            {
+                "angle": "key feature",
+                "text": "Controllers featuring iconic geometric face buttons: triangle, circle, cross, and square."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Engaged in a fierce, multi-decade console rivalry against Microsoft's green Xbox."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Sneaking into a hostel friend's room specifically to play FIFA until dawn."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Tricking parents into buying the latest giant white home console as a router."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Its second iteration remains the best-selling gaming console in human history."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "A standing letter P casting a colorful three-dimensional shadow letter S."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Big tech companies",
+        "answer": "Google",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "founder or origin story",
+                "text": "Started inside a Menlo Park garage by Stanford PhD dropouts using BackRub."
+            },
+            {
+                "angle": "launch year",
+                "text": "Incorporated in nineteen-ninety-eight, named after a deliberate misspelling of a huge number."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "A clean four-colour sans-serif logo alternating blue, red, yellow, and green."
+            },
+            {
+                "angle": "key feature",
+                "text": "A solitary minimalist input bar backed by an optimistic lucky click button."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Typing slight headache symptoms and concluding you have twelve minutes to live."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "An offline pixelated black-and-white jumping dinosaur game that rescues bored students."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Crushed early web search engines like Yahoo and AltaVista into complete irrelevance."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Its foundational PageRank algorithm was named directly after co-founder Larry Page."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gaming",
+        "answer": "PUBG Mobile",
+        "aliases": [
+            "BGMI",
+            "Battlegrounds Mobile India",
+            "PUBG"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "everyday user habit",
+                "text": "Squatting in hostel corridors screaming enemy ahead into cheap wired earphone microphones."
+            },
+            {
+                "angle": "key feature",
+                "text": "One hundred parachuting players scavenging military helmets and energy drinks on Erangel."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Adapted for smartphones by Tencent from Brendan Greene's pioneering battle royale concept."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Cruising in a blue three-seater motorcycle that unexpectedly clips terrain and explodes."
+            },
+            {
+                "angle": "launch year",
+                "text": "Took over Indian college hostels and tea stalls worldwide upon release in twenty-eighteen."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "Features a lone survivalist wearing a white shirt and level-three welding helmet."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Winners celebrate final survival with an iconic text promising a poultry meal."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Battled Free Fire for dominance across budget Indian Android smartphones everywhere."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gadgets",
+        "answer": "iPhone",
+        "aliases": [
+            "Apple iPhone"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "founder or origin story",
+                "text": "Steve Jobs introduced it as three revolutionary devices combined into one glass."
+            },
+            {
+                "angle": "launch year",
+                "text": "Unveiled in January two-thousand-seven, killing physical plastic keyboard keypads forever."
+            },
+            {
+                "angle": "key feature",
+                "text": "An edge-to-edge multitouch display featuring a controversial camera display screen notch."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Frantically asking campus friends for a specific proprietary cable when battery hits one-percent."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Sparks endless green bubble versus blue bubble class wars against Android users."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Taking mirror selfies specifically angled so the bitten fruit logo shows clearly."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "A monochrome bitten fruit emblem printed on polished glass and aerospace titanium."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Early models infamously bent in pockets or suffered antenna signal drops when held."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "ISRO and space missions",
+        "answer": "Mangalyaan",
+        "aliases": [
+            "Mars Orbiter Mission",
+            "MOM"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "founder or origin story",
+                "text": "Developed and launched by ISRO using their workhorse Polar Satellite Launch Vehicle."
+            },
+            {
+                "angle": "launch year",
+                "text": "Departed Earth orbit in late twenty-thirteen, entering Martian orbit in September twenty-fourteen."
+            },
+            {
+                "angle": "key feature",
+                "text": "Carried five scientific payloads including a colour camera and methane detection sensor."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Famously completed for less money than the Hollywood sci-fi movie Gravity."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Featured proudly on the reverse side of the bright magenta two-thousand-rupee banknote."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "A celebratory viral photograph showed saree-clad women scientists hugging in Mission Control."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Made India the first Asian nation to successfully reach the Red Planet."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "Gold foil insulation shielding scientific instruments heading toward the rusty red celestial body."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Programming and developer life",
+        "answer": "Stack Overflow",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "everyday user habit",
+                "text": "Copy-pasting lines of code you do not understand to fix urgent assignments."
+            },
+            {
+                "angle": "key feature",
+                "text": "Upvoting answers and earning bronze, silver, or gold reputation badges from peers."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Getting your polite beginner programming question marked duplicate and closed in minutes."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "An orange inbox tray with stray white papers tumbling over the edge."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Created by Jeff Atwood and Joel Spolsky as an open programmer forum."
+            },
+            {
+                "angle": "launch year",
+                "text": "Launched in two-thousand-eight to replace obsolete paywalled programming Q&A sites."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "The legendary April Fools prank selling a physical three-button copy-paste keyboard."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Saw web traffic dip after conversational AI chatbots started answering coding errors."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Big tech companies",
+        "answer": "Spotify",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "Three curved black soundwave arcs tilted inside a neon-green circle."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Sharing colorful annual streaming graphics on social media to prove musical taste."
+            },
+            {
+                "angle": "key feature",
+                "text": "Curated Discover Weekly algorithmic playlists refreshed every single Monday morning."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Loud aggressive audio advertisements ruining peaceful study sessions on free tiers."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Founded in Stockholm, Sweden, by Daniel Ek to combat widespread music piracy."
+            },
+            {
+                "angle": "launch year",
+                "text": "Started streaming in Europe in two-thousand-eight before expanding across the world."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Competes with Apple Music and YouTube Music for college student subscriptions."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Wrapped graphics generate millions of free user posts every December without fail."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gadgets",
+        "answer": "Nintendo Switch",
+        "aliases": [
+            "Switch"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "key feature",
+                "text": "Detachable red and neon-blue controllers that slide onto a portable screen."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Gaming in bed in handheld mode before docking it to play Mario."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Analog controller sticks slowly drifting your in-game character without any thumb input."
+            },
+            {
+                "angle": "launch year",
+                "text": "Launched worldwide in March twenty-seventeen alongside a landmark open-world Zelda game."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "Two contrasting vertical controller halves forming a bold square logo symbol."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Designed as a hybrid redemption console following poor commercial Wii U sales."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Its tiny plastic game cartridges are coated in bitter chemicals preventing choking."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Carved out portable handheld dominance against stationary high-powered living room consoles."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gaming",
+        "answer": "Grand Theft Auto V",
+        "aliases": [
+            "GTA 5",
+            "GTA V"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "setting",
+                "text": "The sprawling, satire-soaked fictional city of Los Santos and Blaine County."
+            },
+            {
+                "angle": "key feature",
+                "text": "Switching perspectives between three distinct criminal protagonists during coordinated heist missions."
+            },
+            {
+                "angle": "launch year",
+                "text": "Hit store shelves in September twenty-thirteen on older seventh-generation consoles."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Stealing a fighter jet from military bases only to get blasted immediately."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Crossed one billion dollars in sales within its first three retail days."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Ignoring story missions just to drive supercars and trigger five-star police chases."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Developed by Rockstar North, spanning three consecutive gaming hardware console generations."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Players spent an entire decade anxiously scouring internet forums for sequel leaks."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "ISRO and space missions",
+        "answer": "International Space Station",
+        "aliases": [
+            "ISS"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "key feature",
+                "text": "Massive reflective solar panel wings powering habitable pressurized orbital science laboratories."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Checking stargazing apps to spot a bright white dot crossing night skies."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Astronauts filming videos squeezing wet washcloths into floating zero-gravity water bubbles."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Orbits Earth roughly sixteen times every twenty-four hours at hypersonic velocity."
+            },
+            {
+                "angle": "launch year",
+                "text": "First modular component Zarya launched into low Earth orbit in nineteen-ninety-eight."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "A joint multinational laboratory involving space agencies across America, Europe, and Japan."
+            },
+            {
+                "angle": "object",
+                "text": "The Cupola module provides astronauts breathtaking panoramic bay-window views of planetary storms."
+            },
+            {
+                "angle": "rivalry",
+                "text": "The premier orbital outpost now facing newer independent space stations from competitors."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Popular apps",
+        "answer": "YouTube",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A white triangular play arrow centred inside a bright red rounded rectangle."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Speeding up Indian engineering tutorial playlists to two-x the night before exams."
+            },
+            {
+                "angle": "key feature",
+                "text": "Creators earning physical engraved silver and gold play buttons for subscriber milestones."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Getting Rickrolled by innocent-looking hyperlinked video URLs posted inside college group chats."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Started by three PayPal employees, uploading a brief eighteen-second elephant zoo clip."
+            },
+            {
+                "angle": "launch year",
+                "text": "Founded in two-thousand-five before Google scooped it up the following year."
+            },
+            {
+                "angle": "rivalry",
+                "text": "The massive global battle for subscriber supremacy between PewDiePie and T-Series."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Watching unskippable double advertisements while trying to check quick coding tutorial steps."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "AI tools",
+        "answer": "Google Maps",
+        "aliases": [
+            "Maps"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A colourful location map-pin icon incorporating blue, red, yellow, and green."
+            },
+            {
+                "angle": "key feature",
+                "text": "A glowing blue dot navigating roads and rerouting around heavy traffic."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Staring at the screen while walking, only to realise you headed backwards."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Blindly trusting navigation instructions until driving straight down a dead-end staircase."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Originated from a two-man Australian digital mapping project acquired by Google."
+            },
+            {
+                "angle": "launch year",
+                "text": "Debuted on desktop web browsers back in February two-thousand-and-five."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Street View camera cars and backpack rigs have mapped millions of miles."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Completely crushed traditional standalone GPS windshield dash units and paper highway roadmaps."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "ISRO and space missions",
+        "answer": "Hubble Space Telescope",
+        "aliases": [
+            "Hubble"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "key feature",
+                "text": "A school-bus-sized orbiting optical observatory capturing deep cosmic starlight above Earth's atmosphere."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Launched with a flawed microscopic mirror curve, requiring space shuttle astronaut spectacles."
+            },
+            {
+                "angle": "launch year",
+                "text": "Carried into low Earth orbit aboard Space Shuttle Discovery in nineteen-ninety."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Named after the pioneering American astronomer who discovered galaxies outside the Milky Way."
+            },
+            {
+                "angle": "object",
+                "text": "Captured the breathtaking Pillars of Creation inside the Eagle Nebula in nineteen-ninety-five."
+            },
+            {
+                "angle": "everyday connection",
+                "text": "Its colorful galactic imagery decorated every science textbook and desktop computer wallpaper."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Handed deep infrared cosmic observation duties over to the newer James Webb telescope."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Has completed more than one million scientific celestial target observations since deployment."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Big tech companies",
+        "answer": "Netflix",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "key feature",
+                "text": "A signature deep bass drum chime chord accompanying a flashing red letter."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Spending forty minutes browsing movie categories only to eat food without watching."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "A patronising on-screen prompt asking if you are still watching after three episodes."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Started as a mail-order DVD postal rental service battling rival Blockbuster."
+            },
+            {
+                "angle": "launch year",
+                "text": "Founded in nineteen-ninety-seven, launching its revolutionary digital streaming service in two-thousand-seven."
+            },
+            {
+                "angle": "logo/colour",
+                "text": "A bold red ribbon curving into an arch against deep pitch-black backdrops."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Introduced the skip intro button that saved millions of cumulative human hours."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Sparked the entire modern global streaming wars against traditional legacy Hollywood studios."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Tech & Space",
+        "subfield": "Gadgets",
+        "answer": "Bluetooth",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "logo/colour",
+                "text": "A stylized white bindrune symbol set against a geometric blue oval background."
+            },
+            {
+                "angle": "founder or origin story",
+                "text": "Named after a tenth-century Scandinavian king who united disparate Danish tribes."
+            },
+            {
+                "angle": "key feature",
+                "text": "Short-range wireless communication linking smartphones, wireless earphones, keyboards, and car dashboards."
+            },
+            {
+                "angle": "everyday user habit",
+                "text": "Forgetting to disconnect before playing loud videos across family room home speakers."
+            },
+            {
+                "angle": "famous glitch or meme",
+                "text": "Spinning endlessly searching for devices that are already paired with another laptop."
+            },
+            {
+                "angle": "launch year",
+                "text": "Conceived at Ericsson in nineteen-ninety-four to replace clunky physical RS-two-thirty-two cables."
+            },
+            {
+                "angle": "fun trivia number",
+                "text": "Its emblem merges ancient Scandinavian runes representing initials of an ancient king."
+            },
+            {
+                "angle": "rivalry",
+                "text": "Superseded slow infrared ports that required keeping smartphone sensors touching during transfers."
+            }
+        ],
+        "needsReview": false
+    }
+]

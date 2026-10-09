@@ -1,0 +1,881 @@
+[
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Doraemon",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An earless robotic blue feline sent backward in time from the future."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Will happily abandon all logic and morals for sweet Japanese bean pancakes."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A lazy, clumsy schoolboy who cries hysterically after scoring zero on tests."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Pulls reality-bending futuristic gadgets directly from a small four-dimensional belly pocket."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Flying across town skies using small yellow propeller hats stuck on heads."
+            },
+            {
+                "angle": "villain",
+                "text": "A neighborhood bully who forces terrified friends to attend his ear-bleeding concerts."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Every 2000s Indian kid desperately prayed for memory bread before final exams."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "A cheerful Hindi dub anthem celebrating wish fulfillment and joyful childhood skies."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Shinchan",
+        "aliases": [
+            "Crayon Shin-chan",
+            "Crayon Shinchan"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A five-year-old menace who constantly embarrasses his mother in grocery stores."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Drops his trousers to perform an unfiltered dance waving his bare backside."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Devours royal star chocolate biscuit snacks while completely refusing to eat capsicum."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A fluffy white stray dog who displays vastly more maturity than him."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Cheekily asks pretty older women if they happen to enjoy green peppers."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Mother violently twists his temples with clenched fists after ridiculous public antics."
+            },
+            {
+                "angle": "villain",
+                "text": "A wealthy preschool rival with curled hair who secretly enjoys commoner snacks."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Indian parents fiercely protested and petitioned television channels to ban this show."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Dragon Ball Z",
+        "aliases": [
+            "DBZ"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An alien martial artist who forgets world-ending dangers if food is nearby."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Spends three consecutive episodes screaming loudly to turn black hair bright gold."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A proud, widow-peaked alien prince whose ego gets bruised in every fight."
+            },
+            {
+                "angle": "villain",
+                "text": "An arrogant galactic tyrant who survives on an exploding planet for minutes."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Raising both hands to the sky asking entire planets for borrowed energy."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Consumes towering mountain stacks of roast meats in seconds after healing chambers."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Boys unironically spent recess trying to fire blue energy beams from palms."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Crushes a high-tech eyepiece after reading a combat power level over nine-thousand."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Naruto",
+        "aliases": [
+            "Naruto Shippuden"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An orphaned prankster ninja who dreams of leading his hidden woodland village."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Resolves generational hatred and cosmic war simply by delivering heartfelt emotional lectures."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Spends entire ninja mission stipends slurping massive bowls of pork-broth ramen."
+            },
+            {
+                "angle": "sidekick",
+                "text": "An emo rival driven by vengeance whose hair resembles a duck's tail."
+            },
+            {
+                "angle": "villain",
+                "text": "A masked mastermind who declares global war because his childhood crush died."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Kids leaned forward sprinting down school hallways with arms locked straight behind."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Summoning hundreds of identical physical shadow clones to overwhelm a single enemy."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Constantly affirms his unwavering ninja way of never breaking a personal promise."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Pokémon",
+        "aliases": [
+            "Pokemon"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An eternal ten-year-old trainer who took two whole decades to win championships."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A chubby yellow electric rodent who stubbornly refuses to enter his sphere."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Unleashes a devastating hundred-thousand-volt lightning blast on command against opposing beasts."
+            },
+            {
+                "angle": "villain",
+                "text": "A bumbling criminal duo and talking cat who blast off into skies."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Spinning his red baseball cap backward right before throwing a capsule ball."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Dubbed western localizations ridiculously tried calling triangular seaweed rice-balls glazed donuts."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "An adrenaline-fueled rock anthem declaring the desire to become the absolute best."
+            },
+            {
+                "angle": "fan culture",
+                "text": "School kids traded collectible holographic pocket-monster cards like illicit stock market currencies."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Thriller/mystery",
+        "answer": "Death Note",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A brilliant high-school genius who develops a psychotic god complex over stationery."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Writing someone's real name while picturing their face causes sudden fatal heart-attacks."
+            },
+            {
+                "angle": "villain",
+                "text": "A barefoot sugar-addicted detective who sits crouched on chairs with high knees."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A terrifying winged death god who experiences physical withdrawal fits without apples."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Dramatically writing names inside a concealed miniature television while eating potato chips."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Consuming mountains of red apples to satisfy a bored demonic winged companion."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Indian teenagers wrote enemies' names in blank diaries feeling edgy and dangerous."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Smirking maniacally while declaring that the entire plan unfolded exactly as intended."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "One Piece",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A straw-hat-wearing rubber pirate who cannot swim even an inch in seawater."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Stretches his limbs like elastic bands before delivering high-speed pistol punches."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Devours giant cooked bone-in meat roasts while sleeping peacefully at banquet tables."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A green-haired swordsman who wields three blades, holding the third in teeth."
+            },
+            {
+                "angle": "villain",
+                "text": "Corrupt world government nobles wearing glass bubble helmets to avoid breathing peasant air."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Shooting down the World Government flag to rescue an imprisoned archaeologist crewmate."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Loudly proclaims his ultimate destiny of reigning supreme as king of pirates."
+            },
+            {
+                "angle": "fan culture",
+                "text": "College anime fans gatekeep newcomers by bragging about watching over one-thousand episodes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Attack on Titan",
+        "aliases": [
+            "AOT",
+            "Shingeki no Kyojin"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An angry youth who swears vengeance against flesh-eating giants after mother dies."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Bites into his own bleeding hand to transform into a towering behemoth."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A short, tea-drinking captain who obsessively dusts furniture when not slaying giants."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "A colossal skinless head peaks terrifyingly over a fifty-meter stone perimeter wall."
+            },
+            {
+                "angle": "villain",
+                "text": "Mindless smiling naked humanoids who chew through terrified civilians in city alleys."
+            },
+            {
+                "angle": "studio/creator",
+                "text": "Witnessed legendary high-octane parkour animation shifts between Wit Studio and MAPPA."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "Bombastic German-infused choral chanting demanding warriors sacrifice their entire physical hearts."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Fans put their right fists over left chests to salute during screenings."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Beyblade",
+        "aliases": [
+            "Beyblade V-Force",
+            "Beyblade G-Revolution",
+            "Beyblade Metal Fusion"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A cap-wearing kid whose spinning toy houses a mythical azure holy dragon."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Yanks a plastic ripcord furiously to summon cosmic bit-beasts into metal stadiums."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A scarf-wearing brooding Russian rival with a legendary silver holy phoenix spirit."
+            },
+            {
+                "angle": "villain",
+                "text": "Mad scientists seeking to extract and harvest celestial spirits from mechanical tops."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Screams a three-word rip command at top volume before launching spinning battle-tops."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Two plastic spinning tops clash so hard they shatter concrete warehouse floors."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Indian kids battled inside blue plastic washtubs after stealing their mothers' basins."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "High-octane hard-rock guitars screeching about spinning metal gears and destiny clashes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "One Punch Man",
+        "aliases": [
+            "OPM"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A completely bald hero for fun who suffers chronic depression from invincibility."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Obliterates multi-story cosmic terrors and mountain ranges with a single casual jab."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A serious blond cyborg who takes meticulous study notes on basic calisthenics."
+            },
+            {
+                "angle": "favourite food",
+                "text": "A massive pot of steaming hot nabemono eaten with cheap cabbage leftovers."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Panic-sprints across the city in mid-battle terrified of missing supermarket discount sales."
+            },
+            {
+                "angle": "villain",
+                "text": "A colossal extraterrestrial conqueror whose armor shatters before receiving consecutive regular punches."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Gym-bros unironically challenged themselves to the hundred-pushup daily fitness routine without AC."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "JAM Project screaming pure metal fury that shakes your earphones' speaker cones."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Ninja Hattori",
+        "aliases": [
+            "Ninja Hattori-kun"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A blue-clad boy ninja who lives secretly with an ordinary modern family."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Throws ninja stars, walks on walls, and rolls across ceilings effortlessly."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A crying toddler ninja in yellow whose high-pitched wails shatter window glass."
+            },
+            {
+                "angle": "villain",
+                "text": "A sneaky rival ninja who conspires with an anthropomorphic black street cat."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Can be bribed or distracted instantly with crispy fried fish cakes."
+            },
+            {
+                "angle": "quirk",
+                "text": "Paralyzed with pure terrified panic whenever a slimy green frog hops near."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Running horizontally across wall tiles while throwing cloth smoke bombs to vanish."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "Chants a repetitive rhythmic two-syllable ninja sound effect after finishing sentences."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Childhood favourite",
+        "answer": "Kiteretsu",
+        "aliases": [
+            "Kiteretsu Daihyakka"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An inventive schoolboy wearing a sun visor who deciphers ancient technological scrolls."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A lovable samurai robot crafted out of empty tin cans and balls."
+            },
+            {
+                "angle": "favourite food",
+                "text": "The tin robot insists on eating round croquettes for every single meal."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Assembles miraculous time machines and shrinking lamps inside an ordinary bedroom workshop."
+            },
+            {
+                "angle": "villain",
+                "text": "A bully whose family runs a greengrocer vegetable shop with stern discipline."
+            },
+            {
+                "angle": "quirk",
+                "text": "An older college student neighbor perpetually fails university entrance exams every year."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Constructing complicated contraptions overnight by reading handwritten medieval encyclopedia blueprints by lamplight."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "A nostalgic upbeat track that 2000s kids still sing while reminiscing school."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Sports anime",
+        "answer": "Haikyu!!",
+        "aliases": [
+            "Haikyuu",
+            "Haikyu"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A short, orange-haired dynamo determined to jump higher than tall giants."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Spikes aerial volleyball sets with eyes squeezed shut at blinding lightning speed."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A dictatorial setter prodigy who demands absolute perfection on every ball toss."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Devours steaming pork buns eagerly at the local corner store after practice."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "A tiny spiker leaps above a towering three-man blocker wall at net."
+            },
+            {
+                "angle": "studio/creator",
+                "text": "Production I.G animating squeaking gym sneaker soles with heart-stopping cinematic tension."
+            },
+            {
+                "angle": "fan culture",
+                "text": "College students suddenly joined campus volleyball courts pretending to be elite spikers."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "High-octane J-Rock anthems by SPYAIR and Burnout Syndromes that pump adrenaline."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Demon Slayer",
+        "aliases": [
+            "Kimetsu no Yaiba"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A gentle charcoal-seller carrying his cursed demon sister inside a wooden backpack."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Slices blades with breathing styles that summon roaring water waves and sunbursts."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A cowardly swordsman who only fights when passed out completely dead asleep."
+            },
+            {
+                "angle": "villain",
+                "text": "An ancient progenitor demon king who uncanny-resembles pop singer Michael Jackson."
+            },
+            {
+                "angle": "studio/creator",
+                "text": "Ufotable delivers digital flame and water effects that broke world animation budgets."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Severing glowing demonic threads under a blood-red moon with dancing fire steps."
+            },
+            {
+                "angle": "favourite food",
+                "text": "A boar-headed warrior hungrily snatches tempura fried prawns right off dining plates."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Green and black checkered haori cloaks flooded college anime conventions everywhere."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Jujutsu Kaisen",
+        "aliases": [
+            "JJK"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A high-school track star who swallows a rotten, thousand-year-old mummified finger."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A white-haired, blindfolded teacher whose overwhelming power bends the entire universe balance."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Traps enemies inside a customized personal mental realm where attacks hit guaranteed."
+            },
+            {
+                "angle": "villain",
+                "text": "A four-armed ancient king of curses who rests on a mountain of skulls."
+            },
+            {
+                "angle": "favourite food",
+                "text": "The blindfolded sensei constantly gorges on sweet desserts to fuel his brain."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Pulling down a black eye blindfold to reveal glowing, infinite blue eyes."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "Eve and King Gnu tracks with stylish urban Tokyo jazz and guitars."
+            },
+            {
+                "angle": "fan culture",
+                "text": "The internet suffered widespread collective grief when a beloved sorcerer got halved."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Fullmetal Alchemist: Brotherhood",
+        "aliases": [
+            "FMAB",
+            "Fullmetal Alchemist"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A short, golden-braided alchemist sporting metal prosthetic limbs who despises drinking milk."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A gentle younger brother whose soul is bound to giant hollow armor."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Claps hands together without drawing transmutation circles to reshape earth and stone."
+            },
+            {
+                "angle": "villain",
+                "text": "Seven artificial homunculi representing deadly biblical sins birthed from a shadowy flask."
+            },
+            {
+                "angle": "quirk",
+                "text": "Flies into uncontrollable blinding rages whenever anyone jokes about his small height."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "A grieving officer notes it is raining heavily on a cloudless day."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A crimson philosopher's stone secretly condensed from thousands of agonized human souls."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Permanently occupies the absolute number-one ranking spot across internet anime rating databases."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Bleach",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "An orange-haired high-school delinquent who can see ghosts and wields oversized swords."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Screams a two-word release command to unlock black, high-speed ultimate bankai forms."
+            },
+            {
+                "angle": "villain",
+                "text": "A treacherous glasses-wearing captain who slicks back his hair and leaves heaven."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Stopping the hero's giant sword blade effortlessly using just a single index-finger."
+            },
+            {
+                "angle": "setting",
+                "text": "The feudal afterlife realm of the Soul Society guarded by thirteen court squads."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "The villain claims every single event in your life was planned by him."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "Orange Range delivering ultra-cool 2000s rap-rock accompanied by iconic urban graffiti graphics."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Teenagers practiced drawing hollow masks on their faces using black marker pens."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "My Hero Academia",
+        "aliases": [
+            "Boku no Hero Academia",
+            "MHA"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A green-haired, powerless crybaby who inherits cosmic strength by eating stray hair."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Channels stockpiled kinetic energy while shattering his own arm bones in combat."
+            },
+            {
+                "angle": "sidekick",
+                "text": "An explosive childhood rival who screams murderous threats while winning school tournaments."
+            },
+            {
+                "angle": "quirk",
+                "text": "A half-fire, half-ice classmate who initially refuses using father's fiery left side."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "A muscular symbol of peace points into cameras declaring you are next."
+            },
+            {
+                "angle": "villain",
+                "text": "A decaying, scratch-prone sociopath adorned with preserved severed human hands over face."
+            },
+            {
+                "angle": "catchphrase described not quoted",
+                "text": "A Latin phrase shouted to remind heroes to go beyond their limits."
+            },
+            {
+                "angle": "fan culture",
+                "text": "The fandom became infamous for obsessively arguing about teenage superhero romance ships."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Romance/slice of life",
+        "answer": "Your Name",
+        "aliases": [
+            "Kimi no Na wa"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A Tokyo city boy who wakes up inside a rural countryside girl's body."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Swapping consciousness across different physical bodies on random days during morning sleep."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A braided red cord ribbon connecting two souls across different temporal timelines."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Passing each other silently on a red staircase in Tokyo years after catastrophe."
+            },
+            {
+                "angle": "setting",
+                "text": "A picturesque rural mountain lake town threatened by an approaching split-tail comet."
+            },
+            {
+                "angle": "studio/creator",
+                "text": "Makoto Shinkai's breathtaking photorealistic skies, clouds, passing trains, and lens flares."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "RADWIMPS delivering soaring Japanese rock ballads that make entire cinemas tear up."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Tourists flock to Shinjuku to photograph the real-life stairs from the poster."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Anime",
+        "subfield": "Shonen",
+        "answer": "Hunter x Hunter",
+        "aliases": [
+            "HxH"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "protagonist",
+                "text": "A green-suited island boy who fishes for monsters to find his father."
+            },
+            {
+                "angle": "sidekick",
+                "text": "A silver-haired ex-assassin boy who skateboards and channels deadly electric lightning aura."
+            },
+            {
+                "angle": "signature power or move (described)",
+                "text": "Chants rock-paper-scissors in Japanese before unleashing a devastating, concentrated aura punch."
+            },
+            {
+                "angle": "villain",
+                "text": "A bloodthirsty jester magician who gets unnervingly aroused fighting strong young prodigies."
+            },
+            {
+                "angle": "iconic scene",
+                "text": "Sacrificing his entire future lifespan to sprout towering hair and crush enemies."
+            },
+            {
+                "angle": "favourite food",
+                "text": "Pork and rice platters devoured during grueling survival exams on uncharted continents."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Fans spend literal years in agony waiting through the creator's chronic hiatuses."
+            },
+            {
+                "angle": "opening-song vibe",
+                "text": "The exact same upbeat trumpet anthem played across all one-hundred-forty-eight episodes."
+            }
+        ],
+        "needsReview": false
+    }
+]

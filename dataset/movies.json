@@ -1,0 +1,877 @@
+[
+    {
+        "category": "Movies",
+        "subfield": "Bollywood classic",
+        "answer": "3 Idiots",
+        "aliases": [
+            "Three Idiots"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A newborn baby gets successfully delivered using an ordinary vacuum cleaner."
+            },
+            {
+                "angle": "character quirk",
+                "text": "The director writes with both hands simultaneously while listening to opera."
+            },
+            {
+                "angle": "prop/object",
+                "text": "Two distinct pairs of wristwatches solve an entire decade-long missing person mystery."
+            },
+            {
+                "angle": "hero",
+                "text": "An unconventional engineering prodigy who believes real machines run on pure passion."
+            },
+            {
+                "angle": "villain",
+                "text": "A competitive student memorises an entire speech without knowing Hindi meanings."
+            },
+            {
+                "angle": "setting",
+                "text": "A prestigious imperial engineering college where water jugs trigger electrical shocks."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Convinced every Indian engineering student to suddenly pursue wild wildlife photography."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Features a scenic climax filmed beside the crystal blue Pangong Lake."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Bollywood classic",
+        "answer": "Sholay",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "villain",
+                "text": "A dacoit obsessed with counting bullets and asking about official bounties."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A special coin with identical faces controls every major life decision."
+            },
+            {
+                "angle": "famous scene",
+                "text": "An emotional village elder delivers a passionate speech perched atop a watertank."
+            },
+            {
+                "angle": "heroine",
+                "text": "A horse-cart driver who physically cannot stop talking to her mare."
+            },
+            {
+                "angle": "hero",
+                "text": "An armless retired police officer hires two petty criminals for revenge."
+            },
+            {
+                "angle": "setting",
+                "text": "A dusty, rocky village repeatedly terrorised by ravine bandits on horseback."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A captive heroine is forced to dance bare-foot on broken glass."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Mothers supposedly put misbehaving kids to sleep using the bandit's name."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Recent Bollywood hit",
+        "answer": "Stree",
+        "aliases": [
+            "Stree 1"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "setting",
+                "text": "A sleepy small town where walls require fresh protective red paint."
+            },
+            {
+                "angle": "hero",
+                "text": "A gifted tailor who can accurately measure women just by looking."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A supernatural phantom politely asks for consent before abducting adult men."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A lengthy braided magical ponytail holds the secret to spirit powers."
+            },
+            {
+                "angle": "character quirk",
+                "text": "An eccentric bookstore owner claims to be an expert in paranormal lore."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Townspeople write polite four-word messages asking an entity to visit tomorrow."
+            },
+            {
+                "angle": "heroine",
+                "text": "A mysterious unnamed visitor who appears exclusively during a four-day festival."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A celebratory dance number performed inside an eerie, abandoned royal palace."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "South Indian blockbuster",
+        "answer": "Baahubali",
+        "aliases": [
+            "Bahubali",
+            "Baahubali: The Beginning",
+            "Baahubali 2: The Conclusion"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A massive solid stone Shiva lingam carried straight up a giant waterfall."
+            },
+            {
+                "angle": "fan culture",
+                "text": "A nationwide two-year cliffhanger asking why a loyal slave betrayed royalty."
+            },
+            {
+                "angle": "famous scene",
+                "text": "Soldiers bend tall palm trees like slingshots to fling themselves into castles."
+            },
+            {
+                "angle": "heroine",
+                "text": "A regal matriarch feeds royal infants while giving orders to executions."
+            },
+            {
+                "angle": "villain",
+                "text": "An envious prince who battles wild boars and wields a deadly trident."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A dedicated royal bodyguard swears eternal subservience to whoever holds the throne."
+            },
+            {
+                "angle": "setting",
+                "text": "A grandiose fictional kingdom featuring giant gold statues and cascading waterfalls."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Grand mythological proportions directed with epic slow-motion and sweeping armies."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "South Indian blockbuster",
+        "answer": "RRR",
+        "aliases": [
+            "Rise Roar Revolt"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A truck gate opens to unleash live tigers, leopards, and bears."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A wildly energetic suspender-flapping dance battle exhausts snobbish colonial British aristocrats."
+            },
+            {
+                "angle": "hero",
+                "text": "A stoic marksman who voluntarily infiltrates British forces while harbouring rebellion."
+            },
+            {
+                "angle": "prop/object",
+                "text": "One revolutionary sits on another's shoulders to wield double fiery rifles."
+            },
+            {
+                "angle": "setting",
+                "text": "1920s Delhi featuring an explosive steam-engine bridge rescue of a boy."
+            },
+            {
+                "angle": "villain",
+                "text": "A cruel British governor who considers royal bullets far too expensive."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Hollywood audiences danced directly down theater aisles during international screenings."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Elemental visual showdown pairing the raw fury of fire versus water."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "South Indian blockbuster",
+        "answer": "KGF",
+        "aliases": [
+            "KGF Chapter 1",
+            "KGF Chapter 2"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "setting",
+                "text": "Oppressive, dusty gold mines where enslaved workers secretly await their saviour."
+            },
+            {
+                "angle": "hero",
+                "text": "A bearded, suited gangster who promised his mother he would die rich."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A gigantic belt-fed heavy machine gun affectionately nicknamed a fiery monster."
+            },
+            {
+                "angle": "famous scene",
+                "text": "He lights his cigarette using the glowing-hot barrel of a gun."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Walks everywhere in crisp three-piece suits despite extreme desert dust storms."
+            },
+            {
+                "angle": "fan culture",
+                "text": "College boys suddenly started wearing unbuttoned shirts and refusing beard trims."
+            },
+            {
+                "angle": "villain",
+                "text": "A brutal Viking-inspired warlord who refuses to step onto sovereign land."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Heavy dark-toned color grading combined with rapid-fire frantic jump cuts."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Hollywood blockbuster",
+        "answer": "Titanic",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A wooden door that internet users insist had room for two."
+            },
+            {
+                "angle": "famous scene",
+                "text": "Standing at the ship's prow, arms outstretched, declaring universal planetary kingship."
+            },
+            {
+                "angle": "villain",
+                "text": "A gigantic drifting North Atlantic iceberg minding its own icy business."
+            },
+            {
+                "angle": "hero",
+                "text": "A penniless artist who wins his passage through a lucky poker bet."
+            },
+            {
+                "angle": "heroine",
+                "text": "An aristocratic young woman suffocating under polite high-society Victorian corset expectations."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A four-man string quartet insists on playing classical tunes while drowning."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A booming romantic flute melody where someone's heart persistently goes on."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Couples relentlessly recreate the iconic bow pose on every ferry ride."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero/sci-fi",
+        "answer": "Avengers: Endgame",
+        "aliases": [
+            "Endgame",
+            "Avengers Endgame"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A cosmic gauntlet fitted with six colourful stones that control existence."
+            },
+            {
+                "angle": "famous scene",
+                "text": "An iconic warrior summons a lightning hammer from across the battlefield."
+            },
+            {
+                "angle": "hero",
+                "text": "A billionaire genius figures out time-travel while drying his evening dishes."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A Norse god copes with loss by drinking beer and playing video-games."
+            },
+            {
+                "angle": "villain",
+                "text": "An alien warlord obsessed with wiping out exactly half the universe."
+            },
+            {
+                "angle": "fan culture",
+                "text": "A magical three-word phrase expresses fatherly love multiplied by three thousand."
+            },
+            {
+                "angle": "trivia number",
+                "text": "Travels back across past timelines exactly five years after catastrophic defeat."
+            },
+            {
+                "angle": "setting",
+                "text": "A completely pulverised military facility compound reduced to burning grey rubble."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animation",
+        "answer": "The Lion King",
+        "aliases": [
+            "Lion King"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A baboon hoists an infant animal into the sunrise atop rock."
+            },
+            {
+                "angle": "villain",
+                "text": "A jealous scarred uncle who allies with cackling, starving scavenger hyenas."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A prominent flat-topped cliff jutting proudly over the African savannah grasslands."
+            },
+            {
+                "angle": "hero",
+                "text": "A guilty young prince flees into the jungle eating slimy grubs."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A warthog and meerkat duo live by a completely carefree philosophy."
+            },
+            {
+                "angle": "setting",
+                "text": "A lush African kingdom turned into a dark, barren bone-filled wasteland."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A cheerful Swahili phrase teaches you to abandon all your worries."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Every pet owner lifts their newborn puppy or kitten above heads."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero/sci-fi",
+        "answer": "Krrish",
+        "aliases": [
+            "Krrish 1"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A shiny black painted mask carved to disguise a forest athlete."
+            },
+            {
+                "angle": "hero",
+                "text": "A mountain boy who inherits superhuman running and leaping from extraterrestrials."
+            },
+            {
+                "angle": "villain",
+                "text": "An ambitious scientist building a supercomputer to see the future clearly."
+            },
+            {
+                "angle": "famous scene",
+                "text": "Rescuing screaming children trapped inside a burning circus tent in Singapore."
+            },
+            {
+                "angle": "setting",
+                "text": "Moves from idyllic remote Himalayan peaks directly to towering Singapore skyscrapers."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Can outrun galloping horses and climb towering trees without breaking sweat."
+            },
+            {
+                "angle": "heroine",
+                "text": "A city camper who uses television broadcasts to trick mountain innocence."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Every Indian stationery store sold cheap elastic plastic black hero masks."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Bollywood classic",
+        "answer": "Dilwale Dulhania Le Jayenge",
+        "aliases": [
+            "DDLJ"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A girl sprints along a moving train platform toward an outstretched hand."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A wooden brass cowbell bought on a European holiday sparks unexpected love."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A strict traditional father feeds London pigeons every single morning on schedule."
+            },
+            {
+                "angle": "setting",
+                "text": "Scenic mustard flower fields in Punjab contrast against the Swiss Alps."
+            },
+            {
+                "angle": "hero",
+                "text": "A charming London slacker who repeatedly fails his college graduation exams."
+            },
+            {
+                "angle": "villain",
+                "text": "A smug, arrogant fiancé who prioritises hunting beer parties over wedding romance."
+            },
+            {
+                "angle": "fan culture",
+                "text": "A Mumbai cinema hall screened this single film continuously for decades."
+            },
+            {
+                "angle": "song vibe",
+                "text": "Dancing merrily in the freezing rain while wearing an emerald-green silk towel."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Bollywood classic",
+        "answer": "Lagaan",
+        "aliases": [
+            "Lagaan: Once Upon a Time in India"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "setting",
+                "text": "A drought-stricken central Indian village facing an unbearable agricultural tax burden."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A final match-winning sixer is caught precisely beyond the boundary rope."
+            },
+            {
+                "angle": "prop/object",
+                "text": "Handmade curved wooden bats and rough leather spheres decide farming debts."
+            },
+            {
+                "angle": "villain",
+                "text": "An arrogant British officer who challenges impoverished villagers to a bet."
+            },
+            {
+                "angle": "hero",
+                "text": "A fiery village youth who refuses to swallow colonial insults quietly."
+            },
+            {
+                "angle": "character quirk",
+                "text": "An eccentric spinner with an unorthodox bowling delivery creates surprise wickets."
+            },
+            {
+                "angle": "song vibe",
+                "text": "Villagers pray desperately for rain clouds to break over their parched soil."
+            },
+            {
+                "angle": "trivia number",
+                "text": "A three-month deadline determines three long years of waived harvest taxation."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Recent Bollywood hit",
+        "answer": "Jawan",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "hero",
+                "text": "A bandage-wrapped vigilante soldier who hijacks a packed metropolitan metro train."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A bald vigilante dances cheerfully to vintage retro tunes inside transit."
+            },
+            {
+                "angle": "prop/object",
+                "text": "Cigar lighters and heavy metal chains used during high-octane highway brawls."
+            },
+            {
+                "angle": "villain",
+                "text": "A ruthless corporate arms dealer who manipulates politics from luxury suites."
+            },
+            {
+                "angle": "setting",
+                "text": "A secure high-tech women's prison that transforms into a justice factory."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Mass commercial slow-motion entries accompanied by thumping electronic stadium beat drops."
+            },
+            {
+                "angle": "character quirk",
+                "text": "An elderly veteran with gray hair easily out-fights entire commando squads."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Fans dressed in white medical bandages stormed multiplex theaters across India."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Recent Bollywood hit",
+        "answer": "Bhool Bhulaiyaa",
+        "aliases": [
+            "Bhool Bhulaiyaa 1"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A sinister royal locked room sealed shut with an ornate bronze lock."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A possessed aristocratic woman lifts a heavy antique bed with bare hands."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A classical Kathak dancer channels royal revenge against an ancient tyrannical ruler."
+            },
+            {
+                "angle": "hero",
+                "text": "A modern American-trained psychiatrist who uses humor to examine paranormal fears."
+            },
+            {
+                "angle": "character quirk",
+                "text": "An anxious pundit constantly rubs sacred vermilion and talks to water pots."
+            },
+            {
+                "angle": "setting",
+                "text": "A sprawling Rajasthani ancestral palace cursed by a forgotten Bengali court dancer."
+            },
+            {
+                "angle": "fan culture",
+                "text": "College students imitate yellow spiritual robes and painted faces every Halloween."
+            },
+            {
+                "angle": "heroine",
+                "text": "An intrigued bride who unknowingly unlocks the dreaded third-floor haunted chambers."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "South Indian blockbuster",
+        "answer": "Pushpa",
+        "aliases": [
+            "Pushpa: The Rise",
+            "Pushpa The Rise"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "hero",
+                "text": "A swaggering daily-wage laborer who refuses to bow down before anybody."
+            },
+            {
+                "angle": "prop/object",
+                "text": "Red sandalwood logs secretly floated down forest rivers to bypass checkpoints."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Constantly shrugs one shoulder up while rubbing his chin with pride."
+            },
+            {
+                "angle": "villain",
+                "text": "A ruthless, bald IPS officer who mocks someone's missing family surname."
+            },
+            {
+                "angle": "setting",
+                "text": "The dense, unforgiving Seshaachalam forests where smugglers battle forest ranger patrols."
+            },
+            {
+                "angle": "famous scene",
+                "text": "Walking inside a local dairy farm to calmly intimidate regional syndicate bosses."
+            },
+            {
+                "angle": "song vibe",
+                "text": "A wildly energetic celebration of raw local beauty and rustic woodland flirtation."
+            },
+            {
+                "angle": "fan culture",
+                "text": "International cricketers celebrated match wickets by stroking their beards on television."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "South Indian blockbuster",
+        "answer": "Kantara",
+        "aliases": [
+            "Kantara: A Legend"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A ritual performer lets out a chilling, haunting forest deity scream."
+            },
+            {
+                "angle": "prop/object",
+                "text": "Sacred yellow face paint and heavy ceremonial betel nut leaf headgear."
+            },
+            {
+                "angle": "setting",
+                "text": "A coastal Karnataka village bordering an ancient forest claimed by royal descendants."
+            },
+            {
+                "angle": "hero",
+                "text": "A reckless local champion who races water buffaloes in muddy tracks."
+            },
+            {
+                "angle": "villain",
+                "text": "A wealthy landlord who pretends benevolence while plotting to snatch tribal land."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Hunts wild boars at midnight while evading strict forest department officers."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Deeply researched local folklore culminating in an explosive, spiritually possessed climax."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Audiences collectively shivered in silent awe during the final ten minutes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Hollywood blockbuster",
+        "answer": "Inception",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "prop/object",
+                "text": "A metallic spinning top that never falls if you are still asleep."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A hotel corridor hallway rotates while two men engage in zero-gravity combat."
+            },
+            {
+                "angle": "hero",
+                "text": "A haunted corporate thief who steals secrets directly from target subconscious minds."
+            },
+            {
+                "angle": "setting",
+                "text": "A multi-layered dream world where entire Paris streets fold upward like cardboard."
+            },
+            {
+                "angle": "villain",
+                "text": "A deceased subconscious projection who constantly sabotages her husband's covert operations."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A suave forger who bets on dreaming bigger with larger automatic weapons."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Decade-long internet debates about whether the spinning top wobbles or falls."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Practical camera tricks mixed with massive orchestral brass horn musical drops."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Hollywood blockbuster",
+        "answer": "Jurassic Park",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "Ripples in a plastic cup of dashboard water signal approaching footsteps."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A decorative mosquito trapped inside solidified golden tree sap amber fossil."
+            },
+            {
+                "angle": "setting",
+                "text": "A remote tropical island transformed into a luxury biological theme park."
+            },
+            {
+                "angle": "villain",
+                "text": "A disgruntled computer programmer who smuggles genetic embryos inside shaving cream."
+            },
+            {
+                "angle": "hero",
+                "text": "A cynical paleontologist who prefers fossil digs over handling screaming children."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A flamboyant chaos theorist wearing all black who critiques playing god."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Made an entire generation memorize that predators track targets through movement."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Groundbreaking life-sized animatronics combined with terrifying survival kitchen stealth sequences."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animation",
+        "answer": "Kung Fu Panda",
+        "aliases": [
+            "Kung Fu Panda 1"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "hero",
+                "text": "A tubby noodle-shop apprentice who dreams of legendary martial arts glory."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A golden blank scroll whose reflective surface teaches true inner power."
+            },
+            {
+                "angle": "famous scene",
+                "text": "A master uses steamed dumplings and chopsticks to teach intense kung-fu."
+            },
+            {
+                "angle": "villain",
+                "text": "A vengeful snow leopard who escapes a high-security cavernous fortress prison."
+            },
+            {
+                "angle": "character quirk",
+                "text": "An elderly tortoise master dissolves into peach blossom petals upon departing."
+            },
+            {
+                "angle": "setting",
+                "text": "The peaceful Valley of Peace protected by five elite animal martial artists."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Every kid imitated flexing their pinky finger for the legendary grip."
+            },
+            {
+                "angle": "song vibe",
+                "text": "An iconic flute track accompanies the master's farewell beside blooming trees."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero/sci-fi",
+        "answer": "Koi... Mil Gaya",
+        "aliases": [
+            "Koi Mil Gaya"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous scene",
+                "text": "A high-school basketball match won entirely through superhuman gravity-defying leaps."
+            },
+            {
+                "angle": "prop/object",
+                "text": "A massive home computer synthesises alien sounds through specific musical notes."
+            },
+            {
+                "angle": "hero",
+                "text": "A developmentally challenged adult who receives cosmic strength from an extraterrestrial visitor."
+            },
+            {
+                "angle": "setting",
+                "text": "A scenic hill-station surrounded by dense pine forests and mountain lakes."
+            },
+            {
+                "angle": "villain",
+                "text": "Skeptical local police officers and scientists seeking to dissect an alien."
+            },
+            {
+                "angle": "character quirk",
+                "text": "A small blue visitor recharges his battery using pure ambient sunlight."
+            },
+            {
+                "angle": "fan culture",
+                "text": "Every 2000s school kid tapped fingers together and mimicked spaceship hums."
+            },
+            {
+                "angle": "director's trademark",
+                "text": "Heartfelt family melodrama mixed with futuristic spaceships landing on Indian hills."
+            }
+        ],
+        "needsReview": false
+    }
+]

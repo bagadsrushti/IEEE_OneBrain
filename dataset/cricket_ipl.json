@@ -1,0 +1,895 @@
+[
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "MS Dhoni",
+        "aliases": [
+            "Dhoni",
+            "Mahi",
+            "Thala"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "signature shot",
+                "text": "Twists wrists with ferocious power to dispatch toe-crushing yorkers over deep mid-wicket."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Carries the iconic single-digit number seven proudly on blue and yellow shirts."
+            },
+            {
+                "angle": "nickname",
+                "text": "Affectionately crowned Captain Cool and given a Tamil monarch title by loyal fans."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Spins his bat, watches the night sky, and deposits a ball into stands."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Commentators famously described him finishing matters in grand, unforgettable six-hitting fashion."
+            },
+            {
+                "angle": "celebration",
+                "text": "Casually collects a wooden match stump as a souvenir while teammates leap wildly."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Visiting stadiums transform into seas of bright yellow the moment he walks out."
+            },
+            {
+                "angle": "record number",
+                "text": "The only international captain to lift all three major global white-ball trophies."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Virat Kohli",
+        "aliases": [
+            "Kohli",
+            "King Kohli",
+            "Cheeku"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "signature shot",
+                "text": "Leans forward on a bent front knee to execute a pristine cover drive."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Sporting number eighteen across international blues and Bangalore red jerseys since debut."
+            },
+            {
+                "angle": "nickname",
+                "text": "Teammates gave him a rabbit-cartoon childhood moniker, but the world calls him King."
+            },
+            {
+                "angle": "celebration",
+                "text": "Roars passionately toward skies, points to his jersey badge, and punches thin air."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Punched an unplayable back-of-a-length delivery straight back over a Pakistani pacer's head."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Every boundary brings deafening three-syllable chants of his surname across packed stands."
+            },
+            {
+                "angle": "record number",
+                "text": "Smashed fifty international one-day hundreds, bowing to his idol right in Mumbai."
+            },
+            {
+                "angle": "team",
+                "text": "Represented a single southern franchise from the tournament's inaugural year without leaving."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Sachin Tendulkar",
+        "aliases": [
+            "Sachin",
+            "Master Blaster"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Revered across Indian households as the Master Blaster and literal Cricket God."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Plays the classic straight drive down the ground beside the bowler's stumps."
+            },
+            {
+                "angle": "jersey number",
+                "text": "His famous number ten was eventually retired by the national board out-of respect."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Bludgeoned Australian bowling attacks across the Sharjah desert amid violent sandstorm delays."
+            },
+            {
+                "angle": "celebration",
+                "text": "Looks up skyward, taking off his helmet to thank his late father."
+            },
+            {
+                "angle": "record number",
+                "text": "The only batter in human history to complete a century of international centuries."
+            },
+            {
+                "angle": "stadium",
+                "text": "A life-sized bronze statue stands proudly at his home ground, Wankhede Stadium."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "A two-word rhythmic chant echoed for two decades across every Indian living room."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "IPL teams",
+        "answer": "Royal Challengers Bengaluru",
+        "aliases": [
+            "RCB",
+            "Royal Challengers Bangalore"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Loyal supporters chant an optimistic Kannada phrase promising the trophy belongs next."
+            },
+            {
+                "angle": "stadium",
+                "text": "Plays home games at a tiny, high-altitude venue where sixes land outside."
+            },
+            {
+                "angle": "record number",
+                "text": "Holds the league's twin extremes: a monstrous two-hundred-sixty-three and a tragic forty-nine."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "A Jamaican giant smashed one-hundred-and-seventy-five runs in a single innings on this home turf."
+            },
+            {
+                "angle": "team",
+                "text": "Known for fielding terrifying batting line-ups featuring alien-like international power hitting."
+            },
+            {
+                "angle": "celebration",
+                "text": "Supporters celebrate qualification matches with celebrations louder than other teams' title wins."
+            },
+            {
+                "angle": "nickname",
+                "text": "Often termed the bold army dressed in red, gold, and dark blue."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Commentators constantly remark about boundary ropes being far too short for this team."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "IPL teams",
+        "answer": "Chennai Super Kings",
+        "aliases": [
+            "CSK"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Supporters whistle rhythmically using their fingers to create a deafening yellow racket."
+            },
+            {
+                "angle": "stadium",
+                "text": "The Chepauk fortress where spin bowling regularly chokes visiting opposition batting lineups."
+            },
+            {
+                "angle": "nickname",
+                "text": "Affectionately teased as Dad's Army for dominating tournaments with thirty-plus veterans."
+            },
+            {
+                "angle": "team",
+                "text": "Known for retaining core squads and backing experienced players through bad form."
+            },
+            {
+                "angle": "record number",
+                "text": "Qualified for the tournament playoffs almost every single season they ever played."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "A left-handed all-rounder hit ten off two balls in a rain-delayed Ahmedabad final."
+            },
+            {
+                "angle": "celebration",
+                "text": "Players celebrate championships with quiet family group photos rather than wild antics."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Commentators always marvel at how this side somehow wins matches from nowhere."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "IPL teams",
+        "answer": "Mumbai Indians",
+        "aliases": [
+            "MI"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "stadium",
+                "text": "Home turf is Wankhede Stadium, roaring right alongside the Arabian Sea coastline."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Chants of Duniya Hila Denge resonated throughout their championship-winning campaigns."
+            },
+            {
+                "angle": "team",
+                "text": "Infamous for losing initial league games before staging unstoppable late-season championship winning streaks."
+            },
+            {
+                "angle": "record number",
+                "text": "Won multiple league titles specifically by tiny, nail-biting single-run margins in finals."
+            },
+            {
+                "angle": "captains",
+                "text": "Led to five championship titles under a relaxed, pull-shot-loving Indian opening batter."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Chased down one-hundred-and-ninety in fourteen overs thanks to a dramatic final boundary six."
+            },
+            {
+                "angle": "nickname",
+                "text": "The men in gold and blue backed by India's biggest corporate conglomerate."
+            },
+            {
+                "angle": "celebration",
+                "text": "Their bowling mentor drops to the turf kissing his ring after wickets."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Rohit Sharma",
+        "aliases": [
+            "Rohit",
+            "Hitman"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Crowned the Hitman for effortlessly clearing deep boundaries with relaxed, lazy elegance."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Rocks back casually on backfoot to deposit high bouncers over square-leg."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Wears number forty-five, chosen originally on his mother's numerological advice."
+            },
+            {
+                "angle": "record number",
+                "text": "The only batter to smash three double centuries in international one-day cricket."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Scored two-hundred-and-sixty-four runs against Sri Lanka, breaking all individual scoring records."
+            },
+            {
+                "angle": "celebration",
+                "text": "Slaps the pitch surface and claps enthusiastically with teammate hugs after victories."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Fans make endless memes about his hilarious stump-microphone reminders to wandering fielders."
+            },
+            {
+                "angle": "captains",
+                "text": "Captained India to an undefeated run and title at the 2024 Barbados final."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "AB de Villiers",
+        "aliases": [
+            "ABD",
+            "Mr 360"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Crowned Mr Three-Sixty for hitting boundaries into literally any corner of stadiums."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Sweeps fast bowlers while kneeling down on one knee outside off-stump."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Sported the number seventeen jersey, forming an iconic partnership alongside Virat Kohli."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Smashed the fastest one-day international century ever recorded, off thirty-one deliveries."
+            },
+            {
+                "angle": "stadium",
+                "text": "Opposition Indian crowds at Wankhede chanted his three-letter acronym louder than locals."
+            },
+            {
+                "angle": "celebration",
+                "text": "A modest smile and helmet tip after dismantling premier bowlers with absurd scoops."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Hostel fans debated whether he was human or an alien sent to bat."
+            },
+            {
+                "angle": "team",
+                "text": "South African legend who became Bengaluru's most beloved adopted international son."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "World Cup moments",
+        "answer": "2011 Cricket World Cup Final",
+        "aliases": [
+            "2011 World Cup Final",
+            "2011 World Cup"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "famous match moment",
+                "text": "An iconic helicopter six sails into the Mumbai stands ending twenty-eight-year waits."
+            },
+            {
+                "angle": "stadium",
+                "text": "Hosted under blinding floodlights at a roaring, fully packed Wankhede Stadium in Mumbai."
+            },
+            {
+                "angle": "celebration",
+                "text": "Teammates lifted their cricketing idol on shoulders, carrying him around the boundary perimeter."
+            },
+            {
+                "angle": "record number",
+                "text": "A Delhi left-hander was dismissed for ninety-seven after anchoring an anxious chase."
+            },
+            {
+                "angle": "iconic rivalries",
+                "text": "Subcontinental neighbors clashed after the toss had to be controversially re-flipped twice."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Ravi Shastri boomed about fireworks beginning and party nights in Mumbai starting."
+            },
+            {
+                "angle": "captains",
+                "text": "The winning skipper promoted himself up the batting order ahead of form all-rounders."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Entire Indian cities burst onto midnight streets waving tricolour flags and beating drums."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Jasprit Bumrah",
+        "aliases": [
+            "Bumrah"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "signature shot",
+                "text": "Fires ninety-mile-per-hour toe-crushing yorkers that shatter wooden stumps into spinning splinters."
+            },
+            {
+                "angle": "celebration",
+                "text": "Spreads both arms wide with an innocent, boyish smile after bowling unplayable balls."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Wears number ninety-three while spearheading bowling attacks across all three formats."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Tricked an experienced English batter with a slower dipping yorker before lunch."
+            },
+            {
+                "angle": "nickname",
+                "text": "Hailed as the cheat-code bowler whom captains save for impossible pressure situations."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Has a short, stuttering, hyper-extended hyperextension bowling run-up that completely defies physics."
+            },
+            {
+                "angle": "record number",
+                "text": "Smashed thirty-five runs in a single Test over off a premier English pacer."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "When opposition needs thirty off eighteen balls, Indian fans proudly declare game over."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Hardik Pandya",
+        "aliases": [
+            "Hardik"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "jersey number",
+                "text": "Wears number thirty-three while strutting out in high-fashion designer sunglasses."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Stands tall in his crease to muscle length deliveries over wide long-on."
+            },
+            {
+                "angle": "celebration",
+                "text": "Puffs his chest and nods coolly as if victory was completely expected."
+            },
+            {
+                "angle": "nickname",
+                "text": "Known as Kung-Fu Pandya for explosive finishing and electric boundary line fielding."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Bowled the final nerve-wracking over in Barbados before collapsing in tears on turf."
+            },
+            {
+                "angle": "captains",
+                "text": "Led a brand-new Gujarat franchise to championship glory in their debut season."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Crowds went from booing his stadium appearances to roaring unconditional love months later."
+            },
+            {
+                "angle": "team",
+                "text": "Scouted as an aggressive Baroda youth by Mumbai Indians before becoming vice-captain."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Yuvraj Singh",
+        "aliases": [
+            "Yuvi"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "signature shot",
+                "text": "Uncorks a flowing, high backlift bat swing to flick sixes over deep square-leg."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Proudly wore number twelve representing his birthday date and birth month."
+            },
+            {
+                "angle": "record number",
+                "text": "Smashed six consecutive sixes in a single over during Durban World Twenty20."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Had a heated exchange with Andrew Flintoff right before dismantling Stuart Broad."
+            },
+            {
+                "angle": "celebration",
+                "text": "Roared passionately on knees while slapping the pitch after Ahmedabad's quarter-final."
+            },
+            {
+                "angle": "nickname",
+                "text": "Beloved prince of Indian cricket whose fearless power defined white-ball middle orders."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Fans still rewatch the twelve-ball fifty whenever they need instant adrenaline rushes."
+            },
+            {
+                "angle": "World Cup moments",
+                "text": "Awarded Player of the Tournament after coughing blood to win 2011 glory."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "IPL teams",
+        "answer": "Kolkata Knight Riders",
+        "aliases": [
+            "KKR"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "stadium",
+                "text": "Their fortress is the historic, electric Eden Gardens roaring beside the Hooghly."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "The infectious Bengali battle cry Korbo Lorbo Jeetbo echoed through stadium stands."
+            },
+            {
+                "angle": "nickname",
+                "text": "The purple and gold army co-owned by Bollywood's biggest global superstar."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Brendon McCullum lit up the league's inaugural night with one-hundred-and-fifty-eight runs."
+            },
+            {
+                "angle": "captains",
+                "text": "A passionate Delhi left-hander led them to their first two franchise titles."
+            },
+            {
+                "angle": "team",
+                "text": "Renowned for unleashing Caribbean mystery spinners who choke opposition middle-order scoring rates."
+            },
+            {
+                "angle": "celebration",
+                "text": "Their Bollywood superstar owner sprints down pitch circuits hugging every player warmly."
+            },
+            {
+                "angle": "record number",
+                "text": "Set the historic record of fourteen consecutive match wins across twenty-fourteen campaigns."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Famous stadiums",
+        "answer": "Wankhede Stadium",
+        "aliases": [
+            "Wankhede"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "setting",
+                "text": "Located beside Marine Drive, catching salty sea breezes from the Arabian Sea."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "The exact venue where MS Dhoni struck the tournament-winning 2011 six."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Known for shaking foundations when forty-thousand fans chant Sachin's name together."
+            },
+            {
+                "angle": "record number",
+                "text": "The site where Virat Kohli bowed down after hitting his fiftieth one-day century."
+            },
+            {
+                "angle": "stadium",
+                "text": "The iconic red-soil Mumbai cauldron with notoriously steep stands and deafening acoustics."
+            },
+            {
+                "angle": "team",
+                "text": "Serves as the loud, intimidating fortress for Mumbai's five-time league champions."
+            },
+            {
+                "angle": "star players",
+                "text": "The ground where Sachin Tendulkar bid an emotional farewell to international cricket."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Commentators always warn bowlers that dew will make wet balls un-grippable here."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Chris Gayle",
+        "aliases": [
+            "Gayle",
+            "Universe Boss"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Self-proclaimed Universe Boss who considers running singles an entirely optional activity."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Wore number three-hundred-and-thirty-three commemorating his highest career Test match score."
+            },
+            {
+                "angle": "record number",
+                "text": "Smashed sixty-six-ball one-hundred-and-seventy-five featuring seventeen towering sixes in Bangalore."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Clears front leg and casually deposits good length balls over the stadium roof."
+            },
+            {
+                "angle": "celebration",
+                "text": "Danced the Gangnam Style celebration across the pitch while teammates cracked up."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Punished a Pune spinner for thirty-two runs inside a single brutal over."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Crowds arrived with cardboard storm warnings whenever his bat started swinging freely."
+            },
+            {
+                "angle": "team",
+                "text": "Formed an unstoppable trinity in red and black alongside Kohli and De Villiers."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Suresh Raina",
+        "aliases": [
+            "Raina",
+            "Chinna Thala"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "nickname",
+                "text": "Affectionately hailed as Mr. IPL and crowned Chinna Thala by Tamil supporters."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Steps inside the line to loft left-arm spinners inside-out over extra cover."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Sported number forty-eight across blue kits and three in yellow franchise colours."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Bludgeoned eighty-seven runs off twenty-five balls against Punjab inside powerplay overs."
+            },
+            {
+                "angle": "celebration",
+                "text": "The first fielder to sprint fifty yards and bear-hug bowlers after wickets."
+            },
+            {
+                "angle": "record number",
+                "text": "Scored over four hundred runs in almost every consecutive IPL season he played."
+            },
+            {
+                "angle": "team",
+                "text": "The dependable number three pillar behind Chennai Super Kings' early championship era."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Fans celebrated his birthday alongside his captain's as honorary festival holidays."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Iconic rivalries",
+        "answer": "India vs Pakistan",
+        "aliases": [
+            "Ind vs Pak",
+            "India v Pakistan"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Family dinner reservations cancel and streets empty completely the moment matches begin."
+            },
+            {
+                "angle": "record number",
+                "text": "A famous seven-nil World Cup winning streak that stood unbroken for decades."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "A misjudged scoop shot into short fine-leg hands sealed Johannesburg's 2007 thriller."
+            },
+            {
+                "angle": "stadium",
+                "text": "Pack ninety thousand fans into Melbourne and over one-hundred-thousand into Ahmedabad."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Broadcasters relentlessly promote the clash as the undisputed clash of the titans."
+            },
+            {
+                "angle": "iconic rivalries",
+                "text": "Television ratings skyrocket into hundreds of millions every time these neighbors collide."
+            },
+            {
+                "angle": "celebration",
+                "text": "Crackers erupt across Indian neighborhoods late into midnight after every tournament victory."
+            },
+            {
+                "angle": "quirk",
+                "text": "News channels run over-the-top studio debates featuring miniature cricket pitches and drums."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Legendary matches",
+        "answer": "2007 T20 World Cup Final",
+        "aliases": [
+            "2007 World T20 Final",
+            "2007 T20 Final"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "stadium",
+                "text": "Played under the evening sky at the Wanderers Stadium in Johannesburg, South Africa."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Joginder Sharma was handed the final over with thirteen runs to defend."
+            },
+            {
+                "angle": "signature shot",
+                "text": "A disastrous scoop shot was caught safely by Sreesanth at short fine-leg."
+            },
+            {
+                "angle": "celebration",
+                "text": "A young, long-haired captain casually handed his match jersey to a kid."
+            },
+            {
+                "angle": "captains",
+                "text": "Marked the sudden international arrival of an unproven, cool-headed rookie captain."
+            },
+            {
+                "angle": "commentary-style phrase (described)",
+                "text": "Commentators shouted that an arch-rival had made a fateful, fatal error."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "This unexpected triumph directly triggered the creation and explosion of the IPL."
+            },
+            {
+                "angle": "record number",
+                "text": "India defended a modest total of one-hundred-and-fifty-seven runs by five runs."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Rishabh Pant",
+        "aliases": [
+            "Pant"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "signature shot",
+                "text": "Falls off balance onto back-turf while dispatching reverse scoops over third man."
+            },
+            {
+                "angle": "nickname",
+                "text": "Known as Spidey for spontaneously singing superhero cartoon themes behind the stumps."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Wears number seventeen, continuing the wicketkeeper-batter legacy across modern Indian formats."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Hit the winning boundary through mid-off to breach Australia's Gabba fortress."
+            },
+            {
+                "angle": "celebration",
+                "text": "Performs spontaneous acrobatic gymnastics flips on turf while teammates watch in awe."
+            },
+            {
+                "angle": "character quirk",
+                "text": "Chatters endlessly on the stump microphone, teasing opposition batters about temporary captains."
+            },
+            {
+                "angle": "fan chants or fan culture",
+                "text": "Fans cheer wildly whenever he steps out to smash legendary pacers one-handed."
+            },
+            {
+                "angle": "team",
+                "text": "Captained Delhi's franchise while making miracle recoveries back to international squads."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Cricket / IPL",
+        "subfield": "Star players",
+        "answer": "Sunil Narine",
+        "aliases": [
+            "Narine"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "character quirk",
+                "text": "Maintains an absolute, cold poker face without smiling even after hat-trick dismissals."
+            },
+            {
+                "angle": "jersey number",
+                "text": "Wears number seventy-four with a signature spiked mohawk haircut on field."
+            },
+            {
+                "angle": "signature shot",
+                "text": "Swings blindly across the line as a pinch-hitting opener to clear long-off."
+            },
+            {
+                "angle": "team",
+                "text": "Has remained loyal to Kolkata Knight Riders across well over a decade."
+            },
+            {
+                "angle": "nickname",
+                "text": "The Trinidad mystery spinner whose knuckler and carrom ball baffled batters everywhere."
+            },
+            {
+                "angle": "famous match moment",
+                "text": "Bowled a maiden over in a high-pressure Super Over during Caribbean league."
+            },
+            {
+                "angle": "celebration",
+                "text": "Gives a gentle, stoic fist bump to teammates before casually walking back."
+            },
+            {
+                "angle": "record number",
+                "text": "Named Most Valuable Player of the IPL multiple times across distinct seasons."
+            }
+        ],
+        "needsReview": false
+    }
+]
