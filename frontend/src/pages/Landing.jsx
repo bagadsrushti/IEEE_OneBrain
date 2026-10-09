@@ -29,9 +29,15 @@ const Landing = () => {
   const { createRoom, joinRoom, isConnected, connectionError } = useSocket();
   
   const [nickname, setNickname] = useState('');
-  const [roomCode, setRoomCode] = useState(code || '');
+  const [roomCode, setRoomCode] = useState((code || '').toUpperCase());
   const [error, setError] = useState('');
   const [showScanner, setShowScanner] = useState(false);
+
+  useEffect(() => {
+    if (code) {
+      setRoomCode(code.toUpperCase());
+    }
+  }, [code]);
 
   const handleCreate = () => {
     if (!nickname) return setError('Nickname is required');
@@ -52,9 +58,13 @@ const Landing = () => {
 
   const handleScan = (resultText) => {
     if (resultText) {
-      const match = resultText.match(/\/join\/([a-zA-Z0-9]{6})/i);
+      const text = resultText.trim();
+      const match = text.match(/(?:\/join\/|\/room\/|[?&]code=)([a-zA-Z0-9]{6})/i);
       if (match) {
         setRoomCode(match[1].toUpperCase());
+        setShowScanner(false);
+      } else if (/^[a-zA-Z0-9]{6}$/.test(text)) {
+        setRoomCode(text.toUpperCase());
         setShowScanner(false);
       }
     }
