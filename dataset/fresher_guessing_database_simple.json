@@ -221,48 +221,6 @@
     },
     {
         "category": "General Knowledge",
-        "subfield": "Famous place or country fact",
-        "answer": "Taj Mahal",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "birthplace/location",
-                "text": "It is a famous white building in Agra, India."
-            },
-            {
-                "angle": "famous experiment or story",
-                "text": "Shah Jahan had it built in memory of Mumtaz Mahal."
-            },
-            {
-                "angle": "weird-but-true fact",
-                "text": "It is made mostly of white marble."
-            },
-            {
-                "angle": "object",
-                "text": "It has a large dome and four tall towers."
-            },
-            {
-                "angle": "everyday connection",
-                "text": "It is one of India's most famous tourist attractions."
-            },
-            {
-                "angle": "year",
-                "text": "It stands beside the Yamuna River."
-            },
-            {
-                "angle": "award",
-                "text": "It is a UNESCO World Heritage Site."
-            },
-            {
-                "angle": "nickname",
-                "text": "Many visitors take photos pretending to hold its dome."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
         "subfield": "Historical figure",
         "answer": "Mahatma Gandhi",
         "aliases": [
@@ -347,51 +305,6 @@
             {
                 "angle": "award",
                 "text": "It has been retold in books, TV shows, and films."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Famous place or country fact",
-        "answer": "Mount Everest",
-        "aliases": [
-            "Everest",
-            "Sagarmatha"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "record number",
-                "text": "It is the highest mountain above sea level."
-            },
-            {
-                "angle": "birthplace/location",
-                "text": "It is part of the Himalayas."
-            },
-            {
-                "angle": "famous experiment or story",
-                "text": "It lies between Nepal and Tibet."
-            },
-            {
-                "angle": "weird-but-true fact",
-                "text": "Many climbers try to reach its top."
-            },
-            {
-                "angle": "nickname",
-                "text": "Edmund Hillary and Tenzing Norgay first reached its summit in 1953."
-            },
-            {
-                "angle": "everyday connection",
-                "text": "Its peak is covered in snow and ice."
-            },
-            {
-                "angle": "object",
-                "text": "In Nepal, it is called Sagarmatha."
-            },
-            {
-                "angle": "discovery",
-                "text": "Climbing it is a major challenge for mountaineers."
             }
         ],
         "needsReview": false
@@ -837,133 +750,6 @@
         "needsReview": false
     },
     {
-        "category": "General Knowledge",
-        "subfield": "Famous place or country fact",
-        "answer": "Eiffel Tower",
-        "aliases": [
-            "The Eiffel Tower"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "birthplace/location",
-                "text": "It is a famous landmark in Paris, France."
-            },
-            {
-                "angle": "famous experiment or story",
-                "text": "It is made of iron."
-            },
-            {
-                "angle": "weird-but-true fact",
-                "text": "It was built for a big fair in 1889."
-            },
-            {
-                "angle": "object",
-                "text": "Tourists often take photos in front of it."
-            },
-            {
-                "angle": "famous scientist/inventor",
-                "text": "It is one of the best-known symbols of France."
-            },
-            {
-                "angle": "everyday connection",
-                "text": "You can see the city from its viewing platforms."
-            },
-            {
-                "angle": "nickname",
-                "text": "It can become a little taller in hot weather."
-            },
-            {
-                "angle": "year",
-                "text": "Its name comes from engineer Gustave Eiffel."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Bollywood movie",
-        "answer": "3 Idiots",
-        "aliases": [
-            "Three Idiots"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "story",
-                "text": "Three engineering students deal with college pressure, friendship, and chasing their dreams."
-            },
-            {
-                "angle": "character",
-                "text": "Rancho, Farhan, and Raju are the three main friends."
-            },
-            {
-                "angle": "famous line",
-                "text": "The film made the phrase 'All is well' extremely popular."
-            },
-            {
-                "angle": "actor",
-                "text": "Aamir Khan plays the lead character."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Superhero movie",
-        "answer": "Spider-Man",
-        "aliases": [
-            "Spiderman",
-            "Spider Man"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "character",
-                "text": "A young hero swings between buildings using webs."
-            },
-            {
-                "angle": "identity",
-                "text": "Peter Parker is the teenager behind the mask."
-            },
-            {
-                "angle": "power",
-                "text": "He can climb walls and has a spider-sense."
-            },
-            {
-                "angle": "everyday clue",
-                "text": "His famous catchphrase includes the words 'great responsibility'."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Animated movie",
-        "answer": "Frozen",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "song",
-                "text": "A famous song from this movie is 'Let It Go'."
-            },
-            {
-                "angle": "character",
-                "text": "Elsa has magical powers that create ice and snow."
-            },
-            {
-                "angle": "setting",
-                "text": "The story takes place in the kingdom of Arendelle."
-            },
-            {
-                "angle": "character",
-                "text": "Anna is the younger sister of Elsa."
-            }
-        ],
-        "needsReview": false
-    },
-    {
         "category": "Movies",
         "subfield": "Indian action movie",
         "answer": "Dhoom",
@@ -990,306 +776,6 @@
         "needsReview": false
     },
     {
-        "category": "Movies",
-        "subfield": "Fantasy movie",
-        "answer": "Harry Potter",
-        "aliases": [
-            "Harry Potter film series"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "character",
-                "text": "A young wizard attends Hogwarts School of Witchcraft and Wizardry."
-            },
-            {
-                "angle": "object",
-                "text": "A lightning-shaped scar marks the hero's forehead."
-            },
-            {
-                "angle": "friends",
-                "text": "Hermione Granger and Ron Weasley are his closest friends."
-            },
-            {
-                "angle": "object",
-                "text": "The hero uses a wand and plays a sport called Quidditch."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Indian comedy-drama",
-        "answer": "Munna Bhai M.B.B.S.",
-        "aliases": [
-            "Munna Bhai MBBS",
-            "Munna Bhai"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "character",
-                "text": "A gangster pretends to be a medical student to make his father proud."
-            },
-            {
-                "angle": "actor",
-                "text": "Sanjay Dutt plays the title character."
-            },
-            {
-                "angle": "phrase",
-                "text": "The film popularized the phrase 'Jaadu ki jhappi'."
-            },
-            {
-                "angle": "setting",
-                "text": "Much of the story takes place in a medical college."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Animated movie",
-        "answer": "The Lion King",
-        "aliases": [
-            "Lion King"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "character",
-                "text": "Simba is a young lion who must reclaim his place as king."
-            },
-            {
-                "angle": "song",
-                "text": "The song 'Hakuna Matata' appears in this movie."
-            },
-            {
-                "angle": "setting",
-                "text": "The story takes place on the African savanna."
-            },
-            {
-                "angle": "character",
-                "text": "Mufasa is Simba's father."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Indian sports movie",
-        "answer": "Chak De! India",
-        "aliases": [
-            "Chak De India"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "sport",
-                "text": "A former player coaches India's women's national hockey team."
-            },
-            {
-                "angle": "actor",
-                "text": "Shah Rukh Khan plays coach Kabir Khan."
-            },
-            {
-                "angle": "theme",
-                "text": "The team works together to win an international tournament."
-            },
-            {
-                "angle": "setting",
-                "text": "The story focuses on women's field hockey."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Superhero movie",
-        "answer": "Avengers: Endgame",
-        "aliases": [
-            "Avengers Endgame",
-            "Endgame"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "team",
-                "text": "Iron Man, Captain America, Thor, and other heroes team up."
-            },
-            {
-                "angle": "villain",
-                "text": "The heroes try to undo the damage caused by Thanos."
-            },
-            {
-                "angle": "universe",
-                "text": "It is part of the Marvel Cinematic Universe."
-            },
-            {
-                "angle": "object",
-                "text": "The story involves the Infinity Stones and time travel."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Movies",
-        "subfield": "Indian romantic movie",
-        "answer": "Dilwale Dulhania Le Jayenge",
-        "aliases": [
-            "DDLJ"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "actors",
-                "text": "Shah Rukh Khan and Kajol play Raj and Simran."
-            },
-            {
-                "angle": "setting",
-                "text": "A romance begins during a trip across Europe."
-            },
-            {
-                "angle": "song",
-                "text": "The film features the song 'Tujhe Dekha To'."
-            },
-            {
-                "angle": "location",
-                "text": "A famous mustard-field scene is associated with this movie."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Wild animal",
-        "answer": "Lion",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "sound",
-                "text": "This big cat is famous for its loud roar."
-            },
-            {
-                "angle": "habitat",
-                "text": "It is often called the king of the jungle, though it commonly lives in grasslands."
-            },
-            {
-                "angle": "group",
-                "text": "It is the only big cat species that commonly lives in social groups called prides."
-            },
-            {
-                "angle": "appearance",
-                "text": "Adult males usually have a mane."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Sea animal",
-        "answer": "Dolphin",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "intelligence",
-                "text": "This sea mammal is known for being clever and playful."
-            },
-            {
-                "angle": "sound",
-                "text": "It communicates using clicks and whistles."
-            },
-            {
-                "angle": "movement",
-                "text": "It swims using a powerful tail fluke."
-            },
-            {
-                "angle": "habitat",
-                "text": "It often leaps out of the water near boats."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Bird",
-        "answer": "Penguin",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "habitat",
-                "text": "Many species live in the Southern Hemisphere, including Antarctica."
-            },
-            {
-                "angle": "movement",
-                "text": "It cannot fly, but it is an excellent swimmer."
-            },
-            {
-                "angle": "appearance",
-                "text": "It often looks like it is wearing a black-and-white suit."
-            },
-            {
-                "angle": "food",
-                "text": "Many species eat fish, krill, or squid."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Wild animal",
-        "answer": "Elephant",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "body part",
-                "text": "It has a long trunk used for smelling, drinking, and picking things up."
-            },
-            {
-                "angle": "appearance",
-                "text": "It is the largest living land animal."
-            },
-            {
-                "angle": "body part",
-                "text": "Many adults have tusks."
-            },
-            {
-                "angle": "memory",
-                "text": "It is famous for its strong social bonds and memory."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Reptile",
-        "answer": "Chameleon",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "appearance",
-                "text": "This lizard is famous for changing its skin colour."
-            },
-            {
-                "angle": "body part",
-                "text": "Its eyes can move in different directions."
-            },
-            {
-                "angle": "food",
-                "text": "It often catches insects with a long, sticky tongue."
-            },
-            {
-                "angle": "movement",
-                "text": "It has feet adapted for gripping branches."
-            }
-        ],
-        "needsReview": false
-    },
-    {
         "category": "Animals",
         "subfield": "Pet",
         "answer": "Cat",
@@ -1311,538 +797,6 @@
             {
                 "angle": "pet",
                 "text": "It is a common household pet that often naps for many hours."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Farm animal",
-        "answer": "Cow",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "food",
-                "text": "It is a herbivore that eats grass and other plants."
-            },
-            {
-                "angle": "sound",
-                "text": "It says 'moo'."
-            },
-            {
-                "angle": "product",
-                "text": "People commonly raise it for milk."
-            },
-            {
-                "angle": "appearance",
-                "text": "Some breeds have black-and-white patches."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Insect",
-        "answer": "Butterfly",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "life cycle",
-                "text": "It starts life as a caterpillar before becoming an adult."
-            },
-            {
-                "angle": "appearance",
-                "text": "It has colourful wings covered in tiny scales."
-            },
-            {
-                "angle": "movement",
-                "text": "It flutters from flower to flower."
-            },
-            {
-                "angle": "food",
-                "text": "It often drinks nectar using a long tube-like mouthpart."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Australian animal",
-        "answer": "Kangaroo",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "habitat",
-                "text": "It is strongly associated with Australia."
-            },
-            {
-                "angle": "movement",
-                "text": "It travels by hopping on powerful hind legs."
-            },
-            {
-                "angle": "body part",
-                "text": "A mother carries her baby in a pouch."
-            },
-            {
-                "angle": "appearance",
-                "text": "It has a long muscular tail for balance."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Animals",
-        "subfield": "Wild animal",
-        "answer": "Giraffe",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "appearance",
-                "text": "It is the tallest living land animal."
-            },
-            {
-                "angle": "body part",
-                "text": "Its extremely long neck helps it reach leaves high in trees."
-            },
-            {
-                "angle": "appearance",
-                "text": "Its coat has a distinctive patch pattern."
-            },
-            {
-                "angle": "food",
-                "text": "It often feeds on acacia leaves."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "India",
-        "answer": "Taj Mahal",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "location",
-                "text": "It is a famous white building in Agra, India."
-            },
-            {
-                "angle": "history",
-                "text": "Shah Jahan had it built in memory of Mumtaz Mahal."
-            },
-            {
-                "angle": "appearance",
-                "text": "It is made mostly of white marble."
-            },
-            {
-                "angle": "tourism",
-                "text": "It has a large dome and four tall towers."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Space",
-        "answer": "Moon",
-        "aliases": [
-            "Earth's Moon"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "appearance",
-                "text": "It shines in the night sky by reflecting sunlight."
-            },
-            {
-                "angle": "space",
-                "text": "It is Earth's natural satellite."
-            },
-            {
-                "angle": "event",
-                "text": "Its phases include crescent, half, and full."
-            },
-            {
-                "angle": "exploration",
-                "text": "Neil Armstrong was the first person to walk on it."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Geography",
-        "answer": "Mount Everest",
-        "aliases": [
-            "Everest"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "record",
-                "text": "It is the highest mountain above sea level."
-            },
-            {
-                "angle": "location",
-                "text": "It is part of the Himalayas."
-            },
-            {
-                "angle": "activity",
-                "text": "It lies between Nepal and Tibet."
-            },
-            {
-                "angle": "nickname",
-                "text": "Many climbers try to reach its top."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Sport",
-        "answer": "Cricket",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "equipment",
-                "text": "Players use a bat, ball, and wickets."
-            },
-            {
-                "angle": "teams",
-                "text": "Two teams take turns batting and fielding."
-            },
-            {
-                "angle": "India",
-                "text": "It is hugely popular in India, especially during the IPL."
-            },
-            {
-                "angle": "scoring",
-                "text": "A batter can score four runs by hitting the ball to the boundary along the ground."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Science",
-        "answer": "Rainbow",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "appearance",
-                "text": "It often appears as a colourful arc after rain."
-            },
-            {
-                "angle": "science",
-                "text": "It forms when sunlight is refracted, reflected, and dispersed in water droplets."
-            },
-            {
-                "angle": "colours",
-                "text": "A common school mnemonic lists seven colours."
-            },
-            {
-                "angle": "weather",
-                "text": "You often see it when sunlight and rain occur together."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Technology",
-        "answer": "Smartphone",
-        "aliases": [
-            "Mobile phone"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "use",
-                "text": "People use it to call, message, take photos, and browse the internet."
-            },
-            {
-                "angle": "apps",
-                "text": "It can run apps for maps, games, and social media."
-            },
-            {
-                "angle": "hardware",
-                "text": "It usually has a touchscreen and a battery."
-            },
-            {
-                "angle": "everyday clue",
-                "text": "Many students use it as an alarm clock and camera."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Food",
-        "answer": "Pizza",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "food",
-                "text": "This popular dish often has a round base, sauce, cheese, and toppings."
-            },
-            {
-                "angle": "origin",
-                "text": "Its modern form is strongly associated with Italy."
-            },
-            {
-                "angle": "sharing",
-                "text": "It is commonly cut into triangular slices."
-            },
-            {
-                "angle": "topping",
-                "text": "Popular toppings include mushrooms, capsicum, and olives."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "World landmark",
-        "answer": "Eiffel Tower",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "location",
-                "text": "It is a famous landmark in Paris, France."
-            },
-            {
-                "angle": "appearance",
-                "text": "It is made of iron."
-            },
-            {
-                "angle": "tourism",
-                "text": "It was built for a big fair in 1889."
-            },
-            {
-                "angle": "history",
-                "text": "Tourists often take photos in front of it."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Science",
-        "answer": "Solar System",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "space",
-                "text": "It includes the Sun and the objects that orbit it."
-            },
-            {
-                "angle": "planet",
-                "text": "Earth is one of its eight planets."
-            },
-            {
-                "angle": "largest",
-                "text": "Jupiter is the largest planet in it."
-            },
-            {
-                "angle": "school",
-                "text": "Students often draw it with planets arranged around the Sun."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "General Knowledge",
-        "subfield": "Indian culture",
-        "answer": "Diwali",
-        "aliases": [
-            "Deepavali"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "festival",
-                "text": "It is widely known as the festival of lights."
-            },
-            {
-                "angle": "tradition",
-                "text": "Many people light diyas and decorate homes."
-            },
-            {
-                "angle": "celebration",
-                "text": "Families often share sweets and exchange gifts."
-            },
-            {
-                "angle": "calendar",
-                "text": "It is celebrated in autumn, with the exact date varying each year."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "Social media",
-        "answer": "Instagram",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "app",
-                "text": "People use this app to share photos, Stories, and Reels."
-            },
-            {
-                "angle": "feature",
-                "text": "Its short vertical videos are called Reels."
-            },
-            {
-                "angle": "icon",
-                "text": "Its app icon has a camera outline with a colourful gradient."
-            },
-            {
-                "angle": "everyday clue",
-                "text": "Students often use it to follow friends, creators, and college clubs."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "Internet culture",
-        "answer": "Meme",
-        "aliases": [
-            "Internet meme"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "format",
-                "text": "It is a funny image, video, or phrase shared online."
-            },
-            {
-                "angle": "purpose",
-                "text": "People use it to react to relatable situations."
-            },
-            {
-                "angle": "college clue",
-                "text": "Exam stress and attendance are common subjects for these jokes."
-            },
-            {
-                "angle": "spread",
-                "text": "One popular template can be reused with many different captions."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "AI",
-        "answer": "ChatGPT",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "technology",
-                "text": "It is an AI chatbot that can answer questions and help with writing."
-            },
-            {
-                "angle": "company",
-                "text": "It was developed by OpenAI."
-            },
-            {
-                "angle": "use",
-                "text": "People ask it to explain concepts, brainstorm ideas, and write code."
-            },
-            {
-                "angle": "everyday clue",
-                "text": "Students sometimes use it to prepare notes or understand difficult topics."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "Short video platform",
-        "answer": "YouTube",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "platform",
-                "text": "People visit this website to watch and upload videos."
-            },
-            {
-                "angle": "feature",
-                "text": "It has a short-video format called Shorts."
-            },
-            {
-                "angle": "icon",
-                "text": "Its familiar logo includes a play button."
-            },
-            {
-                "angle": "creators",
-                "text": "People who publish videos here are often called creators or YouTubers."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "Music and dance",
-        "answer": "K-pop",
-        "aliases": [
-            "Korean pop"
-        ],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "music",
-                "text": "This music genre comes from South Korea's popular music industry."
-            },
-            {
-                "angle": "groups",
-                "text": "BTS and BLACKPINK are internationally famous acts in this scene."
-            },
-            {
-                "angle": "fans",
-                "text": "Fans often learn choreography and share edits online."
-            },
-            {
-                "angle": "culture",
-                "text": "Its popularity has helped spread Korean music, fashion, and entertainment worldwide."
-            }
-        ],
-        "needsReview": false
-    },
-    {
-        "category": "Trending Topics",
-        "subfield": "Gaming",
-        "answer": "Minecraft",
-        "aliases": [],
-        "tier": "easy",
-        "clues": [
-            {
-                "angle": "game",
-                "text": "This video game lets players build with blocks in a large open world."
-            },
-            {
-                "angle": "activity",
-                "text": "Players can mine resources, craft tools, and build houses."
-            },
-            {
-                "angle": "appearance",
-                "text": "Its world uses a distinctive blocky, pixel-like style."
-            },
-            {
-                "angle": "mode",
-                "text": "Players can choose modes such as Survival and Creative."
             }
         ],
         "needsReview": false
@@ -1876,29 +830,479 @@
         "needsReview": false
     },
     {
-        "category": "Trending Topics",
-        "subfield": "Online shopping",
-        "answer": "Amazon",
+        "category": "Movies",
+        "subfield": "Bollywood",
+        "answer": "3 Idiots",
         "aliases": [
-            "Amazon India"
+            "Three Idiots"
         ],
         "tier": "easy",
         "clues": [
             {
-                "angle": "platform",
-                "text": "People use this online marketplace to shop for many kinds of products."
+                "angle": "story",
+                "text": "Three engineering students deal with college pressure and friendship."
+            },
+            {
+                "angle": "character",
+                "text": "Rancho, Farhan, and Raju are the three friends."
+            },
+            {
+                "angle": "famous line",
+                "text": "The film made 'All is well' very popular."
+            },
+            {
+                "angle": "actor",
+                "text": "Aamir Khan plays the lead character."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero",
+        "answer": "Spider Man",
+        "aliases": [
+            "Spiderman",
+            "Spider Man"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "character",
+                "text": "A young hero swings between buildings using webs."
+            },
+            {
+                "angle": "identity",
+                "text": "Peter Parker is the teenager behind the mask."
+            },
+            {
+                "angle": "power",
+                "text": "He can climb walls and has a spider-sense."
+            },
+            {
+                "angle": "catchphrase",
+                "text": "His story includes the idea that great power brings great responsibility."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animated film",
+        "answer": "Frozen",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "song",
+                "text": "A famous song from this movie is 'Let It Go'."
+            },
+            {
+                "angle": "character",
+                "text": "Elsa has magical powers that create ice and snow."
+            },
+            {
+                "angle": "setting",
+                "text": "The story takes place in Arendelle."
+            },
+            {
+                "angle": "character",
+                "text": "Anna is Elsa's younger sister."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Fantasy",
+        "answer": "Harry Potter",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "school",
+                "text": "A young wizard attends Hogwarts."
+            },
+            {
+                "angle": "appearance",
+                "text": "The hero has a lightning-shaped scar."
+            },
+            {
+                "angle": "friends",
+                "text": "Hermione and Ron are his closest friends."
+            },
+            {
+                "angle": "object",
+                "text": "He uses a wand and plays Quidditch."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero",
+        "answer": "Avengers Endgame",
+        "aliases": [
+            "Avengers Endgame",
+            "Endgame"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "team",
+                "text": "Iron Man, Captain America, and Thor are part of this team."
+            },
+            {
+                "angle": "villain",
+                "text": "The heroes try to undo the damage caused by Thanos."
+            },
+            {
+                "angle": "universe",
+                "text": "It is part of the Marvel Cinematic Universe."
+            },
+            {
+                "angle": "plot",
+                "text": "The story includes time travel and the Infinity Stones."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Wild animal",
+        "answer": "Lion",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "sound",
+                "text": "This big cat is famous for its loud roar."
+            },
+            {
+                "angle": "habitat",
+                "text": "It is often called the king of the jungle."
+            },
+            {
+                "angle": "group",
+                "text": "A group of these animals is called a pride."
+            },
+            {
+                "angle": "appearance",
+                "text": "Adult males usually have a mane."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Sea animal",
+        "answer": "Dolphin",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "intelligence",
+                "text": "This sea mammal is known for being clever and playful."
+            },
+            {
+                "angle": "sound",
+                "text": "It communicates using clicks and whistles."
+            },
+            {
+                "angle": "movement",
+                "text": "It swims using a powerful tail."
+            },
+            {
+                "angle": "behaviour",
+                "text": "It often leaps out of the water near boats."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Bird",
+        "answer": "Penguin",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "habitat",
+                "text": "Many species live in the Southern Hemisphere."
+            },
+            {
+                "angle": "movement",
+                "text": "It cannot fly, but it is an excellent swimmer."
+            },
+            {
+                "angle": "appearance",
+                "text": "It looks like it is wearing a black-and-white suit."
+            },
+            {
+                "angle": "food",
+                "text": "Many species eat fish and squid."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Farm animal",
+        "answer": "Cow",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "food",
+                "text": "It eats grass and other plants."
+            },
+            {
+                "angle": "sound",
+                "text": "It says 'moo'."
+            },
+            {
+                "angle": "product",
+                "text": "People commonly raise it for milk."
+            },
+            {
+                "angle": "appearance",
+                "text": "Some breeds have black-and-white patches."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Australian animal",
+        "answer": "Kangaroo",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "habitat",
+                "text": "It is strongly associated with Australia."
+            },
+            {
+                "angle": "movement",
+                "text": "It hops on powerful hind legs."
+            },
+            {
+                "angle": "body part",
+                "text": "A mother carries her baby in a pouch."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has a long tail to help it balance."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "India",
+        "answer": "Taj Mahal",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "This famous white monument is in Agra."
+            },
+            {
+                "angle": "history",
+                "text": "Shah Jahan had it built in memory of Mumtaz Mahal."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has a large dome and four minarets."
+            },
+            {
+                "angle": "tourism",
+                "text": "It is one of India's most famous tourist attractions."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Space",
+        "answer": "Moon",
+        "aliases": [
+            "Earth's Moon"
+        ],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It shines by reflecting sunlight."
+            },
+            {
+                "angle": "space",
+                "text": "It is Earth's natural satellite."
+            },
+            {
+                "angle": "phases",
+                "text": "It can look like a crescent, half circle, or full circle."
+            },
+            {
+                "angle": "exploration",
+                "text": "Neil Armstrong was the first person to walk on it."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Sport",
+        "answer": "Cricket",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "equipment",
+                "text": "Players use a bat, ball, and wickets."
+            },
+            {
+                "angle": "teams",
+                "text": "Two teams take turns batting and fielding."
+            },
+            {
+                "angle": "India",
+                "text": "It is hugely popular in India, especially during the IPL."
+            },
+            {
+                "angle": "scoring",
+                "text": "A batter can score four runs by hitting the ball to the boundary along the ground."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Food",
+        "answer": "Pizza",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "food",
+                "text": "This dish often has a round base, sauce, cheese, and toppings."
+            },
+            {
+                "angle": "origin",
+                "text": "Its modern form is strongly associated with Italy."
+            },
+            {
+                "angle": "sharing",
+                "text": "It is commonly cut into triangular slices."
+            },
+            {
+                "angle": "topping",
+                "text": "Popular toppings include mushrooms and capsicum."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "World landmark",
+        "answer": "Eiffel Tower",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "It is a famous landmark in Paris."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has a tall, iron, lattice-like structure."
+            },
+            {
+                "angle": "tourism",
+                "text": "Visitors often take photos with it in the background."
+            },
+            {
+                "angle": "history",
+                "text": "It was built for the 1889 World's Fair."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Social media",
+        "answer": "Instagram",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "app",
+                "text": "People use this app to share photos, Stories, and Reels."
             },
             {
                 "angle": "feature",
-                "text": "It offers product listings, customer reviews, and delivery tracking."
+                "text": "Its short vertical videos are called Reels."
             },
             {
-                "angle": "logo",
-                "text": "Its logo has a curved arrow from A to Z."
+                "angle": "icon",
+                "text": "Its icon has a camera outline with a colourful gradient."
             },
             {
-                "angle": "everyday clue",
-                "text": "Students may use it to order books, gadgets, and hostel essentials."
+                "angle": "everyday",
+                "text": "Students use it to follow friends and creators."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "AI",
+        "answer": "ChatGPT",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "technology",
+                "text": "It is an AI chatbot that answers questions and helps with writing."
+            },
+            {
+                "angle": "company",
+                "text": "It was developed by OpenAI."
+            },
+            {
+                "angle": "use",
+                "text": "People ask it to explain concepts and help write code."
+            },
+            {
+                "angle": "everyday",
+                "text": "Students sometimes use it to prepare notes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Video platform",
+        "answer": "YouTube",
+        "aliases": [],
+        "tier": "easy",
+        "clues": [
+            {
+                "angle": "platform",
+                "text": "People use this website to watch and upload videos."
+            },
+            {
+                "angle": "feature",
+                "text": "Its short-video format is called Shorts."
+            },
+            {
+                "angle": "icon",
+                "text": "Its familiar logo includes a play button."
+            },
+            {
+                "angle": "creators",
+                "text": "People who publish videos here are called YouTubers."
             }
         ],
         "needsReview": false
@@ -1916,41 +1320,1646 @@
             },
             {
                 "angle": "logo",
-                "text": "Its logo is commonly recognised by a large red N."
+                "text": "Its logo is commonly recognised by a red letter N."
             },
             {
                 "angle": "activity",
-                "text": "People often binge-watch a series on this platform."
+                "text": "People often binge-watch series on this platform."
             },
             {
-                "angle": "everyday clue",
-                "text": "It is a common topic when friends discuss what to watch next."
+                "angle": "everyday",
+                "text": "Friends discuss what to watch next on it."
             }
         ],
         "needsReview": false
     },
     {
         "category": "Trending Topics",
-        "subfield": "Online communication",
-        "answer": "WhatsApp",
-        "aliases": [],
+        "subfield": "Internet culture",
+        "answer": "Meme",
+        "aliases": [
+            "Internet meme"
+        ],
         "tier": "easy",
         "clues": [
             {
-                "angle": "app",
-                "text": "People use this app for messages, voice calls, and video calls."
+                "angle": "format",
+                "text": "It is a funny image, video, or phrase shared online."
+            },
+            {
+                "angle": "purpose",
+                "text": "People use it to react to relatable situations."
+            },
+            {
+                "angle": "college",
+                "text": "Exam stress and attendance are common subjects for these jokes."
+            },
+            {
+                "angle": "spread",
+                "text": "One popular format can be reused with different captions."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Indian comedy-drama",
+        "answer": "Munna Bhai MBBS",
+        "aliases": [
+            "Munna Bhai MBBS",
+            "Munna Bhai"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A gangster pretends to be a medical student to make his father proud."
+            },
+            {
+                "angle": "actor",
+                "text": "Sanjay Dutt plays the title character."
+            },
+            {
+                "angle": "phrase",
+                "text": "The film popularised 'Jaadu ki jhappi'."
+            },
+            {
+                "angle": "setting",
+                "text": "Much of the story takes place in a medical college."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Indian sports movie",
+        "answer": "Chak De India",
+        "aliases": [
+            "Chak De India"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "sport",
+                "text": "A former player coaches India's women's national hockey team."
+            },
+            {
+                "angle": "actor",
+                "text": "Shah Rukh Khan plays coach Kabir Khan."
+            },
+            {
+                "angle": "goal",
+                "text": "The team works together to win an international tournament."
+            },
+            {
+                "angle": "sport",
+                "text": "The story focuses on women's field hockey."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Indian romantic movie",
+        "answer": "Dilwale Dulhania Le Jayenge",
+        "aliases": [
+            "DDLJ"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "actors",
+                "text": "Shah Rukh Khan and Kajol play Raj and Simran."
+            },
+            {
+                "angle": "setting",
+                "text": "A romance begins during a trip across Europe."
+            },
+            {
+                "angle": "song",
+                "text": "The film features 'Tujhe Dekha To'."
+            },
+            {
+                "angle": "scene",
+                "text": "A famous scene features mustard fields."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animated film",
+        "answer": "The Lion King",
+        "aliases": [
+            "Lion King"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "character",
+                "text": "Simba must reclaim his place as king."
+            },
+            {
+                "angle": "song",
+                "text": "The song 'Hakuna Matata' appears in this movie."
+            },
+            {
+                "angle": "setting",
+                "text": "The story takes place on the African savanna."
+            },
+            {
+                "angle": "family",
+                "text": "Mufasa is Simba's father."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Reptile",
+        "answer": "Chameleon",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "This lizard is famous for changing its skin colour."
+            },
+            {
+                "angle": "body part",
+                "text": "Its eyes can move in different directions."
+            },
+            {
+                "angle": "food",
+                "text": "It often catches insects with a long, sticky tongue."
+            },
+            {
+                "angle": "movement",
+                "text": "Its feet help it grip branches."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Wild animal",
+        "answer": "Giraffe",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "record",
+                "text": "It is the tallest living land animal."
+            },
+            {
+                "angle": "body part",
+                "text": "Its long neck helps it reach leaves high in trees."
+            },
+            {
+                "angle": "appearance",
+                "text": "Its coat has a distinctive patch pattern."
+            },
+            {
+                "angle": "food",
+                "text": "It often feeds on leaves from tall trees."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Insect",
+        "answer": "Butterfly",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "life cycle",
+                "text": "It starts life as a caterpillar."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has colourful wings covered in tiny scales."
+            },
+            {
+                "angle": "movement",
+                "text": "It flutters from flower to flower."
+            },
+            {
+                "angle": "food",
+                "text": "It often drinks nectar from flowers."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Wild animal",
+        "answer": "Elephant",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "body part",
+                "text": "It has a long trunk used for smelling, drinking, and picking things up."
+            },
+            {
+                "angle": "record",
+                "text": "It is the largest living land animal."
+            },
+            {
+                "angle": "body part",
+                "text": "Many adults have tusks."
+            },
+            {
+                "angle": "behaviour",
+                "text": "It is known for strong family bonds and good memory."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Mount Everest",
+        "aliases": [
+            "Everest"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "record",
+                "text": "It is the highest mountain above sea level."
+            },
+            {
+                "angle": "location",
+                "text": "It lies in the Himalayas on the Nepal–Tibet border."
+            },
+            {
+                "angle": "activity",
+                "text": "Climbers from around the world try to reach its summit."
+            },
+            {
+                "angle": "name",
+                "text": "In Nepal it is known as Sagarmatha."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Rainbow",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It often appears as a colourful arc after rain."
+            },
+            {
+                "angle": "science",
+                "text": "It forms when sunlight interacts with water droplets."
+            },
+            {
+                "angle": "colours",
+                "text": "A common school mnemonic lists seven colours."
+            },
+            {
+                "angle": "weather",
+                "text": "You may see it when sunshine and rain happen together."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Technology",
+        "answer": "Smartphone",
+        "aliases": [
+            "Mobile phone"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "use",
+                "text": "People use it to call, message, take photos, and browse the internet."
+            },
+            {
+                "angle": "apps",
+                "text": "It runs apps for maps, games, and social media."
+            },
+            {
+                "angle": "hardware",
+                "text": "It usually has a touchscreen and a battery."
+            },
+            {
+                "angle": "everyday",
+                "text": "Many students use it as an alarm clock and camera."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Solar System",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "space",
+                "text": "It includes the Sun and objects that orbit it."
+            },
+            {
+                "angle": "planet",
+                "text": "Earth is one of its eight planets."
+            },
+            {
+                "angle": "largest",
+                "text": "Jupiter is the largest planet in it."
+            },
+            {
+                "angle": "school",
+                "text": "Students often draw its planets around the Sun."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Indian festival",
+        "answer": "Diwali",
+        "aliases": [
+            "Deepavali"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "festival",
+                "text": "It is widely known as the festival of lights."
+            },
+            {
+                "angle": "tradition",
+                "text": "Many people light diyas and decorate their homes."
+            },
+            {
+                "angle": "celebration",
+                "text": "Families often share sweets and exchange gifts."
+            },
+            {
+                "angle": "calendar",
+                "text": "It is celebrated in autumn, with the date changing each year."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Gaming",
+        "answer": "Minecraft",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "game",
+                "text": "Players build with blocks in a large open world."
+            },
+            {
+                "angle": "activity",
+                "text": "Players can mine resources, craft tools, and build houses."
+            },
+            {
+                "angle": "appearance",
+                "text": "The game has a blocky, pixel-like style."
+            },
+            {
+                "angle": "mode",
+                "text": "Players can choose Survival or Creative mode."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Music",
+        "answer": "Kpop",
+        "aliases": [
+            "Korean pop"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "music",
+                "text": "This popular music genre comes from South Korea."
+            },
+            {
+                "angle": "groups",
+                "text": "BTS and BLACKPINK are famous acts in this scene."
+            },
+            {
+                "angle": "fans",
+                "text": "Fans often learn dances and share edits online."
+            },
+            {
+                "angle": "culture",
+                "text": "Its popularity has spread Korean music and entertainment worldwide."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Online shopping",
+        "answer": "Amazon",
+        "aliases": [
+            "Amazon India"
+        ],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "platform",
+                "text": "People use this online marketplace to shop for many products."
             },
             {
                 "angle": "feature",
-                "text": "Its group chats are widely used by college classes and clubs."
+                "text": "It has product listings, customer reviews, and delivery tracking."
+            },
+            {
+                "angle": "logo",
+                "text": "Its logo has a curved arrow from A to Z."
+            },
+            {
+                "angle": "everyday",
+                "text": "Students may order books, gadgets, and hostel essentials from it."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Messaging app",
+        "answer": "WhatsApp",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "app",
+                "text": "People use it for messages, voice calls, and video calls."
+            },
+            {
+                "angle": "feature",
+                "text": "Its group chats are used by college classes and clubs."
             },
             {
                 "angle": "icon",
-                "text": "Its familiar icon combines a speech bubble and a phone symbol."
+                "text": "Its icon combines a speech bubble and a phone symbol."
             },
             {
-                "angle": "everyday clue",
-                "text": "Students often receive timetable updates and notes through it."
+                "angle": "everyday",
+                "text": "Students often receive class updates through it."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Science-fiction film",
+        "answer": "Interstellar",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "director",
+                "text": "It was directed by Christopher Nolan."
+            },
+            {
+                "angle": "plot",
+                "text": "A group travels through space to search for a new home for humanity."
+            },
+            {
+                "angle": "science",
+                "text": "The story features black holes and time passing at different rates."
+            },
+            {
+                "angle": "music",
+                "text": "Its soundtrack was composed by Hans Zimmer."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Marine mammal",
+        "answer": "Octopus",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "body",
+                "text": "It has eight arms with suckers."
+            },
+            {
+                "angle": "intelligence",
+                "text": "It is known for solving puzzles and escaping enclosures."
+            },
+            {
+                "angle": "defence",
+                "text": "It can release ink to confuse predators."
+            },
+            {
+                "angle": "biology",
+                "text": "It has three hearts."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "Rizz",
+        "aliases": [],
+        "tier": "medium",
+        "clues": [
+            {
+                "angle": "slang",
+                "text": "This slang word means charm, especially when flirting."
+            },
+            {
+                "angle": "usage",
+                "text": "Someone with it is good at impressing a potential date."
+            },
+            {
+                "angle": "internet",
+                "text": "It became popular in online videos and memes."
+            },
+            {
+                "angle": "word",
+                "text": "It is often said to be a shortened form of 'charisma'."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Science-fiction film",
+        "answer": "Inception",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "director",
+                "text": "Christopher Nolan directed this film about dreams within dreams."
+            },
+            {
+                "angle": "plot",
+                "text": "A specialist is hired to plant an idea in someone's mind rather than steal one."
+            },
+            {
+                "angle": "object",
+                "text": "A spinning object helps the main character test whether he is dreaming."
+            },
+            {
+                "angle": "actor",
+                "text": "Leonardo DiCaprio plays a man trying to return to his children."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Indian thriller",
+        "answer": "Drishyam",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A man uses his love of films and careful planning to create an alibi for his family."
+            },
+            {
+                "angle": "language",
+                "text": "The original version of this thriller was made in Malayalam."
+            },
+            {
+                "angle": "actor",
+                "text": "Mohanlal plays the family man in the original film."
+            },
+            {
+                "angle": "detail",
+                "text": "A movie theatre and a police investigation are important to the story."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animated film",
+        "answer": "Coco",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "culture",
+                "text": "This animated film draws on Mexico's Day of the Dead traditions."
+            },
+            {
+                "angle": "plot",
+                "text": "A young boy enters the Land of the Dead and learns about his family's past."
+            },
+            {
+                "angle": "song",
+                "text": "The song 'Remember Me' is central to the story."
+            },
+            {
+                "angle": "character",
+                "text": "The main boy's name is Miguel."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero film",
+        "answer": "Black Panther",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "fictional place",
+                "text": "Much of the story takes place in a hidden African nation that appears technologically advanced."
+            },
+            {
+                "angle": "character",
+                "text": "The hero is also the ruler of Wakanda."
+            },
+            {
+                "angle": "material",
+                "text": "A rare metal called vibranium is central to the technology in this story."
+            },
+            {
+                "angle": "actor",
+                "text": "Chadwick Boseman played the title character in the 2018 film."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Platypus",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "classification",
+                "text": "This Australian mammal belongs to a rare group of mammals that lay eggs."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has a bill that resembles a duck's and a broad, flat tail."
+            },
+            {
+                "angle": "habitat",
+                "text": "It searches for food underwater in freshwater streams and rivers."
+            },
+            {
+                "angle": "biology",
+                "text": "The male has a venomous spur on its hind legs."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Bird",
+        "answer": "Ostrich",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "record",
+                "text": "This bird is the largest living bird species."
+            },
+            {
+                "angle": "movement",
+                "text": "It cannot fly, but its long legs help it run at high speeds."
+            },
+            {
+                "angle": "body",
+                "text": "It has two toes on each foot, unlike most birds."
+            },
+            {
+                "angle": "eggs",
+                "text": "Its eggs are the largest laid by any living bird."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Marine animal",
+        "answer": "Seahorse",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "biology",
+                "text": "In this animal, the male carries the developing young in a pouch."
+            },
+            {
+                "angle": "movement",
+                "text": "It swims upright and uses a small fin to move through the water."
+            },
+            {
+                "angle": "appearance",
+                "text": "Its head shape inspired the common name of this fish."
+            },
+            {
+                "angle": "body",
+                "text": "It has a curled tail that can grip sea plants."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Bat",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "classification",
+                "text": "It is the only mammal group capable of sustained powered flight."
+            },
+            {
+                "angle": "navigation",
+                "text": "Many species find prey and navigate using echoes from high-pitched sounds."
+            },
+            {
+                "angle": "resting",
+                "text": "Many species hang upside down while resting."
+            },
+            {
+                "angle": "diet",
+                "text": "Depending on the species, it may eat insects, fruit, nectar, or blood."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Aurora",
+        "aliases": [
+            "Northern lights",
+            "Aurora borealis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It can create green, pink, or purple light displays in the night sky."
+            },
+            {
+                "angle": "cause",
+                "text": "Charged particles from the Sun interact with gases in Earth's upper atmosphere."
+            },
+            {
+                "angle": "location",
+                "text": "The displays are common near the Arctic and Antarctic regions."
+            },
+            {
+                "angle": "alternate name",
+                "text": "The northern version is commonly called the Northern Lights."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Sahara Desert",
+        "aliases": [
+            "Sahara"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "This vast desert stretches across much of northern Africa."
+            },
+            {
+                "angle": "climate",
+                "text": "It is the largest hot desert on Earth, but not the largest desert overall."
+            },
+            {
+                "angle": "landscape",
+                "text": "It includes rocky plateaus and gravel plains as well as sand dunes."
+            },
+            {
+                "angle": "name",
+                "text": "Its name comes from an Arabic word meaning 'desert'."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "DNA",
+        "aliases": [
+            "Deoxyribonucleic acid"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "structure",
+                "text": "Its shape is often described as a twisted ladder or double helix."
+            },
+            {
+                "angle": "function",
+                "text": "It stores biological instructions used in the growth and functioning of organisms."
+            },
+            {
+                "angle": "inheritance",
+                "text": "It helps pass genetic traits from parents to offspring."
+            },
+            {
+                "angle": "forensics",
+                "text": "Its patterns can help identify people or establish biological relationships."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Equator",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "latitude",
+                "text": "This imaginary line is located at zero degrees latitude."
+            },
+            {
+                "angle": "geography",
+                "text": "It divides Earth into the Northern and Southern Hemispheres."
+            },
+            {
+                "angle": "climate",
+                "text": "Regions near it often receive strong sunlight throughout the year."
+            },
+            {
+                "angle": "map clue",
+                "text": "It crosses parts of South America, Africa, and Indonesia."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Black hole",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "physics",
+                "text": "It is a region where gravity is so strong that nothing inside a boundary can escape."
+            },
+            {
+                "angle": "boundary",
+                "text": "That boundary is known as the event horizon."
+            },
+            {
+                "angle": "formation",
+                "text": "Some form when the cores of massive stars collapse."
+            },
+            {
+                "angle": "observation",
+                "text": "Scientists often study it by observing its effects on nearby stars and gas."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Technology",
+        "answer": "Blockchain",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "structure",
+                "text": "It records data in linked groups that are difficult to alter retroactively."
+            },
+            {
+                "angle": "network",
+                "text": "Copies of the record can be held by many computers rather than one central server."
+            },
+            {
+                "angle": "application",
+                "text": "It is used by many cryptocurrencies, though it has other possible uses."
+            },
+            {
+                "angle": "name",
+                "text": "Its name describes linked units of stored information."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "POV",
+        "aliases": [
+            "Point of view"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "abbreviation",
+                "text": "These letters shorten the phrase 'point of view'."
+            },
+            {
+                "angle": "video format",
+                "text": "Creators use it to frame a scene from a particular person's perspective."
+            },
+            {
+                "angle": "social media",
+                "text": "It often appears at the start of short skits and relatable videos."
+            },
+            {
+                "angle": "interpretation",
+                "text": "The viewer is invited to imagine being in the situation shown."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "AI",
+        "answer": "Deepfake",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "technology",
+                "text": "AI can be used to make a person appear to say or do something they never did."
+            },
+            {
+                "angle": "media",
+                "text": "It may involve synthetic video, images, or audio."
+            },
+            {
+                "angle": "risk",
+                "text": "It can be used for scams or misinformation when presented as genuine."
+            },
+            {
+                "angle": "word origin",
+                "text": "The term combines an AI training approach with the idea of something false."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Technology",
+        "answer": "Virtual Reality",
+        "aliases": [
+            "VR"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "experience",
+                "text": "It places a user inside a computer-generated environment."
+            },
+            {
+                "angle": "equipment",
+                "text": "A head-mounted display is commonly used to experience it."
+            },
+            {
+                "angle": "applications",
+                "text": "It can support simulations for training, design, and entertainment."
+            },
+            {
+                "angle": "abbreviation",
+                "text": "Its standard abbreviation uses two letters."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Fantasy film",
+        "answer": "The Truman Show",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A man discovers clues that his apparently ordinary life may be staged."
+            },
+            {
+                "angle": "actor",
+                "text": "Jim Carrey plays the central character in this satirical drama."
+            },
+            {
+                "angle": "setting",
+                "text": "The town around him is actually a carefully controlled production set."
+            },
+            {
+                "angle": "theme",
+                "text": "The film questions surveillance, media, and the boundary between reality and performance."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Marine animal",
+        "answer": "Mantis shrimp",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "biology",
+                "text": "This marine crustacean has specialised appendages that can strike or spear prey."
+            },
+            {
+                "angle": "vision",
+                "text": "Some species detect polarised light and a wider range of colours than humans."
+            },
+            {
+                "angle": "habitat",
+                "text": "It often lives in burrows or crevices on the sea floor."
+            },
+            {
+                "angle": "nickname",
+                "text": "Its punch is famous for being extremely fast and powerful."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Tectonic plates",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "geology",
+                "text": "These large pieces of Earth's outer shell move slowly over the planet's interior."
+            },
+            {
+                "angle": "hazard",
+                "text": "Their boundaries are associated with many earthquakes and volcanic eruptions."
+            },
+            {
+                "angle": "mountains",
+                "text": "When some of them collide, the crust can buckle and form mountain ranges."
+            },
+            {
+                "angle": "ocean floor",
+                "text": "New crust can form where some of them move apart beneath the sea."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Thriller",
+        "answer": "Inception",
+        "aliases": [
+            "Dream heist"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A team enters people’s dreams to plant an idea."
+            },
+            {
+                "angle": "lead",
+                "text": "Leonardo DiCaprio leads the team."
+            },
+            {
+                "angle": "visual",
+                "text": "A spinning top is an important object."
+            },
+            {
+                "angle": "genre",
+                "text": "The story mixes dreams, action, and reality."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Crime thriller",
+        "answer": "Fight Club",
+        "aliases": [
+            "Fight club"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "rule",
+                "text": "The first rule is that you do not talk about it."
+            },
+            {
+                "angle": "lead",
+                "text": "Edward Norton plays a quiet office worker."
+            },
+            {
+                "angle": "character",
+                "text": "Brad Pitt plays Tyler Durden."
+            },
+            {
+                "angle": "theme",
+                "text": "A secret group fights as a way to escape ordinary life."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "International film",
+        "answer": "Parasite",
+        "aliases": [
+            "Gisaengchung"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "country",
+                "text": "This award-winning film comes from South Korea."
+            },
+            {
+                "angle": "family",
+                "text": "A poor family gradually gets jobs in a wealthy household."
+            },
+            {
+                "angle": "award",
+                "text": "It won Best Picture at the Oscars."
+            },
+            {
+                "angle": "theme",
+                "text": "The story explores class differences, with major twists."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Bollywood comedy-drama",
+        "answer": "Zindagi Na Milegi Dobara",
+        "aliases": [
+            "ZNMD"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "trip",
+                "text": "Three friends take a road trip through Spain."
+            },
+            {
+                "angle": "cast",
+                "text": "Hrithik Roshan, Farhan Akhtar, and Abhay Deol star."
+            },
+            {
+                "angle": "challenge",
+                "text": "Each friend faces a fear during the trip."
+            },
+            {
+                "angle": "theme",
+                "text": "The film is about friendship and living in the moment."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Amphibian",
+        "answer": "Axolotl",
+        "aliases": [
+            "Mexican walking fish"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It looks like a smiling salamander with feathery gills."
+            },
+            {
+                "angle": "ability",
+                "text": "It can regrow limbs and parts of some organs."
+            },
+            {
+                "angle": "habitat",
+                "text": "It is native to lakes around Mexico City."
+            },
+            {
+                "angle": "life",
+                "text": "It can keep its juvenile features into adulthood."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Platypus",
+        "aliases": [
+            "Duck-billed platypus"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It has a bill like a duck and a flat tail."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives in rivers and streams in Australia."
+            },
+            {
+                "angle": "biology",
+                "text": "It is a mammal that lays eggs."
+            },
+            {
+                "angle": "defense",
+                "text": "Males have a venomous spur on their hind legs."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Reptile",
+        "answer": "Komodo dragon",
+        "aliases": [
+            "Komodo monitor"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "size",
+                "text": "It is the largest living species of lizard."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives on a few Indonesian islands."
+            },
+            {
+                "angle": "diet",
+                "text": "It hunts animals and can eat very large prey."
+            },
+            {
+                "angle": "feature",
+                "text": "Its bite involves venom and dangerous bacteria are not the only concern."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Red panda",
+        "aliases": [
+            "Lesser panda"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It has reddish fur, a ringed tail, and a masked face."
+            },
+            {
+                "angle": "diet",
+                "text": "It eats lots of bamboo."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives in forests in the Himalayas and nearby regions."
+            },
+            {
+                "angle": "name",
+                "text": "Despite its name, it is not the same animal as the giant panda."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Bird",
+        "answer": "Peacock",
+        "aliases": [
+            "Peafowl"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "The male has a bright fan of long, eye-spotted feathers."
+            },
+            {
+                "angle": "display",
+                "text": "It spreads its tail during courtship."
+            },
+            {
+                "angle": "symbol",
+                "text": "It is the national bird of India."
+            },
+            {
+                "angle": "family",
+                "text": "The bird commonly called a peacock is the male of this group."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Bermuda Triangle",
+        "aliases": [
+            "Devil’s Triangle"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "This region is in the western part of the North Atlantic Ocean."
+            },
+            {
+                "angle": "shape",
+                "text": "It is commonly described as a triangle."
+            },
+            {
+                "angle": "mystery",
+                "text": "Stories link it with ships and planes that disappeared."
+            },
+            {
+                "angle": "fact",
+                "text": "Many dramatic claims about it lack strong evidence."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Black hole",
+        "aliases": [
+            "Black holes"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "gravity",
+                "text": "Its gravity is so strong that light cannot escape from inside a boundary."
+            },
+            {
+                "angle": "space",
+                "text": "It can form when a very massive star collapses."
+            },
+            {
+                "angle": "boundary",
+                "text": "The point of no return is called the event horizon."
+            },
+            {
+                "angle": "image",
+                "text": "The first image of one was released in 2019."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Mythical place",
+        "answer": "Atlantis",
+        "aliases": [
+            "Lost city of Atlantis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "source",
+                "text": "The ancient Greek philosopher Plato wrote about it."
+            },
+            {
+                "angle": "legend",
+                "text": "It is described as a powerful island civilization."
+            },
+            {
+                "angle": "ending",
+                "text": "The story says it sank beneath the sea."
+            },
+            {
+                "angle": "debate",
+                "text": "People still debate whether it was based on a real place."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Astronomy",
+        "answer": "Northern Lights",
+        "aliases": [
+            "Aurora borealis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "Colorful waves of light appear in the night sky."
+            },
+            {
+                "angle": "location",
+                "text": "They are often seen near the Arctic."
+            },
+            {
+                "angle": "cause",
+                "text": "They happen when charged particles interact with gases in the atmosphere."
+            },
+            {
+                "angle": "name",
+                "text": "In the Southern Hemisphere, a related display is called the aurora australis."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Engineering",
+        "answer": "Eiffel Tower",
+        "aliases": [
+            "La Tour Eiffel"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "city",
+                "text": "This iron landmark stands in Paris."
+            },
+            {
+                "angle": "event",
+                "text": "It was built for the 1889 World’s Fair."
+            },
+            {
+                "angle": "designer",
+                "text": "It is named after an engineer whose company helped build it."
+            },
+            {
+                "angle": "view",
+                "text": "Visitors can go up it to see the city."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "Brainrot",
+        "aliases": [
+            "Brain rot",
+            "Internet brainrot"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "slang",
+                "text": "Online, this describes content that feels silly, repetitive, or mind-numbing."
+            },
+            {
+                "angle": "videos",
+                "text": "It is often used for absurd short-form videos and memes."
+            },
+            {
+                "angle": "phrase",
+                "text": "Someone might say, “I have ___ from watching these edits all day.”"
+            },
+            {
+                "angle": "culture",
+                "text": "The term became widely used in social media conversations."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Relationship slang",
+        "answer": "Situationship",
+        "aliases": [
+            "Situationships"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "relationship",
+                "text": "Two people act like a couple but have not clearly defined the relationship."
+            },
+            {
+                "angle": "uncertainty",
+                "text": "The label often means there is no clear commitment."
+            },
+            {
+                "angle": "conversation",
+                "text": "People may ask, “So, what are we?”"
+            },
+            {
+                "angle": "word",
+                "text": "The term combines “situation” and “relationship.”"
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "FOMO",
+        "aliases": [
+            "Fear of missing out"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "feeling",
+                "text": "You worry that others are having fun without you."
+            },
+            {
+                "angle": "social media",
+                "text": "Seeing friends’ posts can trigger it."
+            },
+            {
+                "angle": "plans",
+                "text": "It may make someone agree to plans they do not really want."
+            },
+            {
+                "angle": "letters",
+                "text": "The abbreviation expands to “fear of missing out.”"
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Social media format",
+        "answer": "POV",
+        "aliases": [
+            "Point of view"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "caption",
+                "text": "Creators often begin a video with these three letters."
+            },
+            {
+                "angle": "perspective",
+                "text": "It means the scene is shown from a particular viewpoint."
+            },
+            {
+                "angle": "example",
+                "text": "A caption might say, “___: You forgot there was a test today.”"
+            },
+            {
+                "angle": "platforms",
+                "text": "It is common on TikTok, Instagram Reels, and memes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Social slang",
+        "answer": "Ghosting",
+        "aliases": [
+            "Ghosted"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "messaging",
+                "text": "Someone suddenly stops replying without explanation."
+            },
+            {
+                "angle": "relationship",
+                "text": "It can happen while dating or making friends."
+            },
+            {
+                "angle": "metaphor",
+                "text": "The person seems to disappear like a ghost."
+            },
+            {
+                "angle": "sentence",
+                "text": "“They were texting every day, then they vanished”—this is called what?"
             }
         ],
         "needsReview": false

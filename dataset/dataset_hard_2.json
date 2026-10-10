@@ -1,0 +1,535 @@
+[
+    {
+        "category": "Movies",
+        "subfield": "Thriller",
+        "answer": "Inception",
+        "aliases": [
+            "Dream heist"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A team enters people’s dreams to plant an idea."
+            },
+            {
+                "angle": "lead",
+                "text": "Leonardo DiCaprio leads the team."
+            },
+            {
+                "angle": "visual",
+                "text": "A spinning top is an important object."
+            },
+            {
+                "angle": "genre",
+                "text": "The story mixes dreams, action, and reality."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Crime thriller",
+        "answer": "Fight Club",
+        "aliases": [
+            "Fight club"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "rule",
+                "text": "The first rule is that you do not talk about it."
+            },
+            {
+                "angle": "lead",
+                "text": "Edward Norton plays a quiet office worker."
+            },
+            {
+                "angle": "character",
+                "text": "Brad Pitt plays Tyler Durden."
+            },
+            {
+                "angle": "theme",
+                "text": "A secret group fights as a way to escape ordinary life."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "International film",
+        "answer": "Parasite",
+        "aliases": [
+            "Gisaengchung"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "country",
+                "text": "This award-winning film comes from South Korea."
+            },
+            {
+                "angle": "family",
+                "text": "A poor family gradually gets jobs in a wealthy household."
+            },
+            {
+                "angle": "award",
+                "text": "It won Best Picture at the Oscars."
+            },
+            {
+                "angle": "theme",
+                "text": "The story explores class differences, with major twists."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Bollywood comedy-drama",
+        "answer": "Zindagi Na Milegi Dobara",
+        "aliases": [
+            "ZNMD"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "trip",
+                "text": "Three friends take a road trip through Spain."
+            },
+            {
+                "angle": "cast",
+                "text": "Hrithik Roshan, Farhan Akhtar, and Abhay Deol star."
+            },
+            {
+                "angle": "challenge",
+                "text": "Each friend faces a fear during the trip."
+            },
+            {
+                "angle": "theme",
+                "text": "The film is about friendship and living in the moment."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Amphibian",
+        "answer": "Axolotl",
+        "aliases": [
+            "Mexican walking fish"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It looks like a smiling salamander with feathery gills."
+            },
+            {
+                "angle": "ability",
+                "text": "It can regrow limbs and parts of some organs."
+            },
+            {
+                "angle": "habitat",
+                "text": "It is native to lakes around Mexico City."
+            },
+            {
+                "angle": "life",
+                "text": "It can keep its juvenile features into adulthood."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Platypus",
+        "aliases": [
+            "Duck-billed platypus"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It has a bill like a duck and a flat tail."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives in rivers and streams in Australia."
+            },
+            {
+                "angle": "biology",
+                "text": "It is a mammal that lays eggs."
+            },
+            {
+                "angle": "defense",
+                "text": "Males have a venomous spur on their hind legs."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Reptile",
+        "answer": "Komodo dragon",
+        "aliases": [
+            "Komodo monitor"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "size",
+                "text": "It is the largest living species of lizard."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives on a few Indonesian islands."
+            },
+            {
+                "angle": "diet",
+                "text": "It hunts animals and can eat very large prey."
+            },
+            {
+                "angle": "feature",
+                "text": "Its bite involves venom and dangerous bacteria are not the only concern."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Red panda",
+        "aliases": [
+            "Lesser panda"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It has reddish fur, a ringed tail, and a masked face."
+            },
+            {
+                "angle": "diet",
+                "text": "It eats lots of bamboo."
+            },
+            {
+                "angle": "habitat",
+                "text": "It lives in forests in the Himalayas and nearby regions."
+            },
+            {
+                "angle": "name",
+                "text": "Despite its name, it is not the same animal as the giant panda."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Bird",
+        "answer": "Peacock",
+        "aliases": [
+            "Peafowl"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "The male has a bright fan of long, eye-spotted feathers."
+            },
+            {
+                "angle": "display",
+                "text": "It spreads its tail during courtship."
+            },
+            {
+                "angle": "symbol",
+                "text": "It is the national bird of India."
+            },
+            {
+                "angle": "family",
+                "text": "The bird commonly called a peacock is the male of this group."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Bermuda Triangle",
+        "aliases": [
+            "Devil’s Triangle"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "This region is in the western part of the North Atlantic Ocean."
+            },
+            {
+                "angle": "shape",
+                "text": "It is commonly described as a triangle."
+            },
+            {
+                "angle": "mystery",
+                "text": "Stories link it with ships and planes that disappeared."
+            },
+            {
+                "angle": "fact",
+                "text": "Many dramatic claims about it lack strong evidence."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Black hole",
+        "aliases": [
+            "Black holes"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "gravity",
+                "text": "Its gravity is so strong that light cannot escape from inside a boundary."
+            },
+            {
+                "angle": "space",
+                "text": "It can form when a very massive star collapses."
+            },
+            {
+                "angle": "boundary",
+                "text": "The point of no return is called the event horizon."
+            },
+            {
+                "angle": "image",
+                "text": "The first image of one was released in 2019."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Mythical place",
+        "answer": "Atlantis",
+        "aliases": [
+            "Lost city of Atlantis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "source",
+                "text": "The ancient Greek philosopher Plato wrote about it."
+            },
+            {
+                "angle": "legend",
+                "text": "It is described as a powerful island civilization."
+            },
+            {
+                "angle": "ending",
+                "text": "The story says it sank beneath the sea."
+            },
+            {
+                "angle": "debate",
+                "text": "People still debate whether it was based on a real place."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Astronomy",
+        "answer": "Northern Lights",
+        "aliases": [
+            "Aurora borealis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "Colorful waves of light appear in the night sky."
+            },
+            {
+                "angle": "location",
+                "text": "They are often seen near the Arctic."
+            },
+            {
+                "angle": "cause",
+                "text": "They happen when charged particles interact with gases in the atmosphere."
+            },
+            {
+                "angle": "name",
+                "text": "In the Southern Hemisphere, a related display is called the aurora australis."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Engineering",
+        "answer": "Eiffel Tower",
+        "aliases": [
+            "La Tour Eiffel"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "city",
+                "text": "This iron landmark stands in Paris."
+            },
+            {
+                "angle": "event",
+                "text": "It was built for the 1889 World’s Fair."
+            },
+            {
+                "angle": "designer",
+                "text": "It is named after an engineer whose company helped build it."
+            },
+            {
+                "angle": "view",
+                "text": "Visitors can go up it to see the city."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "Brainrot",
+        "aliases": [
+            "Brain rot",
+            "Internet brainrot"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "slang",
+                "text": "Online, this describes content that feels silly, repetitive, or mind-numbing."
+            },
+            {
+                "angle": "videos",
+                "text": "It is often used for absurd short-form videos and memes."
+            },
+            {
+                "angle": "phrase",
+                "text": "Someone might say, “I have ___ from watching these edits all day.”"
+            },
+            {
+                "angle": "culture",
+                "text": "The term became widely used in social media conversations."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Relationship slang",
+        "answer": "Situationship",
+        "aliases": [
+            "Situationships"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "relationship",
+                "text": "Two people act like a couple but have not clearly defined the relationship."
+            },
+            {
+                "angle": "uncertainty",
+                "text": "The label often means there is no clear commitment."
+            },
+            {
+                "angle": "conversation",
+                "text": "People may ask, “So, what are we?”"
+            },
+            {
+                "angle": "word",
+                "text": "The term combines “situation” and “relationship.”"
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "FOMO",
+        "aliases": [
+            "Fear of missing out"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "feeling",
+                "text": "You worry that others are having fun without you."
+            },
+            {
+                "angle": "social media",
+                "text": "Seeing friends’ posts can trigger it."
+            },
+            {
+                "angle": "plans",
+                "text": "It may make someone agree to plans they do not really want."
+            },
+            {
+                "angle": "letters",
+                "text": "The abbreviation expands to “fear of missing out.”"
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Social media format",
+        "answer": "POV",
+        "aliases": [
+            "Point of view"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "caption",
+                "text": "Creators often begin a video with these three letters."
+            },
+            {
+                "angle": "perspective",
+                "text": "It means the scene is shown from a particular viewpoint."
+            },
+            {
+                "angle": "example",
+                "text": "A caption might say, “___: You forgot there was a test today.”"
+            },
+            {
+                "angle": "platforms",
+                "text": "It is common on TikTok, Instagram Reels, and memes."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Social slang",
+        "answer": "Ghosting",
+        "aliases": [
+            "Ghosted"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "messaging",
+                "text": "Someone suddenly stops replying without explanation."
+            },
+            {
+                "angle": "relationship",
+                "text": "It can happen while dating or making friends."
+            },
+            {
+                "angle": "metaphor",
+                "text": "The person seems to disappear like a ghost."
+            },
+            {
+                "angle": "sentence",
+                "text": "“They were texting every day, then they vanished”—this is called what?"
+            }
+        ],
+        "needsReview": false
+    }
+]

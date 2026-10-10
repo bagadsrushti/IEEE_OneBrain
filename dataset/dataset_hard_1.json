@@ -1,0 +1,533 @@
+[
+    {
+        "category": "Movies",
+        "subfield": "Science-fiction film",
+        "answer": "Inception",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "director",
+                "text": "Christopher Nolan directed this film about dreams within dreams."
+            },
+            {
+                "angle": "plot",
+                "text": "A specialist is hired to plant an idea in someone's mind rather than steal one."
+            },
+            {
+                "angle": "object",
+                "text": "A spinning object helps the main character test whether he is dreaming."
+            },
+            {
+                "angle": "actor",
+                "text": "Leonardo DiCaprio plays a man trying to return to his children."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Indian thriller",
+        "answer": "Drishyam",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A man uses his love of films and careful planning to create an alibi for his family."
+            },
+            {
+                "angle": "language",
+                "text": "The original version of this thriller was made in Malayalam."
+            },
+            {
+                "angle": "actor",
+                "text": "Mohanlal plays the family man in the original film."
+            },
+            {
+                "angle": "detail",
+                "text": "A movie theatre and a police investigation are important to the story."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Animated film",
+        "answer": "Coco",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "culture",
+                "text": "This animated film draws on Mexico's Day of the Dead traditions."
+            },
+            {
+                "angle": "plot",
+                "text": "A young boy enters the Land of the Dead and learns about his family's past."
+            },
+            {
+                "angle": "song",
+                "text": "The song 'Remember Me' is central to the story."
+            },
+            {
+                "angle": "character",
+                "text": "The main boy's name is Miguel."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Superhero film",
+        "answer": "Black Panther",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "fictional place",
+                "text": "Much of the story takes place in a hidden African nation that appears technologically advanced."
+            },
+            {
+                "angle": "character",
+                "text": "The hero is also the ruler of Wakanda."
+            },
+            {
+                "angle": "material",
+                "text": "A rare metal called vibranium is central to the technology in this story."
+            },
+            {
+                "angle": "actor",
+                "text": "Chadwick Boseman played the title character in the 2018 film."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Platypus",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "classification",
+                "text": "This Australian mammal belongs to a rare group of mammals that lay eggs."
+            },
+            {
+                "angle": "appearance",
+                "text": "It has a bill that resembles a duck's and a broad, flat tail."
+            },
+            {
+                "angle": "habitat",
+                "text": "It searches for food underwater in freshwater streams and rivers."
+            },
+            {
+                "angle": "biology",
+                "text": "The male has a venomous spur on its hind legs."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Bird",
+        "answer": "Ostrich",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "record",
+                "text": "This bird is the largest living bird species."
+            },
+            {
+                "angle": "movement",
+                "text": "It cannot fly, but its long legs help it run at high speeds."
+            },
+            {
+                "angle": "body",
+                "text": "It has two toes on each foot, unlike most birds."
+            },
+            {
+                "angle": "eggs",
+                "text": "Its eggs are the largest laid by any living bird."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Marine animal",
+        "answer": "Seahorse",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "biology",
+                "text": "In this animal, the male carries the developing young in a pouch."
+            },
+            {
+                "angle": "movement",
+                "text": "It swims upright and uses a small fin to move through the water."
+            },
+            {
+                "angle": "appearance",
+                "text": "Its head shape inspired the common name of this fish."
+            },
+            {
+                "angle": "body",
+                "text": "It has a curled tail that can grip sea plants."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Mammal",
+        "answer": "Bat",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "classification",
+                "text": "It is the only mammal group capable of sustained powered flight."
+            },
+            {
+                "angle": "navigation",
+                "text": "Many species find prey and navigate using echoes from high-pitched sounds."
+            },
+            {
+                "angle": "resting",
+                "text": "Many species hang upside down while resting."
+            },
+            {
+                "angle": "diet",
+                "text": "Depending on the species, it may eat insects, fruit, nectar, or blood."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Aurora",
+        "aliases": [
+            "Northern lights",
+            "Aurora borealis"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "appearance",
+                "text": "It can create green, pink, or purple light displays in the night sky."
+            },
+            {
+                "angle": "cause",
+                "text": "Charged particles from the Sun interact with gases in Earth's upper atmosphere."
+            },
+            {
+                "angle": "location",
+                "text": "The displays are common near the Arctic and Antarctic regions."
+            },
+            {
+                "angle": "alternate name",
+                "text": "The northern version is commonly called the Northern Lights."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Sahara Desert",
+        "aliases": [
+            "Sahara"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "location",
+                "text": "This vast desert stretches across much of northern Africa."
+            },
+            {
+                "angle": "climate",
+                "text": "It is the largest hot desert on Earth, but not the largest desert overall."
+            },
+            {
+                "angle": "landscape",
+                "text": "It includes rocky plateaus and gravel plains as well as sand dunes."
+            },
+            {
+                "angle": "name",
+                "text": "Its name comes from an Arabic word meaning 'desert'."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "DNA",
+        "aliases": [
+            "Deoxyribonucleic acid"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "structure",
+                "text": "Its shape is often described as a twisted ladder or double helix."
+            },
+            {
+                "angle": "function",
+                "text": "It stores biological instructions used in the growth and functioning of organisms."
+            },
+            {
+                "angle": "inheritance",
+                "text": "It helps pass genetic traits from parents to offspring."
+            },
+            {
+                "angle": "forensics",
+                "text": "Its patterns can help identify people or establish biological relationships."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Geography",
+        "answer": "Equator",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "latitude",
+                "text": "This imaginary line is located at zero degrees latitude."
+            },
+            {
+                "angle": "geography",
+                "text": "It divides Earth into the Northern and Southern Hemispheres."
+            },
+            {
+                "angle": "climate",
+                "text": "Regions near it often receive strong sunlight throughout the year."
+            },
+            {
+                "angle": "map clue",
+                "text": "It crosses parts of South America, Africa, and Indonesia."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Black hole",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "physics",
+                "text": "It is a region where gravity is so strong that nothing inside a boundary can escape."
+            },
+            {
+                "angle": "boundary",
+                "text": "That boundary is known as the event horizon."
+            },
+            {
+                "angle": "formation",
+                "text": "Some form when the cores of massive stars collapse."
+            },
+            {
+                "angle": "observation",
+                "text": "Scientists often study it by observing its effects on nearby stars and gas."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Technology",
+        "answer": "Blockchain",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "structure",
+                "text": "It records data in linked groups that are difficult to alter retroactively."
+            },
+            {
+                "angle": "network",
+                "text": "Copies of the record can be held by many computers rather than one central server."
+            },
+            {
+                "angle": "application",
+                "text": "It is used by many cryptocurrencies, though it has other possible uses."
+            },
+            {
+                "angle": "name",
+                "text": "Its name describes linked units of stored information."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Internet slang",
+        "answer": "POV",
+        "aliases": [
+            "Point of view"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "abbreviation",
+                "text": "These letters shorten the phrase 'point of view'."
+            },
+            {
+                "angle": "video format",
+                "text": "Creators use it to frame a scene from a particular person's perspective."
+            },
+            {
+                "angle": "social media",
+                "text": "It often appears at the start of short skits and relatable videos."
+            },
+            {
+                "angle": "interpretation",
+                "text": "The viewer is invited to imagine being in the situation shown."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "AI",
+        "answer": "Deepfake",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "technology",
+                "text": "AI can be used to make a person appear to say or do something they never did."
+            },
+            {
+                "angle": "media",
+                "text": "It may involve synthetic video, images, or audio."
+            },
+            {
+                "angle": "risk",
+                "text": "It can be used for scams or misinformation when presented as genuine."
+            },
+            {
+                "angle": "word origin",
+                "text": "The term combines an AI training approach with the idea of something false."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Trending Topics",
+        "subfield": "Technology",
+        "answer": "Virtual Reality",
+        "aliases": [
+            "VR"
+        ],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "experience",
+                "text": "It places a user inside a computer-generated environment."
+            },
+            {
+                "angle": "equipment",
+                "text": "A head-mounted display is commonly used to experience it."
+            },
+            {
+                "angle": "applications",
+                "text": "It can support simulations for training, design, and entertainment."
+            },
+            {
+                "angle": "abbreviation",
+                "text": "Its standard abbreviation uses two letters."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Movies",
+        "subfield": "Fantasy film",
+        "answer": "The Truman Show",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "plot",
+                "text": "A man discovers clues that his apparently ordinary life may be staged."
+            },
+            {
+                "angle": "actor",
+                "text": "Jim Carrey plays the central character in this satirical drama."
+            },
+            {
+                "angle": "setting",
+                "text": "The town around him is actually a carefully controlled production set."
+            },
+            {
+                "angle": "theme",
+                "text": "The film questions surveillance, media, and the boundary between reality and performance."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "Animals",
+        "subfield": "Marine animal",
+        "answer": "Mantis shrimp",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "biology",
+                "text": "This marine crustacean has specialised appendages that can strike or spear prey."
+            },
+            {
+                "angle": "vision",
+                "text": "Some species detect polarised light and a wider range of colours than humans."
+            },
+            {
+                "angle": "habitat",
+                "text": "It often lives in burrows or crevices on the sea floor."
+            },
+            {
+                "angle": "nickname",
+                "text": "Its punch is famous for being extremely fast and powerful."
+            }
+        ],
+        "needsReview": false
+    },
+    {
+        "category": "General Knowledge",
+        "subfield": "Science",
+        "answer": "Tectonic plates",
+        "aliases": [],
+        "tier": "hard",
+        "clues": [
+            {
+                "angle": "geology",
+                "text": "These large pieces of Earth's outer shell move slowly over the planet's interior."
+            },
+            {
+                "angle": "hazard",
+                "text": "Their boundaries are associated with many earthquakes and volcanic eruptions."
+            },
+            {
+                "angle": "mountains",
+                "text": "When some of them collide, the crust can buckle and form mountain ranges."
+            },
+            {
+                "angle": "ocean floor",
+                "text": "New crust can form where some of them move apart beneath the sea."
+            }
+        ],
+        "needsReview": false
+    }
+]
