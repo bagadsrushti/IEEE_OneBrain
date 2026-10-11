@@ -31,6 +31,7 @@ const Landing = () => {
   const [mode, setMode] = useState('quick'); // 'quick' | 'duel' | 'event'
   const [nickname, setNickname] = useState('');
   const [teamName, setTeamName] = useState('');
+  const [expectedPlayers, setExpectedPlayers] = useState(8); // Default 8 players for Duel
   const [roomCode, setRoomCode] = useState((code || '').toUpperCase());
   const [error, setError] = useState('');
   const [showScanner, setShowScanner] = useState(false);
@@ -73,7 +74,7 @@ const Landing = () => {
         navigate(`/room/${res.roomCode}`);
       });
     } else if (mode === 'duel') {
-      createDuel({ nickname: nickname.trim() }, (res) => {
+      createDuel({ nickname: nickname.trim(), expectedPlayers }, (res) => {
         if (res.error) return setError(res.error);
         navigate(`/room/${res.duelCode}`);
       });
@@ -262,6 +263,36 @@ const Landing = () => {
               className="w-full bg-white border border-[#E5E7EB] rounded-[12px] px-4 py-3 text-[14px] font-medium text-[#1E1B3A] placeholder-[#9CA3AF] focus:outline-none focus:border-[#5046E5] focus:ring-1 focus:ring-[#5046E5] transition-all"
             />
           </div>
+
+          {mode === 'duel' && (
+            <div className="bg-[#FEF2F2]/60 border border-[#FEE2E2] rounded-[16px] p-3.5 space-y-2">
+              <label className="block text-[13px] font-bold text-[#1E1B3A] flex items-center justify-between">
+                <span>How many players are playing?</span>
+                <span className="text-[11px] font-extrabold text-red-600 bg-red-100 px-2 py-0.5 rounded-full">
+                  {expectedPlayers / 2} vs {expectedPlayers / 2}
+                </span>
+              </label>
+              <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5">
+                {[4, 6, 8, 10, 12, 14, 16].map((num) => (
+                  <button
+                    key={num}
+                    type="button"
+                    onClick={() => setExpectedPlayers(num)}
+                    className={`py-2 rounded-[10px] font-extrabold text-[14px] transition-all border cursor-pointer ${
+                      expectedPlayers === num
+                        ? 'bg-red-600 border-red-600 text-white shadow-xs'
+                        : 'bg-white border-[#E5E7EB] text-[#374151] hover:border-red-300 hover:text-red-600'
+                    }`}
+                  >
+                    {num}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-[#6B7280] text-center pt-0.5">
+                Host counts as 1 of the {expectedPlayers} players. Teams will be split equally.
+              </p>
+            </div>
+          )}
 
           <button
             onClick={handleCreate}

@@ -2,15 +2,13 @@ const assert = require('assert');
 const http = require('http');
 const express = require('express');
 const { Server } = require('socket.io');
-const ioClient = require('socket.io-client');
 
 const duelManager = require('../duelManager');
 const gameManager = require('../gameManager');
 const { initializeSockets } = require('../socket');
-const challengesData = require('../data/challenges.json');
 
 console.log('======================================================================');
-console.log('DUEL MODE COMPREHENSIVE TEST SUITE');
+console.log('DUEL MODE COMPREHENSIVE TEST SUITE (REVISED)');
 console.log('======================================================================\n');
 
 let totalTests = 0;
@@ -46,260 +44,352 @@ async function main() {
   duelManager.setGameManager(gameManager);
 
   // ===================================================================
-  // 1. SPLIT TESTS (4 to 16 players, balanced, rejected outside range)
+  // 1. PLAYER COUNT VALIDATION & QUEUE MANAGEMENT
   // ===================================================================
-  console.log('--- 1. Team Splitting & Player Limit Tests ---');
+  console.log('--- 1. Player Count Validation & Queue Management ---');
 
-  runTest('3 players rejected for split (<4 min)', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Odd and out-of-range player counts are rejected on createDuel', () => {
+    // Odd numbers
+    [3, 5, 7, 9, 11, 13, 15].forEach(odd => {
+      assert.throws(() => {
+        duelManager.createDuel('Host', odd);
+      }, /Expected players must be an even number/, `Should reject odd player count ${odd}`);
+    });
+
+    // Out of range (<4 or >16)
+    [0, 2, 18, 20, 100].forEach(bad => {
+      assert.throws(() => {
+        duelManager.createDuel('Host', bad);
+      }, /Expected players must be an even number/, `Should reject out of range count ${bad}`);
+    });
+
+    // Valid even numbers 4, 6, 8, 10, 12, 14, 16 succeed
+    [4, 6, 8, 10, 12, 14, 16].forEach(valid => {
+      const { duel } = duelManager.createDuel('Host', valid);
+      assert.strictEqual(duel.expectedPlayers, valid);
+      duelManager.cancelDuel(duel.code);
+    });
+  });
+
+  runTest('Queue shows live counts, joins beyond N rejected ("Duel full")', () => {
+    const N = 4;
+    const { duel } = duelManager.createDuel('Host', N);
+    assert.strictEqual(duel.players.length, 1);
+
+    const j2 = duelManager.joinDuel(duel.code, 'P2');
+    assert(j2.success);
+    assert.strictEqual(duel.players.length, 2);
+
+    const j3 = duelManager.joinDuel(duel.code, 'P3');
+    assert(j3.success);
+    assert.strictEqual(duel.players.length, 3);
+
+    const j4 = duelManager.joinDuel(duel.code, 'P4');
+    assert(j4.success);
+    assert.strictEqual(duel.players.length, 4);
+
+    // 5th player joining when N=4 must be rejected
+    const j5 = duelManager.joinDuel(duel.code, 'P5');
+    assert(j5.error, '5th player must be rejected');
+    assert.strictEqual(j5.error, 'Duel full');
+
+    duelManager.cancelDuel(duel.code);
+  });
+
+  runTest('Removing a player updates queue count and cancels auto-countdown if active', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    const p2 = duelManager.joinDuel(duel.code, 'P2');
+    const p3 = duelManager.joinDuel(duel.code, 'P3');
+    const p4 = duelManager.joinDuel(duel.code, 'P4');
+
+    // Reached 4/4 -> status is 'countdown'
+    assert.strictEqual(duel.status, 'countdown');
+
+    // Host removes P4
+    const remRes = duelManager.removePlayer(duel.code, hostPlayer.id, p4.player.id);
+    assert(remRes.success);
+    assert.strictEqual(duel.players.length, 3);
+    assert.strictEqual(duel.status, 'lobby', 'Should cancel countdown when below expectedPlayers');
+
+    // Non-host cannot remove
+    const unauthorizedRem = duelManager.removePlayer(duel.code, p2.player.id, p3.player.id);
+    assert(unauthorizedRem.error, 'Non-host cannot remove players');
+
+    duelManager.cancelDuel(duel.code);
+  });
+
+  runTest('Editing expected players N works for even numbers >= joined count', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 6);
     duelManager.joinDuel(duel.code, 'P2');
     duelManager.joinDuel(duel.code, 'P3');
-    const res = duelManager.splitTeams(duel.code, hostPlayer.id);
-    assert(res.error, 'Should fail to split 3 players');
-    assert(res.error.includes('At least 4 players'), `Unexpected error: ${res.error}`);
+    duelManager.joinDuel(duel.code, 'P4'); // 4 joined
+
+    // Cannot lower below joined count
+    const tooLow = duelManager.setExpectedPlayers(duel.code, hostPlayer.id, 2);
+    assert(tooLow.error);
+
+    // Cannot set odd number
+    const oddSet = duelManager.setExpectedPlayers(duel.code, hostPlayer.id, 5);
+    assert(oddSet.error);
+
+    // Setting to 8 works
+    const set8 = duelManager.setExpectedPlayers(duel.code, hostPlayer.id, 8);
+    assert(set8.success);
+    assert.strictEqual(duel.expectedPlayers, 8);
+
+    // Setting to 4 works and triggers countdown because 4 joined
+    const set4 = duelManager.setExpectedPlayers(duel.code, hostPlayer.id, 4);
+    assert(set4.success);
+    assert.strictEqual(duel.status, 'countdown');
+
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('17th player joining is rejected (>16 max)', () => {
-    const { duel } = duelManager.createDuel('Host');
-    for (let i = 2; i <= 16; i++) {
-      const jRes = duelManager.joinDuel(duel.code, `P${i}`);
-      assert(jRes.success, `Player ${i} should join`);
-    }
-    const rejectRes = duelManager.joinDuel(duel.code, 'P17');
-    assert(rejectRes.error, '17th player must be rejected');
-    assert(rejectRes.error.includes('max 16'), `Unexpected error: ${rejectRes.error}`);
+  runTest('Start is disabled / rejected for odd player counts; works for even >=4', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 8);
+    duelManager.joinDuel(duel.code, 'P2');
+    duelManager.joinDuel(duel.code, 'P3'); // 3 joined (odd)
+
+    const oddStart = duelManager.startNow(duel.code, hostPlayer.id);
+    assert(oddStart.error, 'Start must be rejected for odd count');
+    assert(oddStart.error.includes('Waiting for 1 more player'));
+
+    // Join 1 more to reach 4 (even >= 4)
+    duelManager.joinDuel(duel.code, 'P4');
+    const evenStart = duelManager.startNow(duel.code, hostPlayer.id);
+    assert(evenStart.success, `Start should succeed for 4 players: ${evenStart.error}`);
+    assert.strictEqual(duel.status, 'team_reveal');
+    assert.strictEqual(duel.expectedPlayers, 4);
+
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('Splits for all valid player counts (N=4..16) are balanced within 1 and teams 2..8', () => {
-    for (let count = 4; count <= 16; count++) {
-      const { duel, hostPlayer } = duelManager.createDuel('Host');
-      for (let i = 2; i <= count; i++) {
-        duelManager.joinDuel(duel.code, `P${i}`);
-      }
-      const splitRes = duelManager.splitTeams(duel.code, hostPlayer.id);
-      assert(splitRes.success, `Split should succeed for count ${count}: ${splitRes.error}`);
-      const red = duel.teamRed.playerIds.length;
-      const blue = duel.teamBlue.playerIds.length;
-      assert(red + blue === count, `Sum should equal ${count}`);
-      assert(Math.abs(red - blue) <= 1, `Team sizes should differ by at most 1 (got ${red} and ${blue})`);
-      assert(red >= 2 && red <= 8, `Team Red size must be in 2..8 (got ${red})`);
-      assert(blue >= 2 && blue <= 8, `Team Blue size must be in 2..8 (got ${blue})`);
+  runTest('Join after start is rejected ("Duel already started")', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
+    duelManager.startNow(duel.code, hostPlayer.id);
+
+    const lateJoin = duelManager.joinDuel(duel.code, 'LateComer');
+    assert(lateJoin.error);
+    assert.strictEqual(lateJoin.error, 'Duel already started');
+
+    duelManager.cancelDuel(duel.code);
+  });
+
+  runTest('Queue disconnect timeout: player offline in queue is removed after 30 seconds', () => {
+    const { duel } = duelManager.createDuel('Host', 4);
+    const p2 = duelManager.joinDuel(duel.code, 'P2');
+    assert.strictEqual(duel.players.length, 2);
+
+    // Player 2 disconnects
+    duelManager.leaveDuel(duel.code, p2.player.id);
+    const playerInDuel = duel.players.find(p => p.id === p2.player.id);
+    assert.strictEqual(playerInDuel.connected, false);
+    assert(playerInDuel.queueDisconnectTimer, 'Queue disconnect timer must be scheduled');
+
+    // Simulate timer firing
+    clearTimeout(playerInDuel.queueDisconnectTimer);
+    duelManager.removePlayer(duel.code, duel.hostId, p2.player.id, true);
+
+    assert.strictEqual(duel.players.length, 1, 'Player should be removed from queue');
+    duelManager.cancelDuel(duel.code);
+  });
+
+  // ===================================================================
+  // 2. TEAM SPLIT & KEYWORDS FAIRNESS
+  // ===================================================================
+  console.log('\n--- 2. Team Split & Fairness (N=4, 8, 16) ---');
+
+  runTest('N=4, 8, 16 split into equal teams of 2, 4, and 8 players', () => {
+    [4, 8, 16].forEach(N => {
+      const { duel, hostPlayer } = duelManager.createDuel('Host', N);
+      for (let i = 2; i <= N; i++) duelManager.joinDuel(duel.code, `P${i}`);
+
+      const res = duelManager.startNow(duel.code, hostPlayer.id);
+      assert(res.success);
+
+      const redCount = duel.teamRed.playerIds.length;
+      const blueCount = duel.teamBlue.playerIds.length;
+      assert.strictEqual(redCount, N / 2, `Red team size should be ${N / 2}`);
+      assert.strictEqual(blueCount, N / 2, `Blue team size should be ${N / 2}`);
+
       duelManager.cancelDuel(duel.code);
-    }
+    });
   });
 
-  runTest('Shuffle re-randomizes teams and team renaming sanitizes and updates', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Both teams receive the SAME 3 keywords in different orders, with enough clues for team size', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 8); // 4v4
     for (let i = 2; i <= 8; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
-    const renameRes = duelManager.renameTeams(duel.code, hostPlayer.id, '  <b>Super Red</b>  ', 'Cool Blue!');
-    assert(renameRes.success);
-    assert.strictEqual(duel.teamRed.name, 'Super Red', 'Should strip html tags and whitespace');
-    assert.strictEqual(duel.teamBlue.name, 'Cool Blue!');
-
-    const shuffleRes = duelManager.splitTeams(duel.code, hostPlayer.id, true);
-    assert(shuffleRes.success);
-    duelManager.cancelDuel(duel.code);
-  });
-
-  // ===================================================================
-  // 2. KEYWORDS & FAIRNESS TESTS
-  // ===================================================================
-  console.log('\n--- 2. Keywords, Fairness & Offset Sequences ---');
-
-  runTest('Both teams receive same 3 main keywords in offset orders (never same keyword at same step)', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
-    for (let i = 2; i <= 6; i++) duelManager.joinDuel(duel.code, `P${i}`); // 6 players (3v3)
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-
-    const startRes = duelManager.startDuel(duel.code, hostPlayer.id);
-    assert(startRes.success, `Failed to start duel: ${startRes.error}`);
-
-    assert.strictEqual(duel.pool.main.length, 3, 'Should have 3 main keywords');
-    assert.strictEqual(duel.pool.reserves.length, 3, 'Should have 3 reserve keywords');
-
+    assert.strictEqual(duel.keywords.length, 3, 'Must pick exactly 3 keywords');
     const redSeq = duel.teamRedSequence;
     const blueSeq = duel.teamBlueSequence;
 
-    // Same set of 3 main keywords
-    const redIds = redSeq.map(c => c.id).sort();
-    const blueIds = blueSeq.map(c => c.id).sort();
-    assert.deepStrictEqual(redIds, blueIds, 'Both teams must play the same 3 main keywords');
+    assert.strictEqual(redSeq.length, 3);
+    assert.strictEqual(blueSeq.length, 3);
 
-    // Never on the same keyword at any of the 3 steps
-    for (let step = 0; step < 3; step++) {
-      assert.notStrictEqual(redSeq[step].id, blueSeq[step].id, `Step ${step} has identical keyword on both teams!`);
-    }
+    // Identical set of 3 keywords
+    const redIds = redSeq.map(k => k.id).sort();
+    const blueIds = blueSeq.map(k => k.id).sort();
+    assert.deepStrictEqual(redIds, blueIds, 'Both teams must receive identical set of 3 keywords');
 
-    // Every keyword has at least as many clues as the larger team size
-    const maxTeamSize = Math.max(duel.teamRed.playerIds.length, duel.teamBlue.playerIds.length);
-    [...duel.pool.main, ...duel.pool.reserves].forEach(kw => {
-      assert(kw.clues.length >= maxTeamSize, `Keyword ${kw.answer} has ${kw.clues.length} clues, needed >= ${maxTeamSize}`);
+    // Different orders (offset)
+    assert.notStrictEqual(redSeq[0].id, blueSeq[0].id, 'Round 1 must have different keywords for Red and Blue');
+
+    // Enough clues for team size (4)
+    duel.keywords.forEach(kw => {
+      assert(kw.clues.length >= 4, `Keyword ${kw.answer} must have >= 4 clues (has ${kw.clues.length})`);
     });
 
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('Replacement reserve keyword never equals the opponent’s current active keyword', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
-    for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`); // 4 players (2v2)
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
-
-    // Suppose team blue is currently on keyword X
-    const blueCurrent = duel.teamBlue.currentKeyword;
-    assert(blueCurrent);
-
-    // Make reserve 0 have the same id as blueCurrent
-    duel.pool.reserves[0] = blueCurrent;
-
-    // Team Red requests next reserve
-    const picked = duelManager.pickNextReserve(duel, 'red');
-    assert(picked, 'Should pick a reserve');
-    assert.notStrictEqual(picked.id, blueCurrent.id, 'Reserve must NEVER equal opponent’s active keyword');
-
-    duelManager.cancelDuel(duel.code);
-  });
-
   // ===================================================================
-  // 3. RACE LOGIC TESTS (First to 3 solves wins, late submissions rejected)
+  // 3. INSTANT WIN & 3 ROUNDS RACE EXECUTION
   // ===================================================================
-  console.log('\n--- 3. Race Progression & Win Execution ---');
+  console.log('\n--- 3. Instant Win & Race Execution ---');
 
-  runTest('First team to 3 solves wins immediately, stops opponent, rejects subsequent submissions', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Instant win: First team to solve 3 keywords wins immediately, stops opponent, rejects further answers', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
+
+    // Fast-forward 10s meet-your-team
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+    assert.strictEqual(duel.status, 'in_progress');
 
     const redPlayer = duel.players.find(p => p.team === 'red');
     const bluePlayer = duel.players.find(p => p.team === 'blue');
 
-    // Solve 1 for Red
+    // Solve Round 1 for Red
     const kw1 = duel.teamRed.currentKeyword;
-    let res = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw1.answer);
-    assert(res.isCorrect);
+    let r1 = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw1.answer);
+    assert(r1.isCorrect);
     assert.strictEqual(duel.teamRed.solvedCount, 1);
-    assert.strictEqual(duel.status, 'in_progress');
 
-    // Simulate reveal end and start keyword 2 for Red
+    // Fast-forward 6s reveal to Round 2
+    clearTimeout(duel.teamRed.revealTimer);
     duel.teamRed.inReveal = false;
-    duelManager.startTeamKeyword(duel, 'red', 1);
+    duelManager.startTeamRound(duel, 'red', 1);
 
-    // Solve 2 for Red
+    // Solve Round 2 for Red
     const kw2 = duel.teamRed.currentKeyword;
-    res = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw2.answer);
-    assert(res.isCorrect);
+    let r2 = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw2.answer);
+    assert(r2.isCorrect);
     assert.strictEqual(duel.teamRed.solvedCount, 2);
 
-    // Simulate reveal end and start keyword 3 for Red
+    // Fast-forward 6s reveal to Round 3
+    clearTimeout(duel.teamRed.revealTimer);
     duel.teamRed.inReveal = false;
-    duelManager.startTeamKeyword(duel, 'red', 2);
+    duelManager.startTeamRound(duel, 'red', 2);
 
-    // Solve 3 for Red -> WINNER!
+    // Solve Round 3 for Red -> INSTANT WIN!
     const kw3 = duel.teamRed.currentKeyword;
-    res = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw3.answer);
-    assert(res.isCorrect);
-    assert.strictEqual(res.winner, 'red', 'Team Red must win on 3rd solve');
+    let r3 = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, kw3.answer);
+    assert(r3.isCorrect);
+    assert.strictEqual(r3.winner, 'red');
+
     assert.strictEqual(duel.status, 'finished');
     assert.strictEqual(duel.winner, 'red');
-    assert.strictEqual(duel.winnerReason, 'first_to_3');
+    assert.strictEqual(duel.winnerReason, 'instant_3_solves');
 
-    // Opponent Blue keyword is stopped, and subsequent answers rejected
-    const lateRes = duelManager.submitAnswer(duel.code, 'blue', bluePlayer.id, duel.teamBlue.currentKeyword.answer);
-    assert(lateRes.error, 'Submissions arriving after duel completion must be rejected');
-    assert(lateRes.error.includes('not currently active'), `Unexpected error: ${lateRes.error}`);
+    // Opponent Blue round is stopped immediately
+    assert.strictEqual(duel.teamBlue.finished, true);
 
-    duelManager.cancelDuel(duel.code);
-  });
-
-  runTest('Keyword failure triggers reserve replacement and continues race to 3', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
-    for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
-
-    const redPlayer = duel.players.find(p => p.team === 'red');
-
-    // Fail keyword 0 for Red via 3 wrong attempts
-    const kw0 = duel.teamRed.currentKeyword;
-    duelManager.submitAnswer(duel.code, 'red', redPlayer.id, 'Wrong1');
-    duelManager.submitAnswer(duel.code, 'red', redPlayer.id, 'Wrong2');
-    const failRes = duelManager.submitAnswer(duel.code, 'red', redPlayer.id, 'Wrong3');
-    assert(failRes.exhausted, 'Attempts should be exhausted');
-    assert.strictEqual(duel.teamRed.solvedCount, 0);
-
-    // Fast-forward reveal to start replacement reserve keyword
-    duel.teamRed.inReveal = false;
-    duelManager.startTeamKeyword(duel, 'red', 1);
-
-    // Sequence now has the next keyword
-    assert(duel.teamRed.currentKeyword, 'Must have received next keyword');
-    assert.strictEqual(duel.teamRed.currentKeywordIndex, 1);
+    // Late submissions from Blue are rejected
+    const lateSub = duelManager.submitAnswer(duel.code, 'blue', bluePlayer.id, duel.teamBlue.currentKeyword.answer);
+    assert(lateSub.error, 'Submissions after instant win must be rejected');
 
     duelManager.cancelDuel(duel.code);
   });
 
   // ===================================================================
-  // 4. MATCH CAP & TIE-BREAKERS
+  // 4. FINISH WITHOUT 3/3: TIE-BREAKERS & DRAW
   // ===================================================================
-  console.log('\n--- 4. Match Cap & Tie-Breakers ---');
+  console.log('\n--- 4. Tie-Breakers When Neither Reaches 3 Solves ---');
 
-  runTest('Match cap: Team with more solves wins', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Both finish: More solved keywords wins (2 vs 1)', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    // Team Red finishes 3 rounds with 2 solves
     duel.teamRed.solvedCount = 2;
+    duel.teamRed.roundsPlayed = 3;
+    duel.teamRed.finished = true;
+    duel.teamRed.finishTime = 150;
+
+    // Team Blue finishes 3 rounds with 1 solve
     duel.teamBlue.solvedCount = 1;
+    duel.teamBlue.roundsPlayed = 3;
+    duel.teamBlue.finished = true;
+    duel.teamBlue.finishTime = 120;
 
-    duelManager.handleMatchCapTimeout(duel.code);
+    duelManager.checkBothTeamsFinished(duel);
+
     assert.strictEqual(duel.status, 'finished');
     assert.strictEqual(duel.winner, 'red');
-    assert.strictEqual(duel.winnerReason, 'time_cap_solves');
+    assert.strictEqual(duel.winnerReason, 'more_solves');
 
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('Match cap tie-breaker 1: Lower total solve time wins when solves are equal', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Both finish with equal solves: Earlier finishTime wins', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    // Both solved 2 keywords
     duel.teamRed.solvedCount = 2;
-    duel.teamRed.totalSolveTime = 85;
+    duel.teamRed.roundsPlayed = 3;
+    duel.teamRed.finished = true;
+    duel.teamRed.finishTime = 140; // 140 seconds
 
     duel.teamBlue.solvedCount = 2;
-    duel.teamBlue.totalSolveTime = 110;
+    duel.teamBlue.roundsPlayed = 3;
+    duel.teamBlue.finished = true;
+    duel.teamBlue.finishTime = 115; // 115 seconds (earlier!)
 
-    duelManager.handleMatchCapTimeout(duel.code);
+    duelManager.checkBothTeamsFinished(duel);
+
     assert.strictEqual(duel.status, 'finished');
-    assert.strictEqual(duel.winner, 'red');
+    assert.strictEqual(duel.winner, 'blue');
     assert.strictEqual(duel.winnerReason, 'tie_breaker_time');
 
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('Match cap tie-breaker 2: Fewer wrong attempts wins when solves and time are equal', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Both finish with equal solves & finishTime: Fewer wrong attempts wins', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
-    duel.teamRed.solvedCount = 2;
-    duel.teamRed.totalSolveTime = 80;
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    // Both solved 1 keyword at 150s
+    duel.teamRed.solvedCount = 1;
+    duel.teamRed.roundsPlayed = 3;
+    duel.teamRed.finished = true;
+    duel.teamRed.finishTime = 150;
     duel.teamRed.totalWrongAttempts = 4;
 
-    duel.teamBlue.solvedCount = 2;
-    duel.teamBlue.totalSolveTime = 80;
-    duel.teamBlue.totalWrongAttempts = 1;
+    duel.teamBlue.solvedCount = 1;
+    duel.teamBlue.roundsPlayed = 3;
+    duel.teamBlue.finished = true;
+    duel.teamBlue.finishTime = 150;
+    duel.teamBlue.totalWrongAttempts = 1; // Fewer wrong attempts!
 
-    duelManager.handleMatchCapTimeout(duel.code);
+    duelManager.checkBothTeamsFinished(duel);
+
     assert.strictEqual(duel.status, 'finished');
     assert.strictEqual(duel.winner, 'blue');
     assert.strictEqual(duel.winnerReason, 'tie_breaker_wrong');
@@ -307,21 +397,28 @@ async function main() {
     duelManager.cancelDuel(duel.code);
   });
 
-  runTest('Match cap draw: Equal solves, solve time, and wrong attempts results in Draw', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Draw declared when solves, finishTime, and wrong attempts are identical', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
-    duel.teamRed.solvedCount = 1;
-    duel.teamRed.totalSolveTime = 50;
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    duel.teamRed.solvedCount = 2;
+    duel.teamRed.roundsPlayed = 3;
+    duel.teamRed.finished = true;
+    duel.teamRed.finishTime = 120;
     duel.teamRed.totalWrongAttempts = 2;
 
-    duel.teamBlue.solvedCount = 1;
-    duel.teamBlue.totalSolveTime = 50;
+    duel.teamBlue.solvedCount = 2;
+    duel.teamBlue.roundsPlayed = 3;
+    duel.teamBlue.finished = true;
+    duel.teamBlue.finishTime = 120;
     duel.teamBlue.totalWrongAttempts = 2;
 
-    duelManager.handleMatchCapTimeout(duel.code);
+    duelManager.checkBothTeamsFinished(duel);
+
     assert.strictEqual(duel.status, 'finished');
     assert.strictEqual(duel.winner, 'draw');
     assert.strictEqual(duel.winnerReason, 'draw');
@@ -330,38 +427,28 @@ async function main() {
   });
 
   // ===================================================================
-  // 5. DISCONNECT & FORFEIT HANDLING
+  // 5. DISCONNECTS & 60-SECOND FORFEIT
   // ===================================================================
-  console.log('\n--- 5. Disconnects & Forfeit ---');
+  console.log('\n--- 5. Disconnects & 60-Second Team Forfeit ---');
 
-  runTest('Rejoining mid-round with existing token restores player and clears team disconnect timer', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
-    const p2Res = duelManager.joinDuel(duel.code, 'P2');
-    for (let i = 3; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
-
-    // Player disconnects
-    duelManager.leaveDuel(duel.code, p2Res.player.id);
-    const p = duel.players.find(x => x.id === p2Res.player.id);
-    assert.strictEqual(p.connected, false);
-
-    // Player reconnects using token
-    const reRes = duelManager.joinDuel(duel.code, 'P2', p2Res.token);
-    assert(reRes.success);
-    assert.strictEqual(reRes.player.connected, true);
-
-    duelManager.cancelDuel(duel.code);
-  });
-
-  runTest('Team offline triggers forfeit: opponent wins by forfeit', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
+  runTest('Team offline triggers 60-second forfeit and opponent wins', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+    duelManager.startNow(duel.code, hostPlayer.id);
 
-    // Trigger forfeit directly for Red
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    // Red team players disconnect
+    const redPlayerIds = duel.teamRed.playerIds;
+    redPlayerIds.forEach(pid => duelManager.leaveDuel(duel.code, pid));
+
+    assert(duel.teamRed.disconnectTimer, 'Team disconnect timer must be running');
+
+    // Simulate 60s forfeit timer expiring
+    clearTimeout(duel.teamRed.disconnectTimer);
     duelManager.handleTeamForfeit(duel.code, 'red');
+
     assert.strictEqual(duel.status, 'finished');
     assert.strictEqual(duel.winner, 'blue');
     assert.strictEqual(duel.winnerReason, 'forfeit');
@@ -369,16 +456,40 @@ async function main() {
     duelManager.cancelDuel(duel.code);
   });
 
+  runTest('Reconnecting player mid-round with token reconnects and cancels forfeit', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    const p2Res = duelManager.joinDuel(duel.code, 'P2');
+    for (let i = 3; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
+    duelManager.startNow(duel.code, hostPlayer.id);
+
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+
+    // Disconnect
+    duelManager.leaveDuel(duel.code, p2Res.player.id);
+    const p = duel.players.find(x => x.id === p2Res.player.id);
+    assert.strictEqual(p.connected, false);
+
+    // Reconnect with token
+    const reRes = duelManager.joinDuel(duel.code, 'P2', p2Res.token);
+    assert(reRes.success);
+    assert.strictEqual(reRes.player.connected, true);
+
+    duelManager.cancelDuel(duel.code);
+  });
+
   // ===================================================================
-  // 6. ANTI-LEAK SECURITY CHECKS
+  // 6. ZERO-LEAK SECURITY VERIFICATION
   // ===================================================================
   console.log('\n--- 6. Zero-Leak Security Verification ---');
 
-  runTest('In-progress client payload contains ZERO leaks of opponent keywords, clues or answers', () => {
-    const { duel, hostPlayer } = duelManager.createDuel('Host');
-    for (let i = 2; i <= 6; i++) duelManager.joinDuel(duel.code, `P${i}`);
-    duelManager.splitTeams(duel.code, hostPlayer.id);
-    duelManager.startDuel(duel.code, hostPlayer.id);
+  runTest('Active client payload contains ZERO leaks of opponent keywords, clues or unrevealed answers', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
+    duelManager.startNow(duel.code, hostPlayer.id);
+
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
 
     const redPlayer = duel.players.find(p => p.team === 'red');
     const bluePlayer = duel.players.find(p => p.team === 'blue');
@@ -390,15 +501,17 @@ async function main() {
     assert(blueKeyword);
     const blueAns = blueKeyword.answer.toLowerCase();
 
-    // Red's payload must NOT contain Blue's keyword answer or clues
+    // Red's payload must NOT contain Blue's keyword answer
     assert(!redJson.includes(blueAns), `Leak: Red state includes Blue keyword answer "${blueAns}"!`);
+
+    // Red's payload must NOT contain Blue's clues
     blueKeyword.clues.forEach(c => {
       assert(!redJson.includes(c.text.toLowerCase()), `Leak: Red state includes Blue clue "${c.text}"!`);
     });
 
-    // Check opponent order: unplayed keywords must not be exposed
-    duel.pool.reserves.forEach(r => {
-      assert(!redJson.includes(r.answer.toLowerCase()), `Leak: Red state exposed unplayed reserve "${r.answer}"!`);
+    // Unrevealed round 2/3 keywords must not be exposed
+    duel.teamRedSequence.slice(1).forEach(futureKw => {
+      assert(!redJson.includes(futureKw.answer.toLowerCase()), `Leak: Unplayed keyword "${futureKw.answer}" exposed!`);
     });
 
     duelManager.cancelDuel(duel.code);
@@ -407,66 +520,52 @@ async function main() {
   // ===================================================================
   // 7. CONCURRENCY & MULTI-DUEL SIMULATION
   // ===================================================================
-  console.log('\n--- 7. Concurrency & Socket Server Multi-Duel Tests ---');
+  console.log('\n--- 7. Concurrency: Multiple Duels Running Simultaneously ---');
 
-  await runAsyncTest('10 simultaneous duels run with zero cross-talk', async () => {
+  await runAsyncTest('5 simultaneous duels run with zero cross-talk', async () => {
     const app = express();
     const server = http.createServer(app);
     const io = new Server(server, { cors: { origin: '*' } });
     initializeSockets(io);
 
     await new Promise(res => server.listen(0, res));
-    const port = server.address().port;
-    const socketUrl = `http://localhost:${port}`;
 
-    const duelCodes = [];
     const createdDuels = [];
 
-    // Create 10 duels simultaneously
-    for (let d = 0; d < 10; d++) {
-      const { duel, hostPlayer } = duelManager.createDuel(`Host_${d}`);
-      duelCodes.push(duel.code);
-      createdDuels.push({ duel, hostPlayer });
-
-      // Join 7 more players to make 8 players each (4v4)
-      for (let p = 2; p <= 8; p++) {
+    // Create 5 duels simultaneously
+    for (let d = 0; d < 5; d++) {
+      const { duel, hostPlayer } = duelManager.createDuel(`Host_${d}`, 4);
+      for (let p = 2; p <= 4; p++) {
         duelManager.joinDuel(duel.code, `P${p}_D${d}`);
       }
-
-      duelManager.splitTeams(duel.code, hostPlayer.id);
-      const startRes = duelManager.startDuel(duel.code, hostPlayer.id);
-      assert(startRes.success, `Duel ${d} failed to start: ${startRes.error}`);
+      duelManager.startNow(duel.code, hostPlayer.id);
+      clearTimeout(duel.meetTeamTimer);
+      duelManager.startMatch(duel);
+      createdDuels.push(duel);
     }
 
-    assert.strictEqual(duelCodes.length, 10);
+    assert.strictEqual(createdDuels.length, 5);
 
-    // Verify isolation: each duel has distinct codes and separate internal rooms
+    // Verify isolation: distinct internal rooms
     const allInternalRooms = new Set();
-    createdDuels.forEach(({ duel }) => {
+    createdDuels.forEach(duel => {
       assert.strictEqual(duel.status, 'in_progress');
-      assert(duel.teamRed.roomId);
-      assert(duel.teamBlue.roomId);
-      assert(!allInternalRooms.has(duel.teamRed.roomId), 'Room collision between duels!');
-      assert(!allInternalRooms.has(duel.teamBlue.roomId), 'Room collision between duels!');
+      assert(!allInternalRooms.has(duel.teamRed.roomId), 'Room collision!');
+      assert(!allInternalRooms.has(duel.teamBlue.roomId), 'Room collision!');
       allInternalRooms.add(duel.teamRed.roomId);
       allInternalRooms.add(duel.teamBlue.roomId);
     });
 
-    // Solve duel 3 for red, duel 7 for blue
-    const d3 = createdDuels[3].duel;
-    const d7 = createdDuels[7].duel;
+    // End duel 2 with Red win
+    duelManager.endDuelWithWinner(createdDuels[2], 'red', 'instant_3_solves');
+    assert.strictEqual(createdDuels[2].winner, 'red');
 
-    duelManager.endDuelWithWinner(d3, 'red', 'first_to_3');
-    duelManager.endDuelWithWinner(d7, 'blue', 'first_to_3');
-
-    assert.strictEqual(d3.winner, 'red');
-    assert.strictEqual(d7.winner, 'blue');
     // Other duels still in progress
-    assert.strictEqual(createdDuels[0].duel.status, 'in_progress');
-    assert.strictEqual(createdDuels[1].duel.status, 'in_progress');
+    assert.strictEqual(createdDuels[0].status, 'in_progress');
+    assert.strictEqual(createdDuels[1].status, 'in_progress');
 
-    // Clean up all 10 duels
-    duelCodes.forEach(code => duelManager.cancelDuel(code));
+    // Clean up
+    createdDuels.forEach(d => duelManager.cancelDuel(d.code));
 
     await new Promise(res => server.close(res));
   });

@@ -208,7 +208,7 @@ const Arena = () => {
                     {w.code}
                   </span>
                   <div className="text-xs text-gray-500 font-medium">
-                    {w.playerCount} players joined
+                    {w.joinedCount ?? w.playerCount ?? 0} of {w.expectedPlayers || 8} joined
                   </div>
                 </div>
                 <div className="flex gap-2">

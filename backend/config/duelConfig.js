@@ -1,47 +1,43 @@
 /**
  * Duel Mode Configuration Constants
  * 
- * Rules for 2-team head-to-head race to 3 solved keywords.
+ * Rules for 2-team head-to-head race (exactly 3 rounds per team).
  */
 
 module.exports = {
   // Player count constraints per duel
   DUEL_MIN_PLAYERS: 4,
   DUEL_MAX_PLAYERS: 16,
+  DUEL_ALLOWED_PLAYER_COUNTS: [4, 6, 8, 10, 12, 14, 16],
+  DUEL_DEFAULT_EXPECTED_PLAYERS: 8,
 
   // Constraints per team inside a duel
   TEAM_MIN_PLAYERS: 2,
   TEAM_MAX_PLAYERS: 8,
 
-  // Target keywords solved to win the duel
+  // Exactly 3 rounds per team
+  DUEL_ROUNDS_PER_TEAM: 3,
   DUEL_TARGET_SOLVES: 3,
 
-  // Keywords pool size (3 main + 3 reserves)
-  DUEL_MAIN_KEYWORDS: 3,
-  DUEL_RESERVE_KEYWORDS: 3,
-  DUEL_TOTAL_KEYWORDS: 6,
+  // Timing
+  DUEL_KEYWORD_TIME_CAP: 120,    // 120s max per round
+  DUEL_REVEAL_SECONDS: 6,        // 6s reveal between rounds
+  DUEL_COUNTDOWN_SECONDS: 5,     // 5s "Dividing into teams..." countdown
+  DUEL_MEET_TEAM_SECONDS: 10,    // 10s "Meet your team" screen before common start
 
-  // Keyword timing
-  DUEL_KEYWORD_TIME_CAP: 120, // max 120s per keyword
-  DUEL_REVEAL_SECONDS: 6,     // 6s reveal screen between keywords
-
-  // Match cap in minutes (default 10)
-  DUEL_DEFAULT_MAX_MINUTES: 10,
-  DUEL_MIN_MAX_MINUTES: 3,
-  DUEL_MAX_MAX_MINUTES: 30,
-
-  // Disconnect forfeit grace period (60s)
-  DUEL_TEAM_DISCONNECT_FORFEIT_MS: 60 * 1000,
+  // Disconnect timers
+  DUEL_QUEUE_DISCONNECT_TIMEOUT_MS: 30 * 1000, // 30s queue disconnect cleanup
+  DUEL_TEAM_DISCONNECT_FORFEIT_MS: 60 * 1000,  // 60s team disconnect forfeit
 
   // Default team names
   DEFAULT_TEAM_RED_NAME: 'Team Red',
   DEFAULT_TEAM_BLUE_NAME: 'Team Blue',
   TEAM_NAME_MAX_LENGTH: 20,
 
-  // Default prize banner template
+  // Prize banner template
   DEFAULT_PRIZE_BANNER: '🍫 Chocolate for {team}!',
 
-  // Tie-breaker handling: 'draw' or 'sudden_death'
+  // Tie-breaker: 'draw' or 'sudden_death'
   DEFAULT_TIE_BREAKER: 'draw',
 
   // Memory expiry for completed duels (30 minutes)

@@ -1,33 +1,35 @@
 {
   "domains": {
-    "General Knowledge": 1791715104149,
-    "Movies": 1791711129053,
+    "General Knowledge": 1791729192350,
+    "Movies": 1791729195043,
     "Animals": 1791714495944,
     "Trending Topics": 1791715104141
   },
   "subfields": {
-    "General Knowledge::World records/sports (non-cricket)": 1791714492802,
+    "General Knowledge::World records/sports (non-cricket)": 1791729191924,
     "Movies::Indian thriller": 1791711129041,
     "Animals::Pet": 1791711129043,
     "Trending Topics::Streaming": 1791711129045,
-    "General Knowledge::Famous place or country fact": 1791715104149,
+    "General Knowledge::Famous place or country fact": 1791729191911,
     "Movies::Indian action movie": 1791711129048,
     "Animals::Sea animal": 1791711129049,
     "Trending Topics::Social slang": 1791711129050,
-    "General Knowledge::Mythology and culture (respectful and factual)": 1791714492814,
+    "General Knowledge::Mythology and culture (respectful and factual)": 1791729191918,
     "Movies::Thriller": 1791711129053,
-    "General Knowledge::Invention": 1791714492812,
-    "General Knowledge::Famous scientist/inventor": 1791714492809,
-    "General Knowledge::Everyday science": 1791714492811,
-    "General Knowledge::Historical figure": 1791714492800,
+    "General Knowledge::Invention": 1791729191922,
+    "General Knowledge::Famous scientist/inventor": 1791729191923,
+    "General Knowledge::Everyday science": 1791729191925,
+    "General Knowledge::Historical figure": 1791729191912,
     "General Knowledge::Space": 1791714493248,
     "Animals::Marine animal": 1791714495944,
-    "Trending Topics::Messaging app": 1791715104141
+    "Trending Topics::Messaging app": 1791715104141,
+    "General Knowledge::Food": 1791729192350,
+    "Movies::Indian comedy-drama": 1791729195043
   },
   "keywords": {
     "challenge_16": {
-      "count": 2,
-      "lastUsedAt": 1791714492802
+      "count": 4,
+      "lastUsedAt": 1791729191924
     },
     "challenge_61": {
       "count": 1,
@@ -42,8 +44,8 @@
       "lastUsedAt": 1791711129045
     },
     "challenge_12": {
-      "count": 3,
-      "lastUsedAt": 1791715104149
+      "count": 4,
+      "lastUsedAt": 1791729191911
     },
     "challenge_17": {
       "count": 1,
@@ -58,68 +60,68 @@
       "lastUsedAt": 1791711129050
     },
     "challenge_15": {
-      "count": 2,
-      "lastUsedAt": 1791714492803
+      "count": 3,
+      "lastUsedAt": 1791729191910
     },
     "challenge_80": {
       "count": 1,
       "lastUsedAt": 1791711129053
     },
     "challenge_4": {
-      "count": 1,
-      "lastUsedAt": 1791714492783
+      "count": 2,
+      "lastUsedAt": 1791729191909
     },
     "challenge_0": {
-      "count": 1,
-      "lastUsedAt": 1791714492786
+      "count": 2,
+      "lastUsedAt": 1791729191907
     },
     "challenge_10": {
-      "count": 1,
-      "lastUsedAt": 1791714492787
+      "count": 2,
+      "lastUsedAt": 1791729191908
     },
     "challenge_11": {
-      "count": 1,
-      "lastUsedAt": 1791714492789
+      "count": 2,
+      "lastUsedAt": 1791729191905
     },
     "challenge_3": {
-      "count": 1,
-      "lastUsedAt": 1791714492791
+      "count": 2,
+      "lastUsedAt": 1791729191906
     },
     "challenge_6": {
-      "count": 2,
-      "lastUsedAt": 1791714492814
+      "count": 3,
+      "lastUsedAt": 1791729191918
     },
     "challenge_7": {
-      "count": 1,
-      "lastUsedAt": 1791714492795
+      "count": 2,
+      "lastUsedAt": 1791729191917
     },
     "challenge_1": {
-      "count": 1,
-      "lastUsedAt": 1791714492797
+      "count": 2,
+      "lastUsedAt": 1791729191914
     },
     "challenge_2": {
-      "count": 2,
-      "lastUsedAt": 1791714492811
+      "count": 4,
+      "lastUsedAt": 1791729191925
     },
     "challenge_5": {
-      "count": 1,
-      "lastUsedAt": 1791714492800
+      "count": 2,
+      "lastUsedAt": 1791729191912
     },
     "challenge_14": {
-      "count": 2,
-      "lastUsedAt": 1791714492812
+      "count": 3,
+      "lastUsedAt": 1791729191922
     },
     "challenge_8": {
-      "count": 1,
-      "lastUsedAt": 1791714492806
+      "count": 3,
+      "lastUsedAt": 1791729191923
     },
     "challenge_9": {
-      "count": 1,
-      "lastUsedAt": 1791714492807
+      "count": 2,
+      "lastUsedAt": 1791729191920
     },
     "challenge_13": {
-      "count": 1,
-      "lastUsedAt": 1791714492809
+      "count": 2,
+      "lastUsedAt": 1791729191921
     },
     "challenge_31": {
       "count": 1,
@@ -132,6 +134,14 @@
     "challenge_56": {
       "count": 1,
       "lastUsedAt": 1791715104141
+    },
+    "challenge_33": {
+      "count": 1,
+      "lastUsedAt": 1791729192350
+    },
+    "challenge_40": {
+      "count": 1,
+      "lastUsedAt": 1791729195043
     }
   },
   "playerHistory": {
@@ -2687,16 +2697,123 @@
     ],
     "o8u10ej2zwqyoxvkyjtjoj": [
       "challenge_12"
+    ],
+    "2li9qu9gvok6z2a2amxjtg": [
+      "challenge_11",
+      "challenge_3",
+      "challenge_0",
+      "challenge_10",
+      "challenge_4",
+      "challenge_15",
+      "challenge_12",
+      "challenge_5",
+      "challenge_16",
+      "challenge_1",
+      "challenge_2",
+      "challenge_7",
+      "challenge_6",
+      "challenge_8",
+      "challenge_9",
+      "challenge_13",
+      "challenge_14"
+    ],
+    "27a26m0tja42cwp9fz2trs": [
+      "challenge_11",
+      "challenge_3",
+      "challenge_0",
+      "challenge_10",
+      "challenge_4",
+      "challenge_15",
+      "challenge_12",
+      "challenge_5",
+      "challenge_16",
+      "challenge_1",
+      "challenge_2",
+      "challenge_7",
+      "challenge_6",
+      "challenge_8",
+      "challenge_9",
+      "challenge_13",
+      "challenge_14"
+    ],
+    "nesbk0sj1ar8ln70fb5w26": [
+      "challenge_11",
+      "challenge_3",
+      "challenge_0",
+      "challenge_10",
+      "challenge_4",
+      "challenge_15",
+      "challenge_12",
+      "challenge_5",
+      "challenge_16",
+      "challenge_1",
+      "challenge_2",
+      "challenge_7",
+      "challenge_6",
+      "challenge_8",
+      "challenge_9",
+      "challenge_13",
+      "challenge_14"
+    ],
+    "ox6jkmo3jw987gvo9nbd7n": [
+      "challenge_11",
+      "challenge_3",
+      "challenge_0",
+      "challenge_10",
+      "challenge_4",
+      "challenge_15",
+      "challenge_12",
+      "challenge_5",
+      "challenge_16",
+      "challenge_1",
+      "challenge_2",
+      "challenge_7",
+      "challenge_6",
+      "challenge_8",
+      "challenge_9",
+      "challenge_13",
+      "challenge_14"
+    ],
+    "0sfsxdmpg7slxwhshnhizr": [
+      "challenge_11",
+      "challenge_3",
+      "challenge_0",
+      "challenge_10",
+      "challenge_4",
+      "challenge_15",
+      "challenge_12",
+      "challenge_5",
+      "challenge_16",
+      "challenge_1",
+      "challenge_2",
+      "challenge_7",
+      "challenge_6",
+      "challenge_8",
+      "challenge_9",
+      "challenge_13",
+      "challenge_14"
+    ],
+    "qchyg0vknok3b7f9aa6m": [
+      "challenge_33"
+    ],
+    "lw4g2xx1oegz6kp1c5q46": [
+      "challenge_33"
+    ],
+    "z6w88ryfwz2a73qet4enx": [
+      "challenge_40"
+    ],
+    "3zq4ufzojn3g09rsxgl3kp": [
+      "challenge_40"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "challenge_12",
+  "previousEventKeyword": "challenge_40",
   "previousDomainSubfield": {
-    "General Knowledge": "Famous place or country fact",
-    "Movies": "Thriller",
+    "General Knowledge": "Food",
+    "Movies": "Indian comedy-drama",
     "Animals": "Marine animal",
     "Trending Topics": "Messaging app"
   }

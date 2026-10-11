@@ -270,7 +270,6 @@ const Admin = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           password,
-          maxMinutes: parseInt(duelMaxMinutes, 10),
           prizeBanner: duelPrizeBanner,
         })
       });
@@ -699,37 +698,20 @@ const Admin = () => {
             </div>
 
             {/* Duel Settings Form */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50/70 p-4 rounded-xl border border-gray-200">
-              <div>
-                <label className="block text-xs font-bold text-[#1E1B3A] mb-1 flex justify-between">
-                  <span>Match Cap (DUEL_MAX_MINUTES)</span>
-                  <span className="text-[11px] font-normal text-[#9CA3AF]">3–30 mins (default 10)</span>
-                </label>
+            <div className="bg-gray-50/70 p-4 rounded-xl border border-gray-200">
+              <label className="block text-xs font-bold text-[#1E1B3A] mb-1">
+                Default Prize Banner (use {'{team}'} for winning team name)
+              </label>
+              <div className="flex gap-2">
                 <input
-                  type="number"
-                  min="3"
-                  max="30"
-                  value={duelMaxMinutes}
-                  onChange={(e) => setDuelMaxMinutes(Math.max(3, Math.min(30, parseInt(e.target.value, 10) || 10)))}
+                  type="text"
+                  value={duelPrizeBanner}
+                  onChange={(e) => setDuelPrizeBanner(e.target.value)}
                   className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
                 />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#1E1B3A] mb-1">
-                  Default Prize Banner
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={duelPrizeBanner}
-                    onChange={(e) => setDuelPrizeBanner(e.target.value)}
-                    className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
-                  />
-                  <Button onClick={handleSaveDuelSettings} variant="secondary" className="px-3 text-xs whitespace-nowrap">
-                    Save
-                  </Button>
-                </div>
+                <Button onClick={handleSaveDuelSettings} variant="secondary" className="px-3 text-xs whitespace-nowrap">
+                  Save
+                </Button>
               </div>
             </div>
 

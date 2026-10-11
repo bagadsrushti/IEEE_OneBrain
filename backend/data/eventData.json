@@ -1,6 +1,6 @@
 {
   "currentEvent": {
-    "id": "evt_1791714497820",
+    "id": "evt_1791729196933",
     "name": "Leaderboard Test",
     "maxConcurrentTeams": 5,
     "maxPlayersPerTeam": 4,
@@ -8,85 +8,89 @@
     "category": "Mixed",
     "prizeBanner": "Top 3 teams win prizes",
     "status": "live",
-    "createdAt": 1791714497820,
+    "createdAt": 1791729196933,
     "rounds": 3,
-    "openedAt": 1791714497823
+    "openedAt": 1791729196935
   },
   "eventPool": [
     {
       "category": "Trending Topics",
-      "subfield": "Streaming",
-      "answer": "Netflix",
-      "aliases": [],
-      "tier": "easy",
+      "subfield": "Online shopping",
+      "answer": "Amazon",
+      "aliases": [
+        "Amazon India"
+      ],
+      "tier": "medium",
       "clues": [
         {
           "angle": "platform",
-          "text": "This service streams films, series, and documentaries."
+          "text": "People use this online marketplace to shop for many products."
+        },
+        {
+          "angle": "feature",
+          "text": "It has product listings, customer reviews, and delivery tracking."
         },
         {
           "angle": "logo",
-          "text": "Its logo is commonly recognised by a red letter N."
-        },
-        {
-          "angle": "activity",
-          "text": "People often binge-watch series on this platform."
+          "text": "Its logo has a curved arrow from A to Z."
         },
         {
           "angle": "everyday",
-          "text": "Friends discuss what to watch next on it."
+          "text": "Students may order books, gadgets, and hostel essentials from it."
         }
       ],
       "needsReview": false
     },
     {
       "category": "Animals",
-      "subfield": "Insect",
-      "answer": "Butterfly",
+      "subfield": "Wild animal",
+      "answer": "Giraffe",
       "aliases": [],
       "tier": "medium",
       "clues": [
         {
-          "angle": "life cycle",
-          "text": "It starts life as a caterpillar."
+          "angle": "record",
+          "text": "It is the tallest living land animal."
+        },
+        {
+          "angle": "body part",
+          "text": "Its long neck helps it reach leaves high in trees."
         },
         {
           "angle": "appearance",
-          "text": "It has colourful wings covered in tiny scales."
-        },
-        {
-          "angle": "movement",
-          "text": "It flutters from flower to flower."
+          "text": "Its coat has a distinctive patch pattern."
         },
         {
           "angle": "food",
-          "text": "It often drinks nectar from flowers."
+          "text": "It often feeds on leaves from tall trees."
         }
       ],
       "needsReview": false
     },
     {
       "category": "General Knowledge",
-      "subfield": "Science",
-      "answer": "Black hole",
-      "aliases": [],
+      "subfield": "Geography",
+      "answer": "Sahara Desert",
+      "aliases": [
+        "Sahara"
+      ],
       "tier": "hard",
       "clues": [
         {
-          "angle": "physics",
-          "text": "It is a region where gravity is so strong that nothing inside a boundary can escape."
+          "angle": "location",
+          "text": "This vast desert stretches across much of northern Africa."
         },
         {
-          "angle": "boundary",
-          "text": "That boundary is known as the event horizon."
+          "angle": "climate",
+          "text": "It is the largest hot desert on Earth, but not the largest desert overall."
         },
         {
-          "angle": "formation",
-          "text": "Some form when the cores of massive stars collapse."
+          "angle": "landscape",
+          "text": "It includes rocky plateaus and gravel plains as well as sand dunes."
         },
         {
-          "angle": "observation",
-          "text": "Scientists often study it by observing its effects on nearby stars and gas."
+          "angle": "name",
+          "text": "Its name comes from an Arabic word meaning 'desert'."
         }
       ],
       "needsReview": false
@@ -119,7 +123,7 @@
       "roundsSolved": 1,
       "status": "completed",
       "startedAt": null,
-      "completedAt": 1791714497827
+      "completedAt": 1791729196937
     },
     {
       "roomId": "ROOM_SMALL",
@@ -148,7 +152,7 @@
       "roundsSolved": 1,
       "status": "completed",
       "startedAt": null,
-      "completedAt": 1791714497830
+      "completedAt": 1791729196939
     },
     {
       "roomId": "ROOM_LARGE",
@@ -180,24 +184,24 @@
       "roundsSolved": 1,
       "status": "completed",
       "startedAt": null,
-      "completedAt": 1791714497832
+      "completedAt": 1791729196940
     }
   ],
   "tickerHistory": [
     {
-      "id": "tick_1791714497832_0.424532763256942",
+      "id": "tick_1791729196940_0.10819848741561267",
       "message": "🎉 Team Large Team finished in 0:50 and took #3!",
-      "timestamp": 1791714497832
+      "timestamp": 1791729196940
     },
     {
-      "id": "tick_1791714497830_0.635862934897191",
+      "id": "tick_1791729196939_0.9861005488086835",
       "message": "🎉 Team Small Team finished in 0:40 and took #2!",
-      "timestamp": 1791714497830
+      "timestamp": 1791729196939
     },
     {
-      "id": "tick_1791714497828_0.8966529135471849",
+      "id": "tick_1791729196938_0.5542810536201169",
       "message": "🎉 Team Duo Team finished in 0:30 and took #1!",
-      "timestamp": 1791714497828
+      "timestamp": 1791729196938
     }
   ]
 }

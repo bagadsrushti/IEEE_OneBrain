@@ -305,9 +305,9 @@ function initializeSockets(io) {
     });
 
     // Duel Mode Socket Handlers
-    socket.on('create_duel', ({ nickname }, callback) => {
+    socket.on('create_duel', ({ nickname, expectedPlayers }, callback) => {
       try {
-        const res = duelManager.createDuel(nickname);
+        const res = duelManager.createDuel(nickname, expectedPlayers);
         const { duel, hostPlayer } = res;
 
         socket.join(`duel_${duel.code}`);
@@ -326,6 +326,7 @@ function initializeSockets(io) {
         }
 
         io.to(`duel_${duel.code}`).emit('duel_update', duelManager.getAudienceState(duel.code));
+        io.to(`duel_${duel.code}`).emit('duel_lobby_state', duelManager.getClientDuelState(duel.code));
         io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
@@ -357,15 +358,16 @@ function initializeSockets(io) {
         }
 
         io.to(`duel_${duel.code}`).emit('duel_update', duelManager.getAudienceState(duel.code));
+        io.to(`duel_${duel.code}`).emit('duel_lobby_state', duelManager.getClientDuelState(duel.code));
         io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
     });
 
-    socket.on('split_duel_teams', ({ code }, callback) => {
+    socket.on('remove_duel_player', ({ code, playerId }, callback) => {
       try {
-        const res = duelManager.splitTeams(code, socket.duelPlayerId, false);
+        const res = duelManager.removePlayer(code, socket.duelPlayerId, playerId);
         if (res.error) {
           if (typeof callback === 'function') return callback({ error: res.error });
           return;
@@ -374,14 +376,15 @@ function initializeSockets(io) {
         if (typeof callback === 'function') callback({ success: true });
         io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
         io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
+        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
     });
 
-    socket.on('shuffle_duel_teams', ({ code }, callback) => {
+    socket.on('set_duel_expected_players', ({ code, expectedPlayers }, callback) => {
       try {
-        const res = duelManager.splitTeams(code, socket.duelPlayerId, true);
+        const res = duelManager.setExpectedPlayers(code, socket.duelPlayerId, expectedPlayers);
         if (res.error) {
           if (typeof callback === 'function') return callback({ error: res.error });
           return;
@@ -390,6 +393,24 @@ function initializeSockets(io) {
         if (typeof callback === 'function') callback({ success: true });
         io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
         io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
+        io.emit('arena_update', duelManager.getArenaData());
+      } catch (err) {
+        if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
+      }
+    });
+
+    socket.on('start_duel_now', ({ code }, callback) => {
+      try {
+        const res = duelManager.startNow(code, socket.duelPlayerId);
+        if (res.error) {
+          if (typeof callback === 'function') return callback({ error: res.error });
+          return;
+        }
+
+        if (typeof callback === 'function') callback({ success: true });
+        io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
+        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
+        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
@@ -413,25 +434,15 @@ function initializeSockets(io) {
 
     socket.on('start_duel', ({ code }, callback) => {
       try {
-        const res = duelManager.startDuel(code, socket.duelPlayerId);
+        const res = duelManager.startNow(code, socket.duelPlayerId);
         if (res.error) {
           if (typeof callback === 'function') return callback({ error: res.error });
           return;
         }
 
-        const duel = res.duel;
         if (typeof callback === 'function') callback({ success: true });
-
-        // Notify lobby players duel has started with team assignments
-        io.to(`duel_${code}`).emit('duel_started', {
-          duelCode: duel.code,
-          teamRedRoom: duel.teamRed.roomId,
-          teamBlueRoom: duel.teamBlue.roomId,
-          teamRedPlayerIds: duel.teamRed.playerIds,
-          teamBluePlayerIds: duel.teamBlue.playerIds,
-        });
-
         io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
+        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
         io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
@@ -493,6 +504,7 @@ function initializeSockets(io) {
         const duel = duelManager.leaveDuel(socket.duelCode, socket.duelPlayerId);
         if (duel) {
           io.to(`duel_${duel.code}`).emit('duel_update', duelManager.getAudienceState(duel.code));
+          io.to(`duel_${duel.code}`).emit('duel_lobby_state', duelManager.getClientDuelState(duel.code));
           io.emit('arena_update', duelManager.getArenaData());
         }
       }

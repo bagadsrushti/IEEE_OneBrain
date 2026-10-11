@@ -20,7 +20,7 @@ const Room = () => {
     }
   }, [isConnected, roomData, duelState, code, navigate]);
 
-  if (duelState && duelState.code === code && duelState.status === 'lobby') {
+  if (duelState && duelState.code === code && (duelState.status === 'lobby' || duelState.status === 'countdown' || duelState.status === 'team_reveal')) {
     return (
       <div className="flex-grow flex flex-col items-center w-full px-2 py-1">
         <DuelLobby duel={duelState} />
