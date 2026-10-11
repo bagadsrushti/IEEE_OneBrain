@@ -4,6 +4,12 @@ const { getRulesForPlayerCount, isFlat120sMode, MIN_PLAYERS, MAX_PLAYERS } = req
 const { CATEGORIES } = require('./config/categories');
 const { isCorrectGuess, normalize } = require('./utils/answerMatcher');
 const { MAX_GUESS_LENGTH } = require('./config/matching');
+const eventManager = require('./eventManager');
+const {
+  EVENT_ROUNDS,
+  REVEAL_DURATION_SECONDS,
+  MAX_ROOMS,
+} = require('./config/eventConfig');
 
 let challengesData = [];
 try {
@@ -155,11 +161,16 @@ function getRandomChallenge(N, room, tier = 'easy') {
 }
 
 class GameManager {
-  createRoom() {
+  createRoom(mode = 'quick', teamName = '') {
+    if (rooms.size >= MAX_ROOMS) {
+      throw new Error('Maximum room limit reached');
+    }
     let code;
     do {
       code = generateRoomCode();
     } while (rooms.has(code));
+
+    const cleanTeam = mode === 'event' ? (teamName || '').trim().slice(0, 20) : '';
 
     const room = {
       id: code,
@@ -172,7 +183,24 @@ class GameManager {
       timer: null,
       roundRules: null, // locked at round start
       teamSize: 0,
+      mode: mode === 'event' ? 'event' : 'quick',
+      teamName: cleanTeam,
+      isPractice: false,
+      currentRound: 1,
+      totalRounds: mode === 'event' ? EVENT_ROUNDS : 1,
+      roundPlayStartTime: 0,
+      revealEndTime: 0,
+      lastRevealData: null,
+      eventFinalResult: null,
+      onRoundEndCallback: null,
     };
+
+    if (mode === 'event') {
+      const reg = eventManager.registerTeamRoom(code, cleanTeam);
+      room.teamName = reg.teamName;
+      room.isPractice = reg.isPractice;
+    }
+
     rooms.set(code, room);
     this.refreshRoomTimeout(code);
     return code;
@@ -210,6 +238,9 @@ class GameManager {
         const p = room.players.find(pl => pl.id === pData.playerId);
         if (p) {
           p.connected = true;
+          if (room.mode === 'event') {
+            eventManager.handleTeamReconnect(code);
+          }
           this.refreshRoomTimeout(code);
           return { room, player: p, token };
         }
@@ -247,6 +278,28 @@ class GameManager {
     const p = room.players.find(pl => pl.id === playerId);
     if (p) p.connected = false;
 
+    // Check if any players are still connected
+    const connectedCount = room.players.filter(pl => pl.connected).length;
+    if (connectedCount === 0 && room.mode === 'event') {
+      eventManager.handleTeamDisconnect(code, (action, roomId) => {
+        if (action === 'active_incomplete') {
+          const r = this.getRoom(roomId);
+          if (r && r.state !== 'event_finished') {
+            r.state = 'event_finished';
+            r.eventFinalResult = {
+              status: 'incomplete',
+              rank: eventManager.getTeamRank(roomId),
+              gap: eventManager.getGapToNextTeam(roomId),
+            };
+            this.checkAndStartNextQueuedTeam();
+            if (r.onRoundEndCallback) r.onRoundEndCallback(r, 'event_finished');
+          }
+        } else if (action === 'queue_removed') {
+          this.checkAndStartNextQueuedTeam();
+        }
+      });
+    }
+
     if (room.host === playerId) {
       const nextHost = room.players.find(pl => pl.connected);
       room.host = nextHost ? nextHost.id : null;
@@ -266,7 +319,9 @@ class GameManager {
 
   startGame(code, playerId, onRoundEnd) {
     const room = this.getRoom(code);
-    if (!room || room.host !== playerId || room.state !== 'lobby') return { error: 'Cannot start game' };
+    if (!room || room.host !== playerId || (room.state !== 'lobby' && room.state !== 'queued')) {
+      return { error: 'Cannot start game' };
+    }
     
     const activePlayers = room.players.filter(p => p.connected);
     const N = activePlayers.length;
@@ -277,15 +332,48 @@ class GameManager {
 
     room.roundRules = rules; // Lock rules for the round
     room.teamSize = N;
+    if (onRoundEnd) room.onRoundEndCallback = onRoundEnd;
 
-    const challenge = getRandomChallenge(N, room, rules.difficultyTier);
+    // EVENT MODE CAPACITY & QUEUE CHECK
+    if (room.mode === 'event') {
+      if (!eventManager.isLive()) {
+        return { error: 'No live event in progress' };
+      }
+
+      if (!eventManager.activeTeams.has(code)) {
+        if (!eventManager.canStartTeamImmediately()) {
+          room.state = 'queued';
+          room.queuePosition = eventManager.enqueueTeam(code, room.teamName);
+          return { room, queued: true, queuePosition: room.queuePosition };
+        }
+        eventManager.activateTeam(code);
+      }
+    }
+
+    return this.launchRound(room, room.currentRound || 1);
+  }
+
+  launchRound(room, roundNum) {
+    const N = room.teamSize;
+    let challenge;
+
+    if (room.mode === 'event') {
+      challenge = eventManager.getTeamKeywordForRound(room.id, roundNum);
+      if (!challenge) {
+        challenge = getRandomChallenge(N, room, room.roundRules.difficultyTier);
+      }
+    } else {
+      challenge = getRandomChallenge(N, room, room.roundRules.difficultyTier);
+    }
 
     room.state = 'ready';
     room.currentChallenge = challenge;
     room.hintsUsed = 0;
     room.wrongAttempts = 0;
     room.sharedHint = null;
-    
+
+    const activePlayers = room.players.filter(p => p.connected);
+
     // Select N clues with N DISTINCT angles
     let availableClues = (challenge.clues || []).map(c => typeof c === 'string' ? { angle: 'General', text: c } : c);
     const selectedClues = [];
@@ -313,18 +401,18 @@ class GameManager {
       activePlayers[i].clue = selectedClues[i]?.text || 'No clue available';
     }
     
-    // Remaining clues for hints (also try to use distinct angles if possible)
+    // Remaining clues for hints
     room.unassignedClues = availableClues.filter(c => !usedAngles.has(c.angle)).map(c => c.text);
     if (room.unassignedClues.length === 0) {
-      room.unassignedClues = availableClues.map(c => c.text); // fallback
+      room.unassignedClues = availableClues.map(c => c.text);
     }
     if (room.unassignedClues.length === 0 && selectedClues.length > 0) {
-      room.unassignedClues = [selectedClues[0].text];
+      room.unassignedClues = selectedClues.map(c => c.text);
     }
 
     const now = Date.now();
-    const totalMs = rules.roundSeconds * 1000;
-    const prepMs = rules.prepSeconds * 1000;
+    const totalMs = room.roundRules.roundSeconds * 1000;
+    const prepMs = room.roundRules.prepSeconds * 1000;
 
     room.readyEndTime = now + prepMs;
     room.roundEndTime = now + totalMs; // Total time since start
@@ -333,18 +421,19 @@ class GameManager {
     
     room.timer = setTimeout(() => {
       room.state = 'playing';
-      onRoundEnd(room, 'started');
+      room.roundPlayStartTime = Date.now();
+      if (room.onRoundEndCallback) room.onRoundEndCallback(room, 'started');
       
       const playMs = totalMs - prepMs;
       room.timer = setTimeout(() => {
         if (room.state === 'playing') {
-          this.endRound(code, false, 'Time is up!');
-          onRoundEnd(room, 'timeout');
+          this.endRound(room.id, false, 'Time is up!');
+          if (room.onRoundEndCallback) room.onRoundEndCallback(room, 'timeout');
         }
       }, playMs);
     }, prepMs);
 
-    this.refreshRoomTimeout(code);
+    this.refreshRoomTimeout(room.id);
     return { room };
   }
 
@@ -422,11 +511,95 @@ class GameManager {
     }
   }
 
+  checkAndStartNextQueuedTeam() {
+    if (!eventManager.isLive()) return;
+    while (eventManager.canStartTeamImmediately() && eventManager.queuedTeams.length > 0) {
+      const next = eventManager.getNextQueuedTeam();
+      if (!next) break;
+      const nextRoom = this.getRoom(next.roomId);
+      if (nextRoom && nextRoom.players.filter(p => p.connected).length >= MIN_PLAYERS) {
+        eventManager.activateTeam(nextRoom.id);
+        this.launchRound(nextRoom, 1);
+        if (nextRoom.onRoundEndCallback) {
+          nextRoom.onRoundEndCallback(nextRoom, 'started');
+        }
+      }
+    }
+  }
+
   endRound(code, success, reason) {
     const room = this.getRoom(code);
     if (!room) return null;
     
     if (room.timer) clearTimeout(room.timer);
+
+    // EVENT MODE ROUND END
+    if (room.mode === 'event') {
+      const now = Date.now();
+      const secondsUsed = success
+        ? Math.max(1, Math.round((now - (room.roundPlayStartTime || (now - 1000))) / 1000))
+        : (room.roundRules?.roundSeconds || 120);
+
+      const roundResult = eventManager.recordRoundResult(room.id, room.currentRound, {
+        answer: room.currentChallenge?.answer,
+        solved: success,
+        secondsUsed,
+        wrongAttempts: room.wrongAttempts,
+        hintsUsed: room.hintsUsed,
+      });
+
+      room.state = 'reveal';
+      room.revealEndTime = now + (REVEAL_DURATION_SECONDS * 1000);
+      room.lastRevealData = {
+        answer: room.currentChallenge?.answer,
+        allClues: room.players.map(p => ({ name: p.name, clue: p.clue })),
+        roundNum: room.currentRound,
+        totalRounds: EVENT_ROUNDS,
+        roundTime: roundResult?.roundTime || 0,
+        secondsUsed,
+        wrongAttempts: room.wrongAttempts,
+        hintsUsed: room.hintsUsed,
+        currentRank: eventManager.getTeamRank(room.id),
+        solved: success,
+        reason,
+      };
+
+      if (room.onRoundEndCallback) {
+        room.onRoundEndCallback(room, 'reveal');
+      }
+
+      // Schedule post-reveal transition after 6 seconds
+      room.timer = setTimeout(() => {
+        if (room.currentRound < EVENT_ROUNDS) {
+          room.currentRound++;
+          this.launchRound(room, room.currentRound);
+          if (room.onRoundEndCallback) {
+            room.onRoundEndCallback(room, 'next_round_started');
+          }
+        } else {
+          // Finished all 3 rounds!
+          room.state = 'event_finished';
+          const memberNames = room.players.filter(p => p.connected).map(p => p.name);
+          const finalInfo = eventManager.completeTeamRun(room.id, memberNames, room.teamSize);
+          room.eventFinalResult = {
+            ...finalInfo,
+            totalRounds: EVENT_ROUNDS,
+          };
+
+          // Free slot and advance queue
+          this.checkAndStartNextQueuedTeam();
+
+          if (room.onRoundEndCallback) {
+            room.onRoundEndCallback(room, 'event_finished');
+          }
+        }
+      }, REVEAL_DURATION_SECONDS * 1000);
+
+      this.refreshRoomTimeout(code);
+      return { room, success, reason, state: 'reveal', revealData: room.lastRevealData };
+    }
+
+    // QUICK PLAY
     room.state = 'finished';
     
     const timeRemaining = Math.max(0, Math.floor((room.roundEndTime - Date.now()) / 1000));
@@ -510,6 +683,10 @@ class GameManager {
 
   getEventTheme() {
     return eventTheme;
+  }
+
+  getChallengesData() {
+    return challengesData;
   }
 }
 

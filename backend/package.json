@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node utils/answerMatcher.test.js",
     "test:matcher": "node utils/answerMatcher.test.js",
+    "test:event": "node utils/eventTest.js",
     "test:integration": "node utils/integrationTest.js",
     "test:selection": "node utils/selectionTest.js",
     "validate": "node utils/validateChallenges.js",

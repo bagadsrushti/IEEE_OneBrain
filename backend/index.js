@@ -122,6 +122,138 @@ app.post('/admin/settings', (req, res) => {
   }
 });
 
+const eventManager = require('./eventManager');
+
+// Public Event Routes
+app.get('/api/event/status', (req, res) => {
+  res.json({
+    success: true,
+    isLive: eventManager.isLive(),
+    event: eventManager.getEvent(),
+    slotUsage: eventManager.getSlotUsage()
+  });
+});
+
+app.get('/event/leaderboard', (req, res) => {
+  res.json({
+    success: true,
+    data: eventManager.getLiveLeaderboardData(),
+    isLive: eventManager.isLive()
+  });
+});
+
+// Admin Event Routes
+app.get('/admin/event', (req, res) => {
+  const { password } = req.query;
+  if (password === process.env.ADMIN_PASSWORD) {
+    const current = eventManager.getEvent();
+    res.json({
+      success: true,
+      event: current,
+      pool: eventManager.getPool().map(c => ({
+        id: c.id,
+        answer: c.answer,
+        category: c.category,
+        cluesCount: c.clues?.length
+      })),
+      slotUsage: eventManager.getSlotUsage(),
+      leaderboard: eventManager.leaderboard,
+      tickerHistory: eventManager.getTickerHistory()
+    });
+  } else {
+    res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+});
+
+app.post('/admin/event/create', (req, res) => {
+  const { password, name, title, category, maxConcurrentTeams, prizeBanner } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  try {
+    const event = eventManager.createEvent({
+      name: title || name,
+      category,
+      maxConcurrentTeams,
+      prizeBanner
+    });
+    io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+    res.json({ success: true, event });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/admin/event/open', (req, res) => {
+  const { password } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  try {
+    const event = eventManager.openEvent(gameManager.getChallengesData());
+    io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+    res.json({ success: true, event });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/admin/event/close', (req, res) => {
+  const { password } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  try {
+    const event = eventManager.closeEvent();
+    io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+    res.json({ success: true, event });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/admin/event/reset', (req, res) => {
+  const { password } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  try {
+    const result = eventManager.resetEvent();
+    io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/admin/event/update', (req, res) => {
+  const { password, maxConcurrentTeams, prizeBanner } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  try {
+    const event = eventManager.updateSettings({ maxConcurrentTeams, prizeBanner });
+    // Check if capacity increased and queued teams can be started
+    gameManager.checkAndStartNextQueuedTeam();
+    io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+    res.json({ success: true, event });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/admin/event/export', (req, res) => {
+  const { password } = req.query;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).send('Unauthorized');
+  }
+  const csv = eventManager.exportResultsCSV();
+  const eventName = (eventManager.getEvent()?.name || 'event').replace(/[^a-zA-Z0-9_-]/g, '_');
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', `attachment; filename="event_${eventName}_results.csv"`);
+  res.send(csv);
+});
+
 app.get('/leaderboard', (req, res) => {
   const { filter } = req.query;
   let board = gameManager.getLeaderboard();

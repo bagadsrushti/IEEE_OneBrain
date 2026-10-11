@@ -1,0 +1,99 @@
+{
+  "currentEvent": {
+    "id": "evt_1791687223956",
+    "name": "AntiCheat Test",
+    "maxConcurrentTeams": 5,
+    "category": "Mixed",
+    "prizeBanner": "Top 3 teams win prizes",
+    "status": "live",
+    "createdAt": 1791687223956,
+    "rounds": 3,
+    "openedAt": 1791687223956
+  },
+  "eventPool": [
+    {
+      "category": "Animals",
+      "subfield": "Mammal",
+      "answer": "Platypus",
+      "aliases": [
+        "Duck-billed platypus"
+      ],
+      "tier": "hard",
+      "clues": [
+        {
+          "angle": "appearance",
+          "text": "It has a bill like a duck and a flat tail."
+        },
+        {
+          "angle": "habitat",
+          "text": "It lives in rivers and streams in Australia."
+        },
+        {
+          "angle": "biology",
+          "text": "It is a mammal that lays eggs."
+        },
+        {
+          "angle": "defense",
+          "text": "Males have a venomous spur on their hind legs."
+        }
+      ],
+      "needsReview": false
+    },
+    {
+      "category": "Trending Topics",
+      "subfield": "AI and technology",
+      "answer": "Artificial Intelligence",
+      "aliases": [
+        "AI"
+      ],
+      "tier": "easy",
+      "clues": [
+        {
+          "angle": "technology",
+          "text": "It describes computer systems performing tasks associated with human intelligence."
+        },
+        {
+          "angle": "examples",
+          "text": "Chatbots, image recognition, and voice assistants use it."
+        },
+        {
+          "angle": "college clue",
+          "text": "It is a popular subject for hackathons, projects, and tech club talks."
+        },
+        {
+          "angle": "abbreviation",
+          "text": "Its two-letter abbreviation is AI."
+        }
+      ],
+      "needsReview": false
+    },
+    {
+      "category": "General Knowledge",
+      "subfield": "Geography",
+      "answer": "Equator",
+      "aliases": [],
+      "tier": "hard",
+      "clues": [
+        {
+          "angle": "latitude",
+          "text": "This imaginary line is located at zero degrees latitude."
+        },
+        {
+          "angle": "geography",
+          "text": "It divides Earth into the Northern and Southern Hemispheres."
+        },
+        {
+          "angle": "climate",
+          "text": "Regions near it often receive strong sunlight throughout the year."
+        },
+        {
+          "angle": "map clue",
+          "text": "It crosses parts of South America, Africa, and Indonesia."
+        }
+      ],
+      "needsReview": false
+    }
+  ],
+  "leaderboard": [],
+  "tickerHistory": []
+}

@@ -1,4 +1,5 @@
 const gameManager = require('./gameManager');
+const eventManager = require('./eventManager');
 const { getCategoryMeta } = require('./config/categories');
 
 function initializeSockets(io) {
@@ -20,6 +21,11 @@ function initializeSockets(io) {
         category: room.category,
         categoryMeta: activeThemeMeta || categoryMeta,
         eventThemeActive: !!eventTheme,
+        mode: room.mode || 'quick',
+        teamName: room.teamName || null,
+        isPractice: room.isPractice || false,
+        currentRound: room.currentRound || 1,
+        totalRounds: room.totalRounds || 1,
         players: room.players.map(p => ({
           id: p.id,
           name: p.name,
@@ -31,9 +37,25 @@ function initializeSockets(io) {
         hintsUsed: room.hintsUsed,
         wrongAttempts: room.wrongAttempts,
         roundRules: room.roundRules, // Max attempts, max hints, etc.
+        slotUsage: eventManager.getSlotUsage(),
       };
 
-      if (room.state === 'finished') {
+      if (room.state === 'queued') {
+        baseRoomData.queuePosition = eventManager.getQueuePosition(room.id);
+      }
+
+      if (room.state === 'reveal') {
+        io.to(roomCode).emit('room_update', {
+          ...baseRoomData,
+          revealData: room.lastRevealData,
+          revealEndTime: room.revealEndTime,
+        });
+      } else if (room.state === 'event_finished') {
+        io.to(roomCode).emit('room_update', {
+          ...baseRoomData,
+          eventFinalResult: room.eventFinalResult,
+        });
+      } else if (room.state === 'finished') {
         io.to(roomCode).emit('room_update', {
           ...baseRoomData,
           challenge: {
@@ -62,13 +84,32 @@ function initializeSockets(io) {
     const handleDisconnect = () => {
       if (socket.roomId && socket.playerId) {
         const room = gameManager.leaveRoom(socket.roomId, socket.playerId);
-        if (room) emitGameState(room.id);
+        if (room) {
+          emitGameState(room.id);
+          if (room.mode === 'event') {
+            io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+          }
+        }
       }
     };
 
-    socket.on('create_room', ({ nickname }, callback) => {
+    socket.on('create_room', ({ nickname, mode = 'quick', teamName }, callback) => {
       try {
-        const code = gameManager.createRoom();
+        if (mode === 'event') {
+          if (!eventManager.isLive()) {
+            return callback({ error: 'Event Mode is not currently live' });
+          }
+          if (!teamName || typeof teamName !== 'string' || !teamName.trim()) {
+            return callback({ error: 'Team name is required for Event Mode' });
+          }
+        }
+
+        const roomRes = gameManager.createRoom(mode, teamName);
+        if (roomRes && typeof roomRes === 'object' && roomRes.error) {
+          return callback({ error: roomRes.error });
+        }
+        const code = typeof roomRes === 'string' ? roomRes : roomRes.id;
+
         const { room, player, token, error } = gameManager.joinRoom(code, nickname);
         if (error) return callback({ error });
 
@@ -115,13 +156,19 @@ function initializeSockets(io) {
       
       const onRoundEnd = (room, reason) => {
         emitGameState(room.id);
+        if (room.mode === 'event') {
+          io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+        }
       };
 
       const result = gameManager.startGame(socket.roomId, socket.playerId, onRoundEnd);
       if (result.error) return callback({ error: result.error });
       
-      callback({ success: true });
+      callback({ success: true, queued: result.queued, queuePosition: result.queuePosition });
       emitGameState(socket.roomId);
+      if (socket.roomId && gameManager.getRoom(socket.roomId)?.mode === 'event') {
+        io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+      }
     });
 
     socket.on('use_hint', (callback) => {
@@ -137,6 +184,7 @@ function initializeSockets(io) {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const room = gameManager.getRoom(socket.roomId);
       if (!room || room.host !== socket.playerId) return callback({ error: 'Not authorized' });
+      if (room.mode === 'event') return callback({ error: 'Skipping is not permitted in Event Mode' });
       
       const onRoundEnd = (r, reason) => {
         emitGameState(r.id);
@@ -156,7 +204,12 @@ function initializeSockets(io) {
       if (result.error && !result.room) return callback({ error: result.error });
       
       callback({ success: true, isCorrect: result.isCorrect, error: result.error, near: result.near });
-      if (result.room) emitGameState(socket.roomId);
+      if (result.room) {
+        emitGameState(socket.roomId);
+        if (result.room.mode === 'event') {
+          io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
+        }
+      }
     });
 
     socket.on('next_round', (callback) => {
@@ -166,6 +219,27 @@ function initializeSockets(io) {
       
       callback({ success: true });
       emitGameState(socket.roomId);
+    });
+
+    socket.on('join_leaderboard', (callback) => {
+      socket.join('leaderboard');
+      if (typeof callback === 'function') {
+        callback({
+          success: true,
+          data: eventManager.getLiveLeaderboardData(),
+          isLive: eventManager.isLive(),
+        });
+      }
+    });
+
+    socket.on('get_event_leaderboard', (callback) => {
+      if (typeof callback === 'function') {
+        callback({
+          success: true,
+          data: eventManager.getLiveLeaderboardData(),
+          isLive: eventManager.isLive(),
+        });
+      }
     });
 
     socket.on('disconnect', handleDisconnect);

@@ -4,13 +4,13 @@
     "Cricket / IPL": 1791456903779,
     "Web Series": 1791456903781,
     "Movies": 1791585215158,
-    "General Knowledge": 1791547275005,
+    "General Knowledge": 1791682243965,
     "Locations": 1791456903785,
     "Memes & Internet Culture": 1791456903786,
     "Tech & AI": 1791456903787,
     "VIT Pune & Pune Local": 1791456903788,
     "Animals": 1791588724365,
-    "Trending Topics": 1791569641604
+    "Trending Topics": 1791682338995
   },
   "subfields": {
     "Anime::Romance/Drama": 1791456903778,
@@ -44,7 +44,9 @@
     "Movies::Animated movie": 1791584912622,
     "Animals::Insect": 1791588645809,
     "Animals::Farm animal": 1791588681270,
-    "Animals::Bird": 1791588724365
+    "Animals::Bird": 1791588724365,
+    "General Knowledge::Famous place or country fact": 1791682243965,
+    "Trending Topics::AI": 1791682338995
   },
   "keywords": {
     "chal-7": {
@@ -182,6 +184,14 @@
     "challenge_32": {
       "count": 1,
       "lastUsedAt": 1791588724365
+    },
+    "challenge_12": {
+      "count": 1,
+      "lastUsedAt": 1791682243965
+    },
+    "challenge_75": {
+      "count": 1,
+      "lastUsedAt": 1791682338995
     }
   },
   "playerHistory": {
@@ -768,24 +778,72 @@
       "challenge_37",
       "challenge_36",
       "challenge_32"
+    ],
+    "r6mq2kajnlkepk0anwfy7": [
+      "challenge_12"
+    ],
+    "e3c88nbnn1f7dvsr1rthrt": [
+      "challenge_12"
+    ],
+    "7liblnb2kk3fwu2wxalrhs": [
+      "challenge_12"
+    ],
+    "9ty9yfz6eyovb6m194kgfn": [
+      "challenge_12"
+    ],
+    "l5kjqgjx2mhm7x08d6vd8d": [
+      "challenge_12"
+    ],
+    "kl7uo04glg9redjie86nzd": [
+      "challenge_12"
+    ],
+    "07nqwiwildc903nu6k5br73h": [
+      "challenge_12"
+    ],
+    "3xxqfl4zvecop2k79dcl9k": [
+      "challenge_12"
+    ],
+    "2bvh6f0k8d7qy471mr8a3c": [
+      "challenge_75"
+    ],
+    "2hw3xf2uuj34ucm6qmqmrw": [
+      "challenge_75"
+    ],
+    "vgujqunsbqyl85s1rlwvb": [
+      "challenge_75"
+    ],
+    "nserys53iamct2w72f0u": [
+      "challenge_75"
+    ],
+    "k9j4bxhlw9erzrle1gmn8": [
+      "challenge_75"
+    ],
+    "ob6hpylm9aos4vc2axnqi": [
+      "challenge_75"
+    ],
+    "ocyrrywahcen3ncjic16tf": [
+      "challenge_75"
+    ],
+    "sn5elzzu03f3z3u5e4cgtb": [
+      "challenge_75"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "challenge_32",
+  "previousEventKeyword": "challenge_75",
   "previousDomainSubfield": {
     "Anime": "Classics",
     "Cricket / IPL": "Legendary matches",
     "Web Series": "Comedy/Sitcom",
     "Movies": "Superhero movie",
-    "General Knowledge": "Sport",
+    "General Knowledge": "Famous place or country fact",
     "Locations": "Countries & capitals",
     "Memes & Internet Culture": "Viral trends",
     "Tech & AI": "Programming",
     "VIT Pune & Pune Local": "Pune landmarks",
     "Animals": "Bird",
-    "Trending Topics": "Online shopping"
+    "Trending Topics": "AI"
   }
 }

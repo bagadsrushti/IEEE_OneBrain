@@ -49,8 +49,9 @@ export const SocketProvider = ({ children }) => {
     return () => newSocket.close();
   }, []);
 
-  const createRoom = (nickname, callback) => {
-    socket.emit('create_room', { nickname }, (res) => {
+  const createRoom = (opts, callback) => {
+    const payload = typeof opts === 'object' ? opts : { nickname: opts };
+    socket.emit('create_room', payload, (res) => {
       if (res.success) {
         localStorage.setItem('ob_token', res.token);
         localStorage.setItem('ob_playerId', res.playerId);
