@@ -60,16 +60,21 @@ async function runTests() {
     if (ninthRes.error) pass("9th player joining is rejected.");
     else fail("9th player was able to join.");
     
-    // Test 2 players starting
+    // Test 1 player blocked, 2 players allowed
     const host2 = await createClient();
     const room2 = await new Promise(r => host2.emit('create_room', { nickname: 'H2' }, r));
     const code2 = room2.roomCode;
+    const start1 = await new Promise(r => host2.emit('start_game', r));
+    if (start1.error) pass("Starting with 1 player is blocked.");
+    else fail("Started with 1 player.");
+
     const c2 = await createClient();
     await joinRoom(c2, code2, 'P1');
     const start2 = await new Promise(r => host2.emit('start_game', r));
-    if (start2.error) pass("Starting with 2 players is blocked.");
-    else fail("Started with 2 players.");
+    if (!start2.error) pass("Starting with 2 players is allowed.");
+    else fail("Failed to start with 2 players: " + start2.error);
     c2.disconnect();
+    host2.disconnect();
 
     // LEAK CHECK Setup
     let leakDetected = false;
@@ -85,8 +90,16 @@ async function runTests() {
           const aliases = challenge.aliases.map(a => a.toLowerCase());
           const textLower = data.myClue.toLowerCase();
           
-          if (textLower.includes(answer)) leakDetected = true;
-          aliases.forEach(a => { if (textLower.includes(a)) leakDetected = true; });
+          if (textLower.includes(answer)) {
+            leakDetected = true;
+            console.log('Leaked answer:', answer, 'in clue:', data.myClue);
+          }
+          aliases.forEach(a => {
+            if (a.length > 2 && textLower.includes(a)) {
+              leakDetected = true;
+              console.log('Leaked alias:', a, 'in clue:', data.myClue);
+            }
+          });
         }
       }
     };

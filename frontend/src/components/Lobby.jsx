@@ -32,8 +32,8 @@ const Lobby = ({ room }) => {
   };
 
   const activePlayers = room.players.filter(p => p.connected);
-  const canStart = activePlayers.length >= 3 && activePlayers.length <= 8;
-  const neededPlayers = Math.max(0, 3 - activePlayers.length);
+  const canStart = activePlayers.length >= 2 && activePlayers.length <= 8;
+  const neededPlayers = Math.max(0, 2 - activePlayers.length);
 
   const categories = [
     'Mixed',
@@ -141,9 +141,14 @@ const Lobby = ({ room }) => {
           <span className="font-bold text-[14px] text-[#1E1B3A]">
             Teammates ({activePlayers.length}/8)
           </span>
-          <span className="text-[12px] text-[#9CA3AF] font-medium">
-            3 to 8 players required
-          </span>
+          <div className="text-right">
+            <span className="text-[12px] text-[#5046E5] font-semibold block">
+              2 to 8 players
+            </span>
+            <span className="text-[11px] text-[#9CA3AF] block">
+              Best with 3–5 players
+            </span>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -181,7 +186,7 @@ const Lobby = ({ room }) => {
             );
           })}
 
-          {Array.from({ length: Math.max(0, 3 - activePlayers.length) }).map((_, i) => (
+          {Array.from({ length: Math.max(0, 2 - activePlayers.length) }).map((_, i) => (
             <div
               key={`empty-${i}`}
               className="p-3 rounded-[12px] bg-[#F9FAFB] flex items-center gap-3 text-[#9CA3AF]"

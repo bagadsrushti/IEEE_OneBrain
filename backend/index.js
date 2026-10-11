@@ -122,6 +122,25 @@ app.post('/admin/settings', (req, res) => {
   }
 });
 
+app.get('/admin/rules', (req, res) => {
+  const { password } = req.query;
+  if (password === process.env.ADMIN_PASSWORD) {
+    res.json({ success: true, rules: gameRules.RULES_TABLE });
+  } else {
+    res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+});
+
+app.post('/admin/rules', (req, res) => {
+  const { password, playerCount, overrides } = req.body;
+  if (password === process.env.ADMIN_PASSWORD) {
+    const updated = gameRules.updateRulesTable(playerCount, overrides);
+    res.json({ success: true, rules: updated });
+  } else {
+    res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+});
+
 const eventManager = require('./eventManager');
 
 // Public Event Routes
@@ -158,7 +177,8 @@ app.get('/admin/event', (req, res) => {
       })),
       slotUsage: eventManager.getSlotUsage(),
       leaderboard: eventManager.leaderboard,
-      tickerHistory: eventManager.getTickerHistory()
+      tickerHistory: eventManager.getTickerHistory(),
+      warnings: gameManager.getCategoryWarnings(),
     });
   } else {
     res.status(401).json({ success: false, message: 'Unauthorized' });
@@ -166,7 +186,7 @@ app.get('/admin/event', (req, res) => {
 });
 
 app.post('/admin/event/create', (req, res) => {
-  const { password, name, title, category, maxConcurrentTeams, prizeBanner } = req.body;
+  const { password, name, title, category, maxConcurrentTeams, prizeBanner, maxPlayersPerTeam, minPlayersPerTeam } = req.body;
   if (password !== process.env.ADMIN_PASSWORD) {
     return res.status(401).json({ success: false, message: 'Unauthorized' });
   }
@@ -175,7 +195,9 @@ app.post('/admin/event/create', (req, res) => {
       name: title || name,
       category,
       maxConcurrentTeams,
-      prizeBanner
+      prizeBanner,
+      maxPlayersPerTeam,
+      minPlayersPerTeam,
     });
     io.emit('event_leaderboard_update', eventManager.getLiveLeaderboardData());
     res.json({ success: true, event });
@@ -254,14 +276,27 @@ app.get('/admin/event/export', (req, res) => {
   res.send(csv);
 });
 
+app.get('/api/event/teambuilder', (req, res) => {
+  const total = parseInt(req.query.players, 10);
+  const min = parseInt(req.query.min, 10) || 2;
+  const max = parseInt(req.query.max, 10) || 4;
+  if (isNaN(total) || total < 2) {
+    return res.status(400).json({ success: false, error: 'Enter at least 2 players' });
+  }
+  const suggestions = eventManager.suggestTeamSplits(total, min, max);
+  res.json({ success: true, suggestions });
+});
+
 app.get('/leaderboard', (req, res) => {
   const { filter } = req.query;
   let board = gameManager.getLeaderboard();
   
-  if (filter === 'small') {
-    board = board.filter(e => e.teamSize >= 3 && e.teamSize <= 5);
+  if (filter === 'duo' || filter === 'duos') {
+    board = board.filter(e => e.teamSize === 2);
+  } else if (filter === 'small') {
+    board = board.filter(e => e.teamSize >= 3 && e.teamSize <= 4);
   } else if (filter === 'large') {
-    board = board.filter(e => e.teamSize >= 6 && e.teamSize <= 8);
+    board = board.filter(e => e.teamSize >= 5 && e.teamSize <= 8);
   }
 
   res.json({ success: true, leaderboard: board });

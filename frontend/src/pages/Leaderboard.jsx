@@ -118,7 +118,7 @@ const Leaderboard = () => {
             Scan to Join the Race!
           </div>
           <p className="text-sm text-[#64748B] font-medium mt-1">
-            3 to 8 players per team · 120s per round
+            2 to 8 players per team · 120s per round
           </p>
         </div>
 
@@ -160,18 +160,23 @@ const Leaderboard = () => {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex space-x-1.5 bg-white p-1 rounded-2xl border border-[#E2E8F0] shadow-2xs self-start">
-            {['all', 'small', 'large'].map(f => (
+          <div className="flex space-x-1.5 bg-white p-1 rounded-2xl border border-[#E2E8F0] shadow-2xs self-start overflow-x-auto max-w-full">
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'duo', label: 'Duos (2)' },
+              { id: 'small', label: 'Small (3–4)' },
+              { id: 'large', label: 'Large (5–8)' }
+            ].map(tab => (
               <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  filter === f
+                key={tab.id}
+                onClick={() => setFilter(tab.id)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  filter === tab.id
                     ? 'bg-[#5046E5] text-white shadow-xs'
                     : 'text-[#64748B] hover:text-[#1E1B3A]'
                 }`}
               >
-                {f === 'all' ? 'All Teams' : f === 'small' ? 'Small (3–5)' : 'Large (6–8)'}
+                {tab.label}
               </button>
             ))}
           </div>

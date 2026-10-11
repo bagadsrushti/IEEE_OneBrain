@@ -17,9 +17,33 @@ const Admin = () => {
   const [eventTitle, setEventTitle] = useState('Championship Race');
   const [eventCategory, setEventCategory] = useState('Mixed');
   const [maxConcurrentTeams, setMaxConcurrentTeams] = useState(5);
+  const [maxPlayersPerTeam, setMaxPlayersPerTeam] = useState(4);
+  const [minPlayersPerTeam, setMinPlayersPerTeam] = useState(2);
   const [prizeBanner, setPrizeBanner] = useState('Top 3 teams win prizes');
 
+  // Team Builder State
+  const [teamBuilderPlayers, setTeamBuilderPlayers] = useState(9);
+  const [teamBuilderSuggestions, setTeamBuilderSuggestions] = useState([]);
+
   const backendUrl = getBackendUrl();
+
+  const fetchTeamBuilder = async (players, min, max) => {
+    try {
+      const res = await fetch(`${backendUrl}/api/event/teambuilder?players=${players}&min=${min}&max=${max}`);
+      const data = await res.json();
+      if (data.success) {
+        setTeamBuilderSuggestions(data.suggestions || []);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    if (backendUrl && teamBuilderPlayers >= 2) {
+      fetchTeamBuilder(teamBuilderPlayers, minPlayersPerTeam, maxPlayersPerTeam);
+    }
+  }, [teamBuilderPlayers, minPlayersPerTeam, maxPlayersPerTeam, backendUrl]);
 
   const fetchData = async () => {
     try {
@@ -52,6 +76,8 @@ const Admin = () => {
             setEventTitle(evData.event.name || 'Championship Race');
             setEventCategory(evData.event.category || 'Mixed');
             setMaxConcurrentTeams(evData.event.maxConcurrentTeams || 5);
+            setMaxPlayersPerTeam(evData.event.maxPlayersPerTeam || 4);
+            setMinPlayersPerTeam(evData.event.minPlayersPerTeam || 2);
             setPrizeBanner(evData.event.prizeBanner || 'Top 3 teams win prizes');
           }
         }
@@ -76,6 +102,8 @@ const Admin = () => {
           name: eventTitle,
           category: eventCategory,
           maxConcurrentTeams: parseInt(maxConcurrentTeams, 10),
+          maxPlayersPerTeam: parseInt(maxPlayersPerTeam, 10),
+          minPlayersPerTeam: parseInt(minPlayersPerTeam, 10),
           prizeBanner,
         })
       });
@@ -396,6 +424,95 @@ const Admin = () => {
                   className="w-full bg-surface border border-border rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
                 />
               </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#1E1B3A] mb-1 flex justify-between">
+                  <span>Max Players Per Team</span>
+                  <span className="text-[11px] font-normal text-[#9CA3AF]">2–8 (default 4)</span>
+                </label>
+                <input
+                  type="number"
+                  min="2"
+                  max="8"
+                  value={maxPlayersPerTeam}
+                  disabled={evStatus === 'live'}
+                  onChange={(e) => setMaxPlayersPerTeam(Math.max(2, Math.min(8, parseInt(e.target.value, 10) || 4)))}
+                  className="w-full bg-surface border border-border rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#1E1B3A] mb-1 flex justify-between">
+                  <span>Min Players Per Team</span>
+                  <span className="text-[11px] font-normal text-[#9CA3AF]">2–8 (default 2)</span>
+                </label>
+                <input
+                  type="number"
+                  min="2"
+                  max={maxPlayersPerTeam}
+                  value={minPlayersPerTeam}
+                  disabled={evStatus === 'live'}
+                  onChange={(e) => setMinPlayersPerTeam(Math.max(2, Math.min(maxPlayersPerTeam, parseInt(e.target.value, 10) || 2)))}
+                  className="w-full bg-surface border border-border rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Category Warnings (if any category lacks eligible keywords) */}
+            {eventData?.warnings && eventData.warnings.length > 0 && (
+              <div className="bg-[#FFFBEB] border border-[#FDE68A] rounded-xl p-3.5 space-y-1.5 text-xs text-[#92400E]">
+                <div className="font-bold flex items-center gap-1.5">
+                  <span>⚠️ Category Keyword Availability Warnings:</span>
+                </div>
+                <ul className="list-disc list-inside space-y-0.5 text-[11px]">
+                  {eventData.warnings.map((w, idx) => (
+                    <li key={idx}>{w.message}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Team Builder Helper */}
+            <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-xs font-bold text-[#1E1B3A] block">
+                    Team Builder Helper
+                  </span>
+                  <span className="text-[11px] text-[#64748B]">
+                    Suggest balanced team configurations for players present
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-[#64748B]">Players:</span>
+                  <input
+                    type="number"
+                    min="2"
+                    max="100"
+                    value={teamBuilderPlayers}
+                    onChange={(e) => setTeamBuilderPlayers(parseInt(e.target.value, 10) || 2)}
+                    className="w-16 bg-white border border-[#CBD5E1] rounded-lg p-1.5 text-center text-xs font-bold"
+                  />
+                </div>
+              </div>
+
+              {teamBuilderSuggestions.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {teamBuilderSuggestions.map((s, idx) => (
+                    <div
+                      key={idx}
+                      className="px-3 py-1.5 bg-white border border-[#CBD5E1] rounded-lg text-xs font-medium text-[#1E1B3A] shadow-2xs"
+                    >
+                      <span className="font-bold text-[#5046E5]">{s.label}</span>
+                      <span className="text-[#64748B] ml-1.5 font-mono">({s.sizes.join('+')})</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-xs text-[#94A3B8]">
+                  No split found fitting {minPlayersPerTeam}–{maxPlayersPerTeam} players per team.
+                </div>
+              )}
             </div>
 
             {/* Event Buttons */}

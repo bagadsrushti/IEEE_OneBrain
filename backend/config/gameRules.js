@@ -1,20 +1,21 @@
 /**
- * Game rules table keyed by player count (3–8).
+ * Game rules table keyed by player count (2–8).
  * Looked up ONCE at game-start and locked for the round.
  * roundSeconds is a HARD CAP of 120 and INCLUDES prepSeconds.
  */
 
 const RULES_TABLE = {
-  3: { roundSeconds: 90,  prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.2  },
-  4: { roundSeconds: 100, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.15 },
-  5: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.1  },
-  6: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.05 },
-  7: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
-  8: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0  },
+  2: { roundSeconds: 120, prepSeconds: 8, maxAttempts: 3, wrongPenalty: 10, maxHints: 0, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.0,  waveIntervalSeconds: 30 },
+  3: { roundSeconds: 90,  prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 0, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.2,  waveIntervalSeconds: 30 },
+  4: { roundSeconds: 100, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 0, hintPenalty: 20, difficultyTier: 'easy',   scoreMultiplier: 1.15, waveIntervalSeconds: 30 },
+  5: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.1,  waveIntervalSeconds: 0  },
+  6: { roundSeconds: 110, prepSeconds: 5, maxAttempts: 3, wrongPenalty: 10, maxHints: 1, hintPenalty: 20, difficultyTier: 'medium', scoreMultiplier: 1.05, waveIntervalSeconds: 0  },
+  7: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0,  waveIntervalSeconds: 0  },
+  8: { roundSeconds: 120, prepSeconds: 5, maxAttempts: 2, wrongPenalty: 15, maxHints: 2, hintPenalty: 20, difficultyTier: 'hard',   scoreMultiplier: 1.0,  waveIntervalSeconds: 0  },
 };
 
 const MAX_ROUND_SECONDS = 120;
-const MIN_PLAYERS = 3;
+const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 
 // Admin toggle — overrides roundSeconds to 120 for every player count
@@ -26,6 +27,16 @@ function setFlat120sMode(enabled) {
 
 function isFlat120sMode() {
   return flat120sMode;
+}
+
+function updateRulesTable(N, overrides) {
+  if (RULES_TABLE[N] && typeof overrides === 'object') {
+    Object.assign(RULES_TABLE[N], overrides);
+    if (RULES_TABLE[N].roundSeconds > MAX_ROUND_SECONDS) {
+      RULES_TABLE[N].roundSeconds = MAX_ROUND_SECONDS;
+    }
+  }
+  return RULES_TABLE[N];
 }
 
 /**
@@ -52,4 +63,5 @@ module.exports = {
   getRulesForPlayerCount,
   setFlat120sMode,
   isFlat120sMode,
+  updateRulesTable,
 };

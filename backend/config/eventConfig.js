@@ -35,6 +35,12 @@ module.exports = {
   MIN_CONCURRENT_TEAMS: 1,
   MAX_CONCURRENT_TEAMS: 50,
 
+  // Team size constraints per event
+  DEFAULT_MAX_PLAYERS_PER_TEAM: 4,
+  DEFAULT_MIN_PLAYERS_PER_TEAM: 2,
+  MIN_PLAYERS_PER_TEAM: 2,
+  MAX_PLAYERS_PER_TEAM: 8,
+
   // Global room limit cap
   MAX_ROOMS: 100,
 

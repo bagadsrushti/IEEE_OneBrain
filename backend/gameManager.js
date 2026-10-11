@@ -5,6 +5,7 @@ const { CATEGORIES } = require('./config/categories');
 const { isCorrectGuess, normalize } = require('./utils/answerMatcher');
 const { MAX_GUESS_LENGTH } = require('./config/matching');
 const eventManager = require('./eventManager');
+const { dealClues } = require('./utils/dealClues');
 const {
   EVENT_ROUNDS,
   REVEAL_DURATION_SECONDS,
@@ -53,9 +54,11 @@ function getRandomChallenge(N, room, tier = 'easy') {
   const targetDomain = eventTheme || room.category;
   
   // Create a fast lookup grouped by domain -> subfield -> tier -> challenges
+  // ONLY keywords with at least N clues are eligible
   const pool = {};
   challengesData.forEach(c => {
-    if (!usageTracker.isSubfieldDisabled(c.category, c.subfield) && !usageTracker.isKeywordDisabled(c.id)) {
+    const clueCount = Array.isArray(c.clues) ? c.clues.length : 0;
+    if (clueCount >= N && !usageTracker.isSubfieldDisabled(c.category, c.subfield) && !usageTracker.isKeywordDisabled(c.id)) {
       if (!pool[c.category]) pool[c.category] = {};
       if (!pool[c.category][c.subfield]) pool[c.category][c.subfield] = { easy: [], medium: [], hard: [] };
       if (pool[c.category][c.subfield][c.tier]) {
@@ -75,7 +78,10 @@ function getRandomChallenge(N, room, tier = 'easy') {
   if (!pool[selectedDomain]) {
     // fallback if everything is disabled
     selectedDomain = Object.keys(pool)[0]; 
-    if (!selectedDomain) return challengesData[0]; // absolute fallback
+    if (!selectedDomain) {
+      const eligibleFallback = challengesData.filter(c => Array.isArray(c.clues) && c.clues.length >= N);
+      return eligibleFallback[0] || challengesData[0]; // absolute fallback
+    }
   }
 
   // b. Choose the sub-field within the domain that was used least recently event-wide.
@@ -110,9 +116,7 @@ function getRandomChallenge(N, room, tier = 'easy') {
         
         let candidates = sfChallenges[t];
         
-        // d. Choose randomly among keywords NOT yet used in this event (we'll define "event" as having count = 0 or we can track event explicitly. The prompt says "NOT yet used in this event").
-        // Let's interpret "not yet used in this event" as getKeywordCount == 0, since we reset rotation on event start or admin action.
-        
+        // d. Choose randomly among keywords NOT yet used in this event
         // Never repeat a keyword within the same room
         if (!room.usedKeywords) room.usedKeywords = new Set();
         candidates = candidates.filter(c => !room.usedKeywords.has(c.id));
@@ -150,9 +154,10 @@ function getRandomChallenge(N, room, tier = 'easy') {
     }
   }
 
-  // Absolute fallback
+  // Absolute fallback: must have at least N clues
   if (!selectedChallenge) {
-    selectedChallenge = challengesData[Math.floor(Math.random() * challengesData.length)];
+    const eligibleFallback = challengesData.filter(c => Array.isArray(c.clues) && c.clues.length >= N);
+    selectedChallenge = eligibleFallback[Math.floor(Math.random() * eligibleFallback.length)] || challengesData[0];
     if (!room.usedKeywords) room.usedKeywords = new Set();
     room.usedKeywords.add(selectedChallenge.id);
     usageTracker.recordUsage(selectedChallenge.category, selectedChallenge.subfield, selectedChallenge.id, playerTokens);
@@ -249,6 +254,12 @@ class GameManager {
 
     const activePlayers = room.players.filter(p => p.connected).length;
     if (activePlayers >= MAX_PLAYERS) return { error: `Room is full (max ${MAX_PLAYERS} players)` };
+    if (room.mode === 'event') {
+      const maxEventPlayers = eventManager.getEvent()?.maxPlayersPerTeam || MAX_PLAYERS;
+      if (activePlayers >= maxEventPlayers) {
+        return { error: `Team is full (max ${maxEventPlayers} players for this event)` };
+      }
+    }
     if (room.state !== 'lobby') return { error: 'Game already in progress' };
 
     const playerId = generateToken();
@@ -317,7 +328,7 @@ class GameManager {
     return room;
   }
 
-  startGame(code, playerId, onRoundEnd) {
+  startGame(code, playerId, onRoundEnd, onClueWave) {
     const room = this.getRoom(code);
     if (!room || room.host !== playerId || (room.state !== 'lobby' && room.state !== 'queued')) {
       return { error: 'Cannot start game' };
@@ -327,12 +338,21 @@ class GameManager {
     const N = activePlayers.length;
     if (N < MIN_PLAYERS || N > MAX_PLAYERS) return { error: `Need ${MIN_PLAYERS}-${MAX_PLAYERS} players` };
 
+    if (room.mode === 'event') {
+      const minEventPlayers = eventManager.getEvent()?.minPlayersPerTeam || MIN_PLAYERS;
+      if (N < minEventPlayers) {
+        return { error: `Need at least ${minEventPlayers} players for this event` };
+      }
+    }
+
     const rules = getRulesForPlayerCount(N);
     if (!rules) return { error: 'Invalid player count for rules' };
 
     room.roundRules = rules; // Lock rules for the round
     room.teamSize = N;
     if (onRoundEnd) room.onRoundEndCallback = onRoundEnd;
+    if (onClueWave) room.onClueWaveCallback = onClueWave;
+    else if (this.globalClueWaveCallback) room.onClueWaveCallback = this.globalClueWaveCallback;
 
     // EVENT MODE CAPACITY & QUEUE CHECK
     if (room.mode === 'event') {
@@ -374,41 +394,36 @@ class GameManager {
 
     const activePlayers = room.players.filter(p => p.connected);
 
-    // Select N clues with N DISTINCT angles
-    let availableClues = (challenge.clues || []).map(c => typeof c === 'string' ? { angle: 'General', text: c } : c);
-    const selectedClues = [];
-    const usedAngles = new Set();
+    // Clear any previous wave timers
+    if (room.waveTimers) {
+      room.waveTimers.forEach(t => clearTimeout(t));
+    }
+    room.waveTimers = [];
 
-    // Try to pick distinct angles
+    // Distribute all clues across N players using dealClues
+    const piles = dealClues(challenge, N);
+
+    const waveInterval = room.roundRules.waveIntervalSeconds !== undefined ? room.roundRules.waveIntervalSeconds : 0;
+    const maxPileSize = Math.max(...piles.map(p => p.length));
+    room.totalWaves = maxPileSize;
+    room.currentWave = waveInterval === 0 ? 1 : 0;
+    room.waveIntervalSeconds = waveInterval;
+
     for (let i = 0; i < N; i++) {
-      let candidateIdx = availableClues.findIndex(c => !usedAngles.has(c.angle));
-      if (candidateIdx === -1 && availableClues.length > 0) {
-        candidateIdx = 0; 
-      }
-      let clue = candidateIdx !== -1 ? availableClues.splice(candidateIdx, 1)[0] : null;
-      if (!clue && selectedClues.length > 0) {
-        clue = selectedClues[i % selectedClues.length];
-      }
-      if (clue) {
-        selectedClues.push(clue);
-        if (clue.angle) usedAngles.add(clue.angle);
+      if (activePlayers[i]) {
+        activePlayers[i].fullCluePile = piles[i];
+        if (waveInterval === 0) {
+          activePlayers[i].releasedClues = [...piles[i]];
+          activePlayers[i].clue = piles[i][0]?.text || '';
+        } else {
+          activePlayers[i].releasedClues = [];
+          activePlayers[i].clue = '';
+        }
       }
     }
 
-    // Shuffle and assign
-    selectedClues.sort(() => 0.5 - Math.random());
-    for (let i = 0; i < N; i++) {
-      activePlayers[i].clue = selectedClues[i]?.text || 'No clue available';
-    }
-    
-    // Remaining clues for hints
-    room.unassignedClues = availableClues.filter(c => !usedAngles.has(c.angle)).map(c => c.text);
-    if (room.unassignedClues.length === 0) {
-      room.unassignedClues = availableClues.map(c => c.text);
-    }
-    if (room.unassignedClues.length === 0 && selectedClues.length > 0) {
-      room.unassignedClues = selectedClues.map(c => c.text);
-    }
+    // Hints fallback
+    room.unassignedClues = [];
 
     const now = Date.now();
     const totalMs = room.roundRules.roundSeconds * 1000;
@@ -422,7 +437,41 @@ class GameManager {
     room.timer = setTimeout(() => {
       room.state = 'playing';
       room.roundPlayStartTime = Date.now();
+
+      // Release Wave 1 for progressive release
+      if (waveInterval > 0) {
+        room.currentWave = 1;
+        for (let i = 0; i < N; i++) {
+          const p = activePlayers[i];
+          if (p && p.fullCluePile && p.fullCluePile.length >= 1) {
+            p.releasedClues = [p.fullCluePile[0]];
+            p.clue = p.fullCluePile[0].text;
+          }
+        }
+      }
+
       if (room.onRoundEndCallback) room.onRoundEndCallback(room, 'started');
+      if (room.onClueWaveCallback) room.onClueWaveCallback(room, 1);
+
+      // Schedule progressive waves if waveInterval > 0
+      if (waveInterval > 0 && maxPileSize > 1) {
+        for (let k = 2; k <= maxPileSize; k++) {
+          const waveDelay = (k - 1) * waveInterval * 1000;
+          const waveTimer = setTimeout(() => {
+            if (room.state !== 'playing') return;
+            room.currentWave = k;
+            for (let i = 0; i < N; i++) {
+              const p = activePlayers[i];
+              if (p && p.fullCluePile && p.fullCluePile.length >= k) {
+                p.releasedClues.push(p.fullCluePile[k - 1]);
+                p.clue = p.fullCluePile[k - 1].text;
+              }
+            }
+            if (room.onClueWaveCallback) room.onClueWaveCallback(room, k);
+          }, waveDelay);
+          room.waveTimers.push(waveTimer);
+        }
+      }
       
       const playMs = totalMs - prepMs;
       room.timer = setTimeout(() => {
@@ -441,7 +490,25 @@ class GameManager {
     const room = this.getRoom(code);
     if (!room || room.state !== 'playing') return null;
     
-    if (room.hintsUsed >= room.roundRules.maxHints || room.unassignedClues.length === 0) {
+    if ((room.roundRules?.waveIntervalSeconds || 0) > 0 && (room.roundRules?.maxHints || 0) <= 0) {
+      return { error: 'Progressive clue release is active — hints are disabled' };
+    }
+
+    if (room.hintsUsed >= (room.roundRules?.maxHints || 0)) {
+      return { error: 'Max hints used or none available' };
+    }
+
+    if (!room.unassignedClues || room.unassignedClues.length === 0) {
+      const cat = room.currentChallenge?.category || '';
+      const sub = room.currentChallenge?.subfield ? ` (${room.currentChallenge.subfield})` : '';
+      const ans = room.currentChallenge?.answer || '';
+      room.unassignedClues = [
+        `Category: ${cat}${sub}`,
+        `Starts with: "${ans.charAt(0).toUpperCase()}"`,
+      ];
+    }
+
+    if (room.unassignedClues.length === 0) {
       return { error: 'Max hints used or none available' };
     }
     
@@ -532,6 +599,23 @@ class GameManager {
     if (!room) return null;
     
     if (room.timer) clearTimeout(room.timer);
+    if (room.waveTimers) {
+      room.waveTimers.forEach(t => clearTimeout(t));
+      room.waveTimers = [];
+    }
+
+    // Build complete list of all clues paired with player nicknames
+    const allCluesList = [];
+    room.players.forEach(p => {
+      const pile = p.fullCluePile && p.fullCluePile.length > 0 ? p.fullCluePile : (p.clue ? [{ text: p.clue }] : []);
+      pile.forEach(c => {
+        allCluesList.push({
+          name: p.name,
+          clue: typeof c === 'string' ? c : c.text,
+        });
+      });
+    });
+    room.lastRoundAllClues = allCluesList;
 
     // EVENT MODE ROUND END
     if (room.mode === 'event') {
@@ -552,7 +636,7 @@ class GameManager {
       room.revealEndTime = now + (REVEAL_DURATION_SECONDS * 1000);
       room.lastRevealData = {
         answer: room.currentChallenge?.answer,
-        allClues: room.players.map(p => ({ name: p.name, clue: p.clue })),
+        allClues: allCluesList,
         roundNum: room.currentRound,
         totalRounds: EVENT_ROUNDS,
         roundTime: roundResult?.roundTime || 0,
@@ -683,6 +767,33 @@ class GameManager {
 
   getEventTheme() {
     return eventTheme;
+  }
+
+  setClueWaveCallback(callback) {
+    this.globalClueWaveCallback = callback;
+  }
+
+  getCategoryWarnings() {
+    const warnings = [];
+    CATEGORIES.forEach(category => {
+      const catChallenges = challengesData.filter(c => c.category === category && Array.isArray(c.clues));
+      for (let n = MIN_PLAYERS; n <= MAX_PLAYERS; n++) {
+        const eligibleCount = catChallenges.filter(c => c.clues.length >= n).length;
+        if (eligibleCount < 3) {
+          warnings.push({
+            category,
+            playerCount: n,
+            available: eligibleCount,
+            message: `Category "${category}" has only ${eligibleCount} keyword(s) with at least ${n} clues (minimum 3 required for a standard match).`
+          });
+        }
+      }
+    });
+    return warnings;
+  }
+
+  getRandomChallenge(N, room, tier = 'easy') {
+    return getRandomChallenge(N, room, tier);
   }
 
   getChallengesData() {

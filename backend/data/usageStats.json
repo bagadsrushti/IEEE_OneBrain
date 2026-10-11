@@ -1,197 +1,62 @@
 {
   "domains": {
-    "Anime": 1791536201536,
-    "Cricket / IPL": 1791456903779,
-    "Web Series": 1791456903781,
-    "Movies": 1791585215158,
-    "General Knowledge": 1791682243965,
-    "Locations": 1791456903785,
-    "Memes & Internet Culture": 1791456903786,
-    "Tech & AI": 1791456903787,
-    "VIT Pune & Pune Local": 1791456903788,
-    "Animals": 1791588724365,
-    "Trending Topics": 1791682338995
+    "General Knowledge": 1791696905939,
+    "Movies": 1791696905941,
+    "Animals": 1791696905936,
+    "Trending Topics": 1791696905938
   },
   "subfields": {
-    "Anime::Romance/Drama": 1791456903778,
-    "Cricket / IPL::Legendary matches": 1791456903779,
-    "Web Series::Comedy/Sitcom": 1791456903781,
-    "Movies::Bollywood classics": 1791456903782,
-    "General Knowledge::Mythology & culture": 1791456903783,
-    "Locations::Countries & capitals": 1791456903785,
-    "Memes & Internet Culture::Viral trends": 1791456903786,
-    "Tech & AI::Programming": 1791456903787,
-    "VIT Pune & Pune Local::Pune landmarks": 1791456903788,
-    "Anime::Sports anime": 1791456903789,
-    "Anime::Thriller/Mystery": 1791514669364,
-    "Anime::Slice of life": 1791461087299,
-    "Anime::Characters & villains": 1791461673947,
-    "Movies::Sci-fi/Superhero": 1791463391322,
-    "Anime::Shonen": 1791523898441,
-    "Anime::Classics": 1791536201536,
-    "Animals::Reptile": 1791546476859,
-    "Movies::Indian romantic movie": 1791585164793,
-    "Trending Topics::Streaming": 1791546941682,
-    "General Knowledge::Sport": 1791547275005,
-    "Animals::Australian animal": 1791547306396,
-    "Movies::Superhero movie": 1791585215158,
-    "Movies::Indian comedy-drama": 1791566375730,
-    "Trending Topics::Online shopping": 1791569641604,
-    "Movies::Fantasy movie": 1791583913210,
-    "Movies::Indian sports movie": 1791583991386,
-    "Movies::Bollywood movie": 1791584784917,
-    "Movies::Indian action movie": 1791584809996,
-    "Movies::Animated movie": 1791584912622,
-    "Animals::Insect": 1791588645809,
-    "Animals::Farm animal": 1791588681270,
-    "Animals::Bird": 1791588724365,
-    "General Knowledge::Famous place or country fact": 1791682243965,
-    "Trending Topics::AI": 1791682338995
+    "General Knowledge::Sport": 1791696905928,
+    "Movies::Fantasy": 1791696905929,
+    "Animals::Marine mammal": 1791696905930,
+    "Trending Topics::Gaming": 1791696905932,
+    "General Knowledge::Technology": 1791696905933,
+    "Movies::Crime thriller": 1791696905935,
+    "Animals::Bird": 1791696905936,
+    "Trending Topics::AI and technology": 1791696905938,
+    "General Knowledge::Famous scientist/inventor": 1791696905939,
+    "Movies::Indian thriller": 1791696905941
   },
   "keywords": {
-    "chal-7": {
+    "challenge_32": {
       "count": 1,
-      "lastUsedAt": 1791456903778
-    },
-    "chal-28": {
-      "count": 1,
-      "lastUsedAt": 1791456903779
-    },
-    "chal-49": {
-      "count": 1,
-      "lastUsedAt": 1791456903781
-    },
-    "chal-64": {
-      "count": 1,
-      "lastUsedAt": 1791456903782
-    },
-    "chal-103": {
-      "count": 1,
-      "lastUsedAt": 1791456903783
-    },
-    "chal-118": {
-      "count": 1,
-      "lastUsedAt": 1791456903785
-    },
-    "chal-130": {
-      "count": 1,
-      "lastUsedAt": 1791456903786
-    },
-    "chal-151": {
-      "count": 1,
-      "lastUsedAt": 1791456903787
-    },
-    "chal-169": {
-      "count": 1,
-      "lastUsedAt": 1791456903788
-    },
-    "chal-13": {
-      "count": 1,
-      "lastUsedAt": 1791456903789
-    },
-    "chal-10": {
-      "count": 1,
-      "lastUsedAt": 1791460274497
-    },
-    "chal-4": {
-      "count": 1,
-      "lastUsedAt": 1791461087299
-    },
-    "chal-19": {
-      "count": 1,
-      "lastUsedAt": 1791461673947
-    },
-    "chal-79": {
-      "count": 1,
-      "lastUsedAt": 1791463391322
-    },
-    "chal-real-1": {
-      "count": 3,
-      "lastUsedAt": 1791523898441
-    },
-    "chal-real-3": {
-      "count": 3,
-      "lastUsedAt": 1791536201536
-    },
-    "chal-real-2": {
-      "count": 2,
-      "lastUsedAt": 1791514669364
-    },
-    "challenge_34": {
-      "count": 1,
-      "lastUsedAt": 1791546476859
-    },
-    "challenge_29": {
-      "count": 2,
-      "lastUsedAt": 1791585164793
-    },
-    "challenge_58": {
-      "count": 1,
-      "lastUsedAt": 1791546941682
-    },
-    "challenge_43": {
-      "count": 1,
-      "lastUsedAt": 1791547275005
-    },
-    "challenge_38": {
-      "count": 1,
-      "lastUsedAt": 1791547306396
-    },
-    "challenge_28": {
-      "count": 1,
-      "lastUsedAt": 1791547333730
-    },
-    "challenge_25": {
-      "count": 1,
-      "lastUsedAt": 1791566375730
-    },
-    "challenge_57": {
-      "count": 1,
-      "lastUsedAt": 1791569641604
-    },
-    "challenge_24": {
-      "count": 1,
-      "lastUsedAt": 1791583913210
-    },
-    "challenge_27": {
-      "count": 1,
-      "lastUsedAt": 1791583991386
-    },
-    "challenge_20": {
-      "count": 1,
-      "lastUsedAt": 1791584784917
+      "lastUsedAt": 1791696905928
     },
     "challenge_23": {
       "count": 1,
-      "lastUsedAt": 1791584809996
+      "lastUsedAt": 1791696905929
     },
-    "challenge_26": {
+    "challenge_58": {
       "count": 1,
-      "lastUsedAt": 1791584912622
+      "lastUsedAt": 1791696905930
     },
-    "challenge_21": {
+    "challenge_53": {
       "count": 1,
-      "lastUsedAt": 1791585215158
+      "lastUsedAt": 1791696905932
     },
-    "challenge_37": {
+    "challenge_50": {
       "count": 1,
-      "lastUsedAt": 1791588645809
+      "lastUsedAt": 1791696905933
     },
-    "challenge_36": {
+    "challenge_81": {
       "count": 1,
-      "lastUsedAt": 1791588681270
+      "lastUsedAt": 1791696905935
     },
-    "challenge_32": {
+    "challenge_27": {
       "count": 1,
-      "lastUsedAt": 1791588724365
+      "lastUsedAt": 1791696905936
     },
-    "challenge_12": {
+    "challenge_19": {
       "count": 1,
-      "lastUsedAt": 1791682243965
+      "lastUsedAt": 1791696905938
     },
-    "challenge_75": {
+    "challenge_0": {
       "count": 1,
-      "lastUsedAt": 1791682338995
+      "lastUsedAt": 1791696905939
+    },
+    "challenge_61": {
+      "count": 1,
+      "lastUsedAt": 1791696905941
     }
   },
   "playerHistory": {
@@ -826,24 +691,1159 @@
     ],
     "sn5elzzu03f3z3u5e4cgtb": [
       "challenge_75"
+    ],
+    "qmpj5a2mtpzacfe5nk7gs": [
+      "challenge_15",
+      "challenge_52",
+      "challenge_48",
+      "challenge_93",
+      "challenge_32",
+      "challenge_49",
+      "challenge_31",
+      "challenge_3",
+      "challenge_1",
+      "challenge_12",
+      "challenge_34",
+      "challenge_4",
+      "challenge_33",
+      "challenge_92",
+      "challenge_91",
+      "challenge_10",
+      "challenge_30",
+      "challenge_5",
+      "challenge_50",
+      "challenge_6",
+      "challenge_89",
+      "challenge_51",
+      "challenge_16",
+      "challenge_13",
+      "challenge_7",
+      "challenge_2",
+      "challenge_11",
+      "challenge_71",
+      "challenge_72",
+      "challenge_8"
+    ],
+    "a5001bjm1lr4rqwx93dpew": [
+      "challenge_15",
+      "challenge_52",
+      "challenge_48",
+      "challenge_93",
+      "challenge_32",
+      "challenge_49",
+      "challenge_31",
+      "challenge_3",
+      "challenge_1",
+      "challenge_12",
+      "challenge_34",
+      "challenge_4",
+      "challenge_33",
+      "challenge_92",
+      "challenge_91",
+      "challenge_10",
+      "challenge_30",
+      "challenge_5",
+      "challenge_50",
+      "challenge_6",
+      "challenge_89",
+      "challenge_51",
+      "challenge_16",
+      "challenge_13",
+      "challenge_7",
+      "challenge_2",
+      "challenge_11",
+      "challenge_71",
+      "challenge_72",
+      "challenge_8"
+    ],
+    "57dhldv6tfnj3fvrteqv4": [
+      "challenge_15",
+      "challenge_52",
+      "challenge_48",
+      "challenge_93",
+      "challenge_32",
+      "challenge_49",
+      "challenge_31",
+      "challenge_3",
+      "challenge_1",
+      "challenge_12",
+      "challenge_34",
+      "challenge_4",
+      "challenge_33",
+      "challenge_92",
+      "challenge_91",
+      "challenge_10",
+      "challenge_30",
+      "challenge_5",
+      "challenge_50",
+      "challenge_6",
+      "challenge_89",
+      "challenge_51",
+      "challenge_16",
+      "challenge_13",
+      "challenge_7",
+      "challenge_2",
+      "challenge_11",
+      "challenge_71",
+      "challenge_72",
+      "challenge_8"
+    ],
+    "ofofet0milg6rxsbpm4v8x": [
+      "challenge_15",
+      "challenge_52",
+      "challenge_48",
+      "challenge_93",
+      "challenge_32",
+      "challenge_49",
+      "challenge_31",
+      "challenge_3",
+      "challenge_1",
+      "challenge_12",
+      "challenge_34",
+      "challenge_4",
+      "challenge_33",
+      "challenge_92",
+      "challenge_91",
+      "challenge_10",
+      "challenge_30",
+      "challenge_5",
+      "challenge_50",
+      "challenge_6",
+      "challenge_89",
+      "challenge_51",
+      "challenge_16",
+      "challenge_13",
+      "challenge_7",
+      "challenge_2",
+      "challenge_11",
+      "challenge_71",
+      "challenge_72",
+      "challenge_8"
+    ],
+    "s3bhvtp8kz9zaybry29z3r": [
+      "challenge_6",
+      "challenge_17",
+      "challenge_66",
+      "challenge_19",
+      "challenge_92",
+      "challenge_40",
+      "challenge_25",
+      "challenge_98",
+      "challenge_3"
+    ],
+    "3x81u2llcsr8vkoe0mkedp": [
+      "challenge_6",
+      "challenge_17",
+      "challenge_66",
+      "challenge_19",
+      "challenge_92",
+      "challenge_40",
+      "challenge_25",
+      "challenge_98",
+      "challenge_3"
+    ],
+    "xzmett0bvcyt4smfmmf8": [
+      "challenge_6",
+      "challenge_17",
+      "challenge_66",
+      "challenge_19",
+      "challenge_92",
+      "challenge_40",
+      "challenge_25",
+      "challenge_98",
+      "challenge_3"
+    ],
+    "fv5khihsl4hr93g41hbl5": [
+      "challenge_6",
+      "challenge_17",
+      "challenge_66",
+      "challenge_19",
+      "challenge_92",
+      "challenge_40",
+      "challenge_25",
+      "challenge_98",
+      "challenge_3"
+    ],
+    "s1yy1py9xum0xv5xunnnoc": [
+      "challenge_77"
+    ],
+    "myk183s20h4nxkse6ra3f": [
+      "challenge_77"
+    ],
+    "fb1uv1xhr0b9jayer23cn8": [
+      "challenge_77"
+    ],
+    "dxn1rn8etn6y01m1vsuidt": [
+      "challenge_77"
+    ],
+    "x3iup5wvkellh4fu9vtxb": [
+      "challenge_30",
+      "challenge_50",
+      "challenge_34",
+      "challenge_48",
+      "challenge_49",
+      "challenge_12",
+      "challenge_11",
+      "challenge_10",
+      "challenge_93",
+      "challenge_33",
+      "challenge_0",
+      "challenge_91",
+      "challenge_32",
+      "challenge_4",
+      "challenge_3",
+      "challenge_15",
+      "challenge_92",
+      "challenge_52",
+      "challenge_31",
+      "challenge_69",
+      "challenge_51",
+      "challenge_5",
+      "challenge_2",
+      "challenge_13",
+      "challenge_7",
+      "challenge_16",
+      "challenge_6",
+      "challenge_71",
+      "challenge_79",
+      "challenge_1"
+    ],
+    "v062hgsc8zr2pu9grnp1f": [
+      "challenge_30",
+      "challenge_50",
+      "challenge_34",
+      "challenge_48",
+      "challenge_49",
+      "challenge_12",
+      "challenge_11",
+      "challenge_10",
+      "challenge_93",
+      "challenge_33",
+      "challenge_0",
+      "challenge_91",
+      "challenge_32",
+      "challenge_4",
+      "challenge_3",
+      "challenge_15",
+      "challenge_92",
+      "challenge_52",
+      "challenge_31",
+      "challenge_69",
+      "challenge_51",
+      "challenge_5",
+      "challenge_2",
+      "challenge_13",
+      "challenge_7",
+      "challenge_16",
+      "challenge_6",
+      "challenge_71",
+      "challenge_79",
+      "challenge_1"
+    ],
+    "9ntq1e4cpdov0b3pjka5rt": [
+      "challenge_30",
+      "challenge_50",
+      "challenge_34",
+      "challenge_48",
+      "challenge_49",
+      "challenge_12",
+      "challenge_11",
+      "challenge_10",
+      "challenge_93",
+      "challenge_33",
+      "challenge_0",
+      "challenge_91",
+      "challenge_32",
+      "challenge_4",
+      "challenge_3",
+      "challenge_15",
+      "challenge_92",
+      "challenge_52",
+      "challenge_31",
+      "challenge_69",
+      "challenge_51",
+      "challenge_5",
+      "challenge_2",
+      "challenge_13",
+      "challenge_7",
+      "challenge_16",
+      "challenge_6",
+      "challenge_71",
+      "challenge_79",
+      "challenge_1"
+    ],
+    "fmncp28bkwdkcl2ubtk0eo": [
+      "challenge_30",
+      "challenge_50",
+      "challenge_34",
+      "challenge_48",
+      "challenge_49",
+      "challenge_12",
+      "challenge_11",
+      "challenge_10",
+      "challenge_93",
+      "challenge_33",
+      "challenge_0",
+      "challenge_91",
+      "challenge_32",
+      "challenge_4",
+      "challenge_3",
+      "challenge_15",
+      "challenge_92",
+      "challenge_52",
+      "challenge_31",
+      "challenge_69",
+      "challenge_51",
+      "challenge_5",
+      "challenge_2",
+      "challenge_13",
+      "challenge_7",
+      "challenge_16",
+      "challenge_6",
+      "challenge_71",
+      "challenge_79",
+      "challenge_1"
+    ],
+    "6ecnox9e5p7wl77jf6fot": [
+      "challenge_49",
+      "challenge_17",
+      "challenge_44",
+      "challenge_73",
+      "challenge_32",
+      "challenge_82",
+      "challenge_64",
+      "challenge_35",
+      "challenge_16"
+    ],
+    "rhmazqr0yk4coxkou395z": [
+      "challenge_49",
+      "challenge_17",
+      "challenge_44",
+      "challenge_73",
+      "challenge_32",
+      "challenge_82",
+      "challenge_64",
+      "challenge_35",
+      "challenge_16"
+    ],
+    "qrxyhvnsm2ew00n2yl0xd8": [
+      "challenge_49",
+      "challenge_17",
+      "challenge_44",
+      "challenge_73",
+      "challenge_32",
+      "challenge_82",
+      "challenge_64",
+      "challenge_35",
+      "challenge_16"
+    ],
+    "dmq7i548h2ookwa2yct6e9": [
+      "challenge_49",
+      "challenge_17",
+      "challenge_44",
+      "challenge_73",
+      "challenge_32",
+      "challenge_82",
+      "challenge_64",
+      "challenge_35",
+      "challenge_16"
+    ],
+    "yzo4pdkljp0h6ypcx3yn2m": [
+      "challenge_41"
+    ],
+    "wursrqfyq0osh2zg6oq6w": [
+      "challenge_41"
+    ],
+    "56q85f7oqjlrzbbq9aunuq": [
+      "challenge_41"
+    ],
+    "ia6917zwaddyqczm4ar0wl": [
+      "challenge_41"
+    ],
+    "flenh7bl20rehxb975ahz": [
+      "challenge_78"
+    ],
+    "hi9b61t5ipud5ed3xrnnfu": [
+      "challenge_78"
+    ],
+    "fg7zd5nwae80zaichdut3vp": [
+      "challenge_13"
+    ],
+    "6gp1xedsex5b4gunxje07f": [
+      "challenge_13"
+    ],
+    "8u0kl7jpzfffl9axph12x": [
+      "challenge_13"
+    ],
+    "61y004vdvejnmypzg4ngv": [
+      "challenge_13"
+    ],
+    "n66k9mlhxahmn2rmwe2ms": [
+      "challenge_13"
+    ],
+    "ry2gnachjxv2u0731bjtb": [
+      "challenge_13"
+    ],
+    "ci5l1axezvn2w2ohw57r": [
+      "challenge_13"
+    ],
+    "zrd49i20j2nigp41dpmh6i": [
+      "challenge_13"
+    ],
+    "c140fijdc1lm341lrvm9": [
+      "challenge_55"
+    ],
+    "ymrqfpi2irlt2vr1ynxil": [
+      "challenge_55"
+    ],
+    "hho34fn2l0tqhabetmvzl": [
+      "challenge_5"
+    ],
+    "qv0rsyhdiwfwizcflydaug": [
+      "challenge_5"
+    ],
+    "aaoyh37vx8aohd37agyh3d": [
+      "challenge_5"
+    ],
+    "n5p1jvf7pp9ycropxb87m": [
+      "challenge_5"
+    ],
+    "90qmloo4js2czhr8she4e": [
+      "challenge_5"
+    ],
+    "5sqd9x5g9mi0vocifpadag": [
+      "challenge_5"
+    ],
+    "jpwydck4csnsjdfnoarbc": [
+      "challenge_5"
+    ],
+    "jzovdrq73blygwoya4k7sq": [
+      "challenge_5"
+    ],
+    "mnyb26ndsspj5wc7ejyr": [
+      "challenge_24"
+    ],
+    "tb3c59574div91m4v48js": [
+      "challenge_24"
+    ],
+    "oaq7tnrekm8f93j4vdjyd6": [
+      "challenge_7"
+    ],
+    "lfe196pi5phhfagvyqs459": [
+      "challenge_7"
+    ],
+    "gbbcey3dcfto0ekwxwrxr9": [
+      "challenge_7"
+    ],
+    "7ac4bjnmxm8nubpm1fehw": [
+      "challenge_7"
+    ],
+    "xd7la5bfz4wf92lwg16b": [
+      "challenge_7"
+    ],
+    "jlu1hj07y1dyxasgwuev6o": [
+      "challenge_7"
+    ],
+    "eh4cglul6osdn30hbp8cf": [
+      "challenge_7"
+    ],
+    "x2qorgw27pph7og2cy77": [
+      "challenge_7"
+    ],
+    "3q4vcfkxqplni50b1t9umf": [
+      "challenge_46"
+    ],
+    "uskhanqx1owa5cyuv9qb": [
+      "challenge_46"
+    ],
+    "4ksq8xxpvi7bvk4npo47nm": [
+      "challenge_6"
+    ],
+    "9lj62t3pj45lyu6u3wcyjb": [
+      "challenge_6"
+    ],
+    "9cvo439r56ee4wbdwmniwa": [
+      "challenge_6"
+    ],
+    "2oawonamjynmfhljtougl": [
+      "challenge_6"
+    ],
+    "odc124vpbogbtk0ms5mvz6": [
+      "challenge_6"
+    ],
+    "ix9xazy509npbd0yy10ae": [
+      "challenge_6"
+    ],
+    "xsudq79g4pkvqtqgrexga9": [
+      "challenge_6"
+    ],
+    "47c4g9ndx098vfarzve5tj": [
+      "challenge_6"
+    ],
+    "arzuc7djzwgby8yaxnzsc6": [
+      "challenge_31"
+    ],
+    "esie8svnof3fpozu31nab": [
+      "challenge_31"
+    ],
+    "jdrilaqqi25e3t00d1ogi": [
+      "challenge_37"
+    ],
+    "we1b3an0mw2h943g8zkbk": [
+      "challenge_37"
+    ],
+    "sojw7gc7yp85ns7nxyu13": [
+      "challenge_12",
+      "challenge_2",
+      "challenge_3",
+      "challenge_0",
+      "challenge_11",
+      "challenge_14",
+      "challenge_15",
+      "challenge_10",
+      "challenge_16",
+      "challenge_8",
+      "challenge_5",
+      "challenge_4",
+      "challenge_6",
+      "challenge_1",
+      "challenge_9",
+      "challenge_13",
+      "challenge_7"
+    ],
+    "vh0z6opw51m6m3cc06631l": [
+      "challenge_12",
+      "challenge_2",
+      "challenge_3",
+      "challenge_0",
+      "challenge_11",
+      "challenge_14",
+      "challenge_15",
+      "challenge_10",
+      "challenge_16",
+      "challenge_8",
+      "challenge_5",
+      "challenge_4",
+      "challenge_6",
+      "challenge_1",
+      "challenge_9",
+      "challenge_13",
+      "challenge_7"
+    ],
+    "mitivutkwwbaj1i7rg7r2b": [
+      "challenge_12",
+      "challenge_2",
+      "challenge_3",
+      "challenge_0",
+      "challenge_11",
+      "challenge_14",
+      "challenge_15",
+      "challenge_10",
+      "challenge_16",
+      "challenge_8",
+      "challenge_5",
+      "challenge_4",
+      "challenge_6",
+      "challenge_1",
+      "challenge_9",
+      "challenge_13",
+      "challenge_7"
+    ],
+    "acs1xh1lrglef4nibop84": [
+      "challenge_12",
+      "challenge_2",
+      "challenge_3",
+      "challenge_0",
+      "challenge_11",
+      "challenge_14",
+      "challenge_15",
+      "challenge_10",
+      "challenge_16",
+      "challenge_8",
+      "challenge_5",
+      "challenge_4",
+      "challenge_6",
+      "challenge_1",
+      "challenge_9",
+      "challenge_13",
+      "challenge_7"
+    ],
+    "4xd4fivzganbpe3o4vemuh": [
+      "challenge_12",
+      "challenge_2",
+      "challenge_3",
+      "challenge_0",
+      "challenge_11",
+      "challenge_14",
+      "challenge_15",
+      "challenge_10",
+      "challenge_16",
+      "challenge_8",
+      "challenge_5",
+      "challenge_4",
+      "challenge_6",
+      "challenge_1",
+      "challenge_9",
+      "challenge_13",
+      "challenge_7"
+    ],
+    "z9ofs7k8p3o4o2pstea4v3": [
+      "challenge_34"
+    ],
+    "wm8wydew45d2d5nkyx1lc": [
+      "challenge_34"
+    ],
+    "x44qyndqs1fluail1004qo": [
+      "challenge_80"
+    ],
+    "cyn7zrs2yi7u0fh3jekwfn": [
+      "challenge_80"
+    ],
+    "nllfeuu91tlphcqyiqapj": [
+      "challenge_12",
+      "challenge_11",
+      "challenge_15",
+      "challenge_14",
+      "challenge_0",
+      "challenge_3",
+      "challenge_2",
+      "challenge_5",
+      "challenge_6",
+      "challenge_4",
+      "challenge_8",
+      "challenge_16",
+      "challenge_10",
+      "challenge_9",
+      "challenge_1",
+      "challenge_7",
+      "challenge_13"
+    ],
+    "sz9mwcvmhbqe1eq125s66j": [
+      "challenge_12",
+      "challenge_11",
+      "challenge_15",
+      "challenge_14",
+      "challenge_0",
+      "challenge_3",
+      "challenge_2",
+      "challenge_5",
+      "challenge_6",
+      "challenge_4",
+      "challenge_8",
+      "challenge_16",
+      "challenge_10",
+      "challenge_9",
+      "challenge_1",
+      "challenge_7",
+      "challenge_13"
+    ],
+    "u7ufkt74x7cgk1zvojet5": [
+      "challenge_12",
+      "challenge_11",
+      "challenge_15",
+      "challenge_14",
+      "challenge_0",
+      "challenge_3",
+      "challenge_2",
+      "challenge_5",
+      "challenge_6",
+      "challenge_4",
+      "challenge_8",
+      "challenge_16",
+      "challenge_10",
+      "challenge_9",
+      "challenge_1",
+      "challenge_7",
+      "challenge_13"
+    ],
+    "jjntypyypll4ema4ddxavg": [
+      "challenge_12",
+      "challenge_11",
+      "challenge_15",
+      "challenge_14",
+      "challenge_0",
+      "challenge_3",
+      "challenge_2",
+      "challenge_5",
+      "challenge_6",
+      "challenge_4",
+      "challenge_8",
+      "challenge_16",
+      "challenge_10",
+      "challenge_9",
+      "challenge_1",
+      "challenge_7",
+      "challenge_13"
+    ],
+    "5fbrp8q8edouzjoppanlsg": [
+      "challenge_12",
+      "challenge_11",
+      "challenge_15",
+      "challenge_14",
+      "challenge_0",
+      "challenge_3",
+      "challenge_2",
+      "challenge_5",
+      "challenge_6",
+      "challenge_4",
+      "challenge_8",
+      "challenge_16",
+      "challenge_10",
+      "challenge_9",
+      "challenge_1",
+      "challenge_7",
+      "challenge_13"
+    ],
+    "o2rwjf1fuogmkzsvw9mm39": [
+      "challenge_52"
+    ],
+    "tes5w5fq1qmxbbvu54qda": [
+      "challenge_52"
+    ],
+    "ilctxjcfkgh23jirdxt61ej": [
+      "challenge_18"
+    ],
+    "ql2j4u9rxmql8yjluqs55": [
+      "challenge_18"
+    ],
+    "xicqh6bki5cd8gq1bp5tad": [
+      "challenge_19"
+    ],
+    "7blc4hml0cwpzqs1zosqor": [
+      "challenge_19"
+    ],
+    "mrk1sc47ll8x2khxxplca": [
+      "challenge_12"
+    ],
+    "t50nfx0xzua6bzjoogjk6": [
+      "challenge_12"
+    ],
+    "ylkgkkif7sch4c7nlav2v9": [
+      "challenge_12"
+    ],
+    "8q59mixamxvgvq57xzwi8a": [
+      "challenge_12"
+    ],
+    "ahfuezxgrudihpvxjq1d6o": [
+      "challenge_12"
+    ],
+    "w76ta0zyd7jh8zkgptto2l": [
+      "challenge_12"
+    ],
+    "aglosngwq1prbzwgio4xxn": [
+      "challenge_12"
+    ],
+    "mgvuo90ciwjhubxr6wl6h": [
+      "challenge_12"
+    ],
+    "0xlw6re7t9m548pfnnuev8": [
+      "challenge_1",
+      "challenge_30",
+      "challenge_2",
+      "challenge_5",
+      "challenge_31",
+      "challenge_91",
+      "challenge_48",
+      "challenge_34",
+      "challenge_32",
+      "challenge_52",
+      "challenge_12",
+      "challenge_14",
+      "challenge_16",
+      "challenge_50",
+      "challenge_33",
+      "challenge_51",
+      "challenge_93",
+      "challenge_15",
+      "challenge_92",
+      "challenge_13",
+      "challenge_10",
+      "challenge_11",
+      "challenge_69",
+      "challenge_4",
+      "challenge_3",
+      "challenge_49",
+      "challenge_6",
+      "challenge_0",
+      "challenge_71",
+      "challenge_9"
+    ],
+    "pe2pd93gusi2xi18y8zn": [
+      "challenge_1",
+      "challenge_30",
+      "challenge_2",
+      "challenge_5",
+      "challenge_31",
+      "challenge_91",
+      "challenge_48",
+      "challenge_34",
+      "challenge_32",
+      "challenge_52",
+      "challenge_12",
+      "challenge_14",
+      "challenge_16",
+      "challenge_50",
+      "challenge_33",
+      "challenge_51",
+      "challenge_93",
+      "challenge_15",
+      "challenge_92",
+      "challenge_13",
+      "challenge_10",
+      "challenge_11",
+      "challenge_69",
+      "challenge_4",
+      "challenge_3",
+      "challenge_49",
+      "challenge_6",
+      "challenge_0",
+      "challenge_71",
+      "challenge_9"
+    ],
+    "hz1qw2xf6hgujosi8mjmpq": [
+      "challenge_1",
+      "challenge_30",
+      "challenge_2",
+      "challenge_5",
+      "challenge_31",
+      "challenge_91",
+      "challenge_48",
+      "challenge_34",
+      "challenge_32",
+      "challenge_52",
+      "challenge_12",
+      "challenge_14",
+      "challenge_16",
+      "challenge_50",
+      "challenge_33",
+      "challenge_51",
+      "challenge_93",
+      "challenge_15",
+      "challenge_92",
+      "challenge_13",
+      "challenge_10",
+      "challenge_11",
+      "challenge_69",
+      "challenge_4",
+      "challenge_3",
+      "challenge_49",
+      "challenge_6",
+      "challenge_0",
+      "challenge_71",
+      "challenge_9"
+    ],
+    "e056zv4wm5a76q7zf3htrb": [
+      "challenge_1",
+      "challenge_30",
+      "challenge_2",
+      "challenge_5",
+      "challenge_31",
+      "challenge_91",
+      "challenge_48",
+      "challenge_34",
+      "challenge_32",
+      "challenge_52",
+      "challenge_12",
+      "challenge_14",
+      "challenge_16",
+      "challenge_50",
+      "challenge_33",
+      "challenge_51",
+      "challenge_93",
+      "challenge_15",
+      "challenge_92",
+      "challenge_13",
+      "challenge_10",
+      "challenge_11",
+      "challenge_69",
+      "challenge_4",
+      "challenge_3",
+      "challenge_49",
+      "challenge_6",
+      "challenge_0",
+      "challenge_71",
+      "challenge_9"
+    ],
+    "stjvlyjo5njzl8ev78i8": [
+      "challenge_30",
+      "challenge_83",
+      "challenge_58",
+      "challenge_59",
+      "challenge_12",
+      "challenge_80",
+      "challenge_27",
+      "challenge_39",
+      "challenge_5"
+    ],
+    "9r36nh5wpe9p0q6szyypk": [
+      "challenge_30",
+      "challenge_83",
+      "challenge_58",
+      "challenge_59",
+      "challenge_12",
+      "challenge_80",
+      "challenge_27",
+      "challenge_39",
+      "challenge_5"
+    ],
+    "paryv67c80b1rljpv91c8h": [
+      "challenge_30",
+      "challenge_83",
+      "challenge_58",
+      "challenge_59",
+      "challenge_12",
+      "challenge_80",
+      "challenge_27",
+      "challenge_39",
+      "challenge_5"
+    ],
+    "722qcy1lipepcyz922fcjo": [
+      "challenge_30",
+      "challenge_83",
+      "challenge_58",
+      "challenge_59",
+      "challenge_12",
+      "challenge_80",
+      "challenge_27",
+      "challenge_39",
+      "challenge_5"
+    ],
+    "l282u7fampxxp1nky2otd": [
+      "challenge_24"
+    ],
+    "ihiktidblpr02rig7es9ogt": [
+      "challenge_24"
+    ],
+    "q5301k9hraf5f1h74ej6t8": [
+      "challenge_24"
+    ],
+    "7qf73hgkgjshr3tat2fxnf": [
+      "challenge_24"
+    ],
+    "tix0bhnpgiol07yomrbz0k": [
+      "challenge_28"
+    ],
+    "z8fby5hq1ak8qdqxkkcdsf": [
+      "challenge_28"
+    ],
+    "u8wfmee1j8fw5q46mkw5": [
+      "challenge_10"
+    ],
+    "seua4jnob8fhackuixxam": [
+      "challenge_10"
+    ],
+    "l2cqdmm5ungkdvbuyjqhe": [
+      "challenge_10"
+    ],
+    "vaui0o504r9whr6kh0kux": [
+      "challenge_10"
+    ],
+    "p2ma878a5ae7shkd1bxhk6": [
+      "challenge_10"
+    ],
+    "iyqpc4rizcgoiqxnvooddd": [
+      "challenge_10"
+    ],
+    "dbwf3lxeai7lhscuywq": [
+      "challenge_10"
+    ],
+    "ctm7814q92rfjzur26eol7": [
+      "challenge_10"
+    ],
+    "h4z59tfedm4aqwnst4pf4n": [
+      "challenge_49",
+      "challenge_10",
+      "challenge_52",
+      "challenge_0",
+      "challenge_93",
+      "challenge_48",
+      "challenge_6",
+      "challenge_3",
+      "challenge_32",
+      "challenge_12",
+      "challenge_34",
+      "challenge_30",
+      "challenge_9",
+      "challenge_91",
+      "challenge_92",
+      "challenge_33",
+      "challenge_50",
+      "challenge_31",
+      "challenge_11",
+      "challenge_51",
+      "challenge_2",
+      "challenge_1",
+      "challenge_69",
+      "challenge_15",
+      "challenge_16",
+      "challenge_14",
+      "challenge_5",
+      "challenge_68",
+      "challenge_8",
+      "challenge_89"
+    ],
+    "1ixvbvtsqbvskxlwzsuft": [
+      "challenge_49",
+      "challenge_10",
+      "challenge_52",
+      "challenge_0",
+      "challenge_93",
+      "challenge_48",
+      "challenge_6",
+      "challenge_3",
+      "challenge_32",
+      "challenge_12",
+      "challenge_34",
+      "challenge_30",
+      "challenge_9",
+      "challenge_91",
+      "challenge_92",
+      "challenge_33",
+      "challenge_50",
+      "challenge_31",
+      "challenge_11",
+      "challenge_51",
+      "challenge_2",
+      "challenge_1",
+      "challenge_69",
+      "challenge_15",
+      "challenge_16",
+      "challenge_14",
+      "challenge_5",
+      "challenge_68",
+      "challenge_8",
+      "challenge_89"
+    ],
+    "vpo6oiudjr95m8zuqie258": [
+      "challenge_49",
+      "challenge_10",
+      "challenge_52",
+      "challenge_0",
+      "challenge_93",
+      "challenge_48",
+      "challenge_6",
+      "challenge_3",
+      "challenge_32",
+      "challenge_12",
+      "challenge_34",
+      "challenge_30",
+      "challenge_9",
+      "challenge_91",
+      "challenge_92",
+      "challenge_33",
+      "challenge_50",
+      "challenge_31",
+      "challenge_11",
+      "challenge_51",
+      "challenge_2",
+      "challenge_1",
+      "challenge_69",
+      "challenge_15",
+      "challenge_16",
+      "challenge_14",
+      "challenge_5",
+      "challenge_68",
+      "challenge_8",
+      "challenge_89"
+    ],
+    "yhbicermmv7g4a2imxcpc": [
+      "challenge_49",
+      "challenge_10",
+      "challenge_52",
+      "challenge_0",
+      "challenge_93",
+      "challenge_48",
+      "challenge_6",
+      "challenge_3",
+      "challenge_32",
+      "challenge_12",
+      "challenge_34",
+      "challenge_30",
+      "challenge_9",
+      "challenge_91",
+      "challenge_92",
+      "challenge_33",
+      "challenge_50",
+      "challenge_31",
+      "challenge_11",
+      "challenge_51",
+      "challenge_2",
+      "challenge_1",
+      "challenge_69",
+      "challenge_15",
+      "challenge_16",
+      "challenge_14",
+      "challenge_5",
+      "challenge_68",
+      "challenge_8",
+      "challenge_89"
+    ],
+    "5uuw6wuolpcqg2idmtvn": [
+      "challenge_32",
+      "challenge_23",
+      "challenge_58",
+      "challenge_53",
+      "challenge_50",
+      "challenge_81",
+      "challenge_27",
+      "challenge_19",
+      "challenge_0"
+    ],
+    "h616ioge1ns1jqx524i3bc": [
+      "challenge_32",
+      "challenge_23",
+      "challenge_58",
+      "challenge_53",
+      "challenge_50",
+      "challenge_81",
+      "challenge_27",
+      "challenge_19",
+      "challenge_0"
+    ],
+    "obpztloao4emgwd6hy4mqr": [
+      "challenge_32",
+      "challenge_23",
+      "challenge_58",
+      "challenge_53",
+      "challenge_50",
+      "challenge_81",
+      "challenge_27",
+      "challenge_19",
+      "challenge_0"
+    ],
+    "ewu01t6z17ix1nmo3qsv6i": [
+      "challenge_32",
+      "challenge_23",
+      "challenge_58",
+      "challenge_53",
+      "challenge_50",
+      "challenge_81",
+      "challenge_27",
+      "challenge_19",
+      "challenge_0"
+    ],
+    "zmbsrtamebhjhgp235211o": [
+      "challenge_61"
+    ],
+    "6lw39ghsqtb2mm468zi31b": [
+      "challenge_61"
+    ],
+    "nbgczz9bp3mmnrxc1mxwal": [
+      "challenge_61"
+    ],
+    "7m9cd2vvbnnaumrxdnh7mk": [
+      "challenge_61"
     ]
   },
   "disabled": {
     "subfields": {},
     "keywords": {}
   },
-  "previousEventKeyword": "challenge_75",
+  "previousEventKeyword": "challenge_61",
   "previousDomainSubfield": {
-    "Anime": "Classics",
-    "Cricket / IPL": "Legendary matches",
-    "Web Series": "Comedy/Sitcom",
-    "Movies": "Superhero movie",
-    "General Knowledge": "Famous place or country fact",
-    "Locations": "Countries & capitals",
-    "Memes & Internet Culture": "Viral trends",
-    "Tech & AI": "Programming",
-    "VIT Pune & Pune Local": "Pune landmarks",
+    "General Knowledge": "Famous scientist/inventor",
+    "Movies": "Indian thriller",
     "Animals": "Bird",
-    "Trending Topics": "AI"
+    "Trending Topics": "AI and technology"
   }
 }

@@ -295,7 +295,7 @@ const Landing = () => {
       {/* Footer Text */}
       <div className="text-center mt-6 space-y-0.5">
         <div className="text-[13px] font-bold text-[#4B5563]">Better with your people.</div>
-        <div className="text-[12px] text-[#9CA3AF]">3–8 players · One shared challenge</div>
+        <div className="text-[12px] text-[#9CA3AF]">2–8 players · One shared challenge</div>
       </div>
 
       {/* QR Scanner Modal */}

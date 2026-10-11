@@ -12,6 +12,11 @@ const Game = ({ room }) => {
   const [guess, setGuess] = useState('');
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
+
+  // Progressive Clue Release States
+  const [nextClueCountdown, setNextClueCountdown] = useState(0);
+  const [newClueArrived, setNewClueArrived] = useState(false);
+  const prevClueCountRef = React.useRef(0);
   
   const isEvent = room.mode === 'event';
   const isReady = room.state === 'ready';
@@ -19,6 +24,52 @@ const Game = ({ room }) => {
   const isReveal = room.state === 'reveal';
   const isEventFinished = room.state === 'event_finished';
   const isFinished = room.state === 'finished'; // Quick Play
+
+  const cluesList = room.myClues && room.myClues.length > 0
+    ? room.myClues
+    : (room.myClue ? [{ index: 1, text: room.myClue }] : []);
+
+  // Detect new clue arrival, trigger gentle highlight & haptic
+  useEffect(() => {
+    if (cluesList.length > prevClueCountRef.current && prevClueCountRef.current > 0) {
+      if (navigator.vibrate) {
+        try { navigator.vibrate([50, 50, 50]); } catch (e) {}
+      }
+      setNewClueArrived(true);
+      const timer = setTimeout(() => setNewClueArrived(false), 3000);
+      return () => clearTimeout(timer);
+    }
+    prevClueCountRef.current = cluesList.length;
+  }, [cluesList.length]);
+
+  // Socket listener for new_clue event
+  useEffect(() => {
+    if (!socket) return;
+    const handleNewClue = () => {
+      if (navigator.vibrate) {
+        try { navigator.vibrate([50, 50, 50]); } catch (e) {}
+      }
+      setNewClueArrived(true);
+      setTimeout(() => setNewClueArrived(false), 3000);
+    };
+    socket.on('new_clue', handleNewClue);
+    return () => socket.off('new_clue', handleNewClue);
+  }, [socket]);
+
+  // Next clue countdown
+  useEffect(() => {
+    if (!room.hasMoreClues || !room.nextWaveAt || !isPlaying) {
+      setNextClueCountdown(0);
+      return;
+    }
+    const updateNextClueTimer = () => {
+      const remaining = Math.max(0, Math.ceil((room.nextWaveAt - Date.now()) / 1000));
+      setNextClueCountdown(remaining);
+    };
+    updateNextClueTimer();
+    const interval = setInterval(updateNextClueTimer, 500);
+    return () => clearInterval(interval);
+  }, [room.hasMoreClues, room.nextWaveAt, isPlaying]);
 
   useEffect(() => {
     let interval;
@@ -470,20 +521,65 @@ const Game = ({ room }) => {
 
       {/* Main Content Area */}
       <div className="flex-grow flex flex-col justify-between space-y-4">
-        {/* The Clue (Private to player) */}
-        <div className="bg-surface border-2 border-border p-6 rounded-[24px] shadow-sm flex flex-col justify-center items-center text-center relative overflow-hidden min-h-[160px]">
-          <div className="absolute top-3 left-3 text-xs font-bold text-text-muted uppercase tracking-wider flex items-center space-x-1">
-            <Lightbulb size={14} className="text-hint" />
-            <span>Your Secret Clue</span>
+        {/* Progressive Release Header / Wave Indicator */}
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 rounded-full bg-[#EEF2FF] text-[#5046E5] text-xs font-bold border border-[#E0E7FF]">
+              Wave {room.currentWave || 1} of {room.totalWaves || 1}
+            </span>
+            {newClueArrived && (
+              <span className="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#10B981] text-[11px] font-bold border border-[#A7F3D0] animate-pulse">
+                New Clue!
+              </span>
+            )}
           </div>
-          
-          <p className="text-xl md:text-2xl font-medium text-text mt-4 leading-relaxed">
-            "{room.myClue || 'Waiting for clue assignment...'}"
-          </p>
+          {room.hasMoreClues && nextClueCountdown > 0 ? (
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#6B7280]">
+              <Clock size={13} className="text-[#5046E5]" />
+              <span>
+                Next clue in 0:{nextClueCountdown < 10 ? `0${nextClueCountdown}` : nextClueCountdown}
+              </span>
+            </div>
+          ) : (
+            <span className="text-[11px] font-medium text-[#9CA3AF]">
+              All clues released
+            </span>
+          )}
+        </div>
 
-          <div className="absolute bottom-2 text-[10px] text-text-muted uppercase font-bold tracking-widest">
-            Do not show your screen! Talk to your team.
-          </div>
+        {/* Numbered Clue Cards */}
+        <div className="space-y-3">
+          {cluesList.length > 0 ? (
+            cluesList.map((c, idx) => {
+              const isLatest = idx === cluesList.length - 1 && newClueArrived;
+              return (
+                <div
+                  key={idx}
+                  className={`p-5 rounded-[20px] border-2 transition-all duration-500 shadow-sm text-left relative overflow-hidden ${
+                    isLatest
+                      ? 'bg-[#EEF2FF] border-[#5046E5] ring-2 ring-[#5046E5]/20 shadow-md'
+                      : 'bg-white border-[#E9ECEF]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] font-extrabold text-[#5046E5] uppercase tracking-wider bg-[#F3F4F6] px-2 py-0.5 rounded-md">
+                      Clue #{c.index || (idx + 1)}
+                    </span>
+                    <span className="text-[10px] text-[#9CA3AF] uppercase font-bold tracking-widest">
+                      Keep Secret · Talk
+                    </span>
+                  </div>
+                  <p className="text-lg sm:text-xl font-medium text-[#1E1B3A] leading-relaxed">
+                    "{c.text}"
+                  </p>
+                </div>
+              );
+            })
+          ) : (
+            <div className="bg-white border-2 border-dashed border-[#CBD5E1] p-6 rounded-[20px] text-center text-[#9CA3AF]">
+              Waiting for clue release...
+            </div>
+          )}
         </div>
 
         {/* Shared Hint Area if used */}
@@ -529,10 +625,18 @@ const Game = ({ room }) => {
               onClick={handleHint}
               variant="secondary"
               className="flex-grow py-3 rounded-[16px] text-sm flex items-center justify-center space-x-2 border-border"
-              disabled={room.hintsUsed >= (room.roundRules?.maxHints || 2)}
+              disabled={
+                (room.roundRules?.waveIntervalSeconds || room.waveIntervalSeconds || 0) > 0 ||
+                room.hintsUsed >= (room.roundRules?.maxHints || 0)
+              }
             >
               <Lightbulb size={16} className="text-hint" />
-              <span>Use Hint ({room.roundRules?.maxHints - room.hintsUsed} left)</span>
+              <span>
+                {(room.roundRules?.waveIntervalSeconds || room.waveIntervalSeconds || 0) > 0
+                  ? 'Hints Disabled (Progressive Clues Active)'
+                  : `Use Hint (${Math.max(0, (room.roundRules?.maxHints || 0) - (room.hintsUsed || 0))} left)`
+                }
+              </span>
             </Button>
 
             {!isEvent && room.host === myPlayerId && (

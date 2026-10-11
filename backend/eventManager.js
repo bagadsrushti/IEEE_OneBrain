@@ -12,6 +12,10 @@ const {
   DEFAULT_MAX_CONCURRENT_TEAMS,
   MIN_CONCURRENT_TEAMS,
   MAX_CONCURRENT_TEAMS,
+  DEFAULT_MAX_PLAYERS_PER_TEAM,
+  DEFAULT_MIN_PLAYERS_PER_TEAM,
+  MIN_PLAYERS_PER_TEAM,
+  MAX_PLAYERS_PER_TEAM,
   TEAM_NAME_MAX_LENGTH,
 } = require('./config/eventConfig');
 
@@ -96,16 +100,28 @@ class EventManager {
     };
   }
 
-  createEvent({ name, maxConcurrentTeams, category = 'Mixed', prizeBanner = 'Top 3 teams win prizes' }) {
+  createEvent({
+    name,
+    maxConcurrentTeams,
+    category = 'Mixed',
+    prizeBanner = 'Top 3 teams win prizes',
+    maxPlayersPerTeam = DEFAULT_MAX_PLAYERS_PER_TEAM,
+    minPlayersPerTeam = DEFAULT_MIN_PLAYERS_PER_TEAM,
+  }) {
     const parsedMax = parseInt(maxConcurrentTeams, 10);
     if (isNaN(parsedMax) || parsedMax < MIN_CONCURRENT_TEAMS || parsedMax > MAX_CONCURRENT_TEAMS) {
       throw new Error(`maxConcurrentTeams must be between ${MIN_CONCURRENT_TEAMS} and ${MAX_CONCURRENT_TEAMS}`);
     }
 
+    const parsedMaxP = Math.max(MIN_PLAYERS_PER_TEAM, Math.min(MAX_PLAYERS_PER_TEAM, parseInt(maxPlayersPerTeam, 10) || DEFAULT_MAX_PLAYERS_PER_TEAM));
+    const parsedMinP = Math.max(MIN_PLAYERS_PER_TEAM, Math.min(parsedMaxP, parseInt(minPlayersPerTeam, 10) || DEFAULT_MIN_PLAYERS_PER_TEAM));
+
     currentEvent = {
       id: `evt_${Date.now()}`,
       name: (name || 'Championship Race').trim(),
       maxConcurrentTeams: parsedMax,
+      maxPlayersPerTeam: parsedMaxP,
+      minPlayersPerTeam: parsedMinP,
       category: category || 'Mixed',
       prizeBanner: (prizeBanner || 'Top 3 teams win prizes').trim(),
       status: 'draft', // draft, live, closed
@@ -137,10 +153,11 @@ class EventManager {
       throw new Error(`maxConcurrentTeams must be set between ${MIN_CONCURRENT_TEAMS} and ${MAX_CONCURRENT_TEAMS} before going live.`);
     }
 
-    // Build the fair pool of exactly 3 keywords with identical clue count
-    const pool = this.buildFairPool(challengesData, currentEvent.category);
+    // Build the fair pool of exactly 3 keywords with identical clue count >= maxPlayersPerTeam
+    const minClues = currentEvent.maxPlayersPerTeam || DEFAULT_MAX_PLAYERS_PER_TEAM;
+    const pool = this.buildFairPool(challengesData, currentEvent.category, minClues);
     if (!pool || pool.length !== EVENT_ROUNDS) {
-      throw new Error(`Dataset could not provide exactly ${EVENT_ROUNDS} keywords with identical clue counts for category "${currentEvent.category}".`);
+      throw new Error(`Dataset could not provide exactly ${EVENT_ROUNDS} keywords with identical clue counts having at least ${minClues} clues for category "${currentEvent.category}".`);
     }
 
     eventPool = pool;
@@ -151,12 +168,12 @@ class EventManager {
     return currentEvent;
   }
 
-  buildFairPool(challengesData, categoryFilter) {
+  buildFairPool(challengesData, categoryFilter, minCluesRequired = 2) {
     if (!Array.isArray(challengesData) || challengesData.length < EVENT_ROUNDS) {
       return null;
     }
 
-    let candidates = challengesData.filter(c => Array.isArray(c.clues) && c.clues.length > 0);
+    let candidates = challengesData.filter(c => Array.isArray(c.clues) && c.clues.length >= minCluesRequired);
 
     if (categoryFilter && categoryFilter !== 'Mixed' && categoryFilter !== 'Random') {
       candidates = candidates.filter(c => c.category === categoryFilter);
@@ -170,14 +187,16 @@ class EventManager {
     const byClueCount = new Map();
     candidates.forEach(c => {
       const count = c.clues.length;
-      if (!byClueCount.has(count)) byClueCount.set(count, []);
-      byClueCount.get(count).push(c);
+      if (count >= minCluesRequired) {
+        if (!byClueCount.has(count)) byClueCount.set(count, []);
+        byClueCount.get(count).push(c);
+      }
     });
 
     // Find clue counts that have at least EVENT_ROUNDS challenges
     const eligibleCounts = Array.from(byClueCount.keys())
       .filter(count => byClueCount.get(count).length >= EVENT_ROUNDS)
-      .sort((a, b) => b - a); // prefer higher clue count (e.g. 4 or 8)
+      .sort((a, b) => b - a); // prefer higher clue count (e.g. 8 or 4)
 
     if (eligibleCounts.length === 0) {
       return null;
@@ -532,10 +551,12 @@ class EventManager {
 
   getLeaderboard(filter = 'all') {
     let board = [...leaderboard];
-    if (filter === 'small') {
-      board = board.filter(e => e.teamSize >= 3 && e.teamSize <= 5);
+    if (filter === 'duo' || filter === 'duos') {
+      board = board.filter(e => e.teamSize === 2);
+    } else if (filter === 'small') {
+      board = board.filter(e => e.teamSize >= 3 && e.teamSize <= 4);
     } else if (filter === 'large') {
-      board = board.filter(e => e.teamSize >= 6 && e.teamSize <= 8);
+      board = board.filter(e => e.teamSize >= 5 && e.teamSize <= 8);
     }
 
     return board.map((entry, idx) => ({
@@ -544,6 +565,44 @@ class EventManager {
       totalTimeFormatted: formatTime(entry.totalTime),
       badges: this.calculateBadges(entry),
     }));
+  }
+
+  suggestTeamSplits(totalPlayers, minSize = 2, maxSize = 4) {
+    const P = parseInt(totalPlayers, 10);
+    if (isNaN(P) || P < 2) return [];
+
+    const effectiveMin = Math.max(2, minSize);
+    const effectiveMax = Math.max(effectiveMin, maxSize);
+    const suggestions = [];
+
+    const minTeams = Math.ceil(P / effectiveMax);
+    const maxTeams = Math.floor(P / effectiveMin);
+
+    for (let k = minTeams; k <= maxTeams; k++) {
+      const base = Math.floor(P / k);
+      const remainder = P % k;
+      const sizes = [];
+      for (let i = 0; i < remainder; i++) sizes.push(base + 1);
+      for (let i = remainder; i < k; i++) sizes.push(base);
+
+      sizes.sort((a, b) => a - b);
+
+      if (sizes.every(s => s >= effectiveMin && s <= effectiveMax)) {
+        const countMap = {};
+        sizes.forEach(s => { countMap[s] = (countMap[s] || 0) + 1; });
+        const parts = Object.entries(countMap).map(([sz, cnt]) => `${cnt} team${cnt === 1 ? '' : 's'} of ${sz}`);
+        const label = parts.join(' + ');
+
+        suggestions.push({
+          teamCount: k,
+          sizes,
+          label,
+          formatted: `${label} (${sizes.join('+')})`
+        });
+      }
+    }
+
+    return suggestions;
   }
 
   getTeamRank(roomId) {

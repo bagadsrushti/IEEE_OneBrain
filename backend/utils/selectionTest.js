@@ -73,7 +73,9 @@ function runTests() {
     gameManager.startGame(mixedCode, mixedHost.id, () => {});
     domainsUsed.add(gameManager.getRoom(mixedCode).currentChallenge.category);
   }
-  if (domainsUsed.size === 9) pass("Mixed mode cycled through all 9 domains.");
+  const { CATEGORY_NAMES } = require('../config/categories');
+  const expectedDomains = CATEGORY_NAMES.length;
+  if (domainsUsed.size === expectedDomains) pass(`Mixed mode cycled through all ${expectedDomains} domains.`);
   else fail(`Mixed mode only cycled through ${domainsUsed.size} domains.`);
 
   // 3. A new room's first keyword differs from the previous round event-wide.
