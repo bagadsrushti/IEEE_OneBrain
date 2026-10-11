@@ -77,65 +77,86 @@ export const SocketProvider = ({ children }) => {
   }, []);
 
   const createRoom = (opts, callback) => {
+    if (!socket || !isConnected) {
+      if (callback) callback({ error: 'Connecting to server. Please try again in a moment.' });
+      return;
+    }
     const payload = typeof opts === 'object' ? opts : { nickname: opts };
     socket.emit('create_room', payload, (res) => {
-      if (res.success) {
+      if (res && res.success) {
         localStorage.setItem('ob_token', res.token);
         localStorage.setItem('ob_playerId', res.playerId);
         setMyToken(res.token);
         setMyPlayerId(res.playerId);
       }
-      if (callback) callback(res);
+      if (callback) callback(res || { error: 'No response from server' });
     });
   };
 
   const createDuel = (opts, callback) => {
+    if (!socket || !isConnected) {
+      if (callback) callback({ error: 'Connecting to server. Please try again in a moment.' });
+      return;
+    }
     const payload = typeof opts === 'object' ? opts : { nickname: opts };
     socket.emit('create_duel', payload, (res) => {
-      if (res.success) {
+      if (res && res.success) {
         localStorage.setItem('ob_token', res.token);
         localStorage.setItem('ob_playerId', res.playerId);
         setMyToken(res.token);
         setMyPlayerId(res.playerId);
         setDuelState(res.duelState);
       }
-      if (callback) callback(res);
+      if (callback) callback(res || { error: 'No response from server' });
     });
   };
 
   const joinDuel = (code, nickname, callback) => {
-    socket.emit('join_duel', { code, nickname, token: myToken }, (res) => {
-      if (res.success) {
+    if (!socket || !isConnected) {
+      if (callback) callback({ error: 'Connecting to server. Please try again in a moment.' });
+      return;
+    }
+    const cleanCode = (code || '').toUpperCase().trim();
+    socket.emit('join_duel', { code: cleanCode, nickname, token: myToken }, (res) => {
+      if (res && res.success) {
         localStorage.setItem('ob_token', res.token);
         localStorage.setItem('ob_playerId', res.playerId);
         setMyToken(res.token);
         setMyPlayerId(res.playerId);
         setDuelState(res.duelState);
       }
-      if (callback) callback(res);
+      if (callback) callback(res || { error: 'No response from server' });
     });
   };
 
   const joinRoom = (code, nickname, callback) => {
-    socket.emit('join_room', { code, nickname, token: myToken }, (res) => {
-      if (res.success) {
+    if (!socket || !isConnected) {
+      if (callback) callback({ error: 'Connecting to server. Please try again in a moment.' });
+      return;
+    }
+    const cleanCode = (code || '').toUpperCase().trim();
+    socket.emit('join_room', { code: cleanCode, nickname, token: myToken }, (res) => {
+      if (res && res.success) {
         localStorage.setItem('ob_token', res.token);
         localStorage.setItem('ob_playerId', res.playerId);
         setMyToken(res.token);
         setMyPlayerId(res.playerId);
+        if (res.isDuel && res.duelState) {
+          setDuelState(res.duelState);
+        }
         if (callback) callback(res);
       } else {
         // Fallback: Check if it is a duel code
-        socket.emit('join_duel', { code, nickname, token: myToken }, (duelRes) => {
-          if (duelRes.success) {
+        socket.emit('join_duel', { code: cleanCode, nickname, token: myToken }, (duelRes) => {
+          if (duelRes && duelRes.success) {
             localStorage.setItem('ob_token', duelRes.token);
             localStorage.setItem('ob_playerId', duelRes.playerId);
             setMyToken(duelRes.token);
             setMyPlayerId(duelRes.playerId);
             setDuelState(duelRes.duelState);
-            if (callback) callback({ success: true, isDuel: true, roomCode: code });
+            if (callback) callback({ success: true, isDuel: true, roomCode: cleanCode, duelCode: cleanCode, duelState: duelRes.duelState });
           } else {
-            if (callback) callback(res);
+            if (callback) callback(res || duelRes || { error: 'Failed to join room' });
           }
         });
       }

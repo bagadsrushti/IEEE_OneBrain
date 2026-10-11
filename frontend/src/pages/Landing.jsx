@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useSocket } from '../SocketContext';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { Swords, Plus, ArrowRight, Scan, X, Trophy, Flame, Users, Zap } from 'lucide-react';
+import { Swords, Plus, ArrowRight, Scan, X, Trophy, Flame, Users, Zap, AlertCircle, Loader2 } from 'lucide-react';
 import { getBackendUrl } from '../config';
 
 const QrScannerWrapper = ({ onScan }) => {
@@ -26,14 +26,16 @@ const QrScannerWrapper = ({ onScan }) => {
 const Landing = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { createRoom, createDuel, joinRoom, isConnected, connectionError } = useSocket();
+  const { createRoom, createDuel, joinRoom, isConnected, connectionError, socket } = useSocket();
   
   const [mode, setMode] = useState('quick'); // 'quick' | 'duel' | 'event'
+  const [modeSelectedManually, setModeSelectedManually] = useState(false);
   const [nickname, setNickname] = useState('');
   const [teamName, setTeamName] = useState('');
   const [expectedPlayers, setExpectedPlayers] = useState(8); // Default 8 players for Duel
   const [roomCode, setRoomCode] = useState((code || '').toUpperCase());
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
   const [eventStatus, setEventStatus] = useState(null);
 
@@ -52,7 +54,7 @@ const Landing = () => {
         const data = await res.json();
         if (data.success) {
           setEventStatus(data);
-          if (data.isLive) {
+          if (data.isLive && !modeSelectedManually && !code) {
             setMode('event');
           }
         }
@@ -61,25 +63,39 @@ const Landing = () => {
       }
     };
     fetchEventStatus();
-  }, []);
+  }, [modeSelectedManually, code]);
+
+  const handleSelectMode = (newMode) => {
+    setModeSelectedManually(true);
+    setMode(newMode);
+    setError('');
+  };
 
   const handleCreate = () => {
     setError('');
     if (!nickname.trim()) return setError('Nickname is required');
     
+    setLoading(true);
     if (mode === 'event') {
-      if (!teamName.trim()) return setError('Team name is required for Event Mode');
+      if (!teamName.trim()) {
+        setLoading(false);
+        return setError('Team name is required for Event Mode');
+      }
       createRoom({ nickname: nickname.trim(), mode: 'event', teamName: teamName.trim() }, (res) => {
+        setLoading(false);
         if (res.error) return setError(res.error);
         navigate(`/room/${res.roomCode}`);
       });
     } else if (mode === 'duel') {
       createDuel({ nickname: nickname.trim(), expectedPlayers }, (res) => {
+        setLoading(false);
         if (res.error) return setError(res.error);
-        navigate(`/room/${res.duelCode}`);
+        const targetCode = res.duelCode || res.roomCode;
+        navigate(`/room/${targetCode}`, { state: { duel: res.duelState } });
       });
     } else {
       createRoom({ nickname: nickname.trim(), mode: 'quick' }, (res) => {
+        setLoading(false);
         if (res.error) return setError(res.error);
         navigate(`/room/${res.roomCode}`);
       });
@@ -90,9 +106,13 @@ const Landing = () => {
     setError('');
     if (!nickname.trim()) return setError('Nickname is required');
     if (!roomCode.trim()) return setError('Room code is required');
-    joinRoom(roomCode.trim(), nickname.trim(), (res) => {
+    setLoading(true);
+    const cleanCode = roomCode.trim().toUpperCase();
+    joinRoom(cleanCode, nickname.trim(), (res) => {
+      setLoading(false);
       if (res.error) return setError(res.error);
-      navigate(`/room/${res.roomCode}`);
+      const targetCode = res.roomCode || res.duelCode || cleanCode;
+      navigate(`/room/${targetCode}`, { state: { duel: res.duelState } });
     });
   };
 
@@ -141,8 +161,8 @@ const Landing = () => {
         <div className={`grid ${isEventLive ? 'grid-cols-3' : 'grid-cols-2'} gap-1.5 p-1 bg-[#F3F4F6] rounded-xl`}>
           <button
             type="button"
-            onClick={() => setMode('quick')}
-            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+            onClick={() => handleSelectMode('quick')}
+            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               mode === 'quick'
                 ? 'bg-white text-[#5046E5] shadow-xs'
                 : 'text-[#6B7280] hover:text-[#1E1B3A]'
@@ -153,8 +173,8 @@ const Landing = () => {
           </button>
           <button
             type="button"
-            onClick={() => setMode('duel')}
-            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+            onClick={() => handleSelectMode('duel')}
+            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               mode === 'duel'
                 ? 'bg-white text-red-600 shadow-xs'
                 : 'text-[#6B7280] hover:text-[#1E1B3A]'
@@ -166,8 +186,8 @@ const Landing = () => {
           {isEventLive && (
             <button
               type="button"
-              onClick={() => setMode('event')}
-              className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+              onClick={() => handleSelectMode('event')}
+              className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 mode === 'event'
                   ? 'bg-white text-[#5046E5] shadow-xs'
                   : 'text-[#6B7280] hover:text-[#1E1B3A]'
@@ -296,35 +316,53 @@ const Landing = () => {
 
           <button
             onClick={handleCreate}
-            disabled={!isConnected}
-            className="w-full py-3.5 font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm bg-[#5046E5] hover:bg-[#4338CA] text-white disabled:opacity-50"
+            disabled={!isConnected || loading}
+            className={`w-full py-3.5 font-bold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm disabled:opacity-50 cursor-pointer ${
+              mode === 'duel'
+                ? 'bg-gradient-to-r from-red-600 via-rose-600 to-indigo-600 hover:opacity-95 text-white shadow-md'
+                : 'bg-[#5046E5] hover:bg-[#4338CA] text-white'
+            }`}
           >
-            {mode === 'event' ? (
-              <Trophy size={18} strokeWidth={2.5} />
+            {loading ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                <span>{mode === 'duel' ? 'Creating Duel...' : 'Creating Room...'}</span>
+              </>
+            ) : mode === 'event' ? (
+              <>
+                <Trophy size={18} strokeWidth={2.5} />
+                <span>Enter Event Race</span>
+              </>
             ) : mode === 'duel' ? (
-              <Swords size={18} strokeWidth={2.5} />
+              <>
+                <Swords size={18} strokeWidth={2.5} />
+                <span>Create Duel ({expectedPlayers} Players)</span>
+              </>
             ) : (
-              <Plus size={18} strokeWidth={2.5} />
+              <>
+                <Plus size={18} strokeWidth={2.5} />
+                <span>Create Room</span>
+              </>
             )}
-            <span>
-              {mode === 'event' ? 'Enter Event Race' : mode === 'duel' ? 'Create Duel' : 'Create Room'}
-            </span>
           </button>
 
           <div className="relative flex items-center py-1">
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
-            <span className="flex-shrink-0 mx-3 text-[#9CA3AF] text-[12px] font-medium">Or Join Room</span>
+            <span className="flex-shrink-0 mx-3 text-[#9CA3AF] text-[12px] font-medium">
+              {mode === 'duel' ? 'Or Join Duel' : 'Or Join Room'}
+            </span>
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
           </div>
 
           <div>
-            <label className="block text-[13px] font-semibold text-[#1E1B3A] mb-1.5">
-              Room code
+            <label className="block text-[13px] font-semibold text-[#1E1B3A] mb-1.5 flex justify-between">
+              <span>{mode === 'duel' ? 'Duel or Room Code' : 'Room Code'}</span>
+              <span className="text-[11px] font-normal text-[#9CA3AF]">6 characters</span>
             </label>
             <div className="flex gap-2">
               <input
                 type="text"
-                placeholder="TN7KTU"
+                placeholder={mode === 'duel' ? 'DUEL CODE' : 'ROOM CODE'}
                 value={roomCode}
                 onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                 maxLength={6}
@@ -343,17 +381,27 @@ const Landing = () => {
 
           <button
             onClick={handleJoin}
-            disabled={!isConnected}
+            disabled={!isConnected || loading}
             className="w-full py-3.5 bg-white border-2 border-[#5046E5] hover:bg-[#EEF2FF]/40 disabled:opacity-50 text-[#5046E5] font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
-            <ArrowRight size={18} strokeWidth={2.5} />
-            <span>Join Room</span>
+            {loading ? (
+              <>
+                <Loader2 size={18} className="animate-spin text-[#5046E5]" />
+                <span>Joining...</span>
+              </>
+            ) : (
+              <>
+                <ArrowRight size={18} strokeWidth={2.5} />
+                <span>{mode === 'duel' ? 'Join Duel' : 'Join Room'}</span>
+              </>
+            )}
           </button>
         </div>
 
         {error && (
-          <div className="text-[#DC2626] text-center text-[13px] font-medium bg-[#FEF2F2] py-2 px-3 rounded-lg border border-[#FEE2E2]">
-            {error}
+          <div className="text-[#DC2626] text-center text-[13px] font-semibold bg-[#FEF2F2] py-2.5 px-3 rounded-xl border border-[#FEE2E2] flex items-center justify-center gap-2 animate-shake">
+            <AlertCircle size={16} className="shrink-0" />
+            <span>{error}</span>
           </div>
         )}
       </div>
