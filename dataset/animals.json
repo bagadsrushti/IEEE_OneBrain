@@ -1,0 +1,558 @@
+[
+  {
+    "category": "Animals",
+    "subfield": "Pet",
+    "answer": "Cat",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "sound",
+        "text": "It often purrs and says 'meow'."
+      },
+      {
+        "angle": "body part",
+        "text": "It has whiskers and retractable claws."
+      },
+      {
+        "angle": "behaviour",
+        "text": "It enjoys chasing toys and sometimes knocking things off tables."
+      },
+      {
+        "angle": "pet",
+        "text": "It is a common household pet that often naps for many hours."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Wild animal",
+    "answer": "Lion",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "sound",
+        "text": "This big cat is famous for its loud roar."
+      },
+      {
+        "angle": "habitat",
+        "text": "It is often called the king of the jungle."
+      },
+      {
+        "angle": "group",
+        "text": "A group of these animals is called a pride."
+      },
+      {
+        "angle": "appearance",
+        "text": "Adult males usually have a mane."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Sea animal",
+    "answer": "Dolphin",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "intelligence",
+        "text": "This sea mammal is known for being clever and playful."
+      },
+      {
+        "angle": "sound",
+        "text": "It communicates using clicks and whistles."
+      },
+      {
+        "angle": "movement",
+        "text": "It swims using a powerful tail."
+      },
+      {
+        "angle": "behaviour",
+        "text": "It often leaps out of the water near boats."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Bird",
+    "answer": "Penguin",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "habitat",
+        "text": "Many species live in the Southern Hemisphere."
+      },
+      {
+        "angle": "movement",
+        "text": "It cannot fly, but it is an excellent swimmer."
+      },
+      {
+        "angle": "appearance",
+        "text": "It looks like it is wearing a black-and-white suit."
+      },
+      {
+        "angle": "food",
+        "text": "Many species eat fish and squid."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Farm animal",
+    "answer": "Cow",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "food",
+        "text": "It eats grass and other plants."
+      },
+      {
+        "angle": "sound",
+        "text": "It says 'moo'."
+      },
+      {
+        "angle": "product",
+        "text": "People commonly raise it for milk."
+      },
+      {
+        "angle": "appearance",
+        "text": "Some breeds have black-and-white patches."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Australian animal",
+    "answer": "Kangaroo",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "habitat",
+        "text": "It is strongly associated with Australia."
+      },
+      {
+        "angle": "movement",
+        "text": "It hops on powerful hind legs."
+      },
+      {
+        "angle": "body part",
+        "text": "A mother carries her baby in a pouch."
+      },
+      {
+        "angle": "appearance",
+        "text": "It has a long tail to help it balance."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Reptile",
+    "answer": "Chameleon",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "appearance",
+        "text": "This lizard is famous for changing its skin colour."
+      },
+      {
+        "angle": "body part",
+        "text": "Its eyes can move in different directions."
+      },
+      {
+        "angle": "food",
+        "text": "It often catches insects with a long, sticky tongue."
+      },
+      {
+        "angle": "movement",
+        "text": "Its feet help it grip branches."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Wild animal",
+    "answer": "Giraffe",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "record",
+        "text": "It is the tallest living land animal."
+      },
+      {
+        "angle": "body part",
+        "text": "Its long neck helps it reach leaves high in trees."
+      },
+      {
+        "angle": "appearance",
+        "text": "Its coat has a distinctive patch pattern."
+      },
+      {
+        "angle": "food",
+        "text": "It often feeds on leaves from tall trees."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Insect",
+    "answer": "Butterfly",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "life cycle",
+        "text": "It starts life as a caterpillar."
+      },
+      {
+        "angle": "appearance",
+        "text": "It has colourful wings covered in tiny scales."
+      },
+      {
+        "angle": "movement",
+        "text": "It flutters from flower to flower."
+      },
+      {
+        "angle": "food",
+        "text": "It often drinks nectar from flowers."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Wild animal",
+    "answer": "Elephant",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "body part",
+        "text": "It has a long trunk used for smelling, drinking, and picking things up."
+      },
+      {
+        "angle": "record",
+        "text": "It is the largest living land animal."
+      },
+      {
+        "angle": "body part",
+        "text": "Many adults have tusks."
+      },
+      {
+        "angle": "behaviour",
+        "text": "It is known for strong family bonds and good memory."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Marine animal",
+    "answer": "Octopus",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "body",
+        "text": "It has eight arms with suckers."
+      },
+      {
+        "angle": "intelligence",
+        "text": "It is known for solving puzzles and escaping enclosures."
+      },
+      {
+        "angle": "defence",
+        "text": "It can release ink to confuse predators."
+      },
+      {
+        "angle": "biology",
+        "text": "It has three hearts."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Mammal",
+    "answer": "Platypus",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "classification",
+        "text": "This Australian mammal belongs to a rare group of mammals that lay eggs."
+      },
+      {
+        "angle": "appearance",
+        "text": "It has a bill that resembles a duck's and a broad, flat tail."
+      },
+      {
+        "angle": "habitat",
+        "text": "It searches for food underwater in freshwater streams and rivers."
+      },
+      {
+        "angle": "biology",
+        "text": "The male has a venomous spur on its hind legs."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Bird",
+    "answer": "Ostrich",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "record",
+        "text": "This bird is the largest living bird species."
+      },
+      {
+        "angle": "movement",
+        "text": "It cannot fly, but its long legs help it run at high speeds."
+      },
+      {
+        "angle": "body",
+        "text": "It has two toes on each foot, unlike most birds."
+      },
+      {
+        "angle": "eggs",
+        "text": "Its eggs are the largest laid by any living bird."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Marine animal",
+    "answer": "Seahorse",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "biology",
+        "text": "In this animal, the male carries the developing young in a pouch."
+      },
+      {
+        "angle": "movement",
+        "text": "It swims upright and uses a small fin to move through the water."
+      },
+      {
+        "angle": "appearance",
+        "text": "Its head shape inspired the common name of this fish."
+      },
+      {
+        "angle": "body",
+        "text": "It has a curled tail that can grip sea plants."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Mammal",
+    "answer": "Bat",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "classification",
+        "text": "It is the only mammal group capable of sustained powered flight."
+      },
+      {
+        "angle": "navigation",
+        "text": "Many species find prey and navigate using echoes from high-pitched sounds."
+      },
+      {
+        "angle": "resting",
+        "text": "Many species hang upside down while resting."
+      },
+      {
+        "angle": "diet",
+        "text": "Depending on the species, it may eat insects, fruit, nectar, or blood."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Marine animal",
+    "answer": "Mantis shrimp",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "biology",
+        "text": "This marine crustacean has specialised appendages that can strike or spear prey."
+      },
+      {
+        "angle": "vision",
+        "text": "Some species detect polarised light and a wider range of colours than humans."
+      },
+      {
+        "angle": "habitat",
+        "text": "It often lives in burrows or crevices on the sea floor."
+      },
+      {
+        "angle": "nickname",
+        "text": "Its punch is famous for being extremely fast and powerful."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Amphibian",
+    "answer": "Axolotl",
+    "aliases": [
+      "Mexican walking fish"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "appearance",
+        "text": "It looks like a smiling salamander with feathery gills."
+      },
+      {
+        "angle": "ability",
+        "text": "It can regrow limbs and parts of some organs."
+      },
+      {
+        "angle": "habitat",
+        "text": "It is native to lakes around Mexico City."
+      },
+      {
+        "angle": "life",
+        "text": "It can keep its juvenile features into adulthood."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Mammal",
+    "answer": "Platypus",
+    "aliases": [
+      "Duck-billed platypus"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "appearance",
+        "text": "It has a bill like a duck and a flat tail."
+      },
+      {
+        "angle": "habitat",
+        "text": "It lives in rivers and streams in Australia."
+      },
+      {
+        "angle": "biology",
+        "text": "It is a mammal that lays eggs."
+      },
+      {
+        "angle": "defense",
+        "text": "Males have a venomous spur on their hind legs."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Reptile",
+    "answer": "Komodo dragon",
+    "aliases": [
+      "Komodo monitor"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "size",
+        "text": "It is the largest living species of lizard."
+      },
+      {
+        "angle": "habitat",
+        "text": "It lives on a few Indonesian islands."
+      },
+      {
+        "angle": "diet",
+        "text": "It hunts animals and can eat very large prey."
+      },
+      {
+        "angle": "feature",
+        "text": "Its bite involves venom and dangerous bacteria are not the only concern."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Mammal",
+    "answer": "Red panda",
+    "aliases": [
+      "Lesser panda"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "appearance",
+        "text": "It has reddish fur, a ringed tail, and a masked face."
+      },
+      {
+        "angle": "diet",
+        "text": "It eats lots of bamboo."
+      },
+      {
+        "angle": "habitat",
+        "text": "It lives in forests in the Himalayas and nearby regions."
+      },
+      {
+        "angle": "name",
+        "text": "Despite its name, it is not the same animal as the giant panda."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Animals",
+    "subfield": "Bird",
+    "answer": "Peacock",
+    "aliases": [
+      "Peafowl"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "appearance",
+        "text": "The male has a bright fan of long, eye-spotted feathers."
+      },
+      {
+        "angle": "display",
+        "text": "It spreads its tail during courtship."
+      },
+      {
+        "angle": "symbol",
+        "text": "It is the national bird of India."
+      },
+      {
+        "angle": "family",
+        "text": "Strictly speaking, this name applies only to the male, while females are called peahens."
+      }
+    ],
+    "needsReview": false
+  }
+]

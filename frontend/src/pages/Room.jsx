@@ -2,23 +2,31 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSocket } from '../SocketContext';
 import Lobby from '../components/Lobby';
+import DuelLobby from '../components/DuelLobby';
 import Game from '../components/Game';
 
 const Room = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { roomData, isConnected } = useSocket();
+  const { roomData, duelState, isConnected } = useSocket();
 
   useEffect(() => {
-    if (isConnected && !roomData) {
+    if (isConnected && !roomData && (!duelState || duelState.code !== code)) {
       // Trying to access room directly without joining through context
-      // The socket logic handles auto-reconnect if token is valid, but if not, redirect to landing
       const timer = setTimeout(() => {
-        if (!roomData) navigate(`/join/${code}`);
-      }, 1000);
+        if (!roomData && (!duelState || duelState.code !== code)) navigate(`/join/${code}`);
+      }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [isConnected, roomData, code, navigate]);
+  }, [isConnected, roomData, duelState, code, navigate]);
+
+  if (duelState && duelState.code === code && duelState.status === 'lobby') {
+    return (
+      <div className="flex-grow flex flex-col items-center w-full px-2 py-1">
+        <DuelLobby duel={duelState} />
+      </div>
+    );
+  }
 
   if (!roomData) {
     return (

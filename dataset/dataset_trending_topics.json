@@ -1,0 +1,545 @@
+[
+  {
+    "category": "Trending Topics",
+    "subfield": "AI and technology",
+    "answer": "Artificial Intelligence",
+    "aliases": [
+      "AI"
+    ],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "technology",
+        "text": "It describes computer systems performing tasks associated with human intelligence."
+      },
+      {
+        "angle": "examples",
+        "text": "Chatbots, image recognition, and voice assistants use it."
+      },
+      {
+        "angle": "college clue",
+        "text": "It is a popular subject for hackathons, projects, and tech club talks."
+      },
+      {
+        "angle": "abbreviation",
+        "text": "It encompasses machine learning, neural networks, and algorithms that simulate human reasoning."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Social media",
+    "answer": "Instagram",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "app",
+        "text": "People use this app to share photos, Stories, and Reels."
+      },
+      {
+        "angle": "feature",
+        "text": "Its short vertical videos are called Reels."
+      },
+      {
+        "angle": "icon",
+        "text": "Its icon has a camera outline with a colourful gradient."
+      },
+      {
+        "angle": "everyday",
+        "text": "Students use it to follow friends and creators."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "AI",
+    "answer": "ChatGPT",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "technology",
+        "text": "It is an AI chatbot that answers questions and helps with writing."
+      },
+      {
+        "angle": "company",
+        "text": "It was developed by OpenAI."
+      },
+      {
+        "angle": "use",
+        "text": "People ask it to explain concepts and help write code."
+      },
+      {
+        "angle": "everyday",
+        "text": "Students sometimes use it to prepare notes."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Video platform",
+    "answer": "YouTube",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "platform",
+        "text": "People use this website to watch and upload videos."
+      },
+      {
+        "angle": "feature",
+        "text": "Its short-video format is called Shorts."
+      },
+      {
+        "angle": "icon",
+        "text": "Its familiar logo includes a play button."
+      },
+      {
+        "angle": "creators",
+        "text": "Content creators on this video hub earn revenue through ads, subscriptions, and memberships."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Streaming",
+    "answer": "Netflix",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "platform",
+        "text": "This service streams films, series, and documentaries."
+      },
+      {
+        "angle": "logo",
+        "text": "Its logo is commonly recognised by a red letter N."
+      },
+      {
+        "angle": "activity",
+        "text": "People often binge-watch series on this platform."
+      },
+      {
+        "angle": "everyday",
+        "text": "Friends discuss what to watch next on it."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Internet culture",
+    "answer": "Meme",
+    "aliases": [
+      "Internet meme"
+    ],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "format",
+        "text": "It is a funny image, video, or phrase shared online."
+      },
+      {
+        "angle": "purpose",
+        "text": "People use it to react to relatable situations."
+      },
+      {
+        "angle": "college",
+        "text": "Exam stress and attendance are common subjects for these jokes."
+      },
+      {
+        "angle": "spread",
+        "text": "One popular format can be reused with different captions."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Gaming",
+    "answer": "Minecraft",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "game",
+        "text": "Players build with blocks in a large open world."
+      },
+      {
+        "angle": "activity",
+        "text": "Players can mine resources, craft tools, and build houses."
+      },
+      {
+        "angle": "appearance",
+        "text": "The game has a blocky, pixel-like style."
+      },
+      {
+        "angle": "mode",
+        "text": "Players can choose Survival or Creative mode."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Music",
+    "answer": "Kpop",
+    "aliases": [
+      "Korean pop"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "music",
+        "text": "This popular music genre comes from South Korea."
+      },
+      {
+        "angle": "groups",
+        "text": "BTS and BLACKPINK are famous acts in this scene."
+      },
+      {
+        "angle": "fans",
+        "text": "Fans often learn dances and share edits online."
+      },
+      {
+        "angle": "culture",
+        "text": "Its popularity has spread Korean music and entertainment worldwide."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Online shopping",
+    "answer": "Amazon",
+    "aliases": [
+      "Amazon India"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "platform",
+        "text": "People use this online marketplace to shop for many products."
+      },
+      {
+        "angle": "feature",
+        "text": "It has product listings, customer reviews, and delivery tracking."
+      },
+      {
+        "angle": "logo",
+        "text": "Its logo has a curved arrow from A to Z."
+      },
+      {
+        "angle": "everyday",
+        "text": "Students may order books, gadgets, and hostel essentials from it."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Messaging app",
+    "answer": "WhatsApp",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "app",
+        "text": "People use it for messages, voice calls, and video calls."
+      },
+      {
+        "angle": "feature",
+        "text": "Its group chats are used by college classes and clubs."
+      },
+      {
+        "angle": "icon",
+        "text": "Its icon combines a speech bubble and a phone symbol."
+      },
+      {
+        "angle": "everyday",
+        "text": "Students often receive class updates through it."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Internet slang",
+    "answer": "Rizz",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "slang",
+        "text": "This slang word means charm, especially when flirting."
+      },
+      {
+        "angle": "usage",
+        "text": "Someone with it is good at impressing a potential date."
+      },
+      {
+        "angle": "internet",
+        "text": "It became popular in online videos and memes."
+      },
+      {
+        "angle": "word",
+        "text": "It is often said to be a shortened form of 'charisma'."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Technology",
+    "answer": "Blockchain",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "structure",
+        "text": "It records data in linked groups that are difficult to alter retroactively."
+      },
+      {
+        "angle": "network",
+        "text": "Copies of the record can be held by many computers rather than one central server."
+      },
+      {
+        "angle": "application",
+        "text": "It is used by many cryptocurrencies, though it has other possible uses."
+      },
+      {
+        "angle": "name",
+        "text": "Its name describes linked units of stored information."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Internet slang",
+    "answer": "POV",
+    "aliases": [
+      "Point of view"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "abbreviation",
+        "text": "This camera angle or narrative style portrays scenes directly through a character's eyes."
+      },
+      {
+        "angle": "video format",
+        "text": "Creators use it to frame a scene from a particular person's perspective."
+      },
+      {
+        "angle": "social media",
+        "text": "It often appears at the start of short skits and relatable videos."
+      },
+      {
+        "angle": "interpretation",
+        "text": "The viewer is invited to imagine being in the situation shown."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "AI",
+    "answer": "Deepfake",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "technology",
+        "text": "AI synthetically generates realistic media showing people doing or saying things they never did."
+      },
+      {
+        "angle": "media",
+        "text": "It may involve synthetic video, images, or audio."
+      },
+      {
+        "angle": "risk",
+        "text": "It can be used for scams or misinformation when presented as genuine."
+      },
+      {
+        "angle": "word origin",
+        "text": "The term combines an AI training approach with the idea of something false."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Technology",
+    "answer": "Virtual Reality",
+    "aliases": [
+      "VR"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "experience",
+        "text": "It places a user inside a computer-generated environment."
+      },
+      {
+        "angle": "equipment",
+        "text": "A head-mounted display is commonly used to experience it."
+      },
+      {
+        "angle": "applications",
+        "text": "It can support simulations for training, design, and entertainment."
+      },
+      {
+        "angle": "abbreviation",
+        "text": "Its standard abbreviation uses two letters."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Internet slang",
+    "answer": "Brainrot",
+    "aliases": [
+      "Brain rot",
+      "Internet brainrot"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "slang",
+        "text": "Online, this describes content that feels silly, repetitive, or mind-numbing."
+      },
+      {
+        "angle": "videos",
+        "text": "It is often used for absurd short-form videos and memes."
+      },
+      {
+        "angle": "phrase",
+        "text": "Someone might say, “I have ___ from watching these edits all day.”"
+      },
+      {
+        "angle": "culture",
+        "text": "The term became widely used in social media conversations."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Relationship slang",
+    "answer": "Situationship",
+    "aliases": [
+      "Situationships"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "relationship",
+        "text": "Two people act like a couple but have not clearly defined the relationship."
+      },
+      {
+        "angle": "uncertainty",
+        "text": "The label often means there is no clear commitment."
+      },
+      {
+        "angle": "conversation",
+        "text": "People may ask, “So, what are we?”"
+      },
+      {
+        "angle": "word",
+        "text": "The term combines “situation” and “relationship.”"
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Internet slang",
+    "answer": "FOMO",
+    "aliases": [
+      "Fear of missing out"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "feeling",
+        "text": "You worry that others are having fun without you."
+      },
+      {
+        "angle": "social media",
+        "text": "Seeing friends’ posts can trigger it."
+      },
+      {
+        "angle": "plans",
+        "text": "It may make someone agree to plans they do not really want."
+      },
+      {
+        "angle": "letters",
+        "text": "This modern acronym describes social anxiety caused by feeling left out of exciting experiences."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Social media format",
+    "answer": "POV",
+    "aliases": [
+      "Point of view"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "caption",
+        "text": "Creators often begin a video with these three letters."
+      },
+      {
+        "angle": "perspective",
+        "text": "It means the scene is shown from a particular viewpoint."
+      },
+      {
+        "angle": "example",
+        "text": "A caption might say, “___: You forgot there was a test today.”"
+      },
+      {
+        "angle": "platforms",
+        "text": "It is common on TikTok, Instagram Reels, and memes."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Trending Topics",
+    "subfield": "Social slang",
+    "answer": "Ghosting",
+    "aliases": [
+      "Ghosted"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "messaging",
+        "text": "Someone suddenly stops replying without explanation."
+      },
+      {
+        "angle": "relationship",
+        "text": "It can happen while dating or making friends."
+      },
+      {
+        "angle": "metaphor",
+        "text": "The person seems to disappear like a ghost."
+      },
+      {
+        "angle": "sentence",
+        "text": "“They were texting every day, then they vanished”—this is called what?"
+      }
+    ],
+    "needsReview": false
+  }
+]

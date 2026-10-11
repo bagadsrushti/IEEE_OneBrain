@@ -556,6 +556,18 @@ class GameManager {
       return { error: 'Please enter a valid guess.' };
     }
 
+    if (room.mode === 'duel_team' && room.duelCode) {
+      const duelManager = require('./duelManager');
+      const duelRes = duelManager.submitAnswer(room.duelCode, room.duelTeam, playerId, trimmedGuess);
+      return {
+        room,
+        isCorrect: duelRes.isCorrect,
+        winner: duelRes.winner,
+        error: duelRes.error || (duelRes.isCorrect ? null : (duelRes.near ? 'So close! Check your spelling.' : 'Incorrect answer')),
+        near: duelRes.near,
+      };
+    }
+
     const matchResult = isCorrectGuess(trimmedGuess, room.currentChallenge);
     if (matchResult.correct) {
       return this.endRound(code, true, 'Correct!');
@@ -767,6 +779,33 @@ class GameManager {
 
   getEventTheme() {
     return eventTheme;
+  }
+
+  scheduleClueWaves(room, waveIntervalSeconds, totalWaves) {
+    if (room.waveTimers) {
+      room.waveTimers.forEach(t => clearTimeout(t));
+    }
+    room.waveTimers = [];
+
+    const N = room.players.length;
+    for (let k = 2; k <= totalWaves; k++) {
+      const waveDelay = (k - 1) * waveIntervalSeconds * 1000;
+      const waveTimer = setTimeout(() => {
+        if (room.state !== 'playing') return;
+        room.currentWave = k;
+        for (let i = 0; i < N; i++) {
+          const p = room.players[i];
+          if (p && p.fullCluePile && p.fullCluePile.length >= k) {
+            p.releasedClues.push(p.fullCluePile[k - 1]);
+            p.clue = p.fullCluePile[k - 1].text;
+          }
+        }
+        if (this.globalClueWaveCallback) {
+          this.globalClueWaveCallback(room, k);
+        }
+      }, waveDelay);
+      room.waveTimers.push(waveTimer);
+    }
   }
 
   setClueWaveCallback(callback) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
 import { getBackendUrl } from '../config';
-import { Trophy, Download, Play, Square, RotateCcw, Plus, Users, Clock, CheckCircle } from 'lucide-react';
+import { Trophy, Download, Play, Square, RotateCcw, Plus, Users, Clock, CheckCircle, Swords, Check } from 'lucide-react';
 
 const Admin = () => {
   const [password, setPassword] = useState('');
@@ -20,6 +20,11 @@ const Admin = () => {
   const [maxPlayersPerTeam, setMaxPlayersPerTeam] = useState(4);
   const [minPlayersPerTeam, setMinPlayersPerTeam] = useState(2);
   const [prizeBanner, setPrizeBanner] = useState('Top 3 teams win prizes');
+
+  // Duel Mode States
+  const [duelData, setDuelData] = useState(null);
+  const [duelMaxMinutes, setDuelMaxMinutes] = useState(10);
+  const [duelPrizeBanner, setDuelPrizeBanner] = useState('🍫 Chocolate for {team}!');
 
   // Team Builder State
   const [teamBuilderPlayers, setTeamBuilderPlayers] = useState(9);
@@ -52,16 +57,18 @@ const Admin = () => {
         return;
       }
       
-      const [roomsRes, settingsRes, usageRes, eventRes] = await Promise.all([
+      const [roomsRes, settingsRes, usageRes, eventRes, duelsRes] = await Promise.all([
         fetch(`${backendUrl}/admin/rooms?password=${password}`),
         fetch(`${backendUrl}/admin/settings?password=${password}`),
         fetch(`${backendUrl}/admin/usage?password=${password}`),
         fetch(`${backendUrl}/admin/event?password=${password}`),
+        fetch(`${backendUrl}/admin/duels?password=${password}`),
       ]);
       const roomsData = await roomsRes.json();
       const settingsData = await settingsRes.json();
       const usageData = await usageRes.json();
       const evData = await eventRes.json();
+      const dData = await duelsRes.json();
       
       if (roomsData.success && settingsData.success) {
         setRooms(roomsData.rooms);
@@ -79,6 +86,13 @@ const Admin = () => {
             setMaxPlayersPerTeam(evData.event.maxPlayersPerTeam || 4);
             setMinPlayersPerTeam(evData.event.minPlayersPerTeam || 2);
             setPrizeBanner(evData.event.prizeBanner || 'Top 3 teams win prizes');
+          }
+        }
+        if (dData.success) {
+          setDuelData(dData);
+          if (dData.settings) {
+            setDuelMaxMinutes(dData.settings.maxMinutes || 10);
+            setDuelPrizeBanner(dData.settings.prizeBanner || '🍫 Chocolate for {team}!');
           }
         }
         setIsLogged(true);
@@ -194,6 +208,84 @@ const Admin = () => {
 
   const handleExportCSV = () => {
     window.open(`${backendUrl}/admin/event/export?password=${encodeURIComponent(password)}`, '_blank');
+  };
+
+  // Duel Mode Action Handlers
+  const handleForceEndDuel = async (code) => {
+    if (!window.confirm(`Force end duel ${code}? Will resolve immediately with tie-breakers.`)) return;
+    try {
+      const res = await fetch(`${backendUrl}/admin/duels/force-end`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, code })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMsg(`Duel ${code} force-ended.`);
+        fetchData();
+      } else setMsg(data.message || 'Failed to force end duel');
+    } catch (e) {
+      setMsg('Error force ending duel');
+    }
+  };
+
+  const handleCancelDuel = async (code) => {
+    if (!window.confirm(`Cancel and delete duel ${code}?`)) return;
+    try {
+      const res = await fetch(`${backendUrl}/admin/duels/cancel`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, code })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMsg(`Duel ${code} cancelled.`);
+        fetchData();
+      } else setMsg(data.error || 'Failed to cancel duel');
+    } catch (e) {
+      setMsg('Error cancelling duel');
+    }
+  };
+
+  const handleToggleChocolate = async (code, currentVal) => {
+    try {
+      const res = await fetch(`${backendUrl}/admin/duels/chocolate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, code, awarded: !currentVal })
+      });
+      const data = await res.json();
+      if (data.success) {
+        fetchData();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleSaveDuelSettings = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/admin/duels/settings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password,
+          maxMinutes: parseInt(duelMaxMinutes, 10),
+          prizeBanner: duelPrizeBanner,
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMsg('Duel settings updated successfully');
+        fetchData();
+      } else setMsg(data.message || 'Failed to save duel settings');
+    } catch (e) {
+      setMsg('Error saving duel settings');
+    }
+  };
+
+  const handleExportDuelsCSV = () => {
+    window.open(`${backendUrl}/admin/duels/export?password=${encodeURIComponent(password)}`, '_blank');
   };
 
   const updateSettings = async (updates) => {
@@ -580,6 +672,151 @@ const Admin = () => {
                   <RotateCcw size={15} />
                   <span>Reset & Wipe Event</span>
                 </button>
+              )}
+            </div>
+          </div>
+
+          {/* DUEL MODE MANAGEMENT SECTION */}
+          <div className="bg-white rounded-[22px] border-2 border-red-500/20 p-6 shadow-sm space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F3F4F6] pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                  <Swords size={20} />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-[#1E1B3A]">Duel Mode Manager</h2>
+                  <p className="text-xs text-[#6B7280]">
+                    Head-to-head 2-team races (first to 3 solves) with tie-breakers and prize banners
+                  </p>
+                </div>
+              </div>
+
+              {duelData?.roomUsage && (
+                <div className="text-xs font-bold px-3 py-1 bg-gray-50 border border-gray-200 rounded-full text-gray-700">
+                  Global Rooms: {duelData.roomUsage.active} / {duelData.roomUsage.max}
+                </div>
+              )}
+            </div>
+
+            {/* Duel Settings Form */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50/70 p-4 rounded-xl border border-gray-200">
+              <div>
+                <label className="block text-xs font-bold text-[#1E1B3A] mb-1 flex justify-between">
+                  <span>Match Cap (DUEL_MAX_MINUTES)</span>
+                  <span className="text-[11px] font-normal text-[#9CA3AF]">3–30 mins (default 10)</span>
+                </label>
+                <input
+                  type="number"
+                  min="3"
+                  max="30"
+                  value={duelMaxMinutes}
+                  onChange={(e) => setDuelMaxMinutes(Math.max(3, Math.min(30, parseInt(e.target.value, 10) || 10)))}
+                  className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#1E1B3A] mb-1">
+                  Default Prize Banner
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={duelPrizeBanner}
+                    onChange={(e) => setDuelPrizeBanner(e.target.value)}
+                    className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm font-medium focus:outline-none focus:border-primary"
+                  />
+                  <Button onClick={handleSaveDuelSettings} variant="secondary" className="px-3 text-xs whitespace-nowrap">
+                    Save
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Active Duels List */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-[#1E1B3A] uppercase tracking-wider">
+                  Active Duels ({duelData?.liveDuels?.length || 0})
+                </h3>
+              </div>
+
+              {(!duelData?.liveDuels || duelData.liveDuels.length === 0) ? (
+                <div className="text-xs text-gray-400 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                  No duels currently running.
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {duelData.liveDuels.map(d => (
+                    <div key={d.code} className="p-3 bg-white border border-gray-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                      <div>
+                        <span className="font-mono font-black text-sm text-gray-900 mr-2">#{d.code}</span>
+                        <span className="font-bold text-red-600">{d.teamRedName} ({d.teamRedSolved}/3)</span>
+                        <span className="text-gray-400 mx-1.5">vs</span>
+                        <span className="font-bold text-blue-600">{d.teamBlueName} ({d.teamBlueSolved}/3)</span>
+                        <span className="text-gray-500 ml-2">· {Math.floor(d.elapsedSeconds / 60)}m {d.elapsedSeconds % 60}s elapsed</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleForceEndDuel(d.code)}
+                          className="px-2.5 py-1 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg text-xs transition-colors"
+                        >
+                          Force End
+                        </button>
+                        <button
+                          onClick={() => handleCancelDuel(d.code)}
+                          className="px-2.5 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-lg text-xs transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Recent Finished Duels with Chocolate Checkbox */}
+            <div className="space-y-3 pt-2 border-t border-[#F3F4F6]">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-[#1E1B3A] uppercase tracking-wider">
+                  Finished Duels & Chocolate Status
+                </h3>
+                <button
+                  onClick={handleExportDuelsCSV}
+                  className="py-1.5 px-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold rounded-lg text-xs flex items-center gap-1.5 shadow-2xs"
+                >
+                  <Download size={13} /> Export Duels CSV
+                </button>
+              </div>
+
+              {(!duelData?.winners || duelData.winners.length === 0) ? (
+                <div className="text-xs text-gray-400 p-4 border border-dashed border-gray-200 rounded-xl text-center">
+                  No finished duels recorded.
+                </div>
+              ) : (
+                <div className="space-y-2 max-h-60 overflow-y-auto">
+                  {duelData.winners.map(w => (
+                    <div key={w.code} className="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between text-xs">
+                      <div>
+                        <span className="font-mono font-bold text-gray-800 mr-2">#{w.code}</span>
+                        <span className="font-extrabold text-gray-900">Winner: {w.winningTeamName}</span>
+                        <span className="text-gray-500 ml-2">({w.totalDurationSeconds}s · {w.winnerReason})</span>
+                      </div>
+                      <label className="flex items-center gap-1.5 font-bold cursor-pointer text-xs select-none">
+                        <input
+                          type="checkbox"
+                          checked={!!w.chocolateAwarded}
+                          onChange={() => handleToggleChocolate(w.code, !!w.chocolateAwarded)}
+                          className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                        />
+                        <span className={w.chocolateAwarded ? 'text-emerald-700' : 'text-gray-500'}>
+                          🍫 Chocolate awarded
+                        </span>
+                      </label>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </div>

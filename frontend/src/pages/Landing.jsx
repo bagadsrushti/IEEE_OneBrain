@@ -26,9 +26,9 @@ const QrScannerWrapper = ({ onScan }) => {
 const Landing = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { createRoom, joinRoom, isConnected, connectionError } = useSocket();
+  const { createRoom, createDuel, joinRoom, isConnected, connectionError } = useSocket();
   
-  const [mode, setMode] = useState('quick'); // 'quick' | 'event'
+  const [mode, setMode] = useState('quick'); // 'quick' | 'duel' | 'event'
   const [nickname, setNickname] = useState('');
   const [teamName, setTeamName] = useState('');
   const [roomCode, setRoomCode] = useState((code || '').toUpperCase());
@@ -71,6 +71,11 @@ const Landing = () => {
       createRoom({ nickname: nickname.trim(), mode: 'event', teamName: teamName.trim() }, (res) => {
         if (res.error) return setError(res.error);
         navigate(`/room/${res.roomCode}`);
+      });
+    } else if (mode === 'duel') {
+      createDuel({ nickname: nickname.trim() }, (res) => {
+        if (res.error) return setError(res.error);
+        navigate(`/room/${res.duelCode}`);
       });
     } else {
       createRoom({ nickname: nickname.trim(), mode: 'quick' }, (res) => {
@@ -131,52 +136,78 @@ const Landing = () => {
       {/* Main Card */}
       <div className="bg-white rounded-[24px] border border-[#E9ECEF] shadow-[0_2px_16px_rgba(0,0,0,0.03)] p-6 sm:p-7 w-full space-y-5">
         
-        {/* Mode Selector Tabs (only shown if Event is Live) */}
-        {isEventLive && (
-          <div className="grid grid-cols-2 gap-1.5 p-1 bg-[#F3F4F6] rounded-xl">
+        {/* Mode Selector Tabs */}
+        <div className={`grid ${isEventLive ? 'grid-cols-3' : 'grid-cols-2'} gap-1.5 p-1 bg-[#F3F4F6] rounded-xl`}>
+          <button
+            type="button"
+            onClick={() => setMode('quick')}
+            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+              mode === 'quick'
+                ? 'bg-white text-[#5046E5] shadow-xs'
+                : 'text-[#6B7280] hover:text-[#1E1B3A]'
+            }`}
+          >
+            <Zap size={14} />
+            <span>Quick</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode('duel')}
+            className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+              mode === 'duel'
+                ? 'bg-white text-red-600 shadow-xs'
+                : 'text-[#6B7280] hover:text-[#1E1B3A]'
+            }`}
+          >
+            <Swords size={14} />
+            <span>Duel</span>
+          </button>
+          {isEventLive && (
             <button
               type="button"
               onClick={() => setMode('event')}
-              className={`py-2 px-3 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+              className={`py-2 px-2.5 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
                 mode === 'event'
                   ? 'bg-white text-[#5046E5] shadow-xs'
                   : 'text-[#6B7280] hover:text-[#1E1B3A]'
               }`}
             >
               <Trophy size={14} className="text-[#F59E0B]" />
-              <span>Event Mode</span>
-              <span className="px-1.5 py-0.2 bg-[#DC2626] text-white text-[9px] font-black rounded-full uppercase">
+              <span>Event</span>
+              <span className="px-1 py-0.2 bg-[#DC2626] text-white text-[8px] font-black rounded-full uppercase">
                 Live
               </span>
             </button>
-            <button
-              type="button"
-              onClick={() => setMode('quick')}
-              className={`py-2 px-3 rounded-lg text-[13px] font-bold flex items-center justify-center gap-1.5 transition-all ${
-                mode === 'quick'
-                  ? 'bg-white text-[#5046E5] shadow-xs'
-                  : 'text-[#6B7280] hover:text-[#1E1B3A]'
-              }`}
-            >
-              <Zap size={14} />
-              <span>Quick Play</span>
-            </button>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Header Icon + Titles */}
         <div className="flex flex-col items-center text-center">
           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-3 ${
-            mode === 'event' ? 'bg-[#FEF3C7] text-[#D97706]' : 'bg-[#EEF2FF] text-[#5046E5]'
+            mode === 'event'
+              ? 'bg-[#FEF3C7] text-[#D97706]'
+              : mode === 'duel'
+              ? 'bg-gradient-to-tr from-red-100 to-indigo-100 text-red-600'
+              : 'bg-[#EEF2FF] text-[#5046E5]'
           }`}>
-            {mode === 'event' ? <Trophy size={24} strokeWidth={2} /> : <Swords size={22} strokeWidth={2} />}
+            {mode === 'event' ? (
+              <Trophy size={24} strokeWidth={2} />
+            ) : (
+              <Swords size={22} strokeWidth={2} />
+            )}
           </div>
           <h2 className="text-[22px] font-bold text-[#1E1B3A] tracking-tight">
-            {mode === 'event' ? (eventStatus?.event?.name || 'Championship Race') : 'Enter the Arena'}
+            {mode === 'event'
+              ? (eventStatus?.event?.name || 'Championship Race')
+              : mode === 'duel'
+              ? 'Head-to-Head Duel'
+              : 'Enter the Arena'}
           </h2>
           <p className="text-[13px] text-[#6B7280] mt-1 max-w-[280px] leading-relaxed">
             {mode === 'event'
               ? `3 rounds · Fastest combined time wins · ${eventStatus?.event?.category || 'Mixed'}`
+              : mode === 'duel'
+              ? '4 to 16 players · 2 teams race to 3 solved keywords'
               : 'Challenge your friends. Find out who thinks fastest.'}
           </p>
 
@@ -235,14 +266,18 @@ const Landing = () => {
           <button
             onClick={handleCreate}
             disabled={!isConnected}
-            className={`w-full py-3.5 font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm ${
-              mode === 'event'
-                ? 'bg-[#5046E5] hover:bg-[#4338CA] text-white disabled:opacity-50'
-                : 'bg-[#5046E5] hover:bg-[#4338CA] text-white disabled:opacity-50'
-            }`}
+            className="w-full py-3.5 font-semibold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm bg-[#5046E5] hover:bg-[#4338CA] text-white disabled:opacity-50"
           >
-            {mode === 'event' ? <Trophy size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
-            <span>{mode === 'event' ? 'Enter Event Race' : 'Create Room'}</span>
+            {mode === 'event' ? (
+              <Trophy size={18} strokeWidth={2.5} />
+            ) : mode === 'duel' ? (
+              <Swords size={18} strokeWidth={2.5} />
+            ) : (
+              <Plus size={18} strokeWidth={2.5} />
+            )}
+            <span>
+              {mode === 'event' ? 'Enter Event Race' : mode === 'duel' ? 'Create Duel' : 'Create Room'}
+            </span>
           </button>
 
           <div className="relative flex items-center py-1">
@@ -292,10 +327,21 @@ const Landing = () => {
         )}
       </div>
 
-      {/* Footer Text */}
-      <div className="text-center mt-6 space-y-0.5">
-        <div className="text-[13px] font-bold text-[#4B5563]">Better with your people.</div>
-        <div className="text-[12px] text-[#9CA3AF]">2–8 players · One shared challenge</div>
+      {/* Footer Text & Arena Link */}
+      <div className="text-center mt-5 space-y-2">
+        <Link
+          to="/arena"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-[#E5E7EB] hover:border-indigo-300 rounded-full text-[12px] font-bold text-[#5046E5] shadow-2xs transition-colors"
+        >
+          <Swords size={13} />
+          <span>View Live Duels in Arena →</span>
+        </Link>
+        <div className="space-y-0.5">
+          <div className="text-[13px] font-bold text-[#4B5563]">Better with your people.</div>
+          <div className="text-[12px] text-[#9CA3AF]">
+            {mode === 'duel' ? '4 to 16 players per duel · Even numbers recommended' : '2–8 players · One shared challenge'}
+          </div>
+        </div>
       </div>
 
       {/* QR Scanner Modal */}

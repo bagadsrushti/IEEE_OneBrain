@@ -14,6 +14,9 @@ export const SocketProvider = ({ children }) => {
   const [myToken, setMyToken] = useState(localStorage.getItem('ob_token'));
   const [myPlayerId, setMyPlayerId] = useState(localStorage.getItem('ob_playerId'));
 
+  const [duelState, setDuelState] = useState(null);
+  const [duelAudience, setDuelAudience] = useState(null);
+
   useEffect(() => {
     // Determine backend URL
     const backendUrl = getBackendUrl();
@@ -44,6 +47,30 @@ export const SocketProvider = ({ children }) => {
       setRoomData(data);
     });
 
+    newSocket.on('duel_lobby_state', (data) => {
+      setDuelState(data);
+    });
+
+    newSocket.on('duel_update', (data) => {
+      setDuelAudience(data);
+    });
+
+    newSocket.on('duel_started', (data) => {
+      const myId = localStorage.getItem('ob_playerId');
+      const token = localStorage.getItem('ob_token');
+      const isRed = data.teamRedPlayerIds?.includes(myId);
+      const isBlue = data.teamBluePlayerIds?.includes(myId);
+      const targetRoom = isRed ? data.teamRedRoom : isBlue ? data.teamBlueRoom : null;
+
+      if (targetRoom) {
+        newSocket.emit('join_room', { code: targetRoom, token }, (res) => {
+          if (res?.success) {
+            console.log('Joined internal duel team room:', targetRoom);
+          }
+        });
+      }
+    });
+
     setSocket(newSocket);
 
     return () => newSocket.close();
@@ -62,6 +89,33 @@ export const SocketProvider = ({ children }) => {
     });
   };
 
+  const createDuel = (opts, callback) => {
+    const payload = typeof opts === 'object' ? opts : { nickname: opts };
+    socket.emit('create_duel', payload, (res) => {
+      if (res.success) {
+        localStorage.setItem('ob_token', res.token);
+        localStorage.setItem('ob_playerId', res.playerId);
+        setMyToken(res.token);
+        setMyPlayerId(res.playerId);
+        setDuelState(res.duelState);
+      }
+      if (callback) callback(res);
+    });
+  };
+
+  const joinDuel = (code, nickname, callback) => {
+    socket.emit('join_duel', { code, nickname, token: myToken }, (res) => {
+      if (res.success) {
+        localStorage.setItem('ob_token', res.token);
+        localStorage.setItem('ob_playerId', res.playerId);
+        setMyToken(res.token);
+        setMyPlayerId(res.playerId);
+        setDuelState(res.duelState);
+      }
+      if (callback) callback(res);
+    });
+  };
+
   const joinRoom = (code, nickname, callback) => {
     socket.emit('join_room', { code, nickname, token: myToken }, (res) => {
       if (res.success) {
@@ -69,8 +123,22 @@ export const SocketProvider = ({ children }) => {
         localStorage.setItem('ob_playerId', res.playerId);
         setMyToken(res.token);
         setMyPlayerId(res.playerId);
+        if (callback) callback(res);
+      } else {
+        // Fallback: Check if it is a duel code
+        socket.emit('join_duel', { code, nickname, token: myToken }, (duelRes) => {
+          if (duelRes.success) {
+            localStorage.setItem('ob_token', duelRes.token);
+            localStorage.setItem('ob_playerId', duelRes.playerId);
+            setMyToken(duelRes.token);
+            setMyPlayerId(duelRes.playerId);
+            setDuelState(duelRes.duelState);
+            if (callback) callback({ success: true, isDuel: true, roomCode: code });
+          } else {
+            if (callback) callback(res);
+          }
+        });
       }
-      if (callback) callback(res);
     });
   };
 
@@ -80,10 +148,15 @@ export const SocketProvider = ({ children }) => {
       isConnected,
       connectionError,
       roomData,
+      duelState,
+      duelAudience,
       myPlayerId,
       createRoom,
+      createDuel,
+      joinDuel,
       joinRoom,
-      setRoomData
+      setRoomData,
+      setDuelState,
     }}>
       {children}
     </SocketContext.Provider>

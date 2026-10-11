@@ -5,6 +5,8 @@ import Landing from './pages/Landing';
 import Room from './pages/Room';
 import Leaderboard from './pages/Leaderboard';
 import Admin from './pages/Admin';
+import DuelAudience from './pages/DuelAudience';
+import Arena from './pages/Arena';
 import { Brain, LogOut } from 'lucide-react';
 
 function AppHeader() {
@@ -44,6 +46,8 @@ function App() {
               <Route path="/" element={<Landing />} />
               <Route path="/join/:code" element={<Landing />} />
               <Route path="/room/:code" element={<Room />} />
+              <Route path="/duel/:code" element={<DuelAudience />} />
+              <Route path="/arena" element={<Arena />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>

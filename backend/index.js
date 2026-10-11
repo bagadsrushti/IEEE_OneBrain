@@ -302,6 +302,90 @@ app.get('/leaderboard', (req, res) => {
   res.json({ success: true, leaderboard: board });
 });
 
+const duelManager = require('./duelManager');
+
+// Duel Public Endpoints
+app.get('/api/duel/:code', (req, res) => {
+  const code = req.params.code;
+  const audience = duelManager.getAudienceState(code);
+  if (!audience) {
+    return res.status(404).json({ success: false, error: 'Duel not found' });
+  }
+  res.json({ success: true, audience });
+});
+
+app.get('/api/arena', (req, res) => {
+  const arenaData = duelManager.getArenaData();
+  res.json({ success: true, ...arenaData });
+});
+
+// Duel Admin Endpoints
+app.get('/admin/duels', (req, res) => {
+  const { password } = req.query;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  const arenaData = duelManager.getArenaData();
+  res.json({ success: true, ...arenaData, settings: duelManager.getAdminSettings() });
+});
+
+app.post('/admin/duels/force-end', (req, res) => {
+  const { password, code } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  const duel = duelManager.getDuel(code);
+  if (!duel) return res.status(404).json({ success: false, error: 'Duel not found' });
+  duelManager.endDuelWithWinner(duel, 'draw', 'admin_ended');
+  res.json({ success: true, message: 'Duel force-ended' });
+});
+
+app.post('/admin/duels/cancel', (req, res) => {
+  const { password, code } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  const result = duelManager.cancelDuel(code);
+  res.json(result);
+});
+
+app.post('/admin/duels/chocolate', (req, res) => {
+  const { password, code, awarded } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  const result = duelManager.markChocolateAwarded(code, awarded !== false);
+  res.json(result);
+});
+
+app.get('/admin/duels/export', (req, res) => {
+  const { password } = req.query;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).send('Unauthorized');
+  }
+  const csv = duelManager.exportCsv();
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename="duel_results.csv"');
+  res.send(csv);
+});
+
+app.get('/admin/duels/settings', (req, res) => {
+  const { password } = req.query;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  res.json({ success: true, settings: duelManager.getAdminSettings(), roomUsage: duelManager.getRoomUsage() });
+});
+
+app.post('/admin/duels/settings', (req, res) => {
+  const { password, maxMinutes, prizeBanner, tieBreaker } = req.body;
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+  const updated = duelManager.updateAdminSettings({ maxMinutes, prizeBanner, tieBreaker });
+  res.json({ success: true, settings: updated });
+});
+
 initializeSockets(io);
 
 const PORT = process.env.PORT || 3001;

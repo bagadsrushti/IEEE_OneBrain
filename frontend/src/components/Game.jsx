@@ -19,11 +19,14 @@ const Game = ({ room }) => {
   const prevClueCountRef = React.useRef(0);
   
   const isEvent = room.mode === 'event';
+  const isDuel = room.mode === 'duel_team' || !!room.duelInfo;
+  const duelInfo = room.duelInfo;
   const isReady = room.state === 'ready';
   const isPlaying = room.state === 'playing';
   const isReveal = room.state === 'reveal';
   const isEventFinished = room.state === 'event_finished';
-  const isFinished = room.state === 'finished'; // Quick Play
+  const isDuelFinished = isDuel && (room.state === 'finished' || duelInfo?.status === 'finished');
+  const isFinished = room.state === 'finished' && !isDuel; // Quick Play only
 
   const cluesList = room.myClues && room.myClues.length > 0
     ? room.myClues
@@ -91,7 +94,15 @@ const Game = ({ room }) => {
 
   // Confetti on win
   useEffect(() => {
-    if ((isFinished && room.lastRoundSuccess) || (isEventFinished && room.eventFinalResult?.roundsSolved > 0)) {
+    if (isDuelFinished && duelInfo?.winner) {
+      confetti({
+        particleCount: 130,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: duelInfo.winner === duelInfo.myTeamKey ? ['#16A34A', '#5046E5', '#F59E0B'] : ['#6C4CF1', '#9CA3AF']
+      });
+      if (navigator.vibrate) navigator.vibrate([150, 100, 150]);
+    } else if ((isFinished && room.lastRoundSuccess) || (isEventFinished && room.eventFinalResult?.roundsSolved > 0)) {
       confetti({
         particleCount: 100,
         spread: 70,
@@ -102,7 +113,7 @@ const Game = ({ room }) => {
     } else if (isFinished && !room.lastRoundSuccess) {
       if (navigator.vibrate) navigator.vibrate(500);
     }
-  }, [isFinished, isEventFinished, room.lastRoundSuccess]);
+  }, [isDuelFinished, isFinished, isEventFinished, room.lastRoundSuccess, duelInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -356,6 +367,109 @@ const Game = ({ room }) => {
     );
   }
 
+  // 3b. DUEL MODE VICTORY & RECAP SCREEN
+  if (isDuelFinished && duelInfo) {
+    const isWinner = duelInfo.winner === duelInfo.myTeamKey;
+    const isDraw = duelInfo.winner === 'draw';
+
+    return (
+      <div className="w-full max-w-[420px] mx-auto flex flex-col items-center mt-2 px-2 pb-12 space-y-4 text-center animate-fade-in">
+        {/* Trophy / Result Icon */}
+        <div className={`w-16 h-16 rounded-3xl flex items-center justify-center shadow-sm ${
+          isWinner ? 'bg-gradient-to-tr from-[#FEF3C7] to-[#FDE68A] text-[#D97706]' : 'bg-[#EEF2FF] text-[#5046E5]'
+        }`}>
+          <Trophy size={34} strokeWidth={2.5} />
+        </div>
+
+        <div>
+          <div className="text-[12px] font-bold text-[#5046E5] uppercase tracking-wider">
+            Head-to-Head Duel Concluded
+          </div>
+          <h2 className="text-[26px] font-black text-[#1E1B3A] tracking-tight">
+            {isDraw ? "It's a Draw!" : `🏆 ${duelInfo.winningTeamName} Wins!`}
+          </h2>
+          <p className="text-[13px] text-[#6B7280] mt-0.5">
+            {duelInfo.winnerReason === 'first_to_3'
+              ? 'First team to 3 solved keywords!'
+              : duelInfo.winnerReason === 'time_cap_solves'
+              ? 'Most keywords solved at time limit!'
+              : duelInfo.winnerReason === 'tie_breaker_time'
+              ? 'Tie-breaker: Faster combined solve time!'
+              : duelInfo.winnerReason === 'forfeit'
+              ? 'Opponent forfeited after 60s offline'
+              : 'Match Decided'}
+          </p>
+        </div>
+
+        {/* Prize Banner Card */}
+        <div className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-[20px] p-4 text-center">
+          <div className="text-base font-extrabold text-amber-900">
+            {duelInfo.prizeBanner || `🍫 Chocolate for ${duelInfo.winningTeamName}!`}
+          </div>
+          {duelInfo.chocolateAwarded && (
+            <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-[11px] font-bold">
+              <Check size={12} /> Awarded by Host
+            </div>
+          )}
+        </div>
+
+        {/* Head-to-Head Score Summary */}
+        <div className="w-full bg-white rounded-[22px] border border-[#E9ECEF] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4">
+          <div className="text-[11px] font-bold tracking-widest text-[#9CA3AF] uppercase text-left">
+            Match Recap
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className={`p-3 rounded-2xl border ${
+              duelInfo.myTeamKey === 'red' ? 'bg-red-50/60 border-red-200' : 'bg-blue-50/60 border-blue-200'
+            }`}>
+              <span className="text-[11px] font-bold text-gray-500 uppercase block truncate">
+                {duelInfo.myTeamName} (You)
+              </span>
+              <div className="text-2xl font-black font-mono text-[#1E1B3A] mt-1">
+                {duelInfo.mySolvedCount} <span className="text-xs text-gray-400">/ 3</span>
+              </div>
+            </div>
+
+            <div className={`p-3 rounded-2xl border ${
+              duelInfo.myTeamKey === 'red' ? 'bg-blue-50/60 border-blue-200' : 'bg-red-50/60 border-red-200'
+            }`}>
+              <span className="text-[11px] font-bold text-gray-500 uppercase block truncate">
+                {duelInfo.opponentTeamName}
+              </span>
+              <div className="text-2xl font-black font-mono text-[#1E1B3A] mt-1">
+                {duelInfo.opponentSolvedCount} <span className="text-xs text-gray-400">/ 3</span>
+              </div>
+            </div>
+          </div>
+
+          {duelInfo.winningPlayers && duelInfo.winningPlayers.length > 0 && (
+            <div className="pt-2 border-t border-[#F3F4F6] text-xs text-left text-gray-600">
+              <span className="font-bold text-gray-800">Winning Roster: </span>
+              {duelInfo.winningPlayers.join(', ')}
+            </div>
+          )}
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="w-full space-y-2.5 pt-2">
+          <button
+            onClick={() => navigate('/arena')}
+            className="w-full py-3.5 px-4 bg-[#5046E5] hover:bg-[#4338CA] text-white font-bold rounded-[14px] flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+          >
+            <BarChart2 size={18} />
+            <span>View All Arena Duels</span>
+          </button>
+          <button
+            onClick={() => navigate('/')}
+            className="w-full py-3.5 px-4 bg-white hover:bg-[#F9FAFB] text-[#4B5563] border border-[#E5E7EB] font-semibold rounded-[14px] flex items-center justify-center gap-2 transition-all cursor-pointer"
+          >
+            <span>Back to Home</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   // 4. QUICK PLAY SCORE BREAKDOWN (UNTOUCHED PREVIOUS LOGIC)
   if (isFinished) {
     const bd = room.lastRoundScoreBreakdown;
@@ -486,16 +600,16 @@ const Game = ({ room }) => {
   return (
     <div className={`flex flex-col h-full w-full max-w-[440px] mx-auto transition-colors duration-500 z-10 relative ${isUrgent ? 'bg-danger-bg rounded-[24px] p-4' : ''}`}>
       {/* Header Info */}
-      <div className="flex justify-between items-center mb-6 px-2">
+      <div className="flex justify-between items-center mb-4 px-2">
         <div className="flex flex-col items-start">
           <span className="text-xs text-text-muted font-bold uppercase tracking-widest mb-1">
-            {isEvent ? `Round ${room.currentRound || 1} of 3` : 'Category'}
+            {isDuel ? `Keyword ${duelInfo?.currentKeywordNumber || 1} of 3` : isEvent ? `Round ${room.currentRound || 1} of 3` : 'Category'}
           </span>
           <span 
             className="px-3 py-1 rounded-full text-sm font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[140px] shadow-sm border border-black/5"
             style={{ backgroundColor: `${badgeHex}20`, color: badgeHex }}
           >
-            {room.categoryMeta?.emoji} {room.category}
+            {room.categoryMeta?.emoji || (isDuel ? '⚔️' : '')} {room.category || (isDuel ? 'Duel' : '')}
           </span>
         </div>
         
@@ -511,13 +625,42 @@ const Game = ({ room }) => {
         
         <div className="flex flex-col items-end">
           <span className="text-xs text-text-muted font-bold uppercase tracking-widest mb-1">
-            {isEvent ? (room.teamName || 'Team') : 'Score'}
+            {isDuel ? (duelInfo?.opponentTeamName || 'Opponent') : isEvent ? (room.teamName || 'Team') : 'Score'}
           </span>
           <span className="text-2xl font-black font-mono text-text">
-            {isEvent ? `R${room.currentRound || 1}` : (room.score ?? 0)}
+            {isDuel ? `${duelInfo?.opponentSolvedCount || 0}/3` : isEvent ? `R${room.currentRound || 1}` : (room.score ?? 0)}
           </span>
         </div>
       </div>
+
+      {/* Duel Mode Race Lights */}
+      {isDuel && (
+        <div className="mb-4 bg-white border border-[#E5E7EB] rounded-2xl p-3 flex items-center justify-between shadow-2xs">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-gray-500 uppercase mr-1">Your Solves:</span>
+            {[0, 1, 2].map((idx) => {
+              const solved = (duelInfo?.mySolvedCount || 0) > idx;
+              return (
+                <span
+                  key={idx}
+                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                    solved
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-gray-100 text-gray-400 border border-gray-200'
+                  }`}
+                >
+                  {solved ? <Check size={13} strokeWidth={3} /> : idx + 1}
+                </span>
+              );
+            })}
+          </div>
+
+          <div className="text-xs font-bold text-gray-600">
+            <span>{duelInfo?.opponentTeamName || 'Opponent'}: </span>
+            <span className="font-mono text-[#5046E5] font-black">{duelInfo?.opponentSolvedCount || 0}/3</span>
+          </div>
+        </div>
+      )}
 
       {/* Main Content Area */}
       <div className="flex-grow flex flex-col justify-between space-y-4">

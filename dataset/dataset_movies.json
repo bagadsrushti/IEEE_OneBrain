@@ -1,0 +1,547 @@
+[
+  {
+    "category": "Movies",
+    "subfield": "Indian action movie",
+    "answer": "Dhoom",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "theme",
+        "text": "A team of police officers tries to catch stylish motorcycle-riding thieves."
+      },
+      {
+        "angle": "object",
+        "text": "Fast bikes and high-speed chases are central to the movie."
+      },
+      {
+        "angle": "franchise",
+        "text": "The popular action franchise features high-speed bike chases across multiple sequel films."
+      },
+      {
+        "angle": "music",
+        "text": "The energetic title track composed by Pritam became an iconic dance anthem across India."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Bollywood",
+    "answer": "3 Idiots",
+    "aliases": [
+      "Three Idiots"
+    ],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "story",
+        "text": "Three engineering students deal with college pressure and friendship."
+      },
+      {
+        "angle": "character",
+        "text": "Rancho, Farhan, and Raju are the three friends."
+      },
+      {
+        "angle": "famous line",
+        "text": "The film made 'All is well' very popular."
+      },
+      {
+        "angle": "actor",
+        "text": "Aamir Khan plays the lead character."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Superhero",
+    "answer": "Spider Man",
+    "aliases": [
+      "Spiderman",
+      "Spider Man"
+    ],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "character",
+        "text": "A young hero swings between buildings using webs."
+      },
+      {
+        "angle": "identity",
+        "text": "Peter Parker is the teenager behind the mask."
+      },
+      {
+        "angle": "power",
+        "text": "He can climb walls and has a spider-sense."
+      },
+      {
+        "angle": "catchphrase",
+        "text": "His story includes the idea that great power brings great responsibility."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Animated film",
+    "answer": "Frozen",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "song",
+        "text": "A famous song from this movie is 'Let It Go'."
+      },
+      {
+        "angle": "character",
+        "text": "Elsa has magical powers that create ice and snow."
+      },
+      {
+        "angle": "setting",
+        "text": "The story takes place in Arendelle."
+      },
+      {
+        "angle": "character",
+        "text": "Anna is Elsa's younger sister."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Fantasy",
+    "answer": "Harry Potter",
+    "aliases": [],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "school",
+        "text": "A young wizard attends Hogwarts."
+      },
+      {
+        "angle": "appearance",
+        "text": "The hero has a lightning-shaped scar."
+      },
+      {
+        "angle": "friends",
+        "text": "Hermione and Ron are his closest friends."
+      },
+      {
+        "angle": "object",
+        "text": "He uses a wand and plays Quidditch."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Superhero",
+    "answer": "Avengers Endgame",
+    "aliases": [
+      "Avengers Endgame",
+      "Endgame"
+    ],
+    "tier": "easy",
+    "clues": [
+      {
+        "angle": "team",
+        "text": "Iron Man, Captain America, and Thor are part of this team."
+      },
+      {
+        "angle": "villain",
+        "text": "The heroes try to undo the damage caused by Thanos."
+      },
+      {
+        "angle": "universe",
+        "text": "It is part of the Marvel Cinematic Universe."
+      },
+      {
+        "angle": "plot",
+        "text": "The story includes time travel and the Infinity Stones."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Indian comedy-drama",
+    "answer": "Munna Bhai MBBS",
+    "aliases": [
+      "Munna Bhai MBBS",
+      "Munna Bhai"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "plot",
+        "text": "A gangster pretends to be a medical student to make his father proud."
+      },
+      {
+        "angle": "actor",
+        "text": "Sanjay Dutt plays the title character."
+      },
+      {
+        "angle": "phrase",
+        "text": "The film popularised 'Jaadu ki jhappi'."
+      },
+      {
+        "angle": "setting",
+        "text": "Much of the story takes place in a medical college."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Indian sports movie",
+    "answer": "Chak De India",
+    "aliases": [
+      "Chak De India"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "sport",
+        "text": "A former player coaches India's women's national hockey team."
+      },
+      {
+        "angle": "actor",
+        "text": "Shah Rukh Khan plays coach Kabir Khan."
+      },
+      {
+        "angle": "goal",
+        "text": "The team works together to win an international tournament."
+      },
+      {
+        "angle": "sport",
+        "text": "The story focuses on women's field hockey."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Indian romantic movie",
+    "answer": "Dilwale Dulhania Le Jayenge",
+    "aliases": [
+      "DDLJ"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "actors",
+        "text": "Shah Rukh Khan and Kajol play Raj and Simran."
+      },
+      {
+        "angle": "setting",
+        "text": "A romance begins during a trip across Europe."
+      },
+      {
+        "angle": "song",
+        "text": "The film features 'Tujhe Dekha To'."
+      },
+      {
+        "angle": "scene",
+        "text": "A famous scene features mustard fields."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Animated film",
+    "answer": "The Lion King",
+    "aliases": [
+      "Lion King"
+    ],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "character",
+        "text": "Simba must reclaim his place as king."
+      },
+      {
+        "angle": "song",
+        "text": "The song 'Hakuna Matata' appears in this movie."
+      },
+      {
+        "angle": "setting",
+        "text": "The story takes place on the African savanna."
+      },
+      {
+        "angle": "family",
+        "text": "Mufasa is Simba's father."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Science-fiction film",
+    "answer": "Interstellar",
+    "aliases": [],
+    "tier": "medium",
+    "clues": [
+      {
+        "angle": "director",
+        "text": "It was directed by Christopher Nolan."
+      },
+      {
+        "angle": "plot",
+        "text": "A group travels through space to search for a new home for humanity."
+      },
+      {
+        "angle": "science",
+        "text": "The story features black holes and time passing at different rates."
+      },
+      {
+        "angle": "music",
+        "text": "Its soundtrack was composed by Hans Zimmer."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Science-fiction film",
+    "answer": "Inception",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "director",
+        "text": "Christopher Nolan directed this film about dreams within dreams."
+      },
+      {
+        "angle": "plot",
+        "text": "A specialist is hired to plant an idea in someone's mind rather than steal one."
+      },
+      {
+        "angle": "object",
+        "text": "A spinning object helps the main character test whether he is dreaming."
+      },
+      {
+        "angle": "actor",
+        "text": "Leonardo DiCaprio plays a man trying to return to his children."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Indian thriller",
+    "answer": "Drishyam",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "plot",
+        "text": "A man uses his love of films and careful planning to create an alibi for his family."
+      },
+      {
+        "angle": "language",
+        "text": "The original version of this thriller was made in Malayalam."
+      },
+      {
+        "angle": "actor",
+        "text": "Mohanlal plays the family man in the original film."
+      },
+      {
+        "angle": "detail",
+        "text": "A movie theatre and a police investigation are important to the story."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Animated film",
+    "answer": "Coco",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "culture",
+        "text": "This animated film draws on Mexico's Day of the Dead traditions."
+      },
+      {
+        "angle": "plot",
+        "text": "A young boy enters the Land of the Dead and learns about his family's past."
+      },
+      {
+        "angle": "song",
+        "text": "The song 'Remember Me' is central to the story."
+      },
+      {
+        "angle": "character",
+        "text": "The main boy's name is Miguel."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Superhero film",
+    "answer": "Black Panther",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "fictional place",
+        "text": "Much of the story takes place in a hidden African nation that appears technologically advanced."
+      },
+      {
+        "angle": "character",
+        "text": "The hero is also the ruler of Wakanda."
+      },
+      {
+        "angle": "material",
+        "text": "A rare metal called vibranium is central to the technology in this story."
+      },
+      {
+        "angle": "actor",
+        "text": "Chadwick Boseman played the title character in the 2018 film."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Fantasy film",
+    "answer": "The Truman Show",
+    "aliases": [],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "plot",
+        "text": "A man discovers clues that his apparently ordinary life may be staged."
+      },
+      {
+        "angle": "actor",
+        "text": "Jim Carrey plays the central character in this satirical drama."
+      },
+      {
+        "angle": "setting",
+        "text": "The town around him is actually a carefully controlled production set."
+      },
+      {
+        "angle": "theme",
+        "text": "The film questions surveillance, media, and the boundary between reality and performance."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Thriller",
+    "answer": "Inception",
+    "aliases": [
+      "Dream heist"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "plot",
+        "text": "A team enters people’s dreams to plant an idea."
+      },
+      {
+        "angle": "lead",
+        "text": "Leonardo DiCaprio leads the team."
+      },
+      {
+        "angle": "visual",
+        "text": "A spinning top is an important object."
+      },
+      {
+        "angle": "genre",
+        "text": "The story mixes dreams, action, and reality."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Crime thriller",
+    "answer": "Fight Club",
+    "aliases": [
+      "Fight club"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "rule",
+        "text": "The first rule is that you do not talk about it."
+      },
+      {
+        "angle": "lead",
+        "text": "Edward Norton plays a quiet office worker."
+      },
+      {
+        "angle": "character",
+        "text": "Brad Pitt plays Tyler Durden."
+      },
+      {
+        "angle": "theme",
+        "text": "A secret group fights as a way to escape ordinary life."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "International film",
+    "answer": "Parasite",
+    "aliases": [
+      "Gisaengchung"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "country",
+        "text": "This award-winning film comes from South Korea."
+      },
+      {
+        "angle": "family",
+        "text": "A poor family gradually gets jobs in a wealthy household."
+      },
+      {
+        "angle": "award",
+        "text": "It won Best Picture at the Oscars."
+      },
+      {
+        "angle": "theme",
+        "text": "The story explores class differences, with major twists."
+      }
+    ],
+    "needsReview": false
+  },
+  {
+    "category": "Movies",
+    "subfield": "Bollywood comedy-drama",
+    "answer": "Zindagi Na Milegi Dobara",
+    "aliases": [
+      "ZNMD"
+    ],
+    "tier": "hard",
+    "clues": [
+      {
+        "angle": "trip",
+        "text": "Three friends take a road trip through Spain."
+      },
+      {
+        "angle": "cast",
+        "text": "Hrithik Roshan, Farhan Akhtar, and Abhay Deol star."
+      },
+      {
+        "angle": "challenge",
+        "text": "Each friend faces a fear during the trip."
+      },
+      {
+        "angle": "theme",
+        "text": "The film is about friendship and living in the moment."
+      }
+    ],
+    "needsReview": false
+  }
+]
