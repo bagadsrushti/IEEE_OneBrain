@@ -1282,6 +1282,28 @@
       "totalDurationSeconds": 0,
       "chocolateAwarded": false,
       "finishedAt": 1791731343845
+    },
+    {
+      "code": "TC5J2Y",
+      "status": "finished",
+      "teamRedName": "Team Red",
+      "teamBlueName": "Team Blue",
+      "teamRedSolved": 0,
+      "teamBlueSolved": 0,
+      "teamRedTime": 322,
+      "teamBlueTime": 372,
+      "teamRedWrong": 3,
+      "teamBlueWrong": 0,
+      "winner": "red",
+      "winningTeamName": "Team Red",
+      "winnerReason": "tie_breaker_time",
+      "winningPlayers": [
+        "hsoh",
+        "ovn"
+      ],
+      "totalDurationSeconds": 378,
+      "chocolateAwarded": false,
+      "finishedAt": 1791802902992
     }
   ],
   "adminSettings": {
