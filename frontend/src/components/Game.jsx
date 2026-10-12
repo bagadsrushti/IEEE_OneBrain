@@ -120,18 +120,31 @@ const Game = ({ room }) => {
     }
   }, [isDuelFinished, isFinished, isEventFinished, room.lastRoundSuccess, duelInfo]);
 
+  // Auto-clear answer input on next round, round transition, or state change
+  useEffect(() => {
+    setGuess('');
+    setErrorMsg('');
+  }, [
+    room.currentRound,
+    duelInfo?.currentRound,
+    room.roundPlayStartTime,
+    room.roundEndTime,
+    room.state
+  ]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!guess.trim()) return;
     
-    socket.emit('submit_answer', { guess }, (res) => {
-      if (res.error) {
+    const submittedGuess = guess;
+    setGuess('');
+    
+    socket.emit('submit_answer', { guess: submittedGuess }, (res) => {
+      if (res?.error) {
         setErrorMsg(res.error);
-        setGuess('');
         setTimeout(() => setErrorMsg(''), 3000);
-      } else if (res.isCorrect === false) {
+      } else if (res?.isCorrect === false) {
         setErrorMsg('Incorrect answer');
-        setGuess('');
         setTimeout(() => setErrorMsg(''), 3000);
       }
     });
@@ -139,7 +152,7 @@ const Game = ({ room }) => {
 
   const handleHint = () => {
     socket.emit('use_hint', (res) => {
-      if (res.error) {
+      if (res?.error) {
         setErrorMsg(res.error);
         setTimeout(() => setErrorMsg(''), 3000);
       }
@@ -147,12 +160,14 @@ const Game = ({ room }) => {
   };
 
   const handleNextRound = () => {
+    setGuess('');
     socket.emit('next_round', () => {});
   };
 
   const handleSkipWord = () => {
+    setGuess('');
     socket.emit('skip_word', (res) => {
-      if (res.error) {
+      if (res?.error) {
         setErrorMsg(res.error);
         setTimeout(() => setErrorMsg(''), 3000);
       }
@@ -186,6 +201,29 @@ const Game = ({ room }) => {
           Read your individual clue carefully.<br />
           <strong className="text-[#1E1B3A]">Talk to your teammates</strong> — combine clues to find the answer!
         </p>
+
+        {/* Team Members Distribution */}
+        {room.players && room.players.length > 0 && (
+          <div className="w-full bg-white/90 border border-[#E5E7EB] rounded-2xl p-3.5 shadow-2xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">
+              Team Roster ({room.players.filter(p => p.connected).length} Players)
+            </div>
+            <div className="flex flex-wrap gap-1.5 justify-center">
+              {room.players.filter(p => p.connected).map(p => (
+                <span
+                  key={p.id}
+                  className={`px-3 py-1 rounded-xl text-[12px] font-bold ${
+                    p.id === myPlayerId
+                      ? 'bg-[#EEF2FF] text-[#5046E5] ring-1 ring-[#5046E5]/40'
+                      : 'bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  {p.name} {p.id === myPlayerId && '(You)'}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -845,9 +883,12 @@ const Game = ({ room }) => {
               placeholder="Team answer..."
               value={guess}
               onChange={(e) => setGuess(e.target.value)}
+              autoComplete="off"
+              autoCapitalize="off"
+              spellCheck="false"
               className="flex-grow bg-surface border-2 border-border rounded-[18px] px-5 py-4 text-lg font-bold text-text placeholder-text-muted focus:outline-none focus:border-primary shadow-sm"
             />
-            <Button type="submit" variant="primary" className="px-6 rounded-[18px]">
+            <Button type="submit" variant="success" className="px-6 rounded-[18px]">
               <Send size={20} />
             </Button>
           </form>

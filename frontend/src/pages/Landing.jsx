@@ -69,16 +69,14 @@ const Landing = () => {
         const data = await res.json();
         if (data.success) {
           setEventStatus(data);
-          if (data.isLive && !modeSelectedManually && !code) {
-            setMode('event');
-          }
+          // Keep Quick/Duel starting page without auto-switching to event
         }
       } catch (err) {
         console.error('Failed to fetch event status:', err);
       }
     };
     fetchEventStatus();
-  }, [modeSelectedManually, code]);
+  }, [code]);
 
   const handleSelectMode = (newMode) => {
     setModeSelectedManually(true);
@@ -155,8 +153,30 @@ const Landing = () => {
   return (
     <div className="w-full max-w-[420px] mx-auto px-2 pb-12 flex flex-col items-center z-10 relative">
       
+      {/* Duel Leaderboard Banner when Duel is active */}
+      {(mode === 'duel' || isJoiningDuel) && (
+        <Link
+          to="/arena"
+          className="w-full mb-3 p-2.5 bg-gradient-to-r from-red-50 via-purple-50 to-indigo-50 border border-indigo-200 hover:border-indigo-400 rounded-xl flex items-center justify-between text-left shadow-xs transition-all group"
+        >
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+            <span className="text-[12px] font-extrabold text-[#1E1B3A] uppercase tracking-wider flex items-center gap-1.5">
+              <Trophy size={14} className="text-[#F59E0B]" />
+              Duel Leaderboard
+            </span>
+            <span className="text-[11px] font-medium text-gray-500 hidden sm:inline">
+              Live Arena & Champions
+            </span>
+          </div>
+          <span className="text-[12px] font-bold text-[#5046E5] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+            View Standings →
+          </span>
+        </Link>
+      )}
+
       {/* Live Event Announcement Banner */}
-      {isEventLive && (
+      {isEventLive && mode === 'event' && (
         <Link
           to="/leaderboard"
           className="w-full mb-3 p-2.5 bg-gradient-to-r from-[#FEF3C7] to-[#FEE2E2] border border-[#FDE68A] rounded-xl flex items-center justify-between text-left shadow-xs hover:opacity-95 transition-all group"
@@ -253,6 +273,16 @@ const Landing = () => {
               ? '4 to 16 players · 2 teams race to 3 solved keywords'
               : 'Challenge your friends. Find out who thinks fastest.'}
           </p>
+
+          {(mode === 'duel' || isJoiningDuel) && (
+            <Link
+              to="/arena"
+              className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 bg-[#EEF2FF] border border-[#E0E7FF] hover:bg-[#E0E7FF] text-[#5046E5] rounded-full text-[12px] font-bold shadow-2xs transition-all"
+            >
+              <Trophy size={13} className="text-[#F59E0B]" />
+              <span>Leaderboard & Arena →</span>
+            </Link>
+          )}
 
           {mode === 'event' && eventStatus?.slotUsage && (
             <div className="mt-2 px-2.5 py-1 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full text-[11px] font-semibold text-[#4B5563] flex items-center gap-1.5">

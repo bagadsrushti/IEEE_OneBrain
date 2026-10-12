@@ -467,6 +467,17 @@ class DuelManager {
     const duel = this.getDuel(code);
     if (!duel) return { error: 'Duel not found' };
     if (duel.hostId !== hostId) return { error: 'Only the host can start the duel' };
+
+    // If already in team reveal, host can skip countdown and start match immediately
+    if (duel.status === 'team_reveal') {
+      if (duel.meetTeamTimer) {
+        clearTimeout(duel.meetTeamTimer);
+        duel.meetTeamTimer = null;
+      }
+      this.startMatch(duel);
+      return { success: true, duel };
+    }
+
     if (duel.status !== 'lobby' && duel.status !== 'countdown') {
       return { error: 'Duel is not in lobby state' };
     }
@@ -1159,7 +1170,24 @@ class DuelManager {
         opponentTeamName: opponentTeam.name,
         myTeamPlayerCount: myTeam.playerIds.length,
         opponentTeamPlayerCount: opponentTeam.playerIds.length,
-        teammates: duel.players.filter(p => p.team === playerTeam).map(p => ({ name: p.name, isYou: p.id === player.id })),
+        teamRed: {
+          name: duel.teamRed.name,
+          players: duel.players
+            .filter(p => p.team === 'red')
+            .map(p => ({ id: p.id, name: p.name, isYou: p.id === player?.id })),
+        },
+        teamBlue: {
+          name: duel.teamBlue.name,
+          players: duel.players
+            .filter(p => p.team === 'blue')
+            .map(p => ({ id: p.id, name: p.name, isYou: p.id === player?.id })),
+        },
+        teammates: duel.players
+          .filter(p => p.team === playerTeam)
+          .map(p => ({ id: p.id, name: p.name, isYou: p.id === player?.id })),
+        opponents: duel.players
+          .filter(p => p.team && p.team !== playerTeam)
+          .map(p => ({ id: p.id, name: p.name })),
         teamRevealEndTime: duel.teamRevealEndTime,
         teamRevealCountdown: Math.max(0, Math.ceil((duel.teamRevealEndTime - Date.now()) / 1000)),
       };
@@ -1247,14 +1275,17 @@ class DuelManager {
       joinedCount: duel.players.length,
       teamRed: {
         name: duel.teamRed.name,
+        players: duel.players.filter(p => p.team === 'red').map(p => p.name),
         solvedCount: duel.teamRed.solvedCount,
         inReveal: duel.teamRed.inReveal,
       },
       teamBlue: {
         name: duel.teamBlue.name,
+        players: duel.players.filter(p => p.team === 'blue').map(p => p.name),
         solvedCount: duel.teamBlue.solvedCount,
         inReveal: duel.teamBlue.inReveal,
       },
+      teamRevealEndTime: duel.teamRevealEndTime,
       winner: duel.winner,
       winnerReason: duel.winnerReason,
       winningTeamName: duel.winningTeamName,

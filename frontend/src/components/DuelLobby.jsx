@@ -10,7 +10,8 @@ import {
   Sparkles,
   Shield,
   Edit2,
-  AlertCircle
+  AlertCircle,
+  Trophy
 } from 'lucide-react';
 import Button from './Button';
 import InviteCard from './InviteCard';
@@ -99,84 +100,152 @@ const DuelLobby = ({ duel }) => {
   };
 
   // =========================================================================
-  // VIEW: "MEET YOUR TEAM" (10-second reveal screen)
+  // VIEW: TEAM DISTRIBUTION (reveal screen before match starts)
   // =========================================================================
   if (duel.status === 'team_reveal') {
-    if (!duel.myTeamKey || !duel.teammates) return <div className="w-full text-center py-16 font-bold text-gray-600">Setting up your team...</div>;
+    const teamRed = duel.teamRed || {};
+    const teamBlue = duel.teamBlue || {};
+    const rName = teamRed.name || 'Team Red';
+    const bName = teamBlue.name || 'Team Blue';
+    const redPlayers = teamRed.players || (duel.myTeamKey === 'red' ? duel.teammates : duel.opponents) || [];
+    const bluePlayers = teamBlue.players || (duel.myTeamKey === 'blue' ? duel.teammates : duel.opponents) || [];
     const myTeamKey = duel.myTeamKey;
-    const isRed = myTeamKey === 'red';
-
-    const myTeammates = duel.teammates;
-    const myTeamName = duel.myTeamName;
-    const oppTeamName = duel.opponentTeamName;
 
     return (
-      <div className="w-full max-w-[540px] flex flex-col items-center gap-6 text-[#1E1B3A] pb-8 animate-fade-in text-center">
-        {/* Countdown Pill */}
-        <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 to-indigo-600 text-white rounded-full font-black text-sm shadow-md animate-pulse">
-          <Clock size={16} />
-          <span>Starting in {meetTeamSec}s...</span>
+      <div className="w-full max-w-[540px] flex flex-col items-center gap-5 text-[#1E1B3A] pb-8 animate-fade-in text-center">
+        {/* Countdown Pill & Host Action */}
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-2">
+          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 via-purple-600 to-indigo-600 text-white rounded-full font-black text-sm shadow-md animate-pulse">
+            <Clock size={16} />
+            <span>Match starting in {meetTeamSec}s...</span>
+          </div>
+
+          {isHost && (
+            <button
+              onClick={handleStartNow}
+              disabled={loading}
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-extrabold text-xs shadow-sm flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
+            >
+              <Play size={13} fill="currentColor" />
+              <span>Start Game Now</span>
+            </button>
+          )}
         </div>
 
         {/* Title */}
         <div className="space-y-1">
-          <span className="text-xs font-black uppercase tracking-widest text-[#6366F1]">Duel Arena</span>
-          <h2 className="text-3xl font-black text-[#1E1B3A]">Meet Your Team!</h2>
-          <p className="text-sm text-gray-500 max-w-[360px] mx-auto">
-            You hold different clues from your teammates. Talk, collaborate, and submit ONE team answer!
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 border border-indigo-200 text-[#5046E5] rounded-full text-xs font-black uppercase tracking-wider">
+            <Swords size={13} />
+            <span>Team Distribution</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1E1B3A]">Teams Divided!</h2>
+          <p className="text-xs sm:text-sm text-gray-500 max-w-[400px] mx-auto">
+            Check your teammates below. Coordinate closely — each player holds a unique clue!
           </p>
         </div>
 
-        {/* Your Team Card */}
-        <div className={`w-full rounded-2xl p-5 border-2 shadow-sm ${
-          isRed
-            ? 'bg-gradient-to-br from-red-50 to-orange-50 border-red-300 text-red-950'
-            : 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300 text-blue-950'
-        }`}>
-          <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/10">
-            <div className="flex items-center gap-2 text-left">
-              <Shield size={20} className={isRed ? 'text-red-600' : 'text-blue-600'} />
-              <div>
-                <span className="text-[11px] font-black uppercase tracking-wider block opacity-75">Your Squad</span>
-                <h3 className="text-xl font-black">{myTeamName}</h3>
+        {/* Team Matchup: Team Red VS Team Blue */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* TEAM RED */}
+          <div className={`rounded-2xl p-4 border-2 shadow-sm text-left flex flex-col justify-between transition-all ${
+            myTeamKey === 'red'
+              ? 'bg-gradient-to-br from-red-50 to-orange-50/70 border-red-400 ring-2 ring-red-200'
+              : 'bg-white border-red-200'
+          }`}>
+            <div>
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-red-100">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center shadow-2xs">
+                    <Shield size={18} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-red-600 block">
+                      {myTeamKey === 'red' ? 'Your Team' : 'Opponents'}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-black text-red-950 truncate max-w-[150px]">
+                      {rName}
+                    </h3>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-red-100 text-red-800">
+                  {redPlayers.length} Players
+                </span>
+              </div>
+
+              <div className="space-y-1.5">
+                {redPlayers.map((p, idx) => (
+                  <div
+                    key={p.id || idx}
+                    className={`p-2 rounded-xl border text-xs font-bold flex items-center justify-between transition-all ${
+                      p.isYou || p.name === duel.myNickname
+                        ? 'bg-red-500 text-white border-red-600 shadow-2xs'
+                        : 'bg-white/90 text-gray-800 border-red-100'
+                    }`}
+                  >
+                    <span className="truncate">{p.name}</span>
+                    {(p.isYou || p.name === duel.myNickname) && (
+                      <span className="text-[9px] font-black px-1.5 py-0.2 bg-white text-red-600 rounded-full">
+                        YOU
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-            <span className={`px-2.5 py-1 rounded-full text-xs font-black ${
-              isRed ? 'bg-red-200 text-red-800' : 'bg-blue-200 text-blue-800'
-            }`}>
-              {duel.myTeamPlayerCount} Players
-            </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 text-left">
-            {myTeammates.map(p => (
-              <div
-                key={p.id}
-                className={`p-2.5 bg-white rounded-xl border font-bold text-sm flex items-center justify-between ${
-                  p.isYou
-                    ? (isRed ? 'border-red-400 ring-2 ring-red-300' : 'border-blue-400 ring-2 ring-blue-300')
-                    : 'border-black/5'
-                }`}
-              >
-                <span className="truncate">{p.name}</span>
-                {p.isYou && (
-                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
-                    isRed ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
-                  }`}>
-                    YOU
-                  </span>
-                )}
+          {/* TEAM BLUE */}
+          <div className={`rounded-2xl p-4 border-2 shadow-sm text-left flex flex-col justify-between transition-all ${
+            myTeamKey === 'blue'
+              ? 'bg-gradient-to-br from-blue-50 to-indigo-50/70 border-blue-400 ring-2 ring-blue-200'
+              : 'bg-white border-blue-200'
+          }`}>
+            <div>
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shadow-2xs">
+                    <Shield size={18} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">
+                      {myTeamKey === 'blue' ? 'Your Team' : 'Opponents'}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-black text-blue-950 truncate max-w-[150px]">
+                      {bName}
+                    </h3>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-blue-100 text-blue-800">
+                  {bluePlayers.length} Players
+                </span>
               </div>
-            ))}
+
+              <div className="space-y-1.5">
+                {bluePlayers.map((p, idx) => (
+                  <div
+                    key={p.id || idx}
+                    className={`p-2 rounded-xl border text-xs font-bold flex items-center justify-between transition-all ${
+                      p.isYou || p.name === duel.myNickname
+                        ? 'bg-blue-600 text-white border-blue-700 shadow-2xs'
+                        : 'bg-white/90 text-gray-800 border-blue-100'
+                    }`}
+                  >
+                    <span className="truncate">{p.name}</span>
+                    {(p.isYou || p.name === duel.myNickname) && (
+                      <span className="text-[9px] font-black px-1.5 py-0.2 bg-white text-blue-600 rounded-full">
+                        YOU
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Opponent Card */}
-        <div className="w-full bg-white rounded-2xl p-4 border border-gray-200 shadow-2xs text-left">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Opponent Team</span>
-            <span className="text-xs font-bold text-gray-600">{oppTeamName} ({duel.opponentTeamPlayerCount})</span>
-          </div>
+        {/* Strategy Footer Note */}
+        <div className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-3 text-xs text-gray-600 font-medium">
+          First team to solve <strong>3 keywords</strong> wins the duel. Get ready to collaborate!
         </div>
       </div>
     );
@@ -200,16 +269,28 @@ const DuelLobby = ({ duel }) => {
             <h2 className="text-[17px] font-black text-[#1E1B3A] leading-tight">Waiting Queue</h2>
           </div>
         </div>
-        <Link
-          to={bigScreenUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E5E7EB] hover:border-indigo-400 rounded-full text-xs font-bold text-[#5046E5] shadow-2xs transition-colors"
-          title="Open Big Screen Projector View"
-        >
-          <Tv size={14} />
-          <span>Big Screen</span>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/arena"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E5E7EB] hover:border-amber-400 rounded-full text-xs font-bold text-amber-700 shadow-2xs transition-colors"
+            title="View Arena Leaderboard"
+          >
+            <Trophy size={14} className="text-amber-500" />
+            <span>Leaderboard</span>
+          </Link>
+          <Link
+            to={bigScreenUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E5E7EB] hover:border-indigo-400 rounded-full text-xs font-bold text-[#5046E5] shadow-2xs transition-colors"
+            title="Open Big Screen Projector View"
+          >
+            <Tv size={14} />
+            <span>Big Screen</span>
+          </Link>
+        </div>
       </div>
 
       {/* Progress & Queue Count Card */}

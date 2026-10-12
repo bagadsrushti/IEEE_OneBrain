@@ -176,6 +176,19 @@ const DuelAudience = () => {
         </div>
       )}
 
+      {/* Team Reveal Banner */}
+      {duel.status === 'team_reveal' && (
+        <div className="w-full bg-gradient-to-r from-red-600 via-purple-600 to-indigo-600 rounded-3xl p-6 text-white text-center shadow-md animate-pulse space-y-2">
+          <div className="text-xs font-black uppercase tracking-widest text-indigo-200">
+            ⚔️ Match Starting Soon
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black">Team Distribution</h2>
+          <p className="text-sm text-indigo-100 max-w-md mx-auto">
+            Teams have been divided! Players are reviewing clues and getting ready.
+          </p>
+        </div>
+      )}
+
       {/* Spectator Match Grid: Team Red vs Team Blue */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TEAM RED */}
@@ -226,6 +239,20 @@ const DuelAudience = () => {
               })}
             </div>
           </div>
+
+          {/* Team Members Roster */}
+          {duel.teamRed?.players && duel.teamRed.players.length > 0 && (
+            <div className="flex flex-col gap-1.5 pt-2 border-t border-red-100">
+              <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Team Members ({duel.teamRed.players.length})</span>
+              <div className="flex flex-wrap gap-1.5">
+                {duel.teamRed.players.map((name, idx) => (
+                  <span key={idx} className="px-2.5 py-1 bg-red-50 text-red-800 border border-red-200/60 rounded-lg text-xs font-bold">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {duel.teamRed?.inReveal && (
             <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-center text-xs font-bold text-red-700 animate-pulse">
@@ -282,6 +309,20 @@ const DuelAudience = () => {
               })}
             </div>
           </div>
+
+          {/* Team Members Roster */}
+          {duel.teamBlue?.players && duel.teamBlue.players.length > 0 && (
+            <div className="flex flex-col gap-1.5 pt-2 border-t border-blue-100">
+              <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Team Members ({duel.teamBlue.players.length})</span>
+              <div className="flex flex-wrap gap-1.5">
+                {duel.teamBlue.players.map((name, idx) => (
+                  <span key={idx} className="px-2.5 py-1 bg-blue-50 text-blue-800 border border-blue-200/60 rounded-lg text-xs font-bold">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {duel.teamBlue?.inReveal && (
             <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-center text-xs font-bold text-blue-700 animate-pulse">
