@@ -8,9 +8,10 @@ import Button from './Button';
 
 const Game = ({ room }) => {
   const navigate = useNavigate();
-  const { socket, myPlayerId } = useSocket();
+  const { socket, myPlayerId, duelAudience, clockOffset } = useSocket();
   const [guess, setGuess] = useState('');
   const [timeRemaining, setTimeRemaining] = useState(0);
+  const [matchElapsed, setMatchElapsed] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
 
   // Progressive Clue Release States
@@ -21,6 +22,10 @@ const Game = ({ room }) => {
   const isEvent = room.mode === 'event';
   const isDuel = room.mode === 'duel_team' || !!room.duelInfo;
   const duelInfo = room.duelInfo;
+  const opponentSolved = duelInfo?.myTeamKey === 'red'
+    ? duelAudience?.teamBlue?.solvedCount
+    : duelAudience?.teamRed?.solvedCount;
+  const opponentSolvedCount = opponentSolved ?? duelInfo?.opponentSolvedCount ?? 0;
   const isReady = room.state === 'ready';
   const isPlaying = room.state === 'playing';
   const isReveal = room.state === 'reveal';
@@ -66,13 +71,13 @@ const Game = ({ room }) => {
       return;
     }
     const updateNextClueTimer = () => {
-      const remaining = Math.max(0, Math.ceil((room.nextWaveAt - Date.now()) / 1000));
+      const remaining = Math.max(0, Math.ceil((room.nextWaveAt - Date.now() - (isDuel ? clockOffset : 0)) / 1000));
       setNextClueCountdown(remaining);
     };
     updateNextClueTimer();
     const interval = setInterval(updateNextClueTimer, 500);
     return () => clearInterval(interval);
-  }, [room.hasMoreClues, room.nextWaveAt, isPlaying]);
+  }, [room.hasMoreClues, room.nextWaveAt, isPlaying, isDuel, clockOffset]);
 
   useEffect(() => {
     let interval;
@@ -82,7 +87,7 @@ const Game = ({ room }) => {
       else if (isReveal) targetTime = room.revealEndTime;
       else targetTime = room.roundEndTime;
 
-      const remaining = Math.max(0, Math.floor((targetTime - Date.now()) / 1000));
+      const remaining = Math.max(0, Math.floor((targetTime - Date.now() - (isDuel ? clockOffset : 0)) / 1000));
       setTimeRemaining(remaining);
     };
     
@@ -90,7 +95,7 @@ const Game = ({ room }) => {
     interval = setInterval(updateTimer, 500); 
     
     return () => clearInterval(interval);
-  }, [room.state, room.readyEndTime, room.roundEndTime, room.revealEndTime]);
+  }, [room.state, room.readyEndTime, room.roundEndTime, room.revealEndTime, isDuel, clockOffset]);
 
   // Confetti on win
   useEffect(() => {
@@ -155,6 +160,14 @@ const Game = ({ room }) => {
   };
 
   const isUrgent = isPlaying && timeRemaining <= 10;
+
+  useEffect(() => {
+    if (!isDuel || !duelInfo?.startTime) return;
+    const update = () => setMatchElapsed(Math.max(0, Math.floor((Date.now() + clockOffset - duelInfo.startTime) / 1000)));
+    update();
+    const timer = setInterval(update, 500);
+    return () => clearInterval(timer);
+  }, [isDuel, duelInfo?.startTime, clockOffset]);
   
   // 1. PREP / READY SCREEN
   if (isReady) {
@@ -393,10 +406,10 @@ const Game = ({ room }) => {
 
           <div className="pt-2 border-t border-gray-100 flex justify-between items-center text-sm font-bold">
             <span className="text-gray-600">{duelInfo.opponentTeamName}</span>
-            <span className="text-indigo-600 font-mono font-black">{duelInfo.opponentSolvedCount || 0}/3 Solved</span>
+            <span className="text-indigo-600 font-mono font-black">{opponentSolvedCount}/3 Solved</span>
           </div>
           <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-            <div className="bg-indigo-600 h-full rounded-full transition-all" style={{ width: `${((duelInfo.opponentSolvedCount || 0) / 3) * 100}%` }}></div>
+            <div className="bg-indigo-600 h-full rounded-full transition-all" style={{ width: `${(opponentSolvedCount / 3) * 100}%` }}></div>
           </div>
         </div>
       </div>
@@ -696,7 +709,7 @@ const Game = ({ room }) => {
             {isDuel ? (duelInfo?.opponentTeamName || 'Opponent') : isEvent ? (room.teamName || 'Team') : 'Score'}
           </span>
           <span className="text-2xl font-black font-mono text-text">
-            {isDuel ? `${duelInfo?.opponentSolvedCount || 0}/3` : isEvent ? `R${room.currentRound || 1}` : (room.score ?? 0)}
+            {isDuel ? `${opponentSolvedCount}/3` : isEvent ? `R${room.currentRound || 1}` : (room.score ?? 0)}
           </span>
         </div>
       </div>
@@ -706,7 +719,7 @@ const Game = ({ room }) => {
         <div className="mb-4 bg-white border border-[#E5E7EB] rounded-2xl p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center justify-between text-xs font-bold text-gray-500 pb-1 border-b border-gray-100">
             <span>Round {duelInfo?.currentRound || 1} of 3</span>
-            <span className="font-mono text-indigo-600">Match Elapsed: {duelInfo?.elapsedSeconds || 0}s</span>
+            <span className="font-mono text-indigo-600">Match Elapsed: {matchElapsed}s</span>
           </div>
 
           {/* Your Team Progress */}
@@ -727,12 +740,12 @@ const Game = ({ room }) => {
           <div className="space-y-1">
             <div className="flex justify-between items-center text-xs font-bold">
               <span className="text-gray-500">{duelInfo?.opponentTeamName || 'Opponent'}</span>
-              <span className="text-indigo-600 font-mono font-black">{duelInfo?.opponentSolvedCount || 0}/3</span>
+              <span className="text-indigo-600 font-mono font-black">{opponentSolvedCount}/3</span>
             </div>
             <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
               <div
                 className="bg-indigo-600 h-full rounded-full transition-all duration-300"
-                style={{ width: `${((duelInfo?.opponentSolvedCount || 0) / 3) * 100}%` }}
+                style={{ width: `${(opponentSolvedCount / 3) * 100}%` }}
               ></div>
             </div>
           </div>

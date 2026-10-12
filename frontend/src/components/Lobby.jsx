@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
-import QRCode from 'react-qr-code';
-import { Copy, Crown, Lock, User, ChevronDown, Check, Trophy, Clock, Hourglass } from 'lucide-react';
+import React from 'react';
+import { Crown, Lock, User, ChevronDown, Trophy, Clock, Hourglass } from 'lucide-react';
 import { useSocket } from '../SocketContext';
-import { getPublicUrl } from '../config';
+import InviteCard from './InviteCard';
 
 const Lobby = ({ room }) => {
   const { socket, myPlayerId } = useSocket();
-  const [copied, setCopied] = useState(false);
   const isHost = room.host === myPlayerId;
-  const joinUrl = `${getPublicUrl()}/join/${room.id}`;
 
   const isEvent = room.mode === 'event';
   const isQueued = room.state === 'queued';
-
-  const copyLink = () => {
-    navigator.clipboard.writeText(joinUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const handleStart = () => {
     socket.emit('start_game', (res) => {
@@ -108,31 +99,9 @@ const Lobby = ({ room }) => {
       )}
 
       {/* 2. Room Code & QR Card */}
-      <div className="bg-white rounded-[22px] border border-[#E9ECEF] shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 text-center space-y-3">
-        <div>
-          <div className="text-[12px] font-medium text-[#9CA3AF]">Room code</div>
-          <div className="text-[36px] font-extrabold text-[#1E1B3A] tracking-wider leading-tight mt-0.5">
-            {room.id}
-          </div>
-        </div>
-
-        <div className="flex justify-center py-2">
-          <div className="p-1 rounded-xl bg-white">
-            <QRCode value={joinUrl} size={150} fgColor="#1E1B3A" bgColor="transparent" />
-          </div>
-        </div>
-
-        <div className="text-[12px] text-[#9CA3AF]">
-          Scan to join this {isEvent ? 'team' : 'room'}
-        </div>
-
-        <button 
-          onClick={copyLink}
-          className="w-full py-3 bg-[#EEF2FF] hover:bg-[#E0E7FF] text-[#5046E5] font-semibold rounded-[12px] text-[14px] flex items-center justify-center gap-2 transition-colors mt-2 cursor-pointer"
-        >
-          {copied ? <Check size={16} strokeWidth={2.5} /> : <Copy size={16} strokeWidth={2} />}
-          <span>{copied ? 'Link Copied!' : 'Copy Invite Link'}</span>
-        </button>
+      <div className="bg-white rounded-[22px] border border-[#E9ECEF] shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6">
+        <InviteCard roomCode={room.id} label={isEvent ? 'Event room code' : 'Room code'} />
+        <div className="text-center text-[12px] text-[#9CA3AF] mt-2">Scan to join this {isEvent ? 'team' : 'room'}</div>
       </div>
 
       {/* 3. Players Card */}

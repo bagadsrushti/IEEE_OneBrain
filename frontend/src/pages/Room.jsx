@@ -48,6 +48,15 @@ const Room = () => {
         const isJoined = duelRes.duelState.players?.some(p => p.id === myId || p.token === token);
         if (!isJoined && duelRes.duelState.status === 'lobby') {
           navigate(`/join/${upperCode}`);
+        } else if (token && (isJoined || duelRes.duelState.status !== 'lobby')) {
+          // Rebind this socket to the existing duel identity after a page refresh.
+          socket.emit('join_duel', { code: upperCode, token }, (joined) => {
+            if (!joined?.success) return;
+            setDuelState(joined.duelState);
+            if (joined.duelState?.internalRoomCode) {
+              socket.emit('join_room', { code: joined.duelState.internalRoomCode, token }, () => {});
+            }
+          });
         }
       } else {
         // 2. If not a duel, wait briefly for room_update from standard room
@@ -73,7 +82,7 @@ const Room = () => {
 
   // View: Duel Finished Screen
   if (duelState && duelState.code?.toUpperCase() === upperCode && duelState.status === 'finished') {
-    const activeRoomData = roomData || {
+    const activeRoomData = roomData?.duelCode?.toUpperCase() === upperCode ? roomData : {
       mode: 'duel_team',
       duelCode: upperCode,
       duelInfo: duelState,
@@ -88,7 +97,7 @@ const Room = () => {
 
   // View: Duel Match in progress
   if (duelState && duelState.code?.toUpperCase() === upperCode && duelState.status === 'in_progress') {
-    if (roomData) {
+    if (roomData?.duelCode?.toUpperCase() === upperCode) {
       return (
         <div className="flex-grow flex flex-col items-center w-full px-2 py-1">
           <Game room={roomData} />

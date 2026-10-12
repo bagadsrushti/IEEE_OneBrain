@@ -96,6 +96,14 @@ async function main() {
     duelManager.cancelDuel(duel.code);
   });
 
+  runTest('Host disconnect promotes the next connected player immediately', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    const next = duelManager.joinDuel(duel.code, 'Next Host');
+    duelManager.leaveDuel(duel.code, hostPlayer.id);
+    assert.strictEqual(duel.hostId, next.player.id);
+    duelManager.cancelDuel(duel.code);
+  });
+
   runTest('Removing a player updates queue count and cancels auto-countdown if active', () => {
     const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     const p2 = duelManager.joinDuel(duel.code, 'P2');
@@ -367,6 +375,26 @@ async function main() {
     duelManager.cancelDuel(duel.code);
   });
 
+  runTest('Equal displayed seconds are ranked by the earlier server millisecond timestamp', () => {
+    const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
+    for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
+    duelManager.startNow(duel.code, hostPlayer.id);
+    clearTimeout(duel.meetTeamTimer);
+    duelManager.startMatch(duel);
+    for (const team of [duel.teamRed, duel.teamBlue]) {
+      team.solvedCount = 1;
+      team.roundsPlayed = 3;
+      team.finished = true;
+      team.finishTime = 100;
+    }
+    duel.teamRed.finishTimestamp = 2000;
+    duel.teamBlue.finishTimestamp = 1900;
+    duelManager.checkBothTeamsFinished(duel);
+    assert.strictEqual(duel.winner, 'blue');
+    assert.strictEqual(duel.winnerReason, 'tie_breaker_time');
+    duelManager.cancelDuel(duel.code);
+  });
+
   runTest('Both finish with equal solves & finishTime: Fewer wrong attempts wins', () => {
     const { duel, hostPlayer } = duelManager.createDuel('Host', 4);
     for (let i = 2; i <= 4; i++) duelManager.joinDuel(duel.code, `P${i}`);
@@ -522,7 +550,7 @@ async function main() {
   // ===================================================================
   console.log('\n--- 7. Concurrency: Multiple Duels Running Simultaneously ---');
 
-  await runAsyncTest('5 simultaneous duels run with zero cross-talk', async () => {
+  await runAsyncTest('10 simultaneous duels run with zero cross-talk', async () => {
     const app = express();
     const server = http.createServer(app);
     const io = new Server(server, { cors: { origin: '*' } });
@@ -532,8 +560,8 @@ async function main() {
 
     const createdDuels = [];
 
-    // Create 5 duels simultaneously
-    for (let d = 0; d < 5; d++) {
+    // Create 10 duels simultaneously
+    for (let d = 0; d < 10; d++) {
       const { duel, hostPlayer } = duelManager.createDuel(`Host_${d}`, 4);
       for (let p = 2; p <= 4; p++) {
         duelManager.joinDuel(duel.code, `P${p}_D${d}`);
@@ -544,7 +572,7 @@ async function main() {
       createdDuels.push(duel);
     }
 
-    assert.strictEqual(createdDuels.length, 5);
+    assert.strictEqual(createdDuels.length, 10);
 
     // Verify isolation: distinct internal rooms
     const allInternalRooms = new Set();

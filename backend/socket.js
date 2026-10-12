@@ -80,7 +80,15 @@ function initializeSockets(io) {
         allClues: room.lastRoundAllClues || room.players.map(p => ({ name: p.name, clue: p.clue }))
       };
       if (room.mode === 'duel_team' && room.duelCode) {
-        finishedPayload.duelFinalResult = duelManager.getClientDuelState(room.duelCode);
+        room.players.forEach(player => {
+          if (!player.connected || !player.socketId) return;
+          io.to(player.socketId).emit('room_update', {
+            ...finishedPayload,
+            duelInfo: duelManager.getClientDuelState(room.duelCode, player.token),
+            duelFinalResult: duelManager.getClientDuelState(room.duelCode, player.token),
+          });
+        });
+        return;
       }
       io.to(roomCode).emit('room_update', finishedPayload);
     } else if (room.state === 'playing' || room.state === 'ready') {
@@ -142,6 +150,56 @@ function initializeSockets(io) {
   });
 
   io.on('connection', (socket) => {
+
+    // Clock sync event for countdown coordination (HIGH-3)
+    socket.on('sync_time', ({ clientSendTime }, callback) => {
+      if (typeof callback === 'function') {
+        callback({
+          serverTime: Date.now(),
+          clientSendTime // Echo back for RTT calculation
+        });
+      }
+    });
+
+    // Check code type event for join flow (HIGH-2)
+    socket.on('check_code', ({ code }, callback) => {
+      const cleanCode = (code || '').toUpperCase().trim();
+      if (!cleanCode) {
+        return callback({ type: 'none', error: 'Code required' });
+      }
+
+      // Priority 1: Check if it's a duel (duels use 6-char codes typically)
+      const duel = duelManager.getDuel(cleanCode);
+      if (duel) {
+        const host = duel.players.find(p => p.id === duel.hostId);
+        let status = 'open';
+        if (duel.status !== 'lobby' && duel.status !== 'countdown') status = 'started';
+        if (duel.players.length >= duel.expectedPlayers && ['lobby', 'countdown'].includes(duel.status)) status = 'full';
+
+        return callback({
+          type: 'duel',
+          status,
+          joined: duel.players.length,
+          expected: duel.expectedPlayers,
+          hostName: host?.name || 'Host',
+        });
+      }
+
+      // Priority 2: Check if it's a Quick/Event room (rooms use 4-char codes typically)
+      const room = gameManager.getRoom(cleanCode);
+      if (room) {
+        return callback({
+          type: 'room',
+          status: room.state === 'lobby' ? 'open' : 'started',
+          joined: room.players.filter(p => p.connected).length,
+          expected: 8, // Max players
+          hostName: room.players.find(p => p.id === room.host)?.name || 'Host',
+        });
+      }
+
+      // Not found
+      callback({ type: 'none' });
+    });
 
     const handleDisconnect = () => {
       if (socket.roomId && socket.playerId) {
@@ -229,12 +287,69 @@ function initializeSockets(io) {
         }
 
         const result = gameManager.joinRoom(cleanCode, nickname, token);
-        if (result.error) return callback({ error: result.error });
+        const joinedRoom = gameManager.getRoom(cleanCode);
+
+        // MEDIUM-4 FIX: Special handling for duel team room reconnects
+        if (result.error) {
+          const room = gameManager.getRoom(cleanCode);
+
+          if (room && room.mode === 'duel_team' && room.duelCode && token) {
+            const duel = duelManager.getDuel(room.duelCode);
+
+            if (duel && duel.status === 'in_progress') {
+              const teamKey = room.duelTeam; // 'red' or 'blue'
+              const team = duel[`team${teamKey.charAt(0).toUpperCase() + teamKey.slice(1)}`]; // teamRed or teamBlue
+              const player = room.players.find(p => p.token === token);
+
+              // Verify this token belongs to a player in this team
+              if (player && team.playerIds.includes(player.id)) {
+                // Allow reconnect
+                player.connected = true;
+                socket.join(cleanCode);
+                socket.roomId = cleanCode;
+                socket.playerId = player.id;
+                player.socketId = socket.id;
+
+                // CRITICAL: Cancel forfeit timer if all team members now connected
+                const teamPlayers = duel.players.filter(p => team.playerIds.includes(p.id));
+                const allConnected = teamPlayers.every(p => p.connected);
+                if (allConnected && team.disconnectTimer) {
+                  clearTimeout(team.disconnectTimer);
+                  team.disconnectTimer = null;
+                  console.log(`[Duel ${duel.code}] Team ${teamKey} forfeit timer cancelled - all members reconnected`);
+                }
+
+                callback({ success: true, token, roomCode: cleanCode, playerId: player.id });
+                emitGameState(cleanCode); // Send current room state to reconnected player
+                return; // MUST return here to prevent error
+              }
+            }
+          }
+
+          // Continue with normal error if not a duel reconnect case
+          return callback({ error: result.error });
+        }
 
         socket.join(cleanCode);
         socket.roomId = cleanCode;
         socket.playerId = result.player.id;
         result.player.socketId = socket.id;
+
+        if (joinedRoom?.mode === 'duel_team' && joinedRoom.duelCode) {
+          const duel = duelManager.getDuel(joinedRoom.duelCode);
+          const duelPlayer = duel?.players.find(p => p.teamRoomPlayerId === result.player.id);
+          if (duelPlayer) {
+            socket.duelCode = duel.code;
+            socket.duelPlayerId = duelPlayer.id;
+            duelPlayer.socketId = socket.id;
+            duelPlayer.connected = true;
+            const team = duelPlayer.team === 'red' ? duel.teamRed : duel.teamBlue;
+            if (team.disconnectTimer) {
+              clearTimeout(team.disconnectTimer);
+              team.disconnectTimer = null;
+            }
+          }
+        }
 
         callback({ success: true, token: result.token, roomCode: socket.roomId, playerId: socket.playerId });
         emitGameState(socket.roomId);
@@ -247,14 +362,14 @@ function initializeSockets(io) {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const room = gameManager.setCategory(socket.roomId, category, socket.playerId);
       if (!room) return callback({ error: 'Failed to set category' });
-      
+
       callback({ success: true });
       emitGameState(socket.roomId);
     });
 
     socket.on('start_game', (callback) => {
       if (!socket.roomId) return callback({ error: 'Not in room' });
-      
+
       const onRoundEnd = (room, reason) => {
         emitGameState(room.id);
         if (room.mode === 'event') {
@@ -264,7 +379,7 @@ function initializeSockets(io) {
 
       const result = gameManager.startGame(socket.roomId, socket.playerId, onRoundEnd);
       if (result.error) return callback({ error: result.error });
-      
+
       callback({ success: true, queued: result.queued, queuePosition: result.queuePosition });
       emitGameState(socket.roomId);
       if (socket.roomId && gameManager.getRoom(socket.roomId)?.mode === 'event') {
@@ -276,7 +391,7 @@ function initializeSockets(io) {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const room = gameManager.useHint(socket.roomId);
       if (!room || room.error) return callback({ error: room?.error || 'Failed to use hint' });
-      
+
       callback({ success: true });
       emitGameState(socket.roomId);
     });
@@ -286,15 +401,15 @@ function initializeSockets(io) {
       const room = gameManager.getRoom(socket.roomId);
       if (!room || room.host !== socket.playerId) return callback({ error: 'Not authorized' });
       if (room.mode === 'event') return callback({ error: 'Skipping is not permitted in Event Mode' });
-      
+
       const onRoundEnd = (r, reason) => {
         emitGameState(r.id);
       };
-      
+
       room.state = 'lobby';
       const result = gameManager.startGame(socket.roomId, socket.playerId, onRoundEnd);
       if (result.error) return callback({ error: result.error });
-      
+
       callback({ success: true });
       emitGameState(socket.roomId);
     });
@@ -303,7 +418,7 @@ function initializeSockets(io) {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const result = gameManager.submitAnswer(socket.roomId, socket.playerId, guess);
       if (result.error && !result.room) return callback({ error: result.error });
-      
+
       callback({ success: true, isCorrect: result.isCorrect, error: result.error, near: result.near });
       if (result.room) {
         emitGameState(socket.roomId);
@@ -317,7 +432,7 @@ function initializeSockets(io) {
       if (!socket.roomId) return callback({ error: 'Not in room' });
       const room = gameManager.nextRound(socket.roomId, socket.playerId);
       if (room.error) return callback({ error: room.error });
-      
+
       callback({ success: true });
       emitGameState(socket.roomId);
     });
@@ -413,9 +528,6 @@ function initializeSockets(io) {
         }
 
         if (typeof callback === 'function') callback({ success: true });
-        io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
-        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
-        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
@@ -430,9 +542,6 @@ function initializeSockets(io) {
         }
 
         if (typeof callback === 'function') callback({ success: true });
-        io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
-        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
-        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
@@ -447,9 +556,6 @@ function initializeSockets(io) {
         }
 
         if (typeof callback === 'function') callback({ success: true });
-        io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
-        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
-        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }
@@ -480,9 +586,6 @@ function initializeSockets(io) {
         }
 
         if (typeof callback === 'function') callback({ success: true });
-        io.to(`duel_${code}`).emit('duel_update', duelManager.getAudienceState(code));
-        io.to(`duel_${code}`).emit('duel_lobby_state', duelManager.getClientDuelState(code));
-        io.emit('arena_update', duelManager.getArenaData());
       } catch (err) {
         if (typeof callback === 'function') callback({ error: err.message || 'Server error' });
       }

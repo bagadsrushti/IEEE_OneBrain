@@ -9,7 +9,7 @@ module.exports = {
   DUEL_MIN_PLAYERS: 4,
   DUEL_MAX_PLAYERS: 16,
   DUEL_ALLOWED_PLAYER_COUNTS: [4, 6, 8, 10, 12, 14, 16],
-  DUEL_DEFAULT_EXPECTED_PLAYERS: 8,
+  DUEL_DEFAULT_EXPECTED_PLAYERS: 4,
 
   // Constraints per team inside a duel
   TEAM_MIN_PLAYERS: 2,

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import QRCode from 'react-qr-code';
 import { useSocket } from '../SocketContext';
 import {
-  Users,
   Play,
-  Copy,
-  Check,
   Swords,
   Trash2,
   Tv,
@@ -17,12 +13,12 @@ import {
   AlertCircle
 } from 'lucide-react';
 import Button from './Button';
+import InviteCard from './InviteCard';
 
 const ALLOWED_COUNTS = [4, 6, 8, 10, 12, 14, 16];
 
 const DuelLobby = ({ duel }) => {
-  const { socket, myPlayerId } = useSocket();
-  const [copied, setCopied] = useState(false);
+  const { socket, myPlayerId, clockOffset } = useSocket();
   const [redName, setRedName] = useState(duel.teamRed?.name || 'Team Red');
   const [blueName, setBlueName] = useState(duel.teamBlue?.name || 'Team Blue');
   const [editingNames, setEditingNames] = useState(false);
@@ -42,13 +38,12 @@ const DuelLobby = ({ duel }) => {
   useEffect(() => {
     let interval;
     if (duel.status === 'countdown') {
-      setCountdownSec(5);
-      interval = setInterval(() => {
-        setCountdownSec((prev) => (prev > 1 ? prev - 1 : 1));
-      }, 1000);
+      const update = () => setCountdownSec(Math.max(0, Math.ceil(((duel.countdownEndTime || Date.now()) - (Date.now() + clockOffset)) / 1000)));
+      update();
+      interval = setInterval(update, 250);
     } else if (duel.status === 'team_reveal') {
       const remaining = duel.teamRevealEndTime
-        ? Math.max(1, Math.round((duel.teamRevealEndTime - Date.now()) / 1000))
+        ? Math.max(0, Math.ceil((duel.teamRevealEndTime - (Date.now() + clockOffset)) / 1000))
         : 10;
       setMeetTeamSec(remaining);
       interval = setInterval(() => {
@@ -56,23 +51,16 @@ const DuelLobby = ({ duel }) => {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [duel.status, duel.teamRevealEndTime]);
+  }, [duel.status, duel.countdownEndTime, duel.teamRevealEndTime, clockOffset]);
 
   const isHost = duel.hostId === myPlayerId;
   const players = duel.players || [];
   const joinedCount = players.length;
-  const expectedPlayers = duel.expectedPlayers || 8;
+  const expectedPlayers = duel.expectedPlayers || 4;
   const isOdd = joinedCount % 2 !== 0;
   const canStartNow = !isOdd && joinedCount >= 4 && (duel.status === 'lobby' || duel.status === 'countdown');
 
-  const joinUrl = `${window.location.origin}/join/${duel.code}`;
   const bigScreenUrl = `/duel/${duel.code}`;
-
-  const copyLink = () => {
-    navigator.clipboard.writeText(joinUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const handleRemovePlayer = (playerId) => {
     setError('');
@@ -114,16 +102,13 @@ const DuelLobby = ({ duel }) => {
   // VIEW: "MEET YOUR TEAM" (10-second reveal screen)
   // =========================================================================
   if (duel.status === 'team_reveal') {
-    const myPlayer = players.find(p => p.id === myPlayerId);
-    const myTeamKey = myPlayer?.team || (duel.teamRed?.playerIds?.includes(myPlayerId) ? 'red' : 'blue');
+    if (!duel.myTeamKey || !duel.teammates) return <div className="w-full text-center py-16 font-bold text-gray-600">Setting up your team...</div>;
+    const myTeamKey = duel.myTeamKey;
     const isRed = myTeamKey === 'red';
 
-    const redPlayers = players.filter(p => duel.teamRed?.playerIds?.includes(p.id) || p.team === 'red');
-    const bluePlayers = players.filter(p => duel.teamBlue?.playerIds?.includes(p.id) || p.team === 'blue');
-    const myTeammates = isRed ? redPlayers : bluePlayers;
-    const opponentPlayers = isRed ? bluePlayers : redPlayers;
-    const myTeamName = isRed ? (duel.teamRed?.name || 'Team Red') : (duel.teamBlue?.name || 'Team Blue');
-    const oppTeamName = isRed ? (duel.teamBlue?.name || 'Team Blue') : (duel.teamRed?.name || 'Team Red');
+    const myTeammates = duel.teammates;
+    const myTeamName = duel.myTeamName;
+    const oppTeamName = duel.opponentTeamName;
 
     return (
       <div className="w-full max-w-[540px] flex flex-col items-center gap-6 text-[#1E1B3A] pb-8 animate-fade-in text-center">
@@ -159,7 +144,7 @@ const DuelLobby = ({ duel }) => {
             <span className={`px-2.5 py-1 rounded-full text-xs font-black ${
               isRed ? 'bg-red-200 text-red-800' : 'bg-blue-200 text-blue-800'
             }`}>
-              {myTeammates.length} Players
+              {duel.myTeamPlayerCount} Players
             </span>
           </div>
 
@@ -168,13 +153,13 @@ const DuelLobby = ({ duel }) => {
               <div
                 key={p.id}
                 className={`p-2.5 bg-white rounded-xl border font-bold text-sm flex items-center justify-between ${
-                  p.id === myPlayerId
+                  p.isYou
                     ? (isRed ? 'border-red-400 ring-2 ring-red-300' : 'border-blue-400 ring-2 ring-blue-300')
                     : 'border-black/5'
                 }`}
               >
                 <span className="truncate">{p.name}</span>
-                {p.id === myPlayerId && (
+                {p.isYou && (
                   <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
                     isRed ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
                   }`}>
@@ -190,14 +175,7 @@ const DuelLobby = ({ duel }) => {
         <div className="w-full bg-white rounded-2xl p-4 border border-gray-200 shadow-2xs text-left">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Opponent Team</span>
-            <span className="text-xs font-bold text-gray-600">{oppTeamName} ({opponentPlayers.length})</span>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {opponentPlayers.map(p => (
-              <span key={p.id} className="text-xs font-semibold px-2.5 py-1 bg-gray-100 rounded-lg text-gray-700">
-                {p.name}
-              </span>
-            ))}
+            <span className="text-xs font-bold text-gray-600">{oppTeamName} ({duel.opponentTeamPlayerCount})</span>
           </div>
         </div>
       </div>
@@ -283,26 +261,8 @@ const DuelLobby = ({ duel }) => {
       </div>
 
       {/* Code & QR Box */}
-      <div className="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-2xs flex flex-col items-center gap-3">
-        <span className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider">Duel Code</span>
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-3xl font-black text-[#1E1B3A] tracking-widest">{duel.code}</span>
-          <button
-            onClick={copyLink}
-            className="p-2 border border-[#E5E7EB] hover:bg-[#F9FAFB] rounded-lg text-[#6B7280] transition-colors cursor-pointer"
-            title="Copy join link"
-          >
-            {copied ? <Check size={18} className="text-emerald-600" /> : <Copy size={18} />}
-          </button>
-        </div>
-
-        <div className="p-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl">
-          <QRCode value={joinUrl} size={100} />
-        </div>
-
-        <span className="text-[11px] text-gray-500 text-center">
-          Share the code or scan QR code to join this duel.
-        </span>
+      <div className="bg-white border border-[#E5E7EB] rounded-2xl p-4 shadow-2xs">
+        <InviteCard roomCode={duel.code} label="Duel Code" shareText="Join my One Brain duel" />
       </div>
 
       {error && (

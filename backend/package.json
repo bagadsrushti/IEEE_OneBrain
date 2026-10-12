@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "node utils/answerMatcher.test.js",
     "test:matcher": "node utils/answerMatcher.test.js",
     "test:event": "node utils/eventTest.js",
     "test:duel": "node utils/duelTest.js",
+    "test:duel-flow": "node utils/duelFlowTest.js",
     "test:clues": "node utils/progressiveClueTest.js",
     "test:integration": "node utils/integrationTest.js",
     "test:selection": "node utils/selectionTest.js",

@@ -65,6 +65,19 @@ function loadDuelData() {
   } catch (err) {
     console.error('Failed to load duelData.json:', err);
   }
+
+  // Note: The in-memory duels Map is always empty on server restart (not persisted),
+  // so no cleanup needed for it. Active duels are lost on restart by design.
+
+  // CRITICAL: Keep at most 100 duels (trim when length > 100)
+  if (finishedDuelsArchive.length > 100) {
+    const originalLength = finishedDuelsArchive.length;
+    finishedDuelsArchive = finishedDuelsArchive.slice(-100);
+    saveDuelData(); // Persist trimmed archive immediately
+    console.log(`[Startup] Trimmed archive from ${originalLength} to 100 duels`);
+  }
+
+  console.log(`[Startup] Loaded ${finishedDuelsArchive.length} finished duels, ${duels.size} active duels`);
 }
 
 function saveDuelData() {
@@ -98,9 +111,19 @@ function generateToken() {
   return Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
 }
 
-function sanitizeName(name) {
-  if (!name || typeof name !== 'string') return '';
-  return name.replace(/<[^>]*>/g, '').replace(/[<>'"]/g, '').trim().slice(0, TEAM_NAME_MAX_LENGTH);
+function sanitizeName(name, defaultName = 'Player') {
+  if (!name || typeof name !== 'string') return defaultName;
+
+  // Trim whitespace and limit to max length
+  let clean = name.trim().slice(0, TEAM_NAME_MAX_LENGTH);
+
+  // Remove HTML brackets and quotes to prevent XSS
+  clean = clean.replace(/<[^>]*>/g, '').replace(/[<>'"]/g, '');
+
+  // If empty after sanitization, use default
+  if (clean.length === 0) return defaultName;
+
+  return clean;
 }
 
 class DuelManager {
@@ -167,7 +190,7 @@ class DuelManager {
 
     const hostToken = generateToken();
     const hostPlayerId = 'p_' + Math.random().toString(36).substr(2, 9);
-    const cleanNick = sanitizeName(hostNickname) || 'Host';
+    const cleanNick = sanitizeName(hostNickname, 'Host');
 
     const duel = {
       code,
@@ -196,6 +219,7 @@ class DuelManager {
         roomId: null,
         solvedCount: 0,
         finishTime: null, // Seconds from common start at end of round 3
+        finishTimestamp: null,
         totalWrongAttempts: 0,
         roundsPlayed: 0,
         currentRound: 1,
@@ -217,6 +241,7 @@ class DuelManager {
         roomId: null,
         solvedCount: 0,
         finishTime: null,
+        finishTimestamp: null,
         totalWrongAttempts: 0,
         roundsPlayed: 0,
         currentRound: 1,
@@ -261,7 +286,7 @@ class DuelManager {
     const duel = this.getDuel(code);
     if (!duel) return { error: 'Duel not found' };
 
-    const cleanNick = sanitizeName(nickname) || 'Player';
+    const cleanNick = sanitizeName(nickname, 'Player');
 
     // 1. Reconnect with existing token
     if (token) {
@@ -332,13 +357,17 @@ class DuelManager {
     duel.lastActiveAt = Date.now();
 
     if (duel.status === 'lobby' || duel.status === 'countdown') {
+      if (duel.hostId === playerId) {
+        const nextHost = duel.players.find(candidate => candidate.id !== playerId && candidate.connected);
+        if (nextHost) duel.hostId = nextHost.id;
+      }
       // Start 30-second disconnect removal timer for queue
       if (!player.queueDisconnectTimer) {
         player.queueDisconnectTimer = setTimeout(() => {
           this.removePlayer(code, duel.hostId, playerId, true);
         }, DUEL_QUEUE_DISCONNECT_TIMEOUT_MS);
       }
-    } else if (duel.status === 'in_progress') {
+    } else if (duel.status === 'in_progress' || duel.status === 'team_reveal') {
       // In-progress: check if entire team is disconnected
       const teamKey = player.team;
       const teamObj = teamKey === 'red' ? duel.teamRed : teamKey === 'blue' ? duel.teamBlue : null;
@@ -463,6 +492,7 @@ class DuelManager {
 
     duel.status = 'countdown';
     duel.countdownRemaining = DUEL_COUNTDOWN_SECONDS;
+    duel.countdownEndTime = Date.now() + (DUEL_COUNTDOWN_SECONDS * 1000);
     this.broadcastLobbyState(duel);
 
     duel.countdownTimer = setTimeout(() => {
@@ -480,6 +510,7 @@ class DuelManager {
     }
     duel.status = 'lobby';
     duel.countdownRemaining = 0;
+    duel.countdownEndTime = null;
     this.broadcastLobbyState(duel);
   }
 
@@ -487,12 +518,13 @@ class DuelManager {
     const duel = this.getDuel(code);
     if (!duel) return { error: 'Duel not found' };
     if (duel.hostId !== hostId) return { error: 'Only the host can rename teams' };
+    if (duel.status !== 'lobby' && duel.status !== 'countdown') return { error: 'Teams can only be renamed before the duel starts' };
 
-    const cleanRed = sanitizeName(teamRedName);
-    const cleanBlue = sanitizeName(teamBlueName);
+    const cleanRed = sanitizeName(teamRedName, DEFAULT_TEAM_RED_NAME);
+    const cleanBlue = sanitizeName(teamBlueName, DEFAULT_TEAM_BLUE_NAME);
 
-    if (cleanRed) duel.teamRed.name = cleanRed;
-    if (cleanBlue) duel.teamBlue.name = cleanBlue;
+    duel.teamRed.name = cleanRed;
+    duel.teamBlue.name = cleanBlue;
 
     duel.lastActiveAt = Date.now();
     this.broadcastLobbyState(duel);
@@ -547,8 +579,20 @@ class DuelManager {
       blueRoom.duelCode = duel.code;
       blueRoom.duelTeam = 'blue';
 
-      redPlayers.forEach(p => this.gameManager.joinRoom(redRoomCode, p.name, p.token));
-      bluePlayers.forEach(p => this.gameManager.joinRoom(blueRoomCode, p.name, p.token));
+      redPlayers.forEach(p => {
+        const joined = this.gameManager.joinRoom(redRoomCode, p.name, p.token);
+        if (joined?.player) {
+          p.teamRoomPlayerId = joined.player.id;
+          this.gameManager.registerPlayerToken(redRoomCode, p.token, joined.player.id);
+        }
+      });
+      bluePlayers.forEach(p => {
+        const joined = this.gameManager.joinRoom(blueRoomCode, p.name, p.token);
+        if (joined?.player) {
+          p.teamRoomPlayerId = joined.player.id;
+          this.gameManager.registerPlayerToken(blueRoomCode, p.token, joined.player.id);
+        }
+      });
     } catch (err) {
       return { error: `Failed to initialize internal rooms: ${err.message}` };
     }
@@ -621,25 +665,39 @@ class DuelManager {
     duel.startTime = commonStartTime;
     duel.lastActiveAt = commonStartTime;
 
-    // Start Round 1 for both teams
-    this.startTeamRound(duel, 'red', 0);
-    this.startTeamRound(duel, 'blue', 0);
+    // Attach every connected duel player to their internal team room on the server.
+    // This avoids a race where round state is emitted before clients request a join.
+    if (this.io?.sockets?.sockets) {
+      duel.players.forEach(player => {
+        const roomId = player.team === 'red' ? duel.teamRed.roomId : duel.teamBlue.roomId;
+        const roomPlayer = this.gameManager.getRoom(roomId)?.players.find(p => p.id === player.teamRoomPlayerId);
+        const socket = player.socketId && this.io.sockets.sockets.get(player.socketId);
+        if (!roomPlayer || !socket) return;
+        socket.join(roomId);
+        socket.roomId = roomId;
+        socket.playerId = roomPlayer.id;
+        socket.duelCode = duel.code;
+        socket.duelPlayerId = player.id;
+        roomPlayer.connected = true;
+        roomPlayer.socketId = socket.id;
+      });
+    }
+
+    // Start Round 1 for both teams at the same server timestamp.
+    this.startTeamRound(duel, 'red', 0, commonStartTime);
+    this.startTeamRound(duel, 'blue', 0, commonStartTime);
 
     // Notify sockets to join team rooms
     if (this.io) {
       this.io.to(`duel_${duel.code}`).emit('duel_started', {
         duelCode: duel.code,
-        teamRedRoom: duel.teamRed.roomId,
-        teamBlueRoom: duel.teamBlue.roomId,
-        teamRedPlayerIds: duel.teamRed.playerIds,
-        teamBluePlayerIds: duel.teamBlue.playerIds,
       });
     }
 
-    this.broadcastDuelUpdate(duel);
+    this.broadcastLobbyState(duel);
   }
 
-  startTeamRound(duel, teamKey, roundIndex) {
+  startTeamRound(duel, teamKey, roundIndex, roundStartAt = Date.now()) {
     if (duel.status !== 'in_progress') return;
 
     const team = teamKey === 'red' ? duel.teamRed : duel.teamBlue;
@@ -649,6 +707,7 @@ class DuelManager {
       // Team has completed all 3 rounds!
       team.finished = true;
       team.finishTime = Math.round((Date.now() - duel.startTime) / 1000);
+      team.finishTimestamp = Date.now();
       team.waitingForOpponent = true;
       this.broadcastTeamState(duel, teamKey);
       this.checkBothTeamsFinished(duel);
@@ -659,7 +718,7 @@ class DuelManager {
     team.currentRound = roundIndex + 1;
     team.currentKeyword = keyword;
     team.currentKeywordIndex = roundIndex;
-    team.currentKeywordStartTime = Date.now();
+    team.currentKeywordStartTime = roundStartAt;
     team.inReveal = false;
 
     const internalRoom = this.gameManager.getRoom(team.roomId);
@@ -674,9 +733,9 @@ class DuelManager {
     internalRoom.wrongAttempts = 0;
     internalRoom.hintsUsed = 0;
     internalRoom.sharedHint = null;
-    internalRoom.roundStartTime = Date.now();
-    internalRoom.roundPlayStartTime = Date.now();
-    internalRoom.roundEndTime = Date.now() + (DUEL_KEYWORD_TIME_CAP * 1000);
+    internalRoom.roundStartTime = roundStartAt;
+    internalRoom.roundPlayStartTime = roundStartAt;
+    internalRoom.roundEndTime = roundStartAt + (DUEL_KEYWORD_TIME_CAP * 1000);
     internalRoom.waveIntervalSeconds = rules.waveIntervalSeconds;
 
     // Deal clues across players
@@ -746,6 +805,7 @@ class DuelManager {
       // INSTANT WIN: First team to solve all 3 keywords wins immediately!
       if (team.solvedCount >= DUEL_TARGET_SOLVES) {
         team.finishTime = Math.round((now - duel.startTime) / 1000);
+        team.finishTimestamp = now;
         this.endDuelWithWinner(duel, teamKey, 'instant_3_solves');
         return { success: true, isCorrect: true, winner: teamKey, solvedCount: team.solvedCount };
       }
@@ -753,6 +813,7 @@ class DuelManager {
       // Check if team just finished round 3
       if (team.roundsPlayed >= DUEL_ROUNDS_PER_TEAM) {
         team.finishTime = Math.round((now - duel.startTime) / 1000);
+        team.finishTimestamp = now;
         team.finished = true;
         this.triggerRoundReveal(duel, teamKey, keyword, true, true);
         return { success: true, isCorrect: true, solvedCount: team.solvedCount };
@@ -809,6 +870,7 @@ class DuelManager {
     const isFinalRound = team.roundsPlayed >= DUEL_ROUNDS_PER_TEAM;
     if (isFinalRound) {
       team.finishTime = Math.round((Date.now() - duel.startTime) / 1000);
+      team.finishTimestamp = Date.now();
       team.finished = true;
     }
 
@@ -872,8 +934,8 @@ class DuelManager {
         reason = 'more_solves';
       } else {
         // 2. Tie: Earlier finishTime wins (measured at end of round 3)
-        const redTime = red.finishTime || 9999;
-        const blueTime = blue.finishTime || 9999;
+        const redTime = red.finishTimestamp ?? (red.finishTime == null ? Infinity : red.finishTime * 1000);
+        const blueTime = blue.finishTimestamp ?? (blue.finishTime == null ? Infinity : blue.finishTime * 1000);
         if (redTime < blueTime) {
           winner = 'red';
           reason = 'tie_breaker_time';
@@ -917,9 +979,22 @@ class DuelManager {
       if (!t.finishTime && duel.startTime) {
         t.finishTime = Math.round((duel.endTime - duel.startTime) / 1000);
       }
+      if (!t.finishTimestamp && duel.startTime) t.finishTimestamp = duel.endTime;
 
       const r = this.gameManager.getRoom(t.roomId);
-      if (r) r.state = 'finished';
+      if (r) {
+        r.state = 'finished';
+
+        // CRITICAL FIX (HIGH-1): Clear progressive wave timers (missing in current implementation)
+        if (r.waveTimers && Array.isArray(r.waveTimers)) {
+          r.waveTimers.forEach(timer => clearTimeout(timer));
+          const clearedCount = r.waveTimers.length;
+          r.waveTimers = [];
+          if (clearedCount > 0) {
+            console.log(`[Duel ${duel.code}] Cleared ${clearedCount} wave timers for Team ${t.id}`);
+          }
+        }
+      }
     });
 
     if (winnerKey === 'red') {
@@ -999,6 +1074,14 @@ class DuelManager {
     if (duel.meetTeamTimer) clearTimeout(duel.meetTeamTimer);
     if (duel.teamRed.keywordTimer) clearTimeout(duel.teamRed.keywordTimer);
     if (duel.teamBlue.keywordTimer) clearTimeout(duel.teamBlue.keywordTimer);
+    duel.players.forEach(player => {
+      if (player.queueDisconnectTimer) clearTimeout(player.queueDisconnectTimer);
+      player.queueDisconnectTimer = null;
+    });
+    [duel.teamRed, duel.teamBlue].forEach(team => {
+      if (team.disconnectTimer) clearTimeout(team.disconnectTimer);
+      if (team.revealTimer) clearTimeout(team.revealTimer);
+    });
 
     [duel.teamRed.roomId, duel.teamBlue.roomId].forEach(rid => {
       if (rid && this.gameManager) this.gameManager.deleteRoom(rid);
@@ -1015,6 +1098,7 @@ class DuelManager {
     if (!duel) return null;
 
     const player = duel.players.find(p => p.token === playerToken);
+    if (!player && !['lobby', 'countdown'].includes(duel.status)) return null;
     const playerTeam = player ? player.team : null;
 
     const elapsedSeconds = duel.startTime
@@ -1030,6 +1114,7 @@ class DuelManager {
       expectedPlayers: duel.expectedPlayers,
       joinedCount: duel.players.length,
       elapsedSeconds,
+      startTime: duel.startTime,
       prizeBanner,
       teamRed: {
         id: 'red',
@@ -1051,6 +1136,7 @@ class DuelManager {
       return {
         ...baseState,
         countdownRemaining: duel.countdownRemaining,
+        countdownEndTime: duel.countdownEndTime,
         players: duel.players.map(p => ({
           id: p.id,
           name: p.name,
@@ -1071,7 +1157,10 @@ class DuelManager {
         myTeamKey: playerTeam,
         myTeamName: myTeam.name,
         opponentTeamName: opponentTeam.name,
-        teammates: duel.players.filter(p => p.team === playerTeam).map(p => ({ id: p.id, name: p.name })),
+        myTeamPlayerCount: myTeam.playerIds.length,
+        opponentTeamPlayerCount: opponentTeam.playerIds.length,
+        teammates: duel.players.filter(p => p.team === playerTeam).map(p => ({ name: p.name, isYou: p.id === player.id })),
+        teamRevealEndTime: duel.teamRevealEndTime,
         teamRevealCountdown: Math.max(0, Math.ceil((duel.teamRevealEndTime - Date.now()) / 1000)),
       };
     }
@@ -1256,7 +1345,13 @@ class DuelManager {
 
   broadcastLobbyState(duel) {
     if (!this.io) return;
-    this.io.to(`duel_${duel.code}`).emit('duel_lobby_state', this.getClientDuelState(duel.code));
+    if (duel.status === 'team_reveal' || duel.status === 'in_progress' || duel.status === 'finished') {
+      duel.players.forEach(player => {
+        if (player.socketId) this.io.to(player.socketId).emit('duel_lobby_state', this.getClientDuelState(duel.code, player.token));
+      });
+    } else {
+      this.io.to(`duel_${duel.code}`).emit('duel_lobby_state', this.getClientDuelState(duel.code));
+    }
     this.io.to(`duel_${duel.code}`).emit('duel_update', this.getAudienceState(duel.code));
     this.io.emit('arena_update', this.getArenaData());
   }

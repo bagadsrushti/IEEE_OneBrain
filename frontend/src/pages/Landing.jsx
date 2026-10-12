@@ -26,13 +26,14 @@ const QrScannerWrapper = ({ onScan }) => {
 const Landing = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { createRoom, createDuel, joinRoom, isConnected, connectionError, socket } = useSocket();
+  const { createRoom, createDuel, joinRoom, checkCode, retryConnection, isConnected, connectionError, serverWaking, socket } = useSocket();
   
   const [mode, setMode] = useState('quick'); // 'quick' | 'duel' | 'event'
   const [modeSelectedManually, setModeSelectedManually] = useState(false);
   const [nickname, setNickname] = useState('');
   const [teamName, setTeamName] = useState('');
-  const [expectedPlayers, setExpectedPlayers] = useState(8); // Default 8 players for Duel
+  const [expectedPlayers, setExpectedPlayers] = useState(4);
+  const [joinCodeInfo, setJoinCodeInfo] = useState(null);
   const [roomCode, setRoomCode] = useState((code || '').toUpperCase());
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,8 +43,22 @@ const Landing = () => {
   useEffect(() => {
     if (code) {
       setRoomCode(code.toUpperCase());
+      setMode('duel');
     }
   }, [code]);
+
+  useEffect(() => {
+    if (!isConnected || roomCode.trim().length !== 6) return;
+    const timer = setTimeout(() => checkCode(roomCode.trim(), (result) => {
+      setJoinCodeInfo(result);
+      if (result?.type === 'duel') setMode('duel');
+      if (result?.type === 'none') setError('Code not found');
+      else if (result?.status === 'full') setError('Duel full');
+      else if (result?.status === 'started') setError('Duel already started');
+      else setError('');
+    }), 250);
+    return () => clearTimeout(timer);
+  }, [roomCode, isConnected, checkCode]);
 
   useEffect(() => {
     const fetchEventStatus = async () => {
@@ -108,6 +123,10 @@ const Landing = () => {
     if (!roomCode.trim()) return setError('Room code is required');
     setLoading(true);
     const cleanCode = roomCode.trim().toUpperCase();
+    if (joinCodeInfo?.type === 'duel') {
+      if (joinCodeInfo.status === 'full') { setLoading(false); return setError('Duel full'); }
+      if (joinCodeInfo.status === 'started') { setLoading(false); return setError('Duel already started'); }
+    }
     joinRoom(cleanCode, nickname.trim(), (res) => {
       setLoading(false);
       if (res.error) return setError(res.error);
@@ -131,6 +150,7 @@ const Landing = () => {
   };
 
   const isEventLive = !!eventStatus?.isLive;
+  const isJoiningDuel = joinCodeInfo?.type === 'duel' || !!code;
 
   return (
     <div className="w-full max-w-[420px] mx-auto px-2 pb-12 flex flex-col items-center z-10 relative">
@@ -158,7 +178,7 @@ const Landing = () => {
       <div className="bg-white rounded-[24px] border border-[#E9ECEF] shadow-[0_2px_16px_rgba(0,0,0,0.03)] p-6 sm:p-7 w-full space-y-5">
         
         {/* Mode Selector Tabs */}
-        <div className={`grid ${isEventLive ? 'grid-cols-3' : 'grid-cols-2'} gap-1.5 p-1 bg-[#F3F4F6] rounded-xl`}>
+        {!isJoiningDuel && <div className={`grid ${isEventLive ? 'grid-cols-3' : 'grid-cols-2'} gap-1.5 p-1 bg-[#F3F4F6] rounded-xl`}>
           <button
             type="button"
             onClick={() => handleSelectMode('quick')}
@@ -200,14 +220,14 @@ const Landing = () => {
               </span>
             </button>
           )}
-        </div>
+        </div>}
 
         {/* Header Icon + Titles */}
         <div className="flex flex-col items-center text-center">
           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-3 ${
             mode === 'event'
               ? 'bg-[#FEF3C7] text-[#D97706]'
-              : mode === 'duel'
+            : mode === 'duel'
               ? 'bg-gradient-to-tr from-red-100 to-indigo-100 text-red-600'
               : 'bg-[#EEF2FF] text-[#5046E5]'
           }`}>
@@ -218,7 +238,9 @@ const Landing = () => {
             )}
           </div>
           <h2 className="text-[22px] font-bold text-[#1E1B3A] tracking-tight">
-            {mode === 'event'
+            {isJoiningDuel
+              ? 'Join Duel'
+              : mode === 'event'
               ? (eventStatus?.event?.name || 'Championship Race')
               : mode === 'duel'
               ? 'Head-to-Head Duel'
@@ -240,14 +262,25 @@ const Landing = () => {
           )}
         </div>
 
-        {!isConnected && !connectionError && (
+        {serverWaking && !isConnected && !connectionError && (
+          <div className="text-center text-[#B45309] bg-[#FEF3C7] py-2 px-3 rounded-lg text-xs font-medium">
+            Waking up the server, this can take up to a minute...
+          </div>
+        )}
+        {!isConnected && !connectionError && !serverWaking && (
           <div className="text-center text-[#B45309] bg-[#FEF3C7] py-2 px-3 rounded-lg text-xs font-medium">
             Connecting to server...
           </div>
         )}
         {connectionError && (
-          <div className="text-center text-[#DC2626] bg-[#FEF2F2] py-2 px-3 rounded-lg text-xs font-medium border border-[#FEE2E2]">
-            {connectionError}
+          <div className="text-center text-[#DC2626] bg-[#FEF2F2] py-2 px-3 rounded-lg text-xs font-medium border border-[#FEE2E2] space-y-2">
+            <div>Server is waking up or unreachable. Retrying...</div>
+            <button type="button" onClick={retryConnection} className="underline font-bold">Retry</button>
+          </div>
+        )}
+        {joinCodeInfo?.type === 'duel' && joinCodeInfo.status === 'open' && (
+          <div className="text-center text-indigo-800 bg-indigo-50 py-2 px-3 rounded-lg text-xs font-semibold">
+            {joinCodeInfo.hostName}'s duel - {joinCodeInfo.joined} of {joinCodeInfo.expected} joined
           </div>
         )}
 
@@ -284,7 +317,7 @@ const Landing = () => {
             />
           </div>
 
-          {mode === 'duel' && (
+          {mode === 'duel' && !isJoiningDuel && (
             <div className="bg-[#FEF2F2]/60 border border-[#FEE2E2] rounded-[16px] p-3.5 space-y-2">
               <label className="block text-[13px] font-bold text-[#1E1B3A] flex items-center justify-between">
                 <span>How many players are playing?</span>
@@ -314,7 +347,7 @@ const Landing = () => {
             </div>
           )}
 
-          <button
+          {!isJoiningDuel && <button
             onClick={handleCreate}
             disabled={!isConnected || loading}
             className={`w-full py-3.5 font-bold rounded-[12px] text-[15px] flex items-center justify-center gap-2 transition-all shadow-sm disabled:opacity-50 cursor-pointer ${
@@ -344,17 +377,17 @@ const Landing = () => {
                 <span>Create Room</span>
               </>
             )}
-          </button>
+          </button>}
 
-          <div className="relative flex items-center py-1">
+          {!isJoiningDuel && <div className="relative flex items-center py-1">
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
             <span className="flex-shrink-0 mx-3 text-[#9CA3AF] text-[12px] font-medium">
               {mode === 'duel' ? 'Or Join Duel' : 'Or Join Room'}
             </span>
             <div className="flex-grow border-t border-[#E5E7EB]"></div>
-          </div>
+          </div>}
 
-          <div>
+          {!isJoiningDuel && <div>
             <label className="block text-[13px] font-semibold text-[#1E1B3A] mb-1.5 flex justify-between">
               <span>{mode === 'duel' ? 'Duel or Room Code' : 'Room Code'}</span>
               <span className="text-[11px] font-normal text-[#9CA3AF]">6 characters</span>
@@ -377,7 +410,7 @@ const Landing = () => {
                 <Scan size={20} strokeWidth={2} />
               </button>
             </div>
-          </div>
+          </div>}
 
           <button
             onClick={handleJoin}

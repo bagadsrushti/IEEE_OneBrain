@@ -188,7 +188,7 @@ class GameManager {
       timer: null,
       roundRules: null, // locked at round start
       teamSize: 0,
-      mode: mode === 'event' ? 'event' : 'quick',
+      mode: mode === 'event' || mode === 'duel_team' ? mode : 'quick',
       teamName: cleanTeam,
       isPractice: false,
       currentRound: 1,
@@ -228,7 +228,11 @@ class GameManager {
 
   deleteRoom(code) {
     const room = rooms.get(code);
-    if (room && room.timeout) clearTimeout(room.timeout);
+    if (room) {
+      if (room.timeout) clearTimeout(room.timeout);
+      if (room.timer) clearTimeout(room.timer);
+      if (Array.isArray(room.waveTimers)) room.waveTimers.forEach(timer => clearTimeout(timer));
+    }
     rooms.delete(code);
   }
 
@@ -280,6 +284,15 @@ class GameManager {
 
     this.refreshRoomTimeout(code);
     return { room, player: newPlayer, token: newToken };
+  }
+
+  registerPlayerToken(code, token, playerId) {
+    const room = this.getRoom(code);
+    const player = room?.players.find(candidate => candidate.id === playerId);
+    if (!room || !token || !player) return false;
+    player.token = token;
+    userTokens.set(token, { roomId: room.id, playerId });
+    return true;
   }
 
   leaveRoom(code, playerId) {

@@ -425,13 +425,14 @@ async function main() {
     assert.strictEqual(allBoard.length, 3);
   });
 
-  // Shutdown server
-  await new Promise(r => server.close(r));
+  // Shut down Socket.IO clients and the HTTP listener together so the suite exits.
+  await new Promise(r => io.close(r));
 
   console.log('\n======================================================================');
   console.log(`TEST SUMMARY: ${passedTests}/${totalTests} tests passed`);
   if (passedTests === totalTests) {
     console.log('ALL TESTS PASSED! 🎉');
+    process.exit(0);
   } else {
     console.error('SOME TESTS FAILED!');
     process.exit(1);
