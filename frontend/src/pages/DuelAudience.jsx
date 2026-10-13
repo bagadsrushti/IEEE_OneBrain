@@ -158,20 +158,16 @@ const DuelAudience = () => {
             </h1>
           </div>
 
-          <div className="px-5 py-2 bg-white/90 border border-amber-200 rounded-2xl text-base font-extrabold text-amber-900 shadow-2xs">
-            {duel.prizeBanner}
-          </div>
+          {duel.prizeBanner && !duel.prizeBanner.includes('Chocolate') && !duel.prizeBanner.includes('🍫') && (
+            <div className="px-5 py-2 bg-white/90 border border-amber-200 rounded-2xl text-base font-extrabold text-amber-900 shadow-2xs">
+              {duel.prizeBanner}
+            </div>
+          )}
 
           {duel.winningPlayers && duel.winningPlayers.length > 0 && (
             <div className="text-xs text-amber-800 mt-1 font-medium">
               Winning Members: <strong>{duel.winningPlayers.join(', ')}</strong>
             </div>
-          )}
-
-          {duel.chocolateAwarded && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-full text-xs font-bold">
-              <Check size={14} /> 🍫 Chocolate Awarded!
-            </span>
           )}
         </div>
       )}

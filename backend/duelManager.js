@@ -1116,7 +1116,7 @@ class DuelManager {
       ? Math.round(((duel.endTime || Date.now()) - duel.startTime) / 1000)
       : 0;
 
-    const prizeBanner = duel.prizeBanner.replace('{team}', duel.winningTeamName || '');
+    const prizeBanner = (duel.prizeBanner || '').replace('{team}', duel.winningTeamName || '');
 
     const baseState = {
       code: duel.code,
@@ -1256,7 +1256,7 @@ class DuelManager {
           winningTeamName: archived.winningTeamName,
           winningPlayers: archived.winningPlayers,
           elapsedSeconds: archived.totalDurationSeconds,
-          prizeBanner: adminSettings.prizeBanner.replace('{team}', archived.winningTeamName),
+          prizeBanner: (adminSettings.prizeBanner || '').replace('{team}', archived.winningTeamName),
           chocolateAwarded: archived.chocolateAwarded,
         };
       }
@@ -1290,7 +1290,7 @@ class DuelManager {
       winnerReason: duel.winnerReason,
       winningTeamName: duel.winningTeamName,
       winningPlayers: duel.winningPlayers,
-      prizeBanner: duel.prizeBanner.replace('{team}', duel.winningTeamName || ''),
+      prizeBanner: (duel.prizeBanner || '').replace('{team}', duel.winningTeamName || ''),
       chocolateAwarded: duel.chocolateAwarded,
     };
   }

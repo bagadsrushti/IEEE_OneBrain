@@ -494,17 +494,14 @@ const Game = ({ room }) => {
           </p>
         </div>
 
-        {/* Prize Banner Card */}
-        <div className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-[20px] p-4 text-center">
-          <div className="text-base font-extrabold text-amber-900">
-            {duelInfo.prizeBanner || `🍫 Chocolate for ${duelInfo.winningTeamName || 'Winners'}!`}
-          </div>
-          {duelInfo.chocolateAwarded && (
-            <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-[11px] font-bold">
-              <Check size={12} /> Chocolate Awarded
+        {/* Prize Banner Card (optional if custom non-chocolate prize set) */}
+        {duelInfo.prizeBanner && !duelInfo.prizeBanner.includes('Chocolate') && !duelInfo.prizeBanner.includes('🍫') && (
+          <div className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-[20px] p-4 text-center">
+            <div className="text-base font-extrabold text-amber-900">
+              {duelInfo.prizeBanner}
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Head-to-Head Score Summary */}
         <div className="w-full bg-white rounded-[22px] border border-[#E9ECEF] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4">

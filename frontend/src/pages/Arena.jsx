@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSocket } from '../SocketContext';
 import { getBackendUrl } from '../config';
-import { Swords, Trophy, Users, Clock, ArrowRight, Check, Eye, Plus, Server } from 'lucide-react';
+import { Swords, Trophy, Users, Clock, ArrowRight, Eye, Plus, Server } from 'lucide-react';
 import Button from '../components/Button';
 
 const Arena = () => {
@@ -274,15 +274,6 @@ const Arena = () => {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    {win.chocolateAwarded ? (
-                      <span className="px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-bold flex items-center gap-1">
-                        <Check size={14} /> 🍫 Awarded
-                      </span>
-                    ) : (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded-full text-xs font-medium">
-                        🍫 Pending
-                      </span>
-                    )}
 
                     <Link
                       to={`/duel/${win.code}`}

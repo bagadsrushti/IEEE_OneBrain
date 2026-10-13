@@ -290,7 +290,7 @@ app.get('/api/event/teambuilder', (req, res) => {
 app.get('/leaderboard', (req, res) => {
   const { filter } = req.query;
   let board = gameManager.getLeaderboard();
-  
+
   if (filter === 'duo' || filter === 'duos') {
     board = board.filter(e => e.teamSize === 2);
   } else if (filter === 'small') {
@@ -391,4 +391,10 @@ initializeSockets(io);
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
+
+  setInterval(() => {
+    fetch("https://one-brain-backend.onrender.com/health")
+      .then(res => console.log(`[Keep-Alive]Pinged - ${res.status}`))
+      .catch(err => console.error('[Keep-Alive]Failed:', err.message));
+  }, 10 * 60 * 10000)
 });

@@ -35,7 +35,7 @@ module.exports = {
   TEAM_NAME_MAX_LENGTH: 20,
 
   // Prize banner template
-  DEFAULT_PRIZE_BANNER: '🍫 Chocolate for {team}!',
+  DEFAULT_PRIZE_BANNER: '',
 
   // Tie-breaker: 'draw' or 'sudden_death'
   DEFAULT_TIE_BREAKER: 'draw',

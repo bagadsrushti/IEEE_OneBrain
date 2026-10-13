@@ -24,7 +24,7 @@ const Admin = () => {
   // Duel Mode States
   const [duelData, setDuelData] = useState(null);
   const [duelMaxMinutes, setDuelMaxMinutes] = useState(10);
-  const [duelPrizeBanner, setDuelPrizeBanner] = useState('🍫 Chocolate for {team}!');
+  const [duelPrizeBanner, setDuelPrizeBanner] = useState('');
 
   // Team Builder State
   const [teamBuilderPlayers, setTeamBuilderPlayers] = useState(9);
@@ -92,7 +92,7 @@ const Admin = () => {
           setDuelData(dData);
           if (dData.settings) {
             setDuelMaxMinutes(dData.settings.maxMinutes || 10);
-            setDuelPrizeBanner(dData.settings.prizeBanner || '🍫 Chocolate for {team}!');
+            setDuelPrizeBanner(dData.settings.prizeBanner || '');
           }
         }
         setIsLogged(true);
@@ -758,11 +758,11 @@ const Admin = () => {
               )}
             </div>
 
-            {/* Recent Finished Duels with Chocolate Checkbox */}
+            {/* Recent Finished Duels */}
             <div className="space-y-3 pt-2 border-t border-[#F3F4F6]">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-[#1E1B3A] uppercase tracking-wider">
-                  Finished Duels & Chocolate Status
+                  Finished Duels
                 </h3>
                 <button
                   onClick={handleExportDuelsCSV}
@@ -793,7 +793,7 @@ const Admin = () => {
                           className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                         />
                         <span className={w.chocolateAwarded ? 'text-emerald-700' : 'text-gray-500'}>
-                          🍫 Chocolate awarded
+                          {w.chocolateAwarded ? 'Award marked' : 'Mark award'}
                         </span>
                       </label>
                     </div>
